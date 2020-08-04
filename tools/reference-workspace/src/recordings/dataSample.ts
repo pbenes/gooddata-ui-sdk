@@ -1,8 +1,9 @@
 // (C) 2020 GoodData Corporation
+
 /* tslint:disable:file-header */
 /* tslint:disable:variable-name */
 /* tslint:disable:no-var-requires */
-/* THIS FILE WAS AUTO-GENERATED USING MOCK HANDLING TOOL; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2020-07-10T08:43:45.044Z; */
+/* THIS FILE WAS AUTO-GENERATED USING MOCK HANDLING TOOL; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2020-08-04T14:52:24.944Z; */
 
 const df_label_product_id_name = require("./metadata/displayForms/label.product.id.name/elements.json");
 const df_label_owner_department = require("./metadata/displayForms/label.owner.department/elements.json");
