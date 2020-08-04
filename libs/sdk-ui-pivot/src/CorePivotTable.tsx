@@ -1045,15 +1045,12 @@ export class CorePivotTablePure extends React.Component<ICorePivotTableProps, IC
     private getDrillIntersection = (
         cellEvent: IGridCellEvent,
         drillItems: IMappingHeader[],
-        tableHeaders: TableHeaders,
+        allHeaders: IGridHeader[],
     ): IDrillEventIntersectionElement[] => {
         const rowDrillItem = this.getRowDrillItem(cellEvent);
         const completeDrillItems: IMappingHeader[] = rowDrillItem
-            ? this.getAttributeDrillItemsForAttributeDrill(cellEvent, tableHeaders.allHeaders, rowDrillItem)
-            : [
-                  ...drillItems,
-                  ...this.getAttributeDrillItemsForMeasureDrill(cellEvent, tableHeaders.colHeaders),
-              ];
+            ? this.getAttributeDrillItemsForAttributeDrill(cellEvent, allHeaders, rowDrillItem)
+            : [...drillItems, ...this.getAttributeDrillItemsForMeasureDrill(cellEvent, allHeaders)];
         return getDrillIntersection(completeDrillItems);
     };
 
@@ -1080,7 +1077,7 @@ export class CorePivotTablePure extends React.Component<ICorePivotTableProps, IC
         const leafColumnDefs = getTreeLeaves(tableHeaders.allHeaders);
         const columnIndex = leafColumnDefs.findIndex((gridHeader) => gridHeader.field === colDef.field);
         const row = getDrillRowData(leafColumnDefs, cellEvent.data);
-        const intersection = this.getDrillIntersection(cellEvent, drillItems, tableHeaders);
+        const intersection = this.getDrillIntersection(cellEvent, drillItems, tableHeaders.allHeaders);
 
         const drillContext: IDrillEventContextTable = {
             type: VisualizationTypes.TABLE,
