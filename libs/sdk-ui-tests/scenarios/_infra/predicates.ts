@@ -29,3 +29,11 @@ export const SampleXirrMeasurePredicate = HeaderPredicates.identifierMatch(
 export const DepartmentPredicate = HeaderPredicates.identifierMatch(
     attributeIdentifier(ReferenceLdm.Department)!,
 );
+
+export const ProductPredicate = HeaderPredicates.identifierMatch(
+    attributeIdentifier(ReferenceLdm.Product.Name)!,
+);
+
+export const SalesRepPredicate = HeaderPredicates.identifierMatch(
+    attributeIdentifier(ReferenceLdm.SalesRep.OwnerName)!,
+);
