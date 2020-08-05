@@ -15,12 +15,12 @@ export default scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
     .withGroupNames("drilling")
     .withVisualTestConfig({ screenshotSize: { width: 1200, height: 800 } })
     .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
-    .addScenario("Pivot table with drill on all row atributes", {
+    .addScenario("with drill on all row atributes", {
         ...PivotTableWithTwoMeasuresAndThreeRowsAndTwoCols,
         drillableItems: [ProductPredicate, DepartmentPredicate, SalesRepPredicate],
         onDrill: action("onDrill"),
     })
-    .addScenario("Pivot table with drill on all row attributes and measures", {
+    .addScenario("with drill on all row attributes and measures", {
         ...PivotTableWithTwoMeasuresAndThreeRowsAndTwoCols,
         drillableItems: [
             ProductPredicate,
