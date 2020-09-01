@@ -4,8 +4,18 @@ import { PluggableBulletChart } from "../PluggableBulletChart";
 import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks";
 import { IBucketOfFun, IFilters, IReferencePoint, IVisConstruct } from "../../../../interfaces/Visualization";
 import { DEFAULT_BULLET_CHART_CONFIG } from "../../../../constants/uiConfig";
-import { OverTimeComparisonTypes, BucketNames } from "@gooddata/sdk-ui";
+import { OverTimeComparisonTypes, BucketNames, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
+import { IInsight, IInsightDefinition, IAttribute } from "@gooddata/sdk-model";
+import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
+import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
+import {
+    sourceInsightDef,
+    intersection,
+    expectedInsightDefRegion,
+    expectedInsightDefDepartment,
+    targetUri,
+} from "./modifyInsightForDrillDownMock";
 
 const defaultProps: IVisConstruct = {
     backend: dummyBackend(),
@@ -481,5 +491,33 @@ describe("PluggableBulletChart", () => {
                 ]);
             });
         });
+    });
+
+    describe("Drill Down", () => {
+        it.each([
+            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDefRegion],
+            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDefDepartment],
+        ])(
+            "should replace the drill down attribute and add intersection filters",
+            (
+                sourceInsightDefinition: IInsightDefinition,
+                drillSourceAttribute: IAttribute,
+                drillTargetUri: string,
+                drillIntersection: IDrillEventIntersectionElement[],
+                expectedInsightDefinition: IInsightDefinition,
+            ) => {
+                const bulletChart = createComponent();
+                const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
+                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
+                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+
+                const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
+                    drillDefinition,
+                    event: createDrillEvent("bullet", drillIntersection),
+                });
+
+                expect(result).toEqual(expectedInsight);
+            },
+        );
     });
 });

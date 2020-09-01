@@ -13,7 +13,19 @@ import {
 import { AXIS } from "../../../constants/axis";
 import { PluggableColumnChart } from "../columnChart/PluggableColumnChart";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
-import { insightSetProperties } from "@gooddata/sdk-model";
+import { insightSetProperties, IInsight, IInsightDefinition, IAttribute } from "@gooddata/sdk-model";
+import {
+    insightDefinitionWithStackBy,
+    targetUri,
+    intersection,
+    expectedInsightDefinitionWithStackByDrillToDepartment,
+    expectedInsightDefinitionWithStackByDrillToRegion,
+    insightDefinition,
+    expectedInsightDefinitionDrillToRegion,
+} from "./modifyInsightForDrillDownMock";
+import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
+import { createDrillEvent, createDrillDefinition, wrapUriIdentifier } from "../testHelpers";
+import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
 
 describe("PluggableColumnBarCharts", () => {
     const defaultProps: IVisConstruct = {
@@ -355,5 +367,46 @@ describe("PluggableColumnBarCharts", () => {
                 stackMeasuresToPercent: true,
             });
         });
+    });
+
+    describe("Drill Down", () => {
+        it.each([
+            [
+                insightDefinitionWithStackBy,
+                Department,
+                targetUri,
+                intersection,
+                expectedInsightDefinitionWithStackByDrillToDepartment,
+            ],
+            [
+                insightDefinitionWithStackBy,
+                Region,
+                targetUri,
+                intersection,
+                expectedInsightDefinitionWithStackByDrillToRegion,
+            ],
+            [insightDefinition, Region, targetUri, intersection, expectedInsightDefinitionDrillToRegion],
+        ])(
+            "should replace the drill down attribute and add intersection filters",
+            (
+                sourceInsightDefinition: IInsightDefinition,
+                drillSourceAttribute: IAttribute,
+                drillTargetUri: string,
+                drillIntersection: IDrillEventIntersectionElement[],
+                expectedInsightDefinition: IInsightDefinition,
+            ) => {
+                const columnChart = createComponent();
+                const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
+                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
+                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+
+                const result: IInsight = columnChart.modifyInsightForDrillDown(sourceInsight, {
+                    drillDefinition,
+                    event: createDrillEvent("column", drillIntersection),
+                });
+
+                expect(result).toEqual(expectedInsight);
+            },
+        );
     });
 });

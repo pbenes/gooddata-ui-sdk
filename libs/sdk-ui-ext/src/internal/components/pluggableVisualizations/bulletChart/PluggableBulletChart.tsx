@@ -10,6 +10,8 @@ import {
     IVisConstruct,
     IBucketItem,
     IBucketOfFun,
+    IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 
 import {
@@ -26,10 +28,15 @@ import { DEFAULT_BULLET_CHART_CONFIG } from "../../../constants/uiConfig";
 import { BULLET_CHART_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 import BulletChartConfigurationPanel from "../../configurationPanels/BulletChartConfigurationPanel";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { VisualizationTypes } from "@gooddata/sdk-ui";
-import { IInsightDefinition } from "@gooddata/sdk-model";
+import { VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
+import {
+    modifyBucketsAttributesForDrillDown,
+    addIntersectionFiltersToInsight,
+    getIntersectionPartAfter,
+} from "../drillDownUtil";
 
 export class PluggableBulletChart extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -68,6 +75,22 @@ export class PluggableBulletChart extends PluggableBaseChart {
         this.setPrimaryMeasureIsMissingError(buckets);
 
         return Promise.resolve(sanitizeFilters(newReferencePoint));
+    }
+
+    private addFiltersForBullet(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
+        const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
+
+        const cutIntersection = getIntersectionPartAfter(event.drillContext.intersection, clicked);
+        return addIntersectionFiltersToInsight(source, cutIntersection);
+    }
+
+    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+        const withFilters = this.addFiltersForBullet(
+            source,
+            drillDownContext.drillDefinition,
+            drillDownContext.event,
+        );
+        return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): React.ReactNode {

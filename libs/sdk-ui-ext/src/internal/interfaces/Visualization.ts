@@ -4,9 +4,11 @@ import { IAnalyticalBackend, IExecutionFactory, ISettings } from "@gooddata/sdk-
 import {
     IColorPalette,
     IInsightDefinition,
+    IInsight,
     ITotal,
     VisualizationProperties,
     ObjRef,
+    Identifier,
 } from "@gooddata/sdk-model";
 import {
     ChartType,
@@ -17,6 +19,7 @@ import {
     OverTimeComparisonType,
     VisualizationEnvironment,
     IHeaderPredicate,
+    IDrillEvent,
 } from "@gooddata/sdk-ui";
 
 export type RenderFunction = (component: any, target: Element) => void;
@@ -332,6 +335,8 @@ export interface IVisualization {
         referencePoint: IReferencePoint,
         previousReferencePoint?: IReferencePoint,
     ): Promise<IExtendedReferencePoint>;
+
+    modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight;
 }
 
 export interface IGdcConfig {
@@ -368,3 +373,47 @@ export const PluggableVisualizationErrorCodes = {
      */
     EMPTY_AFM: "EMPTY_AFM",
 };
+
+/**
+ * Source implicit drill down attribute local Identifier
+ *
+ * @alpha
+ */
+export interface IDrillFromAttribute {
+    drillFromAttribute: {
+        localIdentifier: Identifier;
+    };
+}
+
+/**
+ * Target implicit drill down attribute display form
+ *
+ * @alpha
+ */
+export interface IDrillToAttribute {
+    drillToAttribute: {
+        attributeDisplayForm: ObjRef;
+    };
+}
+
+/**
+ * Implicit drill down definition
+ *
+ * @alpha
+ */
+export interface IImplicitDrillDown {
+    implicitDrillDown: {
+        from: IDrillFromAttribute;
+        target: IDrillToAttribute;
+    };
+}
+
+/**
+ * Implicit drill down context
+ *
+ * @alpha
+ */
+export interface IDrillDownContext {
+    drillDefinition: IImplicitDrillDown;
+    event: IDrillEvent;
+}

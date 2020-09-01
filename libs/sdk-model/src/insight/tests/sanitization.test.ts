@@ -3,9 +3,10 @@ import { insightSanitize } from "../sanitization";
 import { newTotal, ITotal } from "../../execution/base/totals";
 import { newMeasureSort, newAttributeSort, ISortItem } from "../../execution/base/sort";
 import { newInsightDefinition } from "../factory";
-import { bucketTotals } from "../../execution/buckets";
+import { bucketTotals, IBucket } from "../../execution/buckets";
 import { insightBucket } from "..";
 import { Account, ActivityType, Department, Velocity, Won } from "../../../__mocks__/model";
+import { modifyAttribute, uriRef, newAttribute } from "../..";
 
 describe("insightSanitize", () => {
     const m1 = Won;
@@ -80,5 +81,34 @@ describe("insightSanitize", () => {
 
         expect(resultTotals1).toEqual([grandTotal]);
         expect(resultTotals2).toEqual([grandTotal]);
+    });
+
+    it("should remove duplicate drillable bucket attribute items", () => {
+        const targetDrillUri = "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091";
+        const departmentUri = "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103";
+        const insight = newInsightDefinition("foo", (m) =>
+            m.buckets([
+                { localIdentifier: "measures", items: [m1, m2] },
+                {
+                    localIdentifier: "attribute",
+                    items: [
+                        modifyAttribute(a1, (a) => a.displayForm(uriRef(targetDrillUri))),
+                        modifyAttribute(a2, (a) => a.displayForm(uriRef(targetDrillUri))),
+                        modifyAttribute(a3, (a) => a.displayForm(uriRef(departmentUri))),
+                    ],
+                },
+            ]),
+        );
+        const sanitized = insightSanitize(insight);
+        const result = insightBucket(sanitized, "attribute");
+        const expectedResult: IBucket = {
+            localIdentifier: "attribute",
+            items: [
+                newAttribute(uriRef(targetDrillUri), (a) => a.localId("a_label.account.id")),
+                newAttribute(uriRef(departmentUri), (a) => a.localId(Department.attribute.localIdentifier)),
+            ],
+        };
+
+        expect(result).toEqual(expectedResult);
     });
 });

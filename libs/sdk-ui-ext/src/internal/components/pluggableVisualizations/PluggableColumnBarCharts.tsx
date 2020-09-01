@@ -1,8 +1,8 @@
 // (C) 2019 GoodData Corporation
 import get from "lodash/get";
 import set from "lodash/set";
-import { bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
-import { BucketNames } from "@gooddata/sdk-ui";
+import { IInsight, bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
+import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
@@ -11,6 +11,8 @@ import {
     IExtendedReferencePoint,
     IReferencePoint,
     IVisConstruct,
+    IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../interfaces/Visualization";
 import {
     getAllCategoriesAttributeItems,
@@ -29,6 +31,12 @@ import {
 } from "../../utils/propertiesHelper";
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
+import {
+    modifyBucketsAttributesForDrillDown,
+    addIntersectionFiltersToInsight,
+    getIntersectionPartAfter,
+    adjustIntersectionForColumnBar,
+} from "./drillDownUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -65,6 +73,23 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             !isStackingMeasure(this.visualizationProperties) &&
             !isStackingToPercent(this.visualizationProperties)
         );
+    }
+
+    private addFiltersForColumnBar(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
+        const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
+
+        const reorderedIntersection = adjustIntersectionForColumnBar(source, event);
+        const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
+        return addIntersectionFiltersToInsight(source, cutIntersection);
+    }
+
+    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+        const withFilters = this.addFiltersForColumnBar(
+            source,
+            drillDownContext.drillDefinition,
+            drillDownContext.event,
+        );
+        return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
