@@ -5,6 +5,7 @@ import {
     attributeLocalId,
     bucketAttributes,
     IDimension,
+    IInsight,
     IInsightDefinition,
     insightBucket,
     MeasureGroupIdentifier,
@@ -21,6 +22,7 @@ import {
     IVisConstruct,
     IVisProps,
     RenderFunction,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 import {
     removeAllArithmeticMeasuresFromDerived,
@@ -84,6 +86,13 @@ export class PluggableXirr extends AbstractPluggableVisualization {
 
         return sanitizeFilters(newReferencePoint);
     };
+
+    public modifyInsightForDrillDown(
+        sourceVisualization: IInsight,
+        _drillDownContext: IDrillDownContext,
+    ): IInsight {
+        return sourceVisualization;
+    }
 
     protected renderVisualization(
         options: IVisProps,

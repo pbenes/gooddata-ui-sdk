@@ -1,7 +1,13 @@
 // (C) 2019 GoodData Corporation
 
 import { IExecutionFactory, ISettings, SettingCatalog } from "@gooddata/sdk-backend-spi";
-import { bucketIsEmpty, IInsightDefinition, insightBucket, insightHasDataDefined } from "@gooddata/sdk-model";
+import {
+    bucketIsEmpty,
+    IInsight,
+    IInsightDefinition,
+    insightBucket,
+    insightHasDataDefined,
+} from "@gooddata/sdk-model";
 
 import { BucketNames, GoodDataSdkError } from "@gooddata/sdk-ui";
 import { CoreHeadline, updateConfigWithSettings } from "@gooddata/sdk-ui-charts";
@@ -17,6 +23,7 @@ import {
     IVisProps,
     PluggableVisualizationErrorCodes,
     RenderFunction,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
@@ -113,6 +120,13 @@ export class PluggableHeadline extends AbstractPluggableVisualization {
         newReferencePoint = removeSort(newReferencePoint);
 
         return Promise.resolve(sanitizeFilters(newReferencePoint));
+    }
+
+    public modifyInsightForDrillDown(
+        sourceVisualization: IInsight,
+        _drillDownContext: IDrillDownContext,
+    ): IInsight {
+        return sourceVisualization;
     }
 
     protected checkBeforeRender(insight: IInsightDefinition): boolean {
