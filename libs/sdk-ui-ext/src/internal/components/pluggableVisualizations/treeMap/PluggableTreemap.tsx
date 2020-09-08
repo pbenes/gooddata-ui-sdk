@@ -140,7 +140,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         };
     }
 
-    public convertOnDrill(source: IInsight, drillConfig: any, event: any): IInsight {
+    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFiltersForTreemap(source, drillConfig, event);
         return removeAttributesFromBuckets(withFilters, drillConfig).insight;
     }

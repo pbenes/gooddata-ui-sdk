@@ -8,6 +8,8 @@ import {
     ITotal,
     VisualizationProperties,
     ObjRef,
+    Identifier,
+    UriRef,
 } from "@gooddata/sdk-model";
 import {
     ChartType,
@@ -347,7 +349,7 @@ export interface IVisualization {
         }
      */
 
-    convertOnDrill(source: IInsight, drillConfig: any, event: any): IInsight;
+    modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight;
 }
 
 export interface IGdcConfig {
@@ -384,3 +386,37 @@ export const PluggableVisualizationErrorCodes = {
      */
     EMPTY_AFM: "EMPTY_AFM",
 };
+
+/**
+ * Source implicit drill down attribute local Identifier
+ *
+ * @alpha
+ */
+export interface IDrillFromAttribute {
+    drillFromAttribute: {
+        localIdentifier: Identifier;
+    };
+}
+
+/**
+ * Target implicit drill down attribute display form
+ *
+ * @alpha
+ */
+export interface IDrillToAttribute {
+    drillToAttribute: {
+        attributeDisplayForm: UriRef;
+    };
+}
+
+/**
+ * Implicit drill down definition
+ *
+ * @alpha
+ */
+export interface IImplicitDrillDown {
+    implicitDrillDown: {
+        from: IDrillFromAttribute;
+        target: IDrillToAttribute;
+    };
+}

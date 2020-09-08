@@ -167,7 +167,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         };
     }
 
-    public convertOnDrill(source: IInsight, drillConfig: any, event: any): IInsight {
+    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFilters(source, drillConfig, event);
         return removeAttributesFromBuckets(withFilters, drillConfig).insight;
     }

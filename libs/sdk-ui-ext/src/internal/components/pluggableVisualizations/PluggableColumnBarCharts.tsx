@@ -117,7 +117,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         };
     }
 
-    public convertOnDrill(source: IInsight, drillConfig: any, event: any): IInsight {
+    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFiltersForColumnBar(source, drillConfig, event);
         return removeAttributesFromBuckets(withFilters, drillConfig).insight;
     }

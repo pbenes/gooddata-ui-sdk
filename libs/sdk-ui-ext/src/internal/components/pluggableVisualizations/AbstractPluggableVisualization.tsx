@@ -288,5 +288,9 @@ export abstract class AbstractPluggableVisualization implements IVisualization {
         }, []);
     }
 
-    public abstract convertOnDrill(sourceVisualization: IInsight, drillConfig: any, event: any): IInsight;
+    public abstract modifyInsightForDrilldown(
+        sourceVisualization: IInsight,
+        drillConfig: any,
+        event: any,
+    ): IInsight;
 }
