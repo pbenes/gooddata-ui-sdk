@@ -3,7 +3,7 @@ import get from "lodash/get";
 import set from "lodash/set";
 import last from "lodash/last";
 import { IInsight, bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
-import { isDrillIntersectionAttributeItem, BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
+import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
@@ -31,7 +31,7 @@ import {
 } from "../../utils/propertiesHelper";
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
-import { removeAttributesFromBuckets } from "./convertUtil";
+import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "./convertUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -96,26 +96,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         );
         const cutIntersection = reorderedIntersection.slice(index);
 
-        const filters = cutIntersection
-            .map((i: any) => i.header)
-            .filter(isDrillIntersectionAttributeItem)
-            .map((h: any) => ({
-                positiveAttributeFilter: {
-                    displayForm: {
-                        uri: h.attributeHeader.uri,
-                    },
-                    in: {
-                        uris: [h.attributeHeaderItem.uri],
-                    },
-                },
-            }));
-
-        return {
-            insight: {
-                ...source.insight,
-                filters: [...source.insight.filters, ...filters],
-            },
-        };
+        return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
     public modifyInsightForDrilldown(

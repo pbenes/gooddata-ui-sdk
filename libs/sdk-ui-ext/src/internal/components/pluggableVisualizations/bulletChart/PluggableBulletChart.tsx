@@ -27,11 +27,11 @@ import { DEFAULT_BULLET_CHART_CONFIG } from "../../../constants/uiConfig";
 import { BULLET_CHART_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 import BulletChartConfigurationPanel from "../../configurationPanels/BulletChartConfigurationPanel";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { isDrillIntersectionAttributeItem, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import { removeAttributesFromBuckets } from "../convertUtil";
+import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
 
 export class PluggableBulletChart extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -82,24 +82,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
         );
         const cutIntersection = intersection.slice(index);
 
-        const filters = cutIntersection
-            .map((i: any) => i.header)
-            .filter(isDrillIntersectionAttributeItem)
-            .map((h: any) => ({
-                positiveAttributeFilter: {
-                    displayForm: {
-                        uri: h.attributeHeader.uri,
-                    },
-                    in: [h.attributeHeaderItem.uri],
-                },
-            }));
-
-        return {
-            insight: {
-                ...source.insight,
-                filters: [...source.insight.filters, ...filters],
-            },
-        };
+        return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
     public modifyInsightForDrilldown(

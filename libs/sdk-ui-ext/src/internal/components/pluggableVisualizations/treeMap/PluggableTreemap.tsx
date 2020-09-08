@@ -5,12 +5,7 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import {
-    isDrillIntersectionAttributeItem,
-    BucketNames,
-    VisualizationTypes,
-    IDrillEvent,
-} from "@gooddata/sdk-ui";
+import { BucketNames, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
 import { render } from "react-dom";
 import { BUCKETS } from "../../../constants/bucket";
 import { TREEMAP_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
@@ -47,7 +42,7 @@ import TreeMapConfigurationPanel from "../../configurationPanels/TreeMapConfigur
 import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import { removeAttributesFromBuckets } from "../convertUtil";
+import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
 
 export class PluggableTreemap extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -130,24 +125,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         );
         const cutIntersection = intersection.slice(index);
 
-        const filters = cutIntersection
-            .map((i: any) => i.header)
-            .filter(isDrillIntersectionAttributeItem)
-            .map((h: any) => ({
-                positiveAttributeFilter: {
-                    displayForm: {
-                        uri: h.attributeHeader.uri,
-                    },
-                    in: [h.attributeHeaderItem.uri],
-                },
-            }));
-
-        return {
-            insight: {
-                ...source.insight,
-                filters: [...source.insight.filters, ...filters],
-            },
-        };
+        return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
     public modifyInsightForDrilldown(

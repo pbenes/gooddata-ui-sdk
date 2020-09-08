@@ -10,14 +10,7 @@ import {
     insightHasMeasures,
     insightMeasures,
 } from "@gooddata/sdk-model";
-import {
-    isDrillIntersectionAttributeItem,
-    BucketNames,
-    ChartType,
-    GoodDataSdkError,
-    VisualizationTypes,
-    IDrillEvent,
-} from "@gooddata/sdk-ui";
+import { BucketNames, ChartType, GoodDataSdkError, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
 import { BaseChart, ColorUtils, IAxisConfig, IChartConfig } from "@gooddata/sdk-ui-charts";
 import React from "react";
 import { render } from "react-dom";
@@ -79,7 +72,7 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import { removeAttributesFromBuckets } from "../convertUtil";
+import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
 
 export class PluggableBaseChart extends AbstractPluggableVisualization {
     protected projectId: string;
@@ -147,34 +140,12 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    private addFilters(source: IInsight, _drillConfig: any, _event: any) {
-        const intersection = _event.drillContext.intersection;
-        const filters = intersection
-            .map((i: any) => i.header)
-            .filter(isDrillIntersectionAttributeItem)
-            .map((h: any) => ({
-                positiveAttributeFilter: {
-                    displayForm: {
-                        uri: h.attributeHeader.uri,
-                    },
-                    in: [h.attributeHeaderItem.uri],
-                },
-            }));
-
-        return {
-            insight: {
-                ...source.insight,
-                filters: [...source.insight.filters, ...filters],
-            },
-        };
-    }
-
     public modifyInsightForDrilldown(
         source: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,
     ): IInsight {
-        const withFilters = this.addFilters(source, drillDefinition, event);
+        const withFilters = addIntersectionFiltersToInsight(source, event.drillContext.intersection);
         return removeAttributesFromBuckets(withFilters, drillDefinition);
     }
 

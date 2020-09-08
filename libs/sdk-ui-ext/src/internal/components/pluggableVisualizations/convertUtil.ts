@@ -10,6 +10,7 @@ import {
 } from "@gooddata/sdk-model";
 import flatMap from "lodash/flatMap";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
+import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 
 function matchesDrillDownTargetAttribute(drillConfig: IImplicitDrillDown, attribute: IAttribute) {
     const drillSourceLocalIdentifier = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
@@ -122,4 +123,34 @@ function removePropertiesForRemovedAttributes(insight: IInsight) {
 
 export function sanitizeTableProperties(insight: IInsight): IInsight {
     return removePropertiesForRemovedAttributes(insight);
+}
+
+export function convertIntersectionToFilters(intersection: IDrillEventIntersectionElement[]) {
+    return intersection
+        .map((i) => i.header)
+        .filter(isDrillIntersectionAttributeItem)
+        .map((h) => ({
+            positiveAttributeFilter: {
+                displayForm: {
+                    uri: h.attributeHeader.uri,
+                },
+                in: {
+                    uris: [h.attributeHeaderItem.uri],
+                },
+            },
+        }));
+}
+
+export function addIntersectionFiltersToInsight(
+    source: IInsight,
+    intersection: IDrillEventIntersectionElement[],
+) {
+    const filters = convertIntersectionToFilters(intersection);
+
+    return {
+        insight: {
+            ...source.insight,
+            filters: [...source.insight.filters, ...filters],
+        },
+    };
 }
