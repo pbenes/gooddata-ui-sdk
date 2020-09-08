@@ -264,7 +264,7 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         sourceVisualization: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,
-    ) {
+    ): IInsight {
         return this.visualization.modifyInsightForDrilldown(sourceVisualization, drillDefinition, event);
     }
 }

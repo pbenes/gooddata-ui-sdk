@@ -126,7 +126,7 @@ export class PluggableHeadline extends AbstractPluggableVisualization {
         sourceVisualization: IInsight,
         _drillDefinition: IImplicitDrillDown,
         _event: IDrillEvent,
-    ) {
+    ): IInsight {
         return sourceVisualization;
     }
 

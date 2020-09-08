@@ -9,8 +9,7 @@ import {
     VisualizationProperties,
 } from "@gooddata/sdk-model";
 import flatMap from "lodash/flatMap";
-import { IImplicitDrillDown } from '../../interfaces/Visualization';
-
+import { IImplicitDrillDown } from "../../interfaces/Visualization";
 
 function matchesDrillDownTargetAttribute(drillConfig: IImplicitDrillDown, attribute: IAttribute) {
     const drillSourceLocalIdentifier = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
@@ -122,7 +121,5 @@ function removePropertiesForRemovedAttributes(insight: IInsight) {
 }
 
 export function sanitizeTableProperties(insight: IInsight): IInsight {
-    let updatedInsight = removePropertiesForRemovedAttributes(insight);
-
-    return updatedInsight;
+    return removePropertiesForRemovedAttributes(insight);
 }
