@@ -3,7 +3,7 @@ import get from "lodash/get";
 import set from "lodash/set";
 import last from "lodash/last";
 import { IInsight, bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
-import { isDrillIntersectionAttributeItem, BucketNames } from "@gooddata/sdk-ui";
+import { isDrillIntersectionAttributeItem, BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
@@ -12,6 +12,7 @@ import {
     IExtendedReferencePoint,
     IReferencePoint,
     IVisConstruct,
+    IImplicitDrillDown,
 } from "../../interfaces/Visualization";
 import {
     getAllCategoriesAttributeItems,
@@ -117,9 +118,13 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         };
     }
 
-    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
-        const withFilters = this.addFiltersForColumnBar(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig);
+    public modifyInsightForDrilldown(
+        source: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ): IInsight {
+        const withFilters = this.addFiltersForColumnBar(source, drillDefinition, event);
+        return removeAttributesFromBuckets(withFilters, drillDefinition);
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {

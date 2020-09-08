@@ -11,7 +11,7 @@ import {
     MeasureGroupIdentifier,
     newDimension,
 } from "@gooddata/sdk-model";
-import { BucketNames } from "@gooddata/sdk-ui";
+import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 
 import { CoreXirr, updateConfigWithSettings } from "@gooddata/sdk-ui-charts";
 import React from "react";
@@ -22,6 +22,7 @@ import {
     IVisConstruct,
     IVisProps,
     RenderFunction,
+    IImplicitDrillDown,
 } from "../../../interfaces/Visualization";
 import {
     removeAllArithmeticMeasuresFromDerived,
@@ -86,7 +87,11 @@ export class PluggableXirr extends AbstractPluggableVisualization {
         return sanitizeFilters(newReferencePoint);
     };
 
-    public modifyInsightForDrilldown(sourceVisualization: IInsight, _drillConfig: any, _event: any) {
+    public modifyInsightForDrilldown(
+        sourceVisualization: IInsight,
+        _drillDefinition: IImplicitDrillDown,
+        _event: IDrillEvent,
+    ) {
         return sourceVisualization;
     }
 

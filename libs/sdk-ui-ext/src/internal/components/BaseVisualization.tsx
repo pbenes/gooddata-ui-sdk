@@ -18,6 +18,7 @@ import {
     OnLoadingChanged,
     VisualizationEnvironment,
     IHeaderPredicate,
+    IDrillEvent,
 } from "@gooddata/sdk-ui";
 import {
     ConfigPanelClassName,
@@ -27,6 +28,7 @@ import {
     IVisCallbacks,
     IVisConstruct,
     IVisualization,
+    IImplicitDrillDown,
 } from "../interfaces/Visualization";
 import {
     FullVisualizationCatalog,
@@ -255,7 +257,11 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         return !isEqual(omit(currentReferencePoint, "properties"), omit(nextReferencePoint, "properties"));
     }
 
-    public modifyInsightForDrilldown(sourceVisualization: IInsight, drillConfig: any, event: any) {
-        return this.visualization.modifyInsightForDrilldown(sourceVisualization, drillConfig, event);
+    public modifyInsightForDrilldown(
+        sourceVisualization: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ) {
+        return this.visualization.modifyInsightForDrilldown(sourceVisualization, drillDefinition, event);
     }
 }

@@ -10,6 +10,7 @@ import {
     IVisConstruct,
     IBucketItem,
     IBucketOfFun,
+    IImplicitDrillDown,
 } from "../../../interfaces/Visualization";
 
 import {
@@ -26,7 +27,7 @@ import { DEFAULT_BULLET_CHART_CONFIG } from "../../../constants/uiConfig";
 import { BULLET_CHART_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 import BulletChartConfigurationPanel from "../../configurationPanels/BulletChartConfigurationPanel";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { isDrillIntersectionAttributeItem, VisualizationTypes } from "@gooddata/sdk-ui";
+import { isDrillIntersectionAttributeItem, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
@@ -101,9 +102,13 @@ export class PluggableBulletChart extends PluggableBaseChart {
         };
     }
 
-    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
-        const withFilters = this.addFiltersForBullet(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig);
+    public modifyInsightForDrilldown(
+        source: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ): IInsight {
+        const withFilters = this.addFiltersForBullet(source, drillDefinition, event);
+        return removeAttributesFromBuckets(withFilters, drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): React.ReactNode {

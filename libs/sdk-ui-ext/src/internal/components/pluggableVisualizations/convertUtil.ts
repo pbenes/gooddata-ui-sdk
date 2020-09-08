@@ -9,9 +9,8 @@ import {
     VisualizationProperties,
 } from "@gooddata/sdk-model";
 import flatMap from "lodash/flatMap";
+import { IImplicitDrillDown } from '../../interfaces/Visualization';
 
-// TODO use proper type
-export type IImplicitDrillDown = any;
 
 function matchesDrillDownTargetAttribute(drillConfig: IImplicitDrillDown, attribute: IAttribute) {
     const drillSourceLocalIdentifier = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;

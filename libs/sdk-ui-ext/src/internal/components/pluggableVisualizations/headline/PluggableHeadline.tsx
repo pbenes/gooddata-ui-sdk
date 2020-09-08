@@ -9,7 +9,7 @@ import {
     insightHasDataDefined,
 } from "@gooddata/sdk-model";
 
-import { BucketNames, GoodDataSdkError } from "@gooddata/sdk-ui";
+import { BucketNames, GoodDataSdkError, IDrillEvent } from "@gooddata/sdk-ui";
 import { CoreHeadline, updateConfigWithSettings } from "@gooddata/sdk-ui-charts";
 import React from "react";
 import { render } from "react-dom";
@@ -23,6 +23,7 @@ import {
     IVisProps,
     PluggableVisualizationErrorCodes,
     RenderFunction,
+    IImplicitDrillDown,
 } from "../../../interfaces/Visualization";
 
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
@@ -121,7 +122,11 @@ export class PluggableHeadline extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrilldown(sourceVisualization: IInsight, _drillConfig: any, _event: any) {
+    public modifyInsightForDrilldown(
+        sourceVisualization: IInsight,
+        _drillDefinition: IImplicitDrillDown,
+        _event: IDrillEvent,
+    ) {
         return sourceVisualization;
     }
 

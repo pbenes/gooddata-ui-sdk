@@ -5,7 +5,12 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import { isDrillIntersectionAttributeItem, BucketNames, VisualizationTypes } from "@gooddata/sdk-ui";
+import {
+    isDrillIntersectionAttributeItem,
+    BucketNames,
+    VisualizationTypes,
+    IDrillEvent,
+} from "@gooddata/sdk-ui";
 import { render } from "react-dom";
 import { BUCKETS } from "../../../constants/bucket";
 import { TREEMAP_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
@@ -16,7 +21,12 @@ import {
     TREEMAP_UICONFIG_WITH_ONE_MEASURE,
     UICONFIG,
 } from "../../../constants/uiConfig";
-import { IExtendedReferencePoint, IReferencePoint, IVisConstruct } from "../../../interfaces/Visualization";
+import {
+    IExtendedReferencePoint,
+    IReferencePoint,
+    IVisConstruct,
+    IImplicitDrillDown,
+} from "../../../interfaces/Visualization";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
 
 import {
@@ -140,9 +150,13 @@ export class PluggableTreemap extends PluggableBaseChart {
         };
     }
 
-    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
-        const withFilters = this.addFiltersForTreemap(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig);
+    public modifyInsightForDrilldown(
+        source: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ): IInsight {
+        const withFilters = this.addFiltersForTreemap(source, drillDefinition, event);
+        return removeAttributesFromBuckets(withFilters, drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): void {

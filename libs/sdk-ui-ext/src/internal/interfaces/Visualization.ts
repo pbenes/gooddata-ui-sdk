@@ -20,6 +20,7 @@ import {
     OverTimeComparisonType,
     VisualizationEnvironment,
     IHeaderPredicate,
+    IDrillEvent,
 } from "@gooddata/sdk-ui";
 
 export type RenderFunction = (component: any, target: Element) => void;
@@ -349,7 +350,11 @@ export interface IVisualization {
         }
      */
 
-    modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight;
+    modifyInsightForDrilldown(
+        source: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ): IInsight;
 }
 
 export interface IGdcConfig {

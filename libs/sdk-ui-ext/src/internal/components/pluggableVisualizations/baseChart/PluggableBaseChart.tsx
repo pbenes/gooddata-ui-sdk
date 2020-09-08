@@ -16,6 +16,7 @@ import {
     ChartType,
     GoodDataSdkError,
     VisualizationTypes,
+    IDrillEvent,
 } from "@gooddata/sdk-ui";
 import { BaseChart, ColorUtils, IAxisConfig, IChartConfig } from "@gooddata/sdk-ui-charts";
 import React from "react";
@@ -38,6 +39,7 @@ import {
     IVisProps,
     IVisualizationProperties,
     PluggableVisualizationErrorCodes,
+    IImplicitDrillDown,
 } from "../../../interfaces/Visualization";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
 
@@ -167,9 +169,13 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         };
     }
 
-    public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
-        const withFilters = this.addFilters(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig);
+    public modifyInsightForDrilldown(
+        source: IInsight,
+        drillDefinition: IImplicitDrillDown,
+        event: IDrillEvent,
+    ): IInsight {
+        const withFilters = this.addFilters(source, drillDefinition, event);
+        return removeAttributesFromBuckets(withFilters, drillDefinition);
     }
 
     public isOpenAsReportSupported(): boolean {
