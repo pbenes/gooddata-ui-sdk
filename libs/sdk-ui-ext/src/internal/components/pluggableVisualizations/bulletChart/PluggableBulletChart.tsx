@@ -76,11 +76,10 @@ export class PluggableBulletChart extends PluggableBaseChart {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    private addFiltersForBullet(source: IInsight, drillConfig: any, _event: any) {
+    private addFiltersForBullet(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
-        const intersection = _event.drillContext.intersection;
-        const cutIntersection = getIntersectionPartAfter(intersection, clicked);
+        const cutIntersection = getIntersectionPartAfter(event.drillContext.intersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 

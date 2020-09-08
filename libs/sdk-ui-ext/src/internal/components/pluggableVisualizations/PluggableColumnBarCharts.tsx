@@ -74,7 +74,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         );
     }
 
-    private addFiltersForColumnBar(source: IInsight, drillConfig: any, _event: any) {
+    private addFiltersForColumnBar(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
         const buckets = source.insight.buckets;
 
@@ -85,7 +85,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             [],
         );
 
-        let reorderedIntersection = _event.drillContext.intersection;
+        let reorderedIntersection = event.drillContext.intersection;
         if (stack.length > 0) {
             const lastItem = last(reorderedIntersection);
             const beginning = reorderedIntersection.slice(0, -1);
