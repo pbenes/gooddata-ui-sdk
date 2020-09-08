@@ -118,7 +118,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    private addFiltersForTreemap(source: IInsight, drillConfig: any, _event: any) {
+    private rush addFiltersForTreemap(source: IInsight, drillConfig: any, _event: any) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
         // treemap just reverse the intersection

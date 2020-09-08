@@ -223,7 +223,7 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
         sourceVisualization: IInsight,
         drillDefinition: IImplicitDrillDown,
         _event: IDrillEvent,
-    ): IInsight
+    ): IInsight {
         const insight = removeAttributesFromBuckets(sourceVisualization, drillDefinition);
         return sanitizeTableProperties(insightSanitize(insight));
     }
