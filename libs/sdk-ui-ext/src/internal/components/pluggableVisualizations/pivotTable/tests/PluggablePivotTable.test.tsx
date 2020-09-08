@@ -48,7 +48,7 @@ import {
     validAttributeSort,
     validMeasureSort,
 } from "./sortMocks";
-import { drillConfig, sourceInsight, properties } from "./convertOnDrillMocks";
+import { convertOnDrillMocks } from "./convertOnDrillMocks";
 
 describe("PluggablePivotTable", () => {
     const backend = dummyBackend();
@@ -83,7 +83,11 @@ describe("PluggablePivotTable", () => {
     describe("modifyInsightForDrilldown", () => {
         it("should delete intersection filter attributes and sanitize properties", () => {
             const pivotTable = createComponent();
-            const result: IInsight = pivotTable.modifyInsightForDrilldown(sourceInsight, drillConfig, {});
+            const result: IInsight = pivotTable.modifyInsightForDrilldown(
+                convertOnDrillMocks.sourceInsight,
+                convertOnDrillMocks.drillConfig,
+                {},
+            );
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -223,14 +227,14 @@ describe("PluggablePivotTable", () => {
                             ],
                         },
                     ],
-                    properties,
+                    properties: convertOnDrillMocks.properties,
                 },
             };
 
             const pivotTable = createComponent();
             const result: IInsight = pivotTable.modifyInsightForDrilldown(
                 sourceVisualization,
-                drillConfig,
+                convertOnDrillMocks.drillConfig,
                 {},
             );
             const expected: IInsight = {

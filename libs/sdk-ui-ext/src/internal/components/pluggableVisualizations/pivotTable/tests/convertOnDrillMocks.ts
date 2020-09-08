@@ -4,7 +4,7 @@ import { IInsight } from "@gooddata/sdk-model";
 import { IImplicitDrillDown } from "../../convertUtil";
 import { IVisualizationProperties } from "../../../..";
 
-export const properties: IVisualizationProperties = {
+const properties: IVisualizationProperties = {
     controls: {
         columnWidths: [
             {
@@ -44,7 +44,7 @@ export const properties: IVisualizationProperties = {
     ],
 };
 
-export const sourceInsight: IInsight = {
+const sourceInsight: IInsight = {
     insight: {
         title: "visualizationObject",
         identifier: "visualizationObject",
@@ -112,7 +112,7 @@ export const sourceInsight: IInsight = {
     },
 };
 
-export const drillConfig: IImplicitDrillDown = {
+const drillConfig: IImplicitDrillDown = {
     implicitDrillDown: {
         from: { drillFromAttribute: { localIdentifier: "d7e1d1a3e9d8484bb0c7a858261c0f85" } },
         target: {
@@ -123,4 +123,10 @@ export const drillConfig: IImplicitDrillDown = {
             },
         },
     },
+};
+
+export const convertOnDrillMocks = {
+    properties,
+    sourceInsight,
+    drillConfig,
 };
