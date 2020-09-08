@@ -1,4 +1,4 @@
-import { removeAttributesFromBuckets } from "../convertUtil";
+import { removeAttributesFromBuckets, sanitizeTableProperties } from "../convertUtil";
 // (C) 2019 GoodData Corporation
 import cloneDeep from "lodash/cloneDeep";
 import flatMap from "lodash/flatMap";
@@ -220,8 +220,7 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
 
     public modifyInsightForDrilldown(sourceVisualization: IInsight, drillConfig: any, _event: any): IInsight {
         const { insight } = removeAttributesFromBuckets(sourceVisualization, drillConfig);
-        //return sanitizeTableProperties(insight, removedItems);
-        return insightSanitize(insight);
+        return sanitizeTableProperties(insightSanitize(insight));
     }
 
     private createCorePivotTableProps = () => {

@@ -5,8 +5,10 @@ import {
     IBucket,
     IInsight,
     isAttribute,
+    isMeasure,
     VisualizationProperties,
 } from "@gooddata/sdk-model";
+import flatMap from "lodash/flatMap";
 
 // TODO use proper type
 export type IImplicitDrillDown = any;
@@ -32,11 +34,6 @@ type TColumnWidths = {
 
 enum ENUM_PROPERTIES_TYPE {
     CONTROLS = "controls",
-}
-
-enum ENUM_BUCKETS_TYPE {
-    ATTRIBUTE = "attribute",
-    ROLLUP_TOTAL = "nat",
 }
 
 export function removeAttributesFromBuckets(
@@ -90,49 +87,30 @@ export function removeAttributesFromBuckets(
     };
 }
 
-function removeTotalsForRemovedAttributes(insight: IInsight, removed: IAttribute[]) {
-    const result = insight.insight.buckets.map((bucket: any) => {
-        if (bucket.localIdentifier === ENUM_BUCKETS_TYPE.ATTRIBUTE && bucket.totals) {
-            const totals = bucket.totals.filter(
-                (total: any) =>
-                    !removed.find(
-                        (r) =>
-                            total.type === ENUM_BUCKETS_TYPE.ROLLUP_TOTAL &&
-                            r.attribute.localIdentifier === total.attributeIdentifier,
-                    ),
-            );
-
-            return { ...bucket, totals };
-        }
-
-        return { ...bucket };
-    });
-
-    return {
-        ...insight,
-        insight: {
-            ...insight.insight,
-            buckets: result,
-        },
-    };
-}
-
-function removePropertiesForRemovedAttributes(insight: IInsight, removed: IAttribute[]) {
+function removePropertiesForRemovedAttributes(insight: IInsight) {
     if (!insight.insight.properties) {
         return insight;
     }
 
     const properties: VisualizationProperties = insight.insight.properties;
 
+    const identifiers = flatMap(insight.insight.buckets, (b: IBucket) => {
+        for (const i of b.items) {
+            if (isAttribute(i)) {
+                return i.attribute.localIdentifier;
+            }
+            if (isMeasure(i)) {
+                return i.measure.localIdentifier;
+            }
+        }
+    });
+
     const result = Object.entries(properties).reduce((acc, [key, value]) => {
         if (key === ENUM_PROPERTIES_TYPE.CONTROLS && value.columnWidths) {
-            const columns = value.columnWidths.filter((c: TColumnWidths) =>
-                c.attributeColumnWidthItem
-                    ? !removed.some(
-                          (r) =>
-                              c.attributeColumnWidthItem.attributeIdentifier === r.attribute.localIdentifier,
-                      )
-                    : c,
+            const columns = value.columnWidths.filter(
+                (c: TColumnWidths) =>
+                    c?.attributeColumnWidthItem?.attributeIdentifier === undefined ||
+                    identifiers.includes(c.attributeColumnWidthItem.attributeIdentifier),
             );
 
             return {
@@ -155,13 +133,8 @@ function removePropertiesForRemovedAttributes(insight: IInsight, removed: IAttri
     };
 }
 
-export function sanitizeTableProperties(insight: IInsight, removed: IAttribute[]): IInsight {
-    let updatedInsight = insight;
-
-    if (removed.length > 0) {
-        updatedInsight = removeTotalsForRemovedAttributes(updatedInsight, removed);
-        updatedInsight = removePropertiesForRemovedAttributes(updatedInsight, removed);
-    }
+export function sanitizeTableProperties(insight: IInsight): IInsight {
+    let updatedInsight = removePropertiesForRemovedAttributes(insight);
 
     return updatedInsight;
 }
