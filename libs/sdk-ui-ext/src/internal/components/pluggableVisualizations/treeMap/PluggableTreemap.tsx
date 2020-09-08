@@ -42,7 +42,11 @@ import TreeMapConfigurationPanel from "../../configurationPanels/TreeMapConfigur
 import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
+import {
+    removeAttributesFromBuckets,
+    addIntersectionFiltersToInsight,
+    getIntersectionPartAfter,
+} from "../convertUtil";
 
 export class PluggableTreemap extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -117,14 +121,8 @@ export class PluggableTreemap extends PluggableBaseChart {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
         // treemap just reverse the intersection
-        const intersection = _event.drillContext.intersection.reverse();
-
-        const index = intersection.findIndex(
-            (item: any) =>
-                item.header.attributeHeader && item.header.attributeHeader.localIdentifier === clicked,
-        );
-        const cutIntersection = intersection.slice(index);
-
+        const reorderedIntersection = _event.drillContext.intersection.reverse();
+        const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 

@@ -31,7 +31,11 @@ import {
 } from "../../utils/propertiesHelper";
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
-import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "./convertUtil";
+import {
+    removeAttributesFromBuckets,
+    addIntersectionFiltersToInsight,
+    getIntersectionPartAfter,
+} from "./convertUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -90,12 +94,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             reorderedIntersection = [lastItem, ...beginning];
         }
 
-        const index = reorderedIntersection.findIndex(
-            (item: any) =>
-                item.header.attributeHeader && item.header.attributeHeader.localIdentifier === clicked,
-        );
-        const cutIntersection = reorderedIntersection.slice(index);
-
+        const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 

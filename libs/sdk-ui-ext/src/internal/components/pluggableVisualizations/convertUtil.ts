@@ -154,3 +154,16 @@ export function addIntersectionFiltersToInsight(
         },
     };
 }
+
+export function getIntersectionPartAfter(
+    intersection: IDrillEventIntersectionElement[],
+    localIdentifier: string,
+) {
+    const index = intersection.findIndex(
+        (item: IDrillEventIntersectionElement) =>
+            isDrillIntersectionAttributeItem(item.header) &&
+            item.header.attributeHeader.localIdentifier === localIdentifier,
+    );
+
+    return intersection.slice(index);
+}

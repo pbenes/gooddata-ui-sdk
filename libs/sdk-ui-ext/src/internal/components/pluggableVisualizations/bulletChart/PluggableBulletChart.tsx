@@ -31,7 +31,11 @@ import { VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
+import {
+    removeAttributesFromBuckets,
+    addIntersectionFiltersToInsight,
+    getIntersectionPartAfter,
+} from "../convertUtil";
 
 export class PluggableBulletChart extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -76,12 +80,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
         const intersection = _event.drillContext.intersection;
-        const index = intersection.findIndex(
-            (item: any) =>
-                item.header.attributeHeader && item.header.attributeHeader.localIdentifier === clicked,
-        );
-        const cutIntersection = intersection.slice(index);
-
+        const cutIntersection = getIntersectionPartAfter(intersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
