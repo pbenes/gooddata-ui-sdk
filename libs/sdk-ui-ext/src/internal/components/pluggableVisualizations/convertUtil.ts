@@ -36,21 +36,16 @@ enum ENUM_PROPERTIES_TYPE {
     CONTROLS = "controls",
 }
 
-export function removeAttributesFromBuckets(
-    insight: IInsight,
-    drillConfig: IImplicitDrillDown,
-): { insight: IInsight; removedItems: IAttribute[] } {
+export function removeAttributesFromBuckets(insight: IInsight, drillConfig: IImplicitDrillDown): IInsight {
     const modifiedBuckets: IBucket[] = [];
-    const removedItems: IAttribute[] = [];
 
     insight.insight.buckets.forEach((b: IBucket) => {
-        const items: { removed: IAttribute[]; result: IAttributeOrMeasure[] } = b.items.reduce(
-            (acc: { removed: IAttribute[]; result: IAttributeOrMeasure[] }, i: IAttributeOrMeasure) => {
+        const items: { result: IAttributeOrMeasure[] } = b.items.reduce(
+            (acc: { result: IAttributeOrMeasure[] }, i: IAttributeOrMeasure) => {
                 if (isAttribute(i) && matchesDrillDownTargetAttribute(drillConfig, i)) {
                     const displayForm =
                         drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm;
                     return {
-                        removed: [...acc.result].filter(isAttribute),
                         result: [
                             {
                                 ...i,
@@ -64,26 +59,20 @@ export function removeAttributesFromBuckets(
                     };
                 }
 
-                return { removed: acc.removed, result: [...acc.result, i] };
+                return { result: [...acc.result, i] };
             },
-            { removed: [], result: [] },
+            { result: [] },
         );
 
         modifiedBuckets.push({ ...b, items: [...items.result] });
-        removedItems.push(...items.removed);
     });
 
-    const resultInsight = {
+    return {
         ...insight,
         insight: {
             ...insight.insight,
             buckets: modifiedBuckets,
         },
-    };
-
-    return {
-        insight: resultInsight,
-        removedItems: removedItems || [],
     };
 }
 

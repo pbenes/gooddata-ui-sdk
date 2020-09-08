@@ -119,7 +119,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
     public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFiltersForColumnBar(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig).insight;
+        return removeAttributesFromBuckets(withFilters, drillConfig);
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {

@@ -169,7 +169,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
 
     public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFilters(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig).insight;
+        return removeAttributesFromBuckets(withFilters, drillConfig);
     }
 
     public isOpenAsReportSupported(): boolean {

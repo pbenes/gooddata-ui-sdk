@@ -142,7 +142,7 @@ export class PluggableTreemap extends PluggableBaseChart {
 
     public modifyInsightForDrilldown(source: IInsight, drillConfig: any, event: any): IInsight {
         const withFilters = this.addFiltersForTreemap(source, drillConfig, event);
-        return removeAttributesFromBuckets(withFilters, drillConfig).insight;
+        return removeAttributesFromBuckets(withFilters, drillConfig);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): void {

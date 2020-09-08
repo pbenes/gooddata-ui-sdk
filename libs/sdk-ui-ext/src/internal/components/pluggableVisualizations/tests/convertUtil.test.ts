@@ -215,7 +215,7 @@ describe("DrillDownService", () => {
                     ],
                 },
             };
-            expect(result.insight).toEqual(expected);
+            expect(result).toEqual(expected);
         });
 
         it("should delete intersection filter attributes and sanitize properties", () => {
@@ -308,34 +308,8 @@ describe("DrillDownService", () => {
                     },
                 },
             };
-            const removedItems = [
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091",
-                        },
-                        localIdentifier: "c3e615724abf4f2399d3191a6276c91a",
-                    },
-                },
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1089",
-                        },
-                        localIdentifier: "cab454e65960422282bf565291d0323f",
-                    },
-                },
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103",
-                        },
-                        localIdentifier: "d3aa6c103c704f51a0f1c7f1dddc94f4",
-                    },
-                },
-            ];
-            expect(result.insight).toEqual(expected);
-            expect(result.removedItems).toEqual(removedItems);
+
+            expect(result).toEqual(expected);
         });
 
         it("should update totals according to the deleted intersection attribute filters", () => {
@@ -510,34 +484,8 @@ describe("DrillDownService", () => {
                     },
                 },
             };
-            const removedItems = [
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091",
-                        },
-                        localIdentifier: "c3e615724abf4f2399d3191a6276c91a",
-                    },
-                },
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1089",
-                        },
-                        localIdentifier: "cab454e65960422282bf565291d0323f",
-                    },
-                },
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103",
-                        },
-                        localIdentifier: "d3aa6c103c704f51a0f1c7f1dddc94f4",
-                    },
-                },
-            ];
-            expect(result.insight).toEqual(expected);
-            expect(result.removedItems).toEqual(removedItems);
+
+            expect(result).toEqual(expected);
         });
         it("should respect sort and column width", () => {
             const drillConfig: IImplicitDrillDown = {
@@ -804,19 +752,7 @@ describe("DrillDownService", () => {
                 },
             };
 
-            const removedItems = [
-                {
-                    attribute: {
-                        displayForm: {
-                            uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1094",
-                        },
-                        localIdentifier: "fcc12cf3e42546b1bec56778fd753a0a",
-                    },
-                },
-            ];
-
-            expect(result.insight).toEqual(expected);
-            expect(result.removedItems).toEqual(removedItems);
+            expect(result).toEqual(expected);
         });
     });
 });
