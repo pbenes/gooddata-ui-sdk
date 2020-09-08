@@ -3,7 +3,7 @@ import { IVisProps } from "../../../interfaces/Visualization";
 import { AbstractPluggableVisualization } from "../AbstractPluggableVisualization";
 import { BucketNames } from "@gooddata/sdk-ui";
 import * as referencePointMocks from "../../../tests/mocks/referencePointMocks";
-import { IInsightDefinition } from "@gooddata/sdk-model";
+import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { IExecutionFactory } from "@gooddata/sdk-backend-spi";
 import { DummyVisConstruct } from "./visConstruct.fixture";
 
@@ -23,6 +23,14 @@ describe("AbstractPluggableVisualization", () => {
 
         protected renderConfigurationPanel(_insight: IInsightDefinition): void {
             return;
+        }
+
+        public modifyInsightForDrilldown(
+            sourceVisualization: IInsight,
+            _drillConfig: any,
+            _event: any,
+        ): IInsight {
+            return sourceVisualization;
         }
 
         protected renderVisualization(

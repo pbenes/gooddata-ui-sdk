@@ -14,7 +14,7 @@ import { AbstractPluggableVisualization } from "../pluggableVisualizations/Abstr
 import { VisualizationTypes, IDrillableItem } from "@gooddata/sdk-ui";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
 import { CatalogViaTypeToClassMap, IVisualizationCatalog } from "../VisualizationCatalog";
-import { IInsightDefinition } from "@gooddata/sdk-model";
+import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { IExecutionFactory } from "@gooddata/sdk-backend-spi";
 import { DummyVisConstruct } from "../pluggableVisualizations/tests/visConstruct.fixture";
 
@@ -40,6 +40,14 @@ class DummyClass extends AbstractPluggableVisualization {
         _executionFactory: IExecutionFactory,
     ): void {
         return;
+    }
+
+    public modifyInsightForDrilldown(
+        sourceVisualization: IInsight,
+        _drillConfig: any,
+        _event: any,
+    ): IInsight {
+        return sourceVisualization;
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<any> {

@@ -1,5 +1,6 @@
-import { removeAttributesFromBuckets, sanitizeTableProperties } from "../convertUtil";
 // (C) 2019 GoodData Corporation
+
+import { removeAttributesFromBuckets, sanitizeTableProperties } from "../convertUtil";
 import cloneDeep from "lodash/cloneDeep";
 import flatMap from "lodash/flatMap";
 import get from "lodash/get";

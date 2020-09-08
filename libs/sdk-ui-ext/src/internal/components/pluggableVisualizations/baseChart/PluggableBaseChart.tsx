@@ -148,7 +148,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
     }
 
     private addFilters(source: IInsight, _drillConfig: any, _event: any) {
-        let intersection = _event.drillContext.intersection;
+        const intersection = _event.drillContext.intersection;
         const filters = intersection
             .map((i: any) => i.header)
             .filter(isDrillIntersectionAttributeItem)

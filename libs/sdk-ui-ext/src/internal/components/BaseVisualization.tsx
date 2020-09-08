@@ -12,12 +12,12 @@ import { render } from "react-dom";
 import uuid from "uuid";
 import {
     IDrillableItem,
+    IHeaderPredicate,
     ILocale,
     OnError,
     OnExportReady,
     OnLoadingChanged,
     VisualizationEnvironment,
-    IHeaderPredicate,
     IDrillEvent,
 } from "@gooddata/sdk-ui";
 import {
@@ -63,8 +63,11 @@ export interface IBaseVisualizationProps extends IVisCallbacks {
     onLoadingChanged: OnLoadingChanged;
     isMdObjectValid?: boolean;
     configPanelClassName?: string;
+
     onExtendedReferencePointChanged?(): void;
+
     onNewDerivedBucketItemsPlaced?(): void;
+
     renderer?(component: any, target: Element): void;
 }
 

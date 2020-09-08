@@ -75,7 +75,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
     private addFiltersForBullet(source: IInsight, drillConfig: any, _event: any) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
-        let intersection = _event.drillContext.intersection;
+        const intersection = _event.drillContext.intersection;
         const index = intersection.findIndex(
             (item: any) =>
                 item.header.attributeHeader && item.header.attributeHeader.localIdentifier === clicked,
