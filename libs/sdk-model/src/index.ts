@@ -235,6 +235,7 @@ export {
     ComputeRatioRule,
     disableComputeRatio,
     BucketItemModifications,
+    BucketItemReductions,
     bucketModifyItems,
 } from "./execution/buckets";
 
@@ -249,6 +250,7 @@ export {
     bucketsItems,
     bucketsTotals,
     bucketsModifyItem,
+    bucketsReduceItem,
 } from "./execution/buckets/bucketArray";
 
 export {
@@ -316,6 +318,7 @@ export {
     insightSetProperties,
     insightSetSorts,
     insightModifyItems,
+    insightReduceItems,
     visClassUrl,
     visClassId,
     visClassUri,

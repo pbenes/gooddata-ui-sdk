@@ -7,14 +7,18 @@ import {
     isAttribute,
     isMeasure,
     VisualizationProperties,
+    insightModifyItems,
+    insightReduceItems,
+    attributeLocalId,
+    modifyAttribute,
 } from "@gooddata/sdk-model";
 import flatMap from "lodash/flatMap";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
+import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
 
-function matchesDrillDownTargetAttribute(drillConfig: IImplicitDrillDown, attribute: IAttribute) {
-    const drillSourceLocalIdentifier = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
-    return attribute.attribute.localIdentifier === drillSourceLocalIdentifier;
+function matchesDrillDownTargetAttribute(drillDefinition: IImplicitDrillDown, attribute: IAttribute) {
+    return attributeLocalId(attribute) === drillDownFromAttributeLocalId(drillDefinition);
 }
 
 type TColumnWidths = {
@@ -35,44 +39,31 @@ enum ENUM_PROPERTIES_TYPE {
     CONTROLS = "controls",
 }
 
-export function removeAttributesFromBuckets(insight: IInsight, drillConfig: IImplicitDrillDown): IInsight {
-    const modifiedBuckets: IBucket[] = [];
+export function removeAttributesFromBuckets(
+    insight: IInsight,
+    drillDefinition: IImplicitDrillDown,
+): IInsight {
+    const removedLeftAttributes = insightReduceItems(
+        insight,
+        (acc: IAttributeOrMeasure[], cur: IAttributeOrMeasure): IAttributeOrMeasure[] => {
+            if (isAttribute(cur) && matchesDrillDownTargetAttribute(drillDefinition, cur)) {
+                return [cur];
+            }
 
-    insight.insight.buckets.forEach((b: IBucket) => {
-        const items: { result: IAttributeOrMeasure[] } = b.items.reduce(
-            (acc: { result: IAttributeOrMeasure[] }, i: IAttributeOrMeasure) => {
-                if (isAttribute(i) && matchesDrillDownTargetAttribute(drillConfig, i)) {
-                    const displayForm =
-                        drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm;
-                    return {
-                        result: [
-                            {
-                                ...i,
-                                attribute: {
-                                    ...i.attribute,
-                                    displayForm,
-                                    alias: undefined,
-                                },
-                            },
-                        ],
-                    };
-                }
-
-                return { result: [...acc.result, i] };
-            },
-            { result: [] },
-        );
-
-        modifiedBuckets.push({ ...b, items: [...items.result] });
-    });
-
-    return {
-        ...insight,
-        insight: {
-            ...insight.insight,
-            buckets: modifiedBuckets,
+            return [...acc, cur];
         },
-    };
+    );
+
+    return insightModifyItems(
+        removedLeftAttributes,
+        (bucketItem: IAttributeOrMeasure): IAttributeOrMeasure => {
+            if (isAttribute(bucketItem) && matchesDrillDownTargetAttribute(drillDefinition, bucketItem)) {
+                const displayForm = drillDownDisplayForm(drillDefinition);
+                return modifyAttribute(bucketItem, (a) => a.displayForm(displayForm).alias(undefined));
+            }
+            return bucketItem;
+        },
+    );
 }
 
 function removePropertiesForRemovedAttributes(insight: IInsight) {

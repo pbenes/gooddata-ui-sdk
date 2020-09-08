@@ -8,6 +8,7 @@ import {
     IAttributeOrMeasure,
     IBucket,
     BucketItemModifications,
+    BucketItemReductions,
 } from "../execution/buckets";
 import { IFilter } from "../execution/filter";
 import { IMeasure, measureLocalId, MeasurePredicate, anyMeasure } from "../execution/measure";
@@ -21,6 +22,7 @@ import {
     bucketsMeasures,
     bucketsTotals,
     bucketsModifyItem,
+    bucketsReduceItem,
 } from "../execution/buckets/bucketArray";
 import invariant from "ts-invariant";
 import { IColor } from "../colors";
@@ -614,6 +616,33 @@ export function insightModifyItems<T extends IInsightDefinition>(
         insight: {
             ...insight.insight,
             buckets: bucketsModifyItem(buckets, modifications),
+        },
+    } as T;
+}
+
+/**
+ * Creates a new insight with reduced bucket items (retrieved by applying the modifications function).
+ *
+ * Note: the bucket item modification function SHOULD NOT modify bucket item's localId.
+ * The localId MAY be used to reference the item from other places in the insight (for example from sorts).
+ * Changing the item localId has potential to break the insight: as-is this function does not concern itself with changing the references.
+ *
+ * @param insight - insight to use as template for the new insight
+ * @param modifications - modifications to apply to the bucket items
+ * @returns always new instance
+ * @public
+ */
+export function insightReduceItems<T extends IInsightDefinition>(
+    insight: T,
+    modifications: BucketItemReductions = identity,
+): T {
+    invariant(insight, "insight must be specified");
+    const buckets: IBucket[] = insightBuckets(insight);
+    // tslint:disable-next-line: no-object-literal-type-assertion
+    return {
+        insight: {
+            ...insight.insight,
+            buckets: bucketsReduceItem(buckets, modifications),
         },
     } as T;
 }

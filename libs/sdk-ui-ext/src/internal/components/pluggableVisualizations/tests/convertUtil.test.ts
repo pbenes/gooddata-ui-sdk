@@ -1,8 +1,8 @@
 // (C) 2020 GoodData Corporation
 
 import { IInsight } from "@gooddata/sdk-model";
-import { IVisualizationProperties } from "../../..";
-import { IImplicitDrillDown, removeAttributesFromBuckets } from "../convertUtil";
+import { IVisualizationProperties, IImplicitDrillDown } from "../../..";
+import { removeAttributesFromBuckets } from "../convertUtil";
 
 const properties: IVisualizationProperties = {
     controls: {
@@ -218,7 +218,7 @@ describe("DrillDownService", () => {
             expect(result).toEqual(expected);
         });
 
-        it("should delete intersection filter attributes and sanitize properties", () => {
+        it("should delete intersection filter attributes", () => {
             const result = removeAttributesFromBuckets(sourceInsight, drillConfig);
             const expected: IInsight = {
                 insight: {

@@ -433,6 +433,18 @@ export function disableComputeRatio<T extends IAttributeOrMeasure>(item: T): T {
 export type BucketItemModifications = (bucketItem: IAttributeOrMeasure) => IAttributeOrMeasure;
 
 /**
+ * Describes the type of the function used to reduce the bucket items.
+ *
+ * @public
+ */
+export type BucketItemReductions = (
+    acc: IAttributeOrMeasure[],
+    cur: IAttributeOrMeasure,
+    idx: number,
+    src: IAttributeOrMeasure[],
+) => IAttributeOrMeasure[];
+
+/**
  * Creates a new bucket by modifying items of the provided input bucket.
  * Each item from the input bucket will be dispatched to the modification function
  * and the result of the modification will be included in the new bucket.
@@ -454,5 +466,22 @@ export function bucketModifyItems(
     return {
         ...bucket,
         items: items.map((bucketItem: IAttributeOrMeasure): IAttributeOrMeasure => modifications(bucketItem)),
+    };
+}
+
+export function bucketReduceItems(bucket: IBucket, modifications: BucketItemReductions = identity): IBucket {
+    invariant(bucket, "bucket must be specified");
+    const items: IAttributeOrMeasure[] = bucketItems(bucket);
+
+    const result: IAttributeOrMeasure[] = items.reduce(
+        (acc: IAttributeOrMeasure[], cur: IAttributeOrMeasure, idx: number, src: IAttributeOrMeasure[]) => {
+            return modifications(acc, cur, idx, src);
+        },
+        [],
+    );
+
+    return {
+        ...bucket,
+        items: result,
     };
 }
