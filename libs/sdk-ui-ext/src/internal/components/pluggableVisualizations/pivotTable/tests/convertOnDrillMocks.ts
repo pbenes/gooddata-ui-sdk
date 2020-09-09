@@ -109,8 +109,6 @@ const sourceInsightWithTotals: IInsight = {
     },
 };
 
-newTotal("nat", Won, Status);
-
 const drillConfig: IImplicitDrillDown = {
     implicitDrillDown: {
         from: { drillFromAttribute: { localIdentifier: Status.attribute.localIdentifier } },
