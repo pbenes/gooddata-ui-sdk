@@ -338,19 +338,7 @@ export interface IVisualization {
         previousReferencePoint?: IReferencePoint,
     ): Promise<IExtendedReferencePoint>;
 
-    /*
-        TODO: rename to:
-
-        modifyInsightForDrilldown(insight: IInsight, drilldownContext: IDrilldownContext)a ten context by mohol byt nieco ako:
-
-        interface IDrilldownContext {
-            drilldownConfig: typ_z_spi,
-            drillEvent: IDrillEvent,
-            drilldownAttribute: IAttribute
-        }
-     */
-
-    modifyInsightForDrilldown(
+    modifyInsightForDrillDown(
         source: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,
@@ -424,4 +412,14 @@ export interface IImplicitDrillDown {
         from: IDrillFromAttribute;
         target: IDrillToAttribute;
     };
+}
+
+/**
+ * Implicit drill down context
+ *
+ * @alpha
+ */
+export interface IDrillDownContext {
+    drillDefinition: IImplicitDrillDown;
+    event: IDrillEvent;
 }

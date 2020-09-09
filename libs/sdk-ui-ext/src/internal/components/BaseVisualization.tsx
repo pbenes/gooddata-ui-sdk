@@ -260,11 +260,11 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         return !isEqual(omit(currentReferencePoint, "properties"), omit(nextReferencePoint, "properties"));
     }
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,
     ): IInsight {
-        return this.visualization.modifyInsightForDrilldown(sourceVisualization, drillDefinition, event);
+        return this.visualization.modifyInsightForDrillDown(sourceVisualization, drillDefinition, event);
     }
 }

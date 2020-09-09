@@ -140,7 +140,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         source: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,

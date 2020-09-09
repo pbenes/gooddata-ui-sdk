@@ -82,7 +82,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         source: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,

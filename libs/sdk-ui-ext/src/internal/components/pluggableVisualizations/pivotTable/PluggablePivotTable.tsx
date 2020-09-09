@@ -220,7 +220,7 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
         drillDefinition: IImplicitDrillDown,
         _event: IDrillEvent,

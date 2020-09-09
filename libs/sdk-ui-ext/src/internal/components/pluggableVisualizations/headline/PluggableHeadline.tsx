@@ -122,7 +122,7 @@ export class PluggableHeadline extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
         _drillDefinition: IImplicitDrillDown,
         _event: IDrillEvent,

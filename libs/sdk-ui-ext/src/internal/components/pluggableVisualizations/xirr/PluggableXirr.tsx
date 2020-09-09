@@ -87,7 +87,7 @@ export class PluggableXirr extends AbstractPluggableVisualization {
         return sanitizeFilters(newReferencePoint);
     };
 
-    public modifyInsightForDrilldown(
+    public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
         _drillDefinition: IImplicitDrillDown,
         _event: IDrillEvent,

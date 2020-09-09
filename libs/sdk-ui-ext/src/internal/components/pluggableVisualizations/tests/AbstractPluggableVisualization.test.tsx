@@ -25,7 +25,7 @@ describe("AbstractPluggableVisualization", () => {
             return;
         }
 
-        public modifyInsightForDrilldown(
+        public modifyInsightForDrillDown(
             sourceVisualization: IInsight,
             _drillConfig: any,
             _event: any,

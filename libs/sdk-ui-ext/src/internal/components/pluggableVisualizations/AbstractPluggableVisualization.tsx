@@ -289,7 +289,7 @@ export abstract class AbstractPluggableVisualization implements IVisualization {
         }, []);
     }
 
-    public abstract modifyInsightForDrilldown(
+    public abstract modifyInsightForDrillDown(
         sourceVisualization: IInsight,
         drillDefinition: IImplicitDrillDown,
         event: IDrillEvent,
