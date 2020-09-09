@@ -1,33 +1,42 @@
 // (C) 2020 GoodData Corporation
 
-import { IInsight } from "@gooddata/sdk-model";
-import { IVisualizationProperties, IImplicitDrillDown } from "../../../..";
+import {
+    bucketSetTotals,
+    IFilter,
+    IInsight,
+    IInsightDefinition,
+    ISortItem,
+    modifyAttribute,
+    newAttribute,
+    newAttributeSort,
+    newBucket,
+    newInsightDefinition,
+    newPositiveAttributeFilter,
+    newTotal,
+    uriRef,
+} from "@gooddata/sdk-model";
+import { IImplicitDrillDown, IVisualizationProperties } from "../../../..";
+import { Department, Region, Status, Won } from "@gooddata/reference-workspace/dist/ldm/full";
 
 const properties: IVisualizationProperties = {
     controls: {
         columnWidths: [
             {
                 attributeColumnWidthItem: {
-                    attributeIdentifier: "c3e615724abf4f2399d3191a6276c91a",
+                    attributeIdentifier: Region.attribute.localIdentifier,
                     width: { value: 131 },
                 },
             },
             {
                 attributeColumnWidthItem: {
-                    attributeIdentifier: "cab454e65960422282bf565291d0323f",
+                    attributeIdentifier: Status.attribute.localIdentifier,
                     width: { value: 125 },
                 },
             },
             {
                 attributeColumnWidthItem: {
-                    attributeIdentifier: "d3aa6c103c704f51a0f1c7f1dddc94f4",
+                    attributeIdentifier: Department.attribute.localIdentifier,
                     width: { value: 97 },
-                },
-            },
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: "d7e1d1a3e9d8484bb0c7a858261c0f85",
-                    width: { value: 255 },
                 },
             },
             { measureColumnWidthItem: { width: { value: 270 } } },
@@ -36,96 +45,155 @@ const properties: IVisualizationProperties = {
     sortItems: [
         {
             attributeSortItem: {
-                attributeIdentifier: "c3e615724abf4f2399d3191a6276c91a",
+                attributeIdentifier: Region.attribute.localIdentifier,
                 direction: "desc",
+            },
+        },
+        {
+            attributeSortItem: {
+                attributeIdentifier: Status.attribute.localIdentifier,
+                direction: "asc",
             },
         },
     ],
 };
 
+const filters: IFilter[] = [newPositiveAttributeFilter(Department, ["Inside Sales"])];
+const sorts: ISortItem[] = [newAttributeSort(Department)];
+const sourceInsightDefinition: IInsightDefinition = newInsightDefinition("visualizationClass-url", (b) => {
+    return b
+        .title("sourceInsight")
+        .buckets([
+            newBucket(
+                "attribute",
+                Region,
+                modifyAttribute(Status, (b) => b.alias("status alias")),
+                Department,
+            ),
+            bucketSetTotals(newBucket("measure", Won), []),
+        ])
+        .filters(filters)
+        .sorts(sorts)
+        .properties(properties);
+});
+
+const sourceInsightDefinitionWithTotals: IInsightDefinition = newInsightDefinition(
+    "visualizationClass-url",
+    (b) => {
+        return b
+            .title("sourceInsight")
+            .buckets([
+                newBucket("attribute", Region, Status, Department),
+                newBucket("measure", Won, newTotal("nat", Won, Region)),
+            ])
+            .filters(filters)
+            .sorts(sorts)
+            .properties(properties);
+    },
+);
+
 const sourceInsight: IInsight = {
+    ...sourceInsightDefinition,
     insight: {
-        title: "visualizationObject",
-        identifier: "visualizationObject",
-        uri: "/visualizationObject",
-        visualizationUrl: "visualizationClass-url",
-        filters: [],
-        sorts: [],
-        buckets: [
-            {
-                localIdentifier: "attribute",
-                items: [
-                    {
-                        attribute: {
-                            localIdentifier: "c3e615724abf4f2399d3191a6276c91a",
-                            displayForm: {
-                                uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091",
-                            },
-                        },
-                    },
-                    {
-                        attribute: {
-                            localIdentifier: "cab454e65960422282bf565291d0323f",
-                            displayForm: {
-                                uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1089",
-                            },
-                        },
-                    },
-                    {
-                        attribute: {
-                            localIdentifier: "d3aa6c103c704f51a0f1c7f1dddc94f4",
-                            displayForm: {
-                                uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103",
-                            },
-                        },
-                    },
-                    {
-                        attribute: {
-                            localIdentifier: "d7e1d1a3e9d8484bb0c7a858261c0f85",
-                            displayForm: {
-                                uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1086",
-                            },
-                        },
-                    },
-                ],
-            },
-            {
-                localIdentifier: "measure",
-                items: [
-                    {
-                        measure: {
-                            localIdentifier: "627758b4e135480c8b39d61146178e0b",
-                            definition: {
-                                measureDefinition: {
-                                    item: {
-                                        uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1268",
-                                    },
-                                },
-                            },
-                        },
-                    },
-                ],
-            },
-        ],
-        properties,
+        ...sourceInsightDefinition.insight,
+        identifier: "sourceInsightIdentifier",
+        uri: "/sourceInsightUri",
+    },
+};
+
+const sourceInsightWithTotals: IInsight = {
+    ...sourceInsightDefinitionWithTotals,
+    insight: {
+        ...sourceInsight.insight,
+        ...sourceInsightDefinitionWithTotals.insight,
     },
 };
 
 const drillConfig: IImplicitDrillDown = {
     implicitDrillDown: {
-        from: { drillFromAttribute: { localIdentifier: "d7e1d1a3e9d8484bb0c7a858261c0f85" } },
+        from: { drillFromAttribute: { localIdentifier: Status.attribute.localIdentifier } },
         target: {
             drillToAttribute: {
                 attributeDisplayForm: {
-                    uri: "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1057",
+                    uri: "implicitDrillDown-target-uri",
                 },
             },
         },
     },
 };
 
+const expectedProperties: IVisualizationProperties = {
+    ...sourceInsight.insight.properties,
+    controls: {
+        columnWidths: [
+            {
+                attributeColumnWidthItem: {
+                    attributeIdentifier: Status.attribute.localIdentifier,
+                    width: { value: 125 },
+                },
+            },
+            {
+                attributeColumnWidthItem: {
+                    attributeIdentifier: Department.attribute.localIdentifier,
+                    width: { value: 97 },
+                },
+            },
+            { measureColumnWidthItem: { width: { value: 270 } } },
+        ],
+    },
+    sortItems: [
+        // TODO we do not sanitize sort items?
+        {
+            attributeSortItem: {
+                attributeIdentifier: Region.attribute.localIdentifier,
+                direction: "desc",
+            },
+        },
+        {
+            attributeSortItem: {
+                attributeIdentifier: Status.attribute.localIdentifier,
+                direction: "asc",
+            },
+        },
+    ],
+};
+const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
+    sourceInsight.insight.visualizationUrl,
+    (b) => {
+        return b
+            .title(sourceInsight.insight.title)
+            .buckets([
+                newBucket(
+                    "attribute",
+                    newAttribute(
+                        uriRef(
+                            drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm.uri,
+                        ),
+                        (b) => b.localId(Status.attribute.localIdentifier),
+                    ),
+                    Department,
+                ),
+                bucketSetTotals(newBucket("measure", Won), []),
+            ])
+            .filters([newPositiveAttributeFilter(Department, ["Inside Sales"])])
+            .sorts([newAttributeSort(Department)])
+            .properties(expectedProperties);
+    },
+);
+
+const expectedInsight: IInsight = {
+    ...expectedInsightDefinition,
+    insight: {
+        ...expectedInsightDefinition.insight,
+        identifier: sourceInsight.insight.identifier,
+        uri: sourceInsight.insight.uri,
+    },
+};
+
 export const convertOnDrillMocks = {
     properties,
     sourceInsight,
+    sourceInsightWithTotals,
     drillConfig,
+    expectedInsight,
 };
