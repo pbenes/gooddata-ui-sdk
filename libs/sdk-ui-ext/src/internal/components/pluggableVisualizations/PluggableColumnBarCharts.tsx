@@ -1,7 +1,6 @@
 // (C) 2019 GoodData Corporation
 import get from "lodash/get";
 import set from "lodash/set";
-import last from "lodash/last";
 import { IInsight, bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
@@ -35,6 +34,7 @@ import {
     removeAttributesFromBuckets,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
+    adjustIntersectionForColumnBar,
 } from "./convertUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
@@ -76,24 +76,8 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
     private addFiltersForColumnBar(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
-        const buckets = source.insight.buckets;
 
-        // column chart
-        const stack = get(
-            buckets.find((bucket) => bucket.localIdentifier === BucketNames.STACK),
-            "items",
-            [],
-        );
-
-        let reorderedIntersection = event.drillContext.intersection;
-        if (stack.length > 0) {
-            const lastItem = last(reorderedIntersection);
-            const beginning = reorderedIntersection.slice(0, -1);
-
-            // don't care about measures, they'll be filtered out
-            reorderedIntersection = [lastItem, ...beginning];
-        }
-
+        const reorderedIntersection = adjustIntersectionForColumnBar(source, event);
         const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }

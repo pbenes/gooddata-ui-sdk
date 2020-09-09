@@ -12,7 +12,10 @@ import {
     attributeLocalId,
     modifyAttribute,
 } from "@gooddata/sdk-model";
+import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
+import get from "lodash/get";
 import flatMap from "lodash/flatMap";
+import last from "lodash/last";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
@@ -157,4 +160,26 @@ export function getIntersectionPartAfter(
     );
 
     return intersection.slice(index);
+}
+
+export function adjustIntersectionForColumnBar(source: IInsight, event: IDrillEvent) {
+    const buckets = source.insight.buckets;
+
+    const hasStackByAttributes =
+        get(
+            buckets.find((bucket) => bucket.localIdentifier === BucketNames.STACK),
+            "items",
+            [],
+        ).length > 0;
+
+    let reorderedIntersection = event.drillContext.intersection;
+    if (hasStackByAttributes) {
+        const lastItem = last(reorderedIntersection);
+        const beginning = reorderedIntersection.slice(0, -1);
+
+        // don't care about measures, they'll be filtered out
+        reorderedIntersection = [lastItem, ...beginning];
+    }
+
+    return reorderedIntersection;
 }
