@@ -84,7 +84,7 @@ const sourceInsightDefinitionWithTotals: IInsightDefinition = newInsightDefiniti
             .title("sourceInsight")
             .buckets([
                 newBucket("attribute", Region, Status, Department),
-                newBucket("measure", Won, newTotal("nat", Won, Region)),
+                newBucket("measure", Won, newTotal("nat", Won, Region), newTotal("nat", Won, Status)),
             ])
             .filters(filters)
             .sorts(sorts)
@@ -108,6 +108,8 @@ const sourceInsightWithTotals: IInsight = {
         ...sourceInsightDefinitionWithTotals.insight,
     },
 };
+
+newTotal("nat", Won, Status);
 
 const drillConfig: IImplicitDrillDown = {
     implicitDrillDown: {
@@ -157,6 +159,7 @@ const expectedProperties: IVisualizationProperties = {
         },
     ],
 };
+
 const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
     sourceInsight.insight.visualizationUrl,
     (b) => {
@@ -181,10 +184,43 @@ const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
     },
 );
 
+const expectedInsightDefinitionWithTotals: IInsightDefinition = newInsightDefinition(
+    sourceInsight.insight.visualizationUrl,
+    (b) => {
+        return b
+            .title(sourceInsight.insight.title)
+            .buckets([
+                newBucket(
+                    "attribute",
+                    newAttribute(
+                        uriRef(
+                            drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm.uri,
+                        ),
+                        (b) => b.localId(Status.attribute.localIdentifier),
+                    ),
+                    Department,
+                ),
+                newBucket("measure", Won, newTotal("nat", Won, Status)),
+            ])
+            .filters([newPositiveAttributeFilter(Department, ["Inside Sales"])])
+            .sorts([newAttributeSort(Department)])
+            .properties(expectedProperties);
+    },
+);
+
 const expectedInsight: IInsight = {
     ...expectedInsightDefinition,
     insight: {
         ...expectedInsightDefinition.insight,
+        identifier: sourceInsight.insight.identifier,
+        uri: sourceInsight.insight.uri,
+    },
+};
+
+const expectedInsightWithTotals: IInsight = {
+    ...expectedInsightDefinitionWithTotals,
+    insight: {
+        ...expectedInsightDefinitionWithTotals.insight,
         identifier: sourceInsight.insight.identifier,
         uri: sourceInsight.insight.uri,
     },
@@ -196,4 +232,5 @@ export const convertOnDrillMocks = {
     sourceInsightWithTotals,
     drillConfig,
     expectedInsight,
+    expectedInsightWithTotals,
 };

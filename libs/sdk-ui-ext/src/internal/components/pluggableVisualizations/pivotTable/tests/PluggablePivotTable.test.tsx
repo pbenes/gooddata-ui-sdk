@@ -101,7 +101,7 @@ describe("PluggablePivotTable", () => {
                 },
             );
 
-            expect(result).toEqual(convertOnDrillMocks.expectedInsight);
+            expect(result).toEqual(convertOnDrillMocks.expectedInsightWithTotals);
         });
     });
 
