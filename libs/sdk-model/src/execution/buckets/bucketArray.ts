@@ -257,7 +257,7 @@ export function bucketsModifyItem(
  * Creates a new array of buckets, each bucket in the array contains modified bucket items
  *
  * @param buckets - an array of buckets, array is applied the modification function
- * @param modifications - the modification to apply to the bucket items
+ * @param modifications - the modification to apply to the bucket items array
  * @returns a new array of buckets, each bucket in the array contains modified bucket items
  * @public
  */

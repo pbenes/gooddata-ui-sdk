@@ -469,6 +469,17 @@ export function bucketModifyItems(
     };
 }
 
+/**
+ * Creates a new bucket by modifying items of the provided input bucket.
+ * Array of item from the input bucket will be dispatched to the modification function
+ * and the result of the modification will be included in the new bucket.
+ *
+ *
+ * @param bucket - bucket in which all items are applied the modification function
+ * @param modifications - the modification to apply to reduce the bucket items
+ * @returns new instance of bucket with modified bucket items
+ * @public
+ */
 export function bucketReduceItems(bucket: IBucket, modifications: BucketItemReductions = identity): IBucket {
     invariant(bucket, "bucket must be specified");
     const items: IAttributeOrMeasure[] = bucketItems(bucket);

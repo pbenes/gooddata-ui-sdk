@@ -253,6 +253,8 @@ export {
     bucketsReduceItem,
 } from "./execution/buckets/bucketArray";
 
+export { bucketItemLocalId } from "./execution/buckets/bucketItem";
+
 export {
     IExecutionDefinition,
     DimensionGenerator,

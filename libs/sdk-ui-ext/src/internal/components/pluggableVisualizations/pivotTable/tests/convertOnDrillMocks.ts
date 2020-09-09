@@ -1,8 +1,7 @@
 // (C) 2020 GoodData Corporation
 
 import { IInsight } from "@gooddata/sdk-model";
-import { IImplicitDrillDown } from "../../convertUtil";
-import { IVisualizationProperties } from "../../../..";
+import { IVisualizationProperties, IImplicitDrillDown } from "../../../..";
 
 const properties: IVisualizationProperties = {
     controls: {

@@ -86,7 +86,7 @@ describe("PluggablePivotTable", () => {
             const result: IInsight = pivotTable.modifyInsightForDrilldown(
                 convertOnDrillMocks.sourceInsight,
                 convertOnDrillMocks.drillConfig,
-                {},
+                null,
             );
             const expected: IInsight = {
                 insight: {
@@ -235,7 +235,7 @@ describe("PluggablePivotTable", () => {
             const result: IInsight = pivotTable.modifyInsightForDrilldown(
                 sourceVisualization,
                 convertOnDrillMocks.drillConfig,
-                {},
+                null,
             );
             const expected: IInsight = {
                 insight: {

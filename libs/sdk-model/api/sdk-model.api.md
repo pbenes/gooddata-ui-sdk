@@ -130,6 +130,9 @@ export function bucketAttributes(bucket: IBucket, predicate?: AttributePredicate
 export function bucketIsEmpty(bucket: IBucket): boolean;
 
 // @public
+export function bucketItemLocalId(bucketItem: IAttributeOrMeasure): string;
+
+// @public
 export type BucketItemModifications = (bucketItem: IAttributeOrMeasure) => IAttributeOrMeasure;
 
 // @public

@@ -2,25 +2,31 @@
 import {
     IAttribute,
     IAttributeOrMeasure,
-    IBucket,
     IInsight,
     isAttribute,
-    isMeasure,
     VisualizationProperties,
     insightModifyItems,
     insightReduceItems,
     attributeLocalId,
     modifyAttribute,
+    insightSetProperties,
+    insightSetFilters,
+    IFilter,
+    insightProperties,
+    insightItems,
+    bucketItemLocalId,
 } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import get from "lodash/get";
-import flatMap from "lodash/flatMap";
 import last from "lodash/last";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
 
-function matchesDrillDownTargetAttribute(drillDefinition: IImplicitDrillDown, attribute: IAttribute) {
+function matchesDrillDownTargetAttribute(
+    drillDefinition: IImplicitDrillDown,
+    attribute: IAttribute,
+): boolean {
     return attributeLocalId(attribute) === drillDownFromAttributeLocalId(drillDefinition);
 }
 
@@ -62,30 +68,23 @@ export function removeAttributesFromBuckets(
         (bucketItem: IAttributeOrMeasure): IAttributeOrMeasure => {
             if (isAttribute(bucketItem) && matchesDrillDownTargetAttribute(drillDefinition, bucketItem)) {
                 const displayForm = drillDownDisplayForm(drillDefinition);
-                return modifyAttribute(bucketItem, (a) => a.displayForm(displayForm).alias(undefined));
+                return modifyAttribute(bucketItem, (a) => a.displayForm(displayForm).noAlias());
             }
             return bucketItem;
         },
     );
 }
 
-function removePropertiesForRemovedAttributes(insight: IInsight) {
-    if (!insight.insight.properties) {
+function removePropertiesForRemovedAttributes(insight: IInsight): IInsight {
+    const properties: VisualizationProperties = insightProperties(insight);
+
+    if (!properties) {
         return insight;
     }
 
-    const properties: VisualizationProperties = insight.insight.properties;
-
-    const identifiers = flatMap(insight.insight.buckets, (b: IBucket) => {
-        for (const i of b.items) {
-            if (isAttribute(i)) {
-                return i.attribute.localIdentifier;
-            }
-            if (isMeasure(i)) {
-                return i.measure.localIdentifier;
-            }
-        }
-    });
+    const identifiers = insightItems(insight).map((bucketItem: IAttributeOrMeasure) =>
+        bucketItemLocalId(bucketItem),
+    );
 
     const result = Object.entries(properties).reduce((acc, [key, value]) => {
         if (key === ENUM_PROPERTIES_TYPE.CONTROLS && value.columnWidths) {
@@ -106,20 +105,14 @@ function removePropertiesForRemovedAttributes(insight: IInsight) {
         return { ...acc };
     }, properties);
 
-    return {
-        ...insight,
-        insight: {
-            ...insight.insight,
-            properties: result,
-        },
-    };
+    return insightSetProperties(insight, result);
 }
 
 export function sanitizeTableProperties(insight: IInsight): IInsight {
     return removePropertiesForRemovedAttributes(insight);
 }
 
-export function convertIntersectionToFilters(intersection: IDrillEventIntersectionElement[]) {
+export function convertIntersectionToFilters(intersection: IDrillEventIntersectionElement[]): IFilter[] {
     return intersection
         .map((i) => i.header)
         .filter(isDrillIntersectionAttributeItem)
@@ -138,15 +131,11 @@ export function convertIntersectionToFilters(intersection: IDrillEventIntersecti
 export function addIntersectionFiltersToInsight(
     source: IInsight,
     intersection: IDrillEventIntersectionElement[],
-) {
+): IInsight {
     const filters = convertIntersectionToFilters(intersection);
+    const resultFilters = [...source.insight.filters, ...filters];
 
-    return {
-        insight: {
-            ...source.insight,
-            filters: [...source.insight.filters, ...filters],
-        },
-    };
+    return insightSetFilters(source, resultFilters);
 }
 
 export function getIntersectionPartAfter(
