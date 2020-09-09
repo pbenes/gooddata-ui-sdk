@@ -291,4 +291,10 @@ describe("PluggableTreemap", () => {
             ]);
         });
     });
+
+    describe("Drill Down", () => {
+        it("should replace the drill down attribute and add intersection filters", () => {
+            fail("not implemented");
+        });
+    });
 });
