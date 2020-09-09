@@ -16,9 +16,13 @@ import {
     insightItems,
     bucketItemLocalId,
     newPositiveAttributeFilter,
+    insightBuckets,
+    bucketsFind,
+    IBucket,
+    bucketIsEmpty,
+    idMatchBucket,
 } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
-import get from "lodash/get";
 import last from "lodash/last";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
@@ -135,7 +139,7 @@ export function addIntersectionFiltersToInsight(
 export function getIntersectionPartAfter(
     intersection: IDrillEventIntersectionElement[],
     localIdentifier: string,
-) {
+): IDrillEventIntersectionElement[] {
     const index = intersection.findIndex(
         (item: IDrillEventIntersectionElement) =>
             isDrillIntersectionAttributeItem(item.header) &&
@@ -145,17 +149,16 @@ export function getIntersectionPartAfter(
     return intersection.slice(index);
 }
 
-export function adjustIntersectionForColumnBar(source: IInsight, event: IDrillEvent) {
-    const buckets = source.insight.buckets;
-
-    const hasStackByAttributes =
-        get(
-            buckets.find((bucket) => bucket.localIdentifier === BucketNames.STACK),
-            "items",
-            [],
-        ).length > 0;
+export function adjustIntersectionForColumnBar(
+    source: IInsight,
+    event: IDrillEvent,
+): IDrillEventIntersectionElement[] {
+    const hasStackByAttributes = bucketsFind(insightBuckets(source), (bucket: IBucket) => {
+        return idMatchBucket(BucketNames.STACK) && !bucketIsEmpty(bucket);
+    });
 
     let reorderedIntersection = event.drillContext.intersection;
+
     if (hasStackByAttributes) {
         const lastItem = last(reorderedIntersection);
         const beginning = reorderedIntersection.slice(0, -1);
