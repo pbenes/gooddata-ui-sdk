@@ -23,10 +23,10 @@ import {
     idMatchBucket,
 } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
-import last from "lodash/last";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
+import { arrayUtils } from "@gooddata/util";
 
 function matchesDrillDownTargetAttribute(
     drillDefinition: IImplicitDrillDown,
@@ -122,7 +122,10 @@ export function convertIntersectionToFilters(intersections: IDrillEventIntersect
         .map((intersection) => intersection.header)
         .filter(isDrillIntersectionAttributeItem)
         .map((header) =>
-            newPositiveAttributeFilter(header.attributeHeader.uri, [header.attributeHeaderItem.uri]),
+            newPositiveAttributeFilter(
+                { uri: header.attributeHeader.uri },
+                { uris: [header.attributeHeaderItem.uri] },
+            ),
         );
 }
 
@@ -157,15 +160,6 @@ export function adjustIntersectionForColumnBar(
         return idMatchBucket(BucketNames.STACK) && !bucketIsEmpty(bucket);
     });
 
-    let reorderedIntersection = event.drillContext.intersection;
-
-    if (hasStackByAttributes) {
-        const lastItem = last(reorderedIntersection);
-        const beginning = reorderedIntersection.slice(0, -1);
-
-        // don't care about measures, they'll be filtered out
-        reorderedIntersection = [lastItem, ...beginning];
-    }
-
-    return reorderedIntersection;
+    const reorderedIntersection = event.drillContext.intersection;
+    return hasStackByAttributes ? arrayUtils.shiftArrayRight(reorderedIntersection) : reorderedIntersection;
 }

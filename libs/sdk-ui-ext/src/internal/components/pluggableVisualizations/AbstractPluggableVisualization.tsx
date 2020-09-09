@@ -12,7 +12,7 @@ import {
     IVisualizationOptions,
     IVisualizationProperties,
     PluggableVisualizationErrorCodes,
-    IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../interfaces/Visualization";
 import { findDerivedBucketItem, hasDerivedBucketItems, isDerivedBucketItem } from "../../utils/bucketHelper";
 import { IInsight, IInsightDefinition, insightHasDataDefined, insightProperties } from "@gooddata/sdk-model";
@@ -291,7 +291,6 @@ export abstract class AbstractPluggableVisualization implements IVisualization {
 
     public abstract modifyInsightForDrillDown(
         sourceVisualization: IInsight,
-        drillDefinition: IImplicitDrillDown,
-        event: IDrillEvent,
+        drillDownContext: IDrillDownContext,
     ): IInsight;
 }

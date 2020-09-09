@@ -1,5 +1,5 @@
 // (C) 2019 GoodData Corporation
-import { IVisProps } from "../../../interfaces/Visualization";
+import { IVisProps, IDrillDownContext } from "../../../interfaces/Visualization";
 import { AbstractPluggableVisualization } from "../AbstractPluggableVisualization";
 import { BucketNames } from "@gooddata/sdk-ui";
 import * as referencePointMocks from "../../../tests/mocks/referencePointMocks";
@@ -27,8 +27,7 @@ describe("AbstractPluggableVisualization", () => {
 
         public modifyInsightForDrillDown(
             sourceVisualization: IInsight,
-            _drillConfig: any,
-            _event: any,
+            _drillDownContext: IDrillDownContext,
         ): IInsight {
             return sourceVisualization;
         }

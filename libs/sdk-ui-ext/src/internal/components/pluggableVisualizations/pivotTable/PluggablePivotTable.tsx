@@ -23,7 +23,7 @@ import {
     newAttributeSort,
 } from "@gooddata/sdk-model";
 
-import { BucketNames, VisualizationEnvironment, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { BucketNames, VisualizationEnvironment, VisualizationTypes } from "@gooddata/sdk-ui";
 import {
     ColumnWidthItem,
     CorePivotTable,
@@ -49,7 +49,7 @@ import {
     IVisProps,
     IVisualizationProperties,
     RenderFunction,
-    IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
 
@@ -222,10 +222,9 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
 
     public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
-        drillDefinition: IImplicitDrillDown,
-        _event: IDrillEvent,
+        drillDownContext: IDrillDownContext,
     ): IInsight {
-        const insight = removeAttributesFromBuckets(sourceVisualization, drillDefinition);
+        const insight = removeAttributesFromBuckets(sourceVisualization, drillDownContext.drillDefinition);
         return sanitizeTableProperties(insightSanitize(insight));
     }
 

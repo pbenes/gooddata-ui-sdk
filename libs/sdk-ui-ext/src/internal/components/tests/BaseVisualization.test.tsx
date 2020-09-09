@@ -5,7 +5,13 @@ import { shallow } from "enzyme";
 import { testUtils } from "@gooddata/util";
 
 import { BaseVisualization, IBaseVisualizationProps } from "../BaseVisualization";
-import { IBucketItem, IReferencePoint, IVisConstruct, IVisProps } from "../../interfaces/Visualization";
+import {
+    IBucketItem,
+    IReferencePoint,
+    IVisConstruct,
+    IVisProps,
+    IDrillDownContext,
+} from "../../interfaces/Visualization";
 
 import * as testMocks from "../../tests/mocks/testMocks";
 import { emptyReferencePoint } from "../../tests/mocks/referencePointMocks";
@@ -44,8 +50,7 @@ class DummyClass extends AbstractPluggableVisualization {
 
     public modifyInsightForDrillDown(
         sourceVisualization: IInsight,
-        _drillConfig: any,
-        _event: any,
+        _drillDownContext: IDrillDownContext,
     ): IInsight {
         return sourceVisualization;
     }

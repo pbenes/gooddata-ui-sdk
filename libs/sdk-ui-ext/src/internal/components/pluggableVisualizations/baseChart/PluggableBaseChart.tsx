@@ -10,7 +10,7 @@ import {
     insightHasMeasures,
     insightMeasures,
 } from "@gooddata/sdk-model";
-import { BucketNames, ChartType, GoodDataSdkError, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { BucketNames, ChartType, GoodDataSdkError, VisualizationTypes } from "@gooddata/sdk-ui";
 import { BaseChart, ColorUtils, IAxisConfig, IChartConfig } from "@gooddata/sdk-ui-charts";
 import React from "react";
 import { render } from "react-dom";
@@ -32,7 +32,7 @@ import {
     IVisProps,
     IVisualizationProperties,
     PluggableVisualizationErrorCodes,
-    IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig";
 
@@ -140,13 +140,10 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrillDown(
-        source: IInsight,
-        drillDefinition: IImplicitDrillDown,
-        event: IDrillEvent,
-    ): IInsight {
-        const withFilters = addIntersectionFiltersToInsight(source, event.drillContext.intersection);
-        return removeAttributesFromBuckets(withFilters, drillDefinition);
+    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+        const intersection = drillDownContext.event.drillContext.intersection;
+        const withFilters = addIntersectionFiltersToInsight(source, intersection);
+        return removeAttributesFromBuckets(withFilters, drillDownContext.drillDefinition);
     }
 
     public isOpenAsReportSupported(): boolean {

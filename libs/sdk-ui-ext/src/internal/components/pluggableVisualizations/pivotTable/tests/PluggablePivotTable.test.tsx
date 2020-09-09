@@ -83,11 +83,10 @@ describe("PluggablePivotTable", () => {
     describe("Drill Down", () => {
         it("should delete intersection filter attributes and sanitize properties", () => {
             const pivotTable = createComponent();
-            const result: IInsight = pivotTable.modifyInsightForDrillDown(
-                convertOnDrillMocks.sourceInsight,
-                convertOnDrillMocks.drillConfig,
-                null,
-            );
+            const result: IInsight = pivotTable.modifyInsightForDrillDown(convertOnDrillMocks.sourceInsight, {
+                drillDefinition: convertOnDrillMocks.drillConfig,
+                event: null,
+            });
 
             expect(result).toEqual(convertOnDrillMocks.expectedInsight);
         });
@@ -96,8 +95,10 @@ describe("PluggablePivotTable", () => {
             const pivotTable = createComponent();
             const result: IInsight = pivotTable.modifyInsightForDrillDown(
                 convertOnDrillMocks.sourceInsightWithTotals,
-                convertOnDrillMocks.drillConfig,
-                null,
+                {
+                    drillDefinition: convertOnDrillMocks.drillConfig,
+                    event: null,
+                },
             );
 
             expect(result).toEqual(convertOnDrillMocks.expectedInsight);

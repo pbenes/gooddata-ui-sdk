@@ -11,6 +11,7 @@ import {
     IBucketItem,
     IBucketOfFun,
     IImplicitDrillDown,
+    IDrillDownContext,
 } from "../../../interfaces/Visualization";
 
 import {
@@ -83,13 +84,13 @@ export class PluggableBulletChart extends PluggableBaseChart {
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
-    public modifyInsightForDrillDown(
-        source: IInsight,
-        drillDefinition: IImplicitDrillDown,
-        event: IDrillEvent,
-    ): IInsight {
-        const withFilters = this.addFiltersForBullet(source, drillDefinition, event);
-        return removeAttributesFromBuckets(withFilters, drillDefinition);
+    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+        const withFilters = this.addFiltersForBullet(
+            source,
+            drillDownContext.drillDefinition,
+            drillDownContext.event,
+        );
+        return removeAttributesFromBuckets(withFilters, drillDownContext.drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): React.ReactNode {
