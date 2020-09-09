@@ -21,6 +21,7 @@ import {
     IBucket,
     bucketIsEmpty,
     idMatchBucket,
+    uriRef,
 } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
@@ -122,10 +123,9 @@ export function convertIntersectionToFilters(intersections: IDrillEventIntersect
         .map((intersection) => intersection.header)
         .filter(isDrillIntersectionAttributeItem)
         .map((header) =>
-            newPositiveAttributeFilter(
-                { uri: header.attributeHeader.uri },
-                { uris: [header.attributeHeaderItem.uri] },
-            ),
+            newPositiveAttributeFilter(uriRef(header.attributeHeader.uri), {
+                uris: [header.attributeHeaderItem.uri],
+            }),
         );
 }
 
