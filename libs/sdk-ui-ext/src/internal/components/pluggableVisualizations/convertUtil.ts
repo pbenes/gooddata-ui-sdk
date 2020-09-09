@@ -160,6 +160,6 @@ export function adjustIntersectionForColumnBar(
         return idMatchBucket(BucketNames.STACK) && !bucketIsEmpty(bucket);
     });
 
-    const reorderedIntersection = event.drillContext.intersection;
-    return hasStackByAttributes ? arrayUtils.shiftArrayRight(reorderedIntersection) : reorderedIntersection;
+    const intersection = event.drillContext.intersection;
+    return hasStackByAttributes ? arrayUtils.shiftArrayRight(intersection) : intersection;
 }
