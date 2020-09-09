@@ -15,6 +15,7 @@ import {
     insightProperties,
     insightItems,
     bucketItemLocalId,
+    newPositiveAttributeFilter,
 } from "@gooddata/sdk-model";
 import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import get from "lodash/get";
@@ -112,20 +113,13 @@ export function sanitizeTableProperties(insight: IInsight): IInsight {
     return removePropertiesForRemovedAttributes(insight);
 }
 
-export function convertIntersectionToFilters(intersection: IDrillEventIntersectionElement[]): IFilter[] {
-    return intersection
-        .map((i) => i.header)
+export function convertIntersectionToFilters(intersections: IDrillEventIntersectionElement[]): IFilter[] {
+    return intersections
+        .map((intersection) => intersection.header)
         .filter(isDrillIntersectionAttributeItem)
-        .map((h) => ({
-            positiveAttributeFilter: {
-                displayForm: {
-                    uri: h.attributeHeader.uri,
-                },
-                in: {
-                    uris: [h.attributeHeaderItem.uri],
-                },
-            },
-        }));
+        .map((header) =>
+            newPositiveAttributeFilter(header.attributeHeader.uri, [header.attributeHeaderItem.uri]),
+        );
 }
 
 export function addIntersectionFiltersToInsight(
