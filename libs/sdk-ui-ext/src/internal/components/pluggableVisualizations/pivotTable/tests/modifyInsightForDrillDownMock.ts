@@ -14,6 +14,7 @@ import {
     newPositiveAttributeFilter,
     newTotal,
     uriRef,
+    newNegativeAttributeFilter,
 } from "@gooddata/sdk-model";
 import { IImplicitDrillDown, IVisualizationProperties } from "../../../..";
 import { Department, Region, Status, Won } from "@gooddata/reference-workspace/dist/ldm/full";
@@ -91,6 +92,26 @@ const sourceInsightDefinitionWithTotals: IInsightDefinition = newInsightDefiniti
             .properties(properties);
     },
 );
+
+const insiteWithMeasureViewStack: IInsightDefinition = newInsightDefinition("visualizationClass-url", (b) => {
+    return b
+        .title("sourceInsight")
+        .buckets([
+            newBucket("measure", Won),
+            newBucket("attribute", Region, Department),
+            newBucket("view", Department),
+        ])
+        .filters([newNegativeAttributeFilter(Department, [])]);
+});
+
+const sourceInsightMeasureViewStack: IInsight = {
+    ...insiteWithMeasureViewStack,
+    insight: {
+        ...insiteWithMeasureViewStack.insight,
+        identifier: "sourceInsightIdentifier",
+        uri: "/sourceInsightUri",
+    },
+};
 
 const sourceInsight: IInsight = {
     ...sourceInsightDefinition,
@@ -224,11 +245,13 @@ const expectedInsightWithTotals: IInsight = {
     },
 };
 
-export const convertOnDrillMocks = {
+export const modifyInsightForDrillDown = {
     properties,
     sourceInsight,
     sourceInsightWithTotals,
     drillConfig,
     expectedInsight,
     expectedInsightWithTotals,
+
+    sourceInsightMeasureViewStack,
 };

@@ -48,7 +48,7 @@ import {
     validAttributeSort,
     validMeasureSort,
 } from "./sortMocks";
-import { convertOnDrillMocks } from "./convertOnDrillMocks";
+import { modifyInsightForDrillDown } from "./modifyInsightForDrillDownMock";
 
 describe("PluggablePivotTable", () => {
     const backend = dummyBackend();
@@ -83,25 +83,28 @@ describe("PluggablePivotTable", () => {
     describe("Drill Down", () => {
         it("should delete intersection filter attributes and sanitize properties", () => {
             const pivotTable = createComponent();
-            const result: IInsight = pivotTable.modifyInsightForDrillDown(convertOnDrillMocks.sourceInsight, {
-                drillDefinition: convertOnDrillMocks.drillConfig,
-                event: null,
-            });
+            const result: IInsight = pivotTable.modifyInsightForDrillDown(
+                modifyInsightForDrillDown.sourceInsight,
+                {
+                    drillDefinition: modifyInsightForDrillDown.drillConfig,
+                    event: null,
+                },
+            );
 
-            expect(result).toEqual(convertOnDrillMocks.expectedInsight);
+            expect(result).toEqual(modifyInsightForDrillDown.expectedInsight);
         });
 
         it("should update totals according to the deleted intersection attribute filters", () => {
             const pivotTable = createComponent();
             const result: IInsight = pivotTable.modifyInsightForDrillDown(
-                convertOnDrillMocks.sourceInsightWithTotals,
+                modifyInsightForDrillDown.sourceInsightWithTotals,
                 {
-                    drillDefinition: convertOnDrillMocks.drillConfig,
+                    drillDefinition: modifyInsightForDrillDown.drillConfig,
                     event: null,
                 },
             );
 
-            expect(result).toEqual(convertOnDrillMocks.expectedInsightWithTotals);
+            expect(result).toEqual(modifyInsightForDrillDown.expectedInsightWithTotals);
         });
     });
 
