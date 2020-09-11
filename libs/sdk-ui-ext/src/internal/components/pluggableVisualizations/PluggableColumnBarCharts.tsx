@@ -32,11 +32,11 @@ import {
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
 import {
-    removeAttributesFromBuckets,
+    modifyBucketAttributesForDrillDown,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
     adjustIntersectionForColumnBar,
-} from "./drillDownUitl";
+} from "./drillDownUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -89,7 +89,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             drillDownContext.drillDefinition,
             drillDownContext.event,
         );
-        return removeAttributesFromBuckets(withFilters, drillDownContext.drillDefinition);
+        return modifyBucketAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {

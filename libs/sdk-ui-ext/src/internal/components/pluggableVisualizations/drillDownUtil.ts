@@ -54,7 +54,7 @@ enum ENUM_PROPERTIES_TYPE {
     CONTROLS = "controls",
 }
 
-export function removeAttributesFromBuckets(
+export function modifyBucketAttributesForDrillDown(
     insight: IInsight,
     drillDefinition: IImplicitDrillDown,
 ): IInsight {

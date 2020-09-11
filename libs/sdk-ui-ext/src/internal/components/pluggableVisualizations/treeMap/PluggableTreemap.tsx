@@ -44,10 +44,10 @@ import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
 import {
-    removeAttributesFromBuckets,
+    modifyBucketAttributesForDrillDown,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
-} from "../drillDownUitl";
+} from "../drillDownUtil";
 
 export class PluggableTreemap extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -133,7 +133,7 @@ export class PluggableTreemap extends PluggableBaseChart {
             drillDownContext.drillDefinition,
             drillDownContext.event,
         );
-        return removeAttributesFromBuckets(withFilters, drillDownContext.drillDefinition);
+        return modifyBucketAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): void {

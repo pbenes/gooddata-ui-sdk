@@ -2,7 +2,7 @@
 
 import { IInsight } from "@gooddata/sdk-model";
 import { IVisualizationProperties, IImplicitDrillDown } from "../../..";
-import { removeAttributesFromBuckets } from "../drillDownUitl";
+import { modifyBucketAttributesForDrillDown } from "../drillDownUtil";
 
 const properties: IVisualizationProperties = {
     controls: {
@@ -125,7 +125,7 @@ const drillConfig: IImplicitDrillDown = {
     },
 };
 
-describe("DrillDownService", () => {
+describe("drillDownUtil", () => {
     describe("createDrillDownTargetVisualization", () => {
         it("should replace target attribute display form URI and reset alias", () => {
             const visualizationAttribute2 = "visualizationAttribute2";
@@ -176,7 +176,7 @@ describe("DrillDownService", () => {
                     },
                 },
             };
-            const result = removeAttributesFromBuckets(sourceVisualization, drillConfig);
+            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -219,7 +219,7 @@ describe("DrillDownService", () => {
         });
 
         it("should delete intersection filter attributes", () => {
-            const result = removeAttributesFromBuckets(sourceInsight, drillConfig);
+            const result = modifyBucketAttributesForDrillDown(sourceInsight, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -388,7 +388,7 @@ describe("DrillDownService", () => {
                 },
             };
 
-            const result = removeAttributesFromBuckets(sourceVisualization, drillConfig);
+            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -629,7 +629,7 @@ describe("DrillDownService", () => {
                     },
                 },
             };
-            const result = removeAttributesFromBuckets(sourceVisualization, drillConfig);
+            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
