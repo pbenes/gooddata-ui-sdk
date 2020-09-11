@@ -370,7 +370,7 @@ describe("PluggableColumnBarCharts", () => {
         it.only("should replace the drill down attribute and add intersection filters", () => {
             const barChart = createComponent(defaultProps);
 
-            const context: IDrillDownContext = {
+            /*const context: IDrillDownContext = {
                 drillDefinition: {
                     implicitDrillDown: {
                         from: {
@@ -449,8 +449,9 @@ describe("PluggableColumnBarCharts", () => {
                         y: 41515,
                     },
                 },
-            };
+            };*/
 
+            /*
             const insite: IInsight = {
                 insight: {
                     buckets: [
@@ -615,14 +616,14 @@ describe("PluggableColumnBarCharts", () => {
                     visualizationUrl: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/75539",
                     updated: "2020-09-10 13:57:37",
                 },
-            };
+            };*/
 
             const result: IInsight = barChart.modifyInsightForDrillDown(
-                modifyInsightForDrillDown.sourceInsightMeasureViewStack,
-                context,
+                modifyInsightForDrillDown.insightMeasureViewStack,
+                modifyInsightForDrillDown.context,
             );
 
-            expect(result).toEqual(expextedInsight);
+            expect(result).toEqual(modifyInsightForDrillDown.expectedInsightMeasureViewStack);
         });
     });
 });
