@@ -25,7 +25,10 @@ const insightDefinitionWithMeasureViewStack: IInsightDefinition = newInsightDefi
     },
 );
 
+const departmentUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027";
 const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
+
+const regionUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024";
 const directSalesUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226";
 
 const replacedBucket = newBucket(
@@ -44,15 +47,11 @@ const expectedInsightDefinitionWithMeasureViewStack: IInsightDefinition = newIns
             .filters([
                 newNegativeAttributeFilter(Department, []),
                 newPositiveAttributeFilter(
-                    modifyAttribute(Department, (a) =>
-                        a.displayForm(uriRef("/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027")),
-                    ),
+                    modifyAttribute(Department, (a) => a.displayForm(uriRef(departmentUri))),
                     { uris: [directSalesUri] },
                 ),
                 newPositiveAttributeFilter(
-                    modifyAttribute(Region, (a) =>
-                        a.displayForm(uriRef("/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024")),
-                    ),
+                    modifyAttribute(Region, (a) => a.displayForm(uriRef(regionUri))),
                     { uris: [westCostUri] },
                 ),
             ]);
@@ -105,7 +104,7 @@ const context: IDrillDownContext = {
                             format: "#,##0.00",
                             localIdentifier: Won.measure.localIdentifier,
                             uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/9203",
-                            identifier: "aazb6kroa3iC",
+                            identifier: null,
                         },
                     },
                 },
@@ -118,13 +117,9 @@ const context: IDrillDownContext = {
                         attributeHeader: {
                             name: Region.attribute.alias,
                             localIdentifier: Region.attribute.localIdentifier,
-                            uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024",
-                            identifier: "label.owner.region",
-                            formOf: {
-                                name: "Region",
-                                uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023",
-                                identifier: "attr.owner.region",
-                            },
+                            uri: regionUri,
+                            identifier: null,
+                            formOf: null,
                         },
                     },
                 },
@@ -137,13 +132,9 @@ const context: IDrillDownContext = {
                         attributeHeader: {
                             name: Department.attribute.alias,
                             localIdentifier: Department.attribute.localIdentifier,
-                            uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027",
-                            identifier: "label.owner.department",
-                            formOf: {
-                                name: "Department",
-                                uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026",
-                                identifier: "attr.owner.department",
-                            },
+                            uri: departmentUri,
+                            identifier: null,
+                            formOf: null,
                         },
                     },
                 },
