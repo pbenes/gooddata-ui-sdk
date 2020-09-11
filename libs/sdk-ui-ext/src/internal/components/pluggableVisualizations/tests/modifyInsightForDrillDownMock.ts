@@ -9,6 +9,7 @@ import {
     newPositiveAttributeFilter,
     newAttribute,
     uriRef,
+    modifyAttribute,
 } from "@gooddata/sdk-model";
 import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/full";
 import { IImplicitDrillDown } from "sdk-ui-ext/src/internal";
@@ -28,8 +29,10 @@ const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?
 const directSalesUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226";
 
 const replacedBucket = newBucket(
-    "stack",
-    newAttribute(uriRef("implicitDrillDown-target-uri"), (b) => b.localId(Region.attribute.localIdentifier)),
+    "view",
+    newAttribute(uriRef("implicitDrillDown-target-uri"), (b) =>
+        b.localId(Department.attribute.localIdentifier),
+    ),
 );
 
 const expectedInsightDefinitionWithMeasureViewStack: IInsightDefinition = newInsightDefinition(
@@ -37,11 +40,21 @@ const expectedInsightDefinitionWithMeasureViewStack: IInsightDefinition = newIns
     (b) => {
         return b
             .title("sourceInsight")
-            .buckets([newBucket("measure", Won), replacedBucket, newBucket("view", Department)])
+            .buckets([newBucket("measure", Won), newBucket("stack", Region), replacedBucket])
             .filters([
                 newNegativeAttributeFilter(Department, []),
-                newPositiveAttributeFilter(Region, { uris: [westCostUri] }),
-                newPositiveAttributeFilter(Department, { uris: [directSalesUri] }),
+                newPositiveAttributeFilter(
+                    modifyAttribute(Department, (a) =>
+                        a.displayForm(uriRef("/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027")),
+                    ),
+                    { uris: [directSalesUri] },
+                ),
+                newPositiveAttributeFilter(
+                    modifyAttribute(Region, (a) =>
+                        a.displayForm(uriRef("/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024")),
+                    ),
+                    { uris: [westCostUri] },
+                ),
             ]);
     },
 );
@@ -66,7 +79,7 @@ const expectedInsightMeasureViewStack: IInsight = {
 
 const drillDefinition: IImplicitDrillDown = {
     implicitDrillDown: {
-        from: { drillFromAttribute: { localIdentifier: Region.attribute.localIdentifier } },
+        from: { drillFromAttribute: { localIdentifier: Department.attribute.localIdentifier } },
         target: {
             drillToAttribute: {
                 attributeDisplayForm: {
