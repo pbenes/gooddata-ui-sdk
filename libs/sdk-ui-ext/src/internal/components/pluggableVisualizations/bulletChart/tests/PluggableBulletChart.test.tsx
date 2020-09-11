@@ -20,6 +20,7 @@ import {
     newNegativeAttributeFilter,
     newPositiveAttributeFilter,
     uriRef,
+    IAttribute,
 } from "@gooddata/sdk-model";
 import { IMeasureDescriptor } from "@gooddata/sdk-backend-spi";
 import { IDrillIntersectionAttributeItem } from "@gooddata/sdk-ui";
@@ -544,58 +545,77 @@ describe("PluggableBulletChart", () => {
 
         const intersection = [measure, attribute1, attribute2, attribute3];
 
-        it("should replace the drill down attribute and add intersection filters", () => {
-            const bulletChart = createComponent();
-
-            const drillDefinition = createDrillDefinition(Region, targetUri);
-
-            const sourceInsightDefinition: IInsightDefinition = newInsightDefinition(
-                "visualizationClass-url",
-                (b) => {
-                    return b
-                        .title("sourceInsight")
-                        .buckets([
-                            newBucket("measure", Won),
-                            newBucket("view", Region, Department),
-                            newBucket("stack", Department),
-                        ])
-                        .filters([newNegativeAttributeFilter(Department, [])]);
-                },
-            );
-            const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
-            const replacedAttribute = newAttribute(uriRef(targetUri), (b) =>
-                b.localId(Region.attribute.localIdentifier),
-            );
-
-            const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
-                "visualizationClass-url",
-                (b) => {
-                    return b
-                        .title("sourceInsight")
-                        .buckets([
-                            newBucket("measure", Won),
-                            newBucket("view", replacedAttribute, Department),
-                            newBucket("stack", Department),
-                        ])
-                        .filters([
-                            newNegativeAttributeFilter(Department, []),
-                            newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a2")), {
-                                uris: ["/gdc/md/a2-element"],
-                            }),
-                            newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a3")), {
-                                uris: ["/gdc/md/a3-element"],
-                            }),
-                        ]);
-                },
-            );
-            const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
-
-            const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
-                drillDefinition,
-                event: createDrillEvent("bullet", intersection),
-            });
-
-            expect(result).toEqual(expectedInsight);
+        const sourceInsightDef: IInsightDefinition = newInsightDefinition("visualizationClass-url", (b) => {
+            return b
+                .title("sourceInsight")
+                .buckets([newBucket("measure", Won), newBucket("view", Region, Department)])
+                .filters([newNegativeAttributeFilter(Department, [])]);
         });
+
+        const replacedAttribute1 = newAttribute(uriRef(targetUri), (b) =>
+            b.localId(Region.attribute.localIdentifier),
+        );
+
+        const expectedInsightDef1: IInsightDefinition = newInsightDefinition(
+            "visualizationClass-url",
+            (b) => {
+                return b
+                    .title("sourceInsight")
+                    .buckets([newBucket("measure", Won), newBucket("view", replacedAttribute1, Department)])
+                    .filters([
+                        newNegativeAttributeFilter(Department, []),
+                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a2")), {
+                            uris: ["/gdc/md/a2-element"],
+                        }),
+                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a3")), {
+                            uris: ["/gdc/md/a3-element"],
+                        }),
+                    ]);
+            },
+        );
+
+        const replacedAttribute2 = newAttribute(uriRef(targetUri), (b) =>
+            b.localId(Department.attribute.localIdentifier),
+        );
+        const expectedInsightDef2: IInsightDefinition = newInsightDefinition(
+            "visualizationClass-url",
+            (b) => {
+                return b
+                    .title("sourceInsight")
+                    .buckets([newBucket("measure", Won), newBucket("view", replacedAttribute2)])
+                    .filters([
+                        newNegativeAttributeFilter(Department, []),
+                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a3")), {
+                            uris: ["/gdc/md/a3-element"],
+                        }),
+                    ]);
+            },
+        );
+
+        it.each([
+            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDef1],
+            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDef2],
+        ])(
+            "should replace the drill down attribute and add intersection filters",
+            (
+                sourceInsightDefinition: IInsightDefinition,
+                drillSourceAttribute: IAttribute,
+                drillTargetUri: string,
+                drillIntersection: IDrillEventIntersectionElement[],
+                expectedInsightDefinition: IInsightDefinition,
+            ) => {
+                const bulletChart = createComponent();
+                const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
+                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
+                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+
+                const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
+                    drillDefinition,
+                    event: createDrillEvent("bullet", drillIntersection),
+                });
+
+                expect(result).toEqual(expectedInsight);
+            },
+        );
     });
 });
