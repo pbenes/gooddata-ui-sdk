@@ -36,7 +36,7 @@ import {
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
     adjustIntersectionForColumnBar,
-} from "./convertUtil";
+} from "./drillDownUitl";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {

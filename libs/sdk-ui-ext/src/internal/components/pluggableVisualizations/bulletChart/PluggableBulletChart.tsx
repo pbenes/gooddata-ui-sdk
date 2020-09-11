@@ -36,7 +36,7 @@ import {
     removeAttributesFromBuckets,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
-} from "../convertUtil";
+} from "../drillDownUitl";
 
 export class PluggableBulletChart extends PluggableBaseChart {
     constructor(props: IVisConstruct) {

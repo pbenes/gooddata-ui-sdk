@@ -2,7 +2,7 @@
 
 import { IInsight } from "@gooddata/sdk-model";
 import { IVisualizationProperties, IImplicitDrillDown } from "../../..";
-import { removeAttributesFromBuckets } from "../convertUtil";
+import { removeAttributesFromBuckets } from "../drillDownUitl";
 
 const properties: IVisualizationProperties = {
     controls: {

@@ -72,7 +72,7 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../convertUtil";
+import { removeAttributesFromBuckets, addIntersectionFiltersToInsight } from "../drillDownUitl";
 
 export class PluggableBaseChart extends AbstractPluggableVisualization {
     protected projectId: string;

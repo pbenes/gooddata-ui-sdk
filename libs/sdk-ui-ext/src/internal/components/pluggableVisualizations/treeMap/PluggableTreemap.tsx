@@ -47,7 +47,7 @@ import {
     removeAttributesFromBuckets,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
-} from "../convertUtil";
+} from "../drillDownUitl";
 
 export class PluggableTreemap extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
