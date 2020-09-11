@@ -1,6 +1,6 @@
 // (C) 2019 GoodData Corporation
 
-import { modifyBucketAttributesForDrillDown, sanitizeTableProperties } from "../drillDownUtil";
+import { modifyBucketsAttributesForDrillDown, sanitizeTableProperties } from "../drillDownUtil";
 import cloneDeep from "lodash/cloneDeep";
 import flatMap from "lodash/flatMap";
 import get from "lodash/get";
@@ -224,7 +224,7 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
         sourceVisualization: IInsight,
         drillDownContext: IDrillDownContext,
     ): IInsight {
-        const insight = modifyBucketAttributesForDrillDown(
+        const insight = modifyBucketsAttributesForDrillDown(
             sourceVisualization,
             drillDownContext.drillDefinition,
         );

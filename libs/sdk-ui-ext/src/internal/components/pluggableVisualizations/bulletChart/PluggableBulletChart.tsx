@@ -33,7 +33,7 @@ import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
 import {
-    modifyBucketAttributesForDrillDown,
+    modifyBucketsAttributesForDrillDown,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
 } from "../drillDownUtil";
@@ -90,7 +90,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
             drillDownContext.drillDefinition,
             drillDownContext.event,
         );
-        return modifyBucketAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
+        return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     protected renderConfigurationPanel(insight: IInsightDefinition): React.ReactNode {

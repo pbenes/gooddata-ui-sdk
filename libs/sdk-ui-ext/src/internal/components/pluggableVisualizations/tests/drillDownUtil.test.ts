@@ -2,7 +2,7 @@
 
 import { IInsight } from "@gooddata/sdk-model";
 import { IVisualizationProperties, IImplicitDrillDown } from "../../..";
-import { modifyBucketAttributesForDrillDown } from "../drillDownUtil";
+import { modifyBucketsAttributesForDrillDown } from "../drillDownUtil";
 
 const properties: IVisualizationProperties = {
     controls: {
@@ -126,7 +126,7 @@ const drillConfig: IImplicitDrillDown = {
 };
 
 describe("drillDownUtil", () => {
-    describe("createDrillDownTargetVisualization", () => {
+    describe("modifyBucketsAttributesForDrillDown", () => {
         it("should replace target attribute display form URI and reset alias", () => {
             const visualizationAttribute2 = "visualizationAttribute2";
             const sourceVisualization: IInsight = {
@@ -176,7 +176,7 @@ describe("drillDownUtil", () => {
                     },
                 },
             };
-            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
+            const result = modifyBucketsAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -219,7 +219,7 @@ describe("drillDownUtil", () => {
         });
 
         it("should delete intersection filter attributes", () => {
-            const result = modifyBucketAttributesForDrillDown(sourceInsight, drillConfig);
+            const result = modifyBucketsAttributesForDrillDown(sourceInsight, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -388,7 +388,7 @@ describe("drillDownUtil", () => {
                 },
             };
 
-            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
+            const result = modifyBucketsAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",
@@ -629,7 +629,7 @@ describe("drillDownUtil", () => {
                     },
                 },
             };
-            const result = modifyBucketAttributesForDrillDown(sourceVisualization, drillConfig);
+            const result = modifyBucketsAttributesForDrillDown(sourceVisualization, drillConfig);
             const expected: IInsight = {
                 insight: {
                     title: "visualizationObject",

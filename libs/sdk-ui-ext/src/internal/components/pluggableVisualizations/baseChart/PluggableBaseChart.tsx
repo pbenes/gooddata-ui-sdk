@@ -72,7 +72,7 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import { modifyBucketAttributesForDrillDown, addIntersectionFiltersToInsight } from "../drillDownUtil";
+import { modifyBucketsAttributesForDrillDown, addIntersectionFiltersToInsight } from "../drillDownUtil";
 
 export class PluggableBaseChart extends AbstractPluggableVisualization {
     protected projectId: string;
@@ -143,7 +143,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
     public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
         const intersection = drillDownContext.event.drillContext.intersection;
         const withFilters = addIntersectionFiltersToInsight(source, intersection);
-        return modifyBucketAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
+        return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
     public isOpenAsReportSupported(): boolean {
