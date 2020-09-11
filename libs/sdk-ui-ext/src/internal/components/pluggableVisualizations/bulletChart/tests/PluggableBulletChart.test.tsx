@@ -1,31 +1,21 @@
+import { targetUri } from "./modifyInsightForDrillDownMock";
 // (C) 2020 GoodData Corporation
 import noop from "lodash/noop";
 import { PluggableBulletChart } from "../PluggableBulletChart";
 import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks";
 import { IBucketOfFun, IFilters, IReferencePoint, IVisConstruct } from "../../../../interfaces/Visualization";
 import { DEFAULT_BULLET_CHART_CONFIG } from "../../../../constants/uiConfig";
-import {
-    OverTimeComparisonTypes,
-    BucketNames,
-    IDrillEventIntersectionElement,
-    DrillEventIntersectionElementHeader,
-} from "@gooddata/sdk-ui";
+import { OverTimeComparisonTypes, BucketNames, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
-import {
-    newAttribute,
-    IInsight,
-    IInsightDefinition,
-    newInsightDefinition,
-    newBucket,
-    newNegativeAttributeFilter,
-    newPositiveAttributeFilter,
-    uriRef,
-    IAttribute,
-} from "@gooddata/sdk-model";
-import { IMeasureDescriptor } from "@gooddata/sdk-backend-spi";
-import { IDrillIntersectionAttributeItem } from "@gooddata/sdk-ui";
-import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/full";
+import { IInsight, IInsightDefinition, IAttribute } from "@gooddata/sdk-model";
+import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
 import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
+import {
+    sourceInsightDef,
+    intersection,
+    expectedInsightDefRegion,
+    expectedInsightDefDepartment,
+} from "./modifyInsightForDrillDownMock";
 
 const defaultProps: IVisConstruct = {
     backend: dummyBackend(),
@@ -504,97 +494,9 @@ describe("PluggableBulletChart", () => {
     });
 
     describe("Drill Down", () => {
-        function createMeasureDescriptor(name: string, localIdentifier: string): IMeasureDescriptor {
-            return {
-                measureHeaderItem: {
-                    localIdentifier,
-                    name,
-                    format: "###.#",
-                },
-            };
-        }
-
-        function createAttributeDescriptor(
-            name: string,
-            localIdentifier: string,
-        ): IDrillIntersectionAttributeItem {
-            return {
-                attributeHeaderItem: {
-                    uri: `/gdc/md/${name}-element`,
-                    name: `${name}-element-name`,
-                },
-                attributeHeader: {
-                    uri: `/gdc/md/obj/${name}`,
-                    identifier: `id-${name}`,
-                    localIdentifier,
-                    name,
-                    formOf: null,
-                },
-            };
-        }
-
-        function wrapHeader(header: DrillEventIntersectionElementHeader): IDrillEventIntersectionElement {
-            return { header };
-        }
-
-        const measure = wrapHeader(createMeasureDescriptor("m", "m_acugFHNJgsBy"));
-        const attribute1 = wrapHeader(createAttributeDescriptor("a1", "a1"));
-        const attribute2 = wrapHeader(createAttributeDescriptor("a2", Region.attribute.localIdentifier));
-        const attribute3 = wrapHeader(createAttributeDescriptor("a3", "a3"));
-        const targetUri = "target-uri";
-
-        const intersection = [measure, attribute1, attribute2, attribute3];
-
-        const sourceInsightDef: IInsightDefinition = newInsightDefinition("visualizationClass-url", (b) => {
-            return b
-                .title("sourceInsight")
-                .buckets([newBucket("measure", Won), newBucket("view", Region, Department)])
-                .filters([newNegativeAttributeFilter(Department, [])]);
-        });
-
-        const replacedAttribute1 = newAttribute(uriRef(targetUri), (b) =>
-            b.localId(Region.attribute.localIdentifier),
-        );
-
-        const expectedInsightDef1: IInsightDefinition = newInsightDefinition(
-            "visualizationClass-url",
-            (b) => {
-                return b
-                    .title("sourceInsight")
-                    .buckets([newBucket("measure", Won), newBucket("view", replacedAttribute1, Department)])
-                    .filters([
-                        newNegativeAttributeFilter(Department, []),
-                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a2")), {
-                            uris: ["/gdc/md/a2-element"],
-                        }),
-                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a3")), {
-                            uris: ["/gdc/md/a3-element"],
-                        }),
-                    ]);
-            },
-        );
-
-        const replacedAttribute2 = newAttribute(uriRef(targetUri), (b) =>
-            b.localId(Department.attribute.localIdentifier),
-        );
-        const expectedInsightDef2: IInsightDefinition = newInsightDefinition(
-            "visualizationClass-url",
-            (b) => {
-                return b
-                    .title("sourceInsight")
-                    .buckets([newBucket("measure", Won), newBucket("view", replacedAttribute2)])
-                    .filters([
-                        newNegativeAttributeFilter(Department, []),
-                        newPositiveAttributeFilter(newAttribute(uriRef("/gdc/md/obj/a3")), {
-                            uris: ["/gdc/md/a3-element"],
-                        }),
-                    ]);
-            },
-        );
-
         it.each([
-            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDef1],
-            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDef2],
+            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDefRegion],
+            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDefDepartment],
         ])(
             "should replace the drill down attribute and add intersection filters",
             (

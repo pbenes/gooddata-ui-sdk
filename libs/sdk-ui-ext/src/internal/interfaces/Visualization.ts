@@ -394,7 +394,7 @@ export interface IDrillFromAttribute {
  */
 export interface IDrillToAttribute {
     drillToAttribute: {
-        attributeDisplayForm: UriRef;
+        attributeDisplayForm: ObjRef;
     };
 }
 
