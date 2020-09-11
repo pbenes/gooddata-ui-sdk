@@ -2,26 +2,17 @@
 import noop from "lodash/noop";
 import { PluggableBulletChart } from "../PluggableBulletChart";
 import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks";
-import {
-    IBucketOfFun,
-    IFilters,
-    IReferencePoint,
-    IVisConstruct,
-    IImplicitDrillDown,
-} from "../../../../interfaces/Visualization";
+import { IBucketOfFun, IFilters, IReferencePoint, IVisConstruct } from "../../../../interfaces/Visualization";
 import { DEFAULT_BULLET_CHART_CONFIG } from "../../../../constants/uiConfig";
 import {
     OverTimeComparisonTypes,
     BucketNames,
     IDrillEventIntersectionElement,
     DrillEventIntersectionElementHeader,
-    IDrillEvent,
-    VisType,
 } from "@gooddata/sdk-ui";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
 import {
     newAttribute,
-    IAttribute,
     IInsight,
     IInsightDefinition,
     newInsightDefinition,
@@ -33,6 +24,7 @@ import {
 import { IMeasureDescriptor } from "@gooddata/sdk-backend-spi";
 import { IDrillIntersectionAttributeItem } from "@gooddata/sdk-ui";
 import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/full";
+import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
 
 const defaultProps: IVisConstruct = {
     backend: dummyBackend(),
@@ -535,61 +527,13 @@ describe("PluggableBulletChart", () => {
                     identifier: `id-${name}`,
                     localIdentifier,
                     name,
-                    formOf: {
-                        uri: `/gdc/md/obj/formof-${name}`,
-                        identifier: `formof-id-${name}`,
-                        name: `formof-${name}`,
-                    },
+                    formOf: null,
                 },
             };
         }
 
         function wrapHeader(header: DrillEventIntersectionElementHeader): IDrillEventIntersectionElement {
             return { header };
-        }
-
-        function createDrillDefinition(fromAttribute: IAttribute, targetUri: string): IImplicitDrillDown {
-            return {
-                implicitDrillDown: {
-                    from: {
-                        drillFromAttribute: { localIdentifier: fromAttribute.attribute.localIdentifier },
-                    },
-                    target: {
-                        drillToAttribute: {
-                            attributeDisplayForm: uriRef(targetUri),
-                        },
-                    },
-                },
-            };
-        }
-
-        function wrapUriIdentifier(
-            insightDefinition: IInsightDefinition,
-            uri: string,
-            identifier: string,
-        ): IInsight {
-            return {
-                ...insightDefinition,
-                insight: {
-                    ...insightDefinition.insight,
-                    identifier,
-                    uri,
-                },
-            };
-        }
-
-        function createDrillEvent(
-            type: VisType,
-            intersection: IDrillEventIntersectionElement[],
-        ): IDrillEvent {
-            return {
-                dataView: null,
-                drillContext: {
-                    type,
-                    intersection,
-                    element: null,
-                },
-            };
         }
 
         const measure = wrapHeader(createMeasureDescriptor("m", "m_acugFHNJgsBy"));
