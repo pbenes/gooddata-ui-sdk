@@ -93,26 +93,6 @@ const sourceInsightDefinitionWithTotals: IInsightDefinition = newInsightDefiniti
     },
 );
 
-const insiteWithMeasureViewStack: IInsightDefinition = newInsightDefinition("visualizationClass-url", (b) => {
-    return b
-        .title("sourceInsight")
-        .buckets([
-            newBucket("measure", Won),
-            newBucket("attribute", Region, Department),
-            newBucket("view", Department),
-        ])
-        .filters([newNegativeAttributeFilter(Department, [])]);
-});
-
-const sourceInsightMeasureViewStack: IInsight = {
-    ...insiteWithMeasureViewStack,
-    insight: {
-        ...insiteWithMeasureViewStack.insight,
-        identifier: "sourceInsightIdentifier",
-        uri: "/sourceInsightUri",
-    },
-};
-
 const sourceInsight: IInsight = {
     ...sourceInsightDefinition,
     insight: {
@@ -252,6 +232,4 @@ export const modifyInsightForDrillDown = {
     drillConfig,
     expectedInsight,
     expectedInsightWithTotals,
-
-    sourceInsightMeasureViewStack,
 };

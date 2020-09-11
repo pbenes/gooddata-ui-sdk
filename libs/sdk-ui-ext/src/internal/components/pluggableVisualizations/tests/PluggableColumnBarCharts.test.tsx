@@ -2,13 +2,7 @@
 import noop from "lodash/noop";
 import get from "lodash/get";
 import * as referencePointMocks from "../../../tests/mocks/referencePointMocks";
-import {
-    IBucketOfFun,
-    IFilters,
-    IVisProps,
-    IVisConstruct,
-    IDrillDownContext,
-} from "../../../interfaces/Visualization";
+import { IBucketOfFun, IFilters, IVisProps, IVisConstruct } from "../../../interfaces/Visualization";
 import { MAX_VIEW_COUNT } from "../../../constants/uiConfig";
 import * as uiConfigMocks from "../../../tests/mocks/uiConfigMocks";
 import * as testMocks from "../../../tests/mocks/testMocks";
@@ -623,6 +617,7 @@ describe("PluggableColumnBarCharts", () => {
                 modifyInsightForDrillDown.context,
             );
 
+            console.log(JSON.stringify(result));
             expect(result).toEqual(modifyInsightForDrillDown.expectedInsightMeasureViewStack);
         });
     });

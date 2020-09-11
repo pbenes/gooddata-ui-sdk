@@ -7,9 +7,10 @@ import {
     newInsightDefinition,
     newNegativeAttributeFilter,
     newPositiveAttributeFilter,
-    UriRef,
+    newAttribute,
+    uriRef,
 } from "@gooddata/sdk-model";
-import { Department, Region, Won, Status } from "@gooddata/reference-workspace/dist/ldm/full";
+import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/full";
 import { IImplicitDrillDown } from "sdk-ui-ext/src/internal";
 import { IDrillDownContext } from "sdk-ui-ext/src/internal/interfaces/Visualization";
 
@@ -24,17 +25,23 @@ const insightDefinitionWithMeasureViewStack: IInsightDefinition = newInsightDefi
 );
 
 const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
+const directSalesUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226";
+
+const replacedBucket = newBucket(
+    "stack",
+    newAttribute(uriRef("implicitDrillDown-target-uri"), (b) => b.localId(Region.attribute.localIdentifier)),
+);
 
 const expectedInsightDefinitionWithMeasureViewStack: IInsightDefinition = newInsightDefinition(
     "visualizationClass-url",
     (b) => {
         return b
             .title("sourceInsight")
-            .buckets([newBucket("measure", Won), newBucket("stack", Status), newBucket("view", Department)])
+            .buckets([newBucket("measure", Won), replacedBucket, newBucket("view", Department)])
             .filters([
                 newNegativeAttributeFilter(Department, []),
                 newPositiveAttributeFilter(Region, { uris: [westCostUri] }),
-                newPositiveAttributeFilter(Department, ["Direct Sales"]),
+                newPositiveAttributeFilter(Department, { uris: [directSalesUri] }),
             ]);
     },
 );
@@ -51,7 +58,7 @@ const insightMeasureViewStack: IInsight = {
 const expectedInsightMeasureViewStack: IInsight = {
     ...expectedInsightDefinitionWithMeasureViewStack,
     insight: {
-        ...insightDefinitionWithMeasureViewStack.insight,
+        ...expectedInsightDefinitionWithMeasureViewStack.insight,
         identifier: "sourceInsightIdentifier",
         uri: "/sourceInsightUri",
     },
@@ -63,7 +70,7 @@ const drillDefinition: IImplicitDrillDown = {
         target: {
             drillToAttribute: {
                 attributeDisplayForm: {
-                    uri: (Status.attribute.displayForm as UriRef).uri,
+                    uri: "implicitDrillDown-target-uri",
                 },
             },
         },
@@ -96,8 +103,8 @@ const context: IDrillDownContext = {
                             uri: westCostUri,
                         },
                         attributeHeader: {
-                            name: "Region",
-                            localIdentifier: "1d770104ba174b548f1f4dd69da40e96",
+                            name: Region.attribute.alias,
+                            localIdentifier: Region.attribute.localIdentifier,
                             uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024",
                             identifier: "label.owner.region",
                             formOf: {
@@ -112,11 +119,11 @@ const context: IDrillDownContext = {
                     header: {
                         attributeHeaderItem: {
                             name: "Direct Sales",
-                            uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226",
+                            uri: directSalesUri,
                         },
                         attributeHeader: {
-                            name: "Department",
-                            localIdentifier: "998da372d62a4584b145cd026423fe24",
+                            name: Department.attribute.alias,
+                            localIdentifier: Department.attribute.localIdentifier,
                             uri: "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027",
                             identifier: "label.owner.department",
                             formOf: {
