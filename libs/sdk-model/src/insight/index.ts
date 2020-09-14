@@ -638,7 +638,6 @@ export function insightReduceItems<T extends IInsightDefinition>(
 ): T {
     invariant(insight, "insight must be specified");
     const buckets: IBucket[] = insightBuckets(insight);
-    // tslint:disable-next-line: no-object-literal-type-assertion
     return {
         insight: {
             ...insight.insight,
