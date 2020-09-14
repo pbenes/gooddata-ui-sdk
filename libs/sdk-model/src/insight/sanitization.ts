@@ -41,6 +41,14 @@ function getNonRepeatedBucketAttribute(bucket: IBucket): IAttributeOrMeasure[] {
 function removeDuplicateDrillAttributes<T extends IInsightDefinition>(insight: T): T {
     const removed = insightBuckets(insight).map((bucket) => {
         if (bucket.localIdentifier === "attribute") {
+            // TODO: import uniqWith from lodash
+            // bucket.items = uniqWith(bucket.items, (firstItem, secondItem) => {
+            //     if (isAttribute(firstItem) && isAttribute(secondItem))) {
+            //         retunr areObjRefsEqual(firstItem.attribute.displayForm, secondItem.attribute.displayForm);
+            //     }
+
+            //     return false;
+            // });
             bucket.items = getNonRepeatedBucketAttribute(bucket);
         }
         return bucket;
