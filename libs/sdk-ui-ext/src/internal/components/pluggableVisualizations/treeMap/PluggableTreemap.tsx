@@ -122,7 +122,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
         // treemap just reverse the intersection
-        const reorderedIntersection = event.drillContext.intersection.reverse();
+        const reorderedIntersection = event.drillContext.intersection.slice().reverse();
         const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
