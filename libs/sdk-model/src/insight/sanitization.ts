@@ -2,10 +2,16 @@
 import { InvariantError } from "ts-invariant";
 
 import { IInsightDefinition, insightAttributes, insightBuckets, insightSetBuckets, insightSorts } from ".";
-import { bucketAttributeIndex, bucketSetTotals, bucketTotals, IBucket } from "../execution/buckets";
+import {
+    bucketAttributeIndex,
+    bucketSetTotals,
+    bucketTotals,
+    IBucket,
+    IAttributeOrMeasure,
+} from "../execution/buckets";
 import { isAttributeSort, isMeasureSort, ISortItem, sortEntityIds } from "../execution/base/sort";
 import { ITotal } from "../execution/base/totals";
-import { attributeLocalId } from "../execution/attribute";
+import { attributeLocalId, isAttribute } from "../execution/attribute";
 
 /**
  * Makes sure the insight does not have any nonsensical data (like totals that no longer make sense, etc.), before it is saved.
@@ -14,7 +20,31 @@ import { attributeLocalId } from "../execution/attribute";
  * @public
  */
 export function insightSanitize<T extends IInsightDefinition>(insight: T): T {
-    return removeInvalidTotals(insight);
+    return removeInvalidTotals(removeDuplicateDrillAttributes(insight));
+}
+
+function getNonRepeatedBucketAttribute(bucket: IBucket): IAttributeOrMeasure[] {
+    return bucket.items.filter((item, index, originalArray) => {
+        if (isAttribute(item)) {
+            return (
+                originalArray.findIndex(
+                    //@ts-ignore uri - ObjRef??
+                    (t: any) => t.attribute.displayForm.uri === item.attribute.displayForm.uri,
+                ) === index
+            );
+        }
+        return item;
+    });
+}
+
+function removeDuplicateDrillAttributes<T extends IInsightDefinition>(insight: T): T {
+    const removed = insightBuckets(insight).map((bucket) => {
+        if (bucket.localIdentifier === "attribute") {
+            bucket.items = getNonRepeatedBucketAttribute(bucket);
+        }
+        return bucket;
+    });
+    return insightSetBuckets(insight, removed);
 }
 
 function removeInvalidTotals<T extends IInsightDefinition>(insight: T): T {
