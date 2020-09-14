@@ -14,7 +14,6 @@ import {
     newPositiveAttributeFilter,
     newTotal,
     uriRef,
-    newNegativeAttributeFilter,
 } from "@gooddata/sdk-model";
 import { IImplicitDrillDown, IVisualizationProperties } from "../../../..";
 import { Department, Region, Status, Won } from "@gooddata/reference-workspace/dist/ldm/full";
@@ -110,14 +109,13 @@ const sourceInsightWithTotals: IInsight = {
     },
 };
 
+const implicitTargetDF = uriRef("implicitDrillDown-target-uri");
 const drillConfig: IImplicitDrillDown = {
     implicitDrillDown: {
         from: { drillFromAttribute: { localIdentifier: Status.attribute.localIdentifier } },
         target: {
             drillToAttribute: {
-                attributeDisplayForm: {
-                    uri: "implicitDrillDown-target-uri",
-                },
+                attributeDisplayForm: implicitTargetDF,
             },
         },
     },
@@ -167,12 +165,7 @@ const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
             .buckets([
                 newBucket(
                     "attribute",
-                    newAttribute(
-                        uriRef(
-                            drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm.uri,
-                        ),
-                        (b) => b.localId(Status.attribute.localIdentifier),
-                    ),
+                    newAttribute(implicitTargetDF, (b) => b.localId(Status.attribute.localIdentifier)),
                     Department,
                 ),
                 bucketSetTotals(newBucket("measure", Won), []),
@@ -191,12 +184,7 @@ const expectedInsightDefinitionWithTotals: IInsightDefinition = newInsightDefini
             .buckets([
                 newBucket(
                     "attribute",
-                    newAttribute(
-                        uriRef(
-                            drillConfig.implicitDrillDown.target.drillToAttribute.attributeDisplayForm.uri,
-                        ),
-                        (b) => b.localId(Status.attribute.localIdentifier),
-                    ),
+                    newAttribute(implicitTargetDF, (b) => b.localId(Status.attribute.localIdentifier)),
                     Department,
                 ),
                 newBucket("measure", Won, newTotal("nat", Won, Status)),

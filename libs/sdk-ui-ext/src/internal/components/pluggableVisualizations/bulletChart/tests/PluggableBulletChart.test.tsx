@@ -1,4 +1,3 @@
-import { targetUri } from "./modifyInsightForDrillDownMock";
 // (C) 2020 GoodData Corporation
 import noop from "lodash/noop";
 import { PluggableBulletChart } from "../PluggableBulletChart";
@@ -15,6 +14,7 @@ import {
     intersection,
     expectedInsightDefRegion,
     expectedInsightDefDepartment,
+    targetUri,
 } from "./modifyInsightForDrillDownMock";
 
 const defaultProps: IVisConstruct = {

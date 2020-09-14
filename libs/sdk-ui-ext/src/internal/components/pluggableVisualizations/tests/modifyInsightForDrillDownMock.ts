@@ -12,8 +12,7 @@ import {
     modifyAttribute,
 } from "@gooddata/sdk-model";
 import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/full";
-import { IImplicitDrillDown } from "sdk-ui-ext/src/internal";
-import { IDrillDownContext } from "sdk-ui-ext/src/internal/interfaces/Visualization";
+import { IImplicitDrillDown, IDrillDownContext } from "../../../interfaces/Visualization";
 
 const insightDefinitionWithMeasureViewStack: IInsightDefinition = newInsightDefinition(
     "visualizationClass-url",

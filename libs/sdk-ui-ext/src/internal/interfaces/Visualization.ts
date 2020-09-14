@@ -9,7 +9,6 @@ import {
     VisualizationProperties,
     ObjRef,
     Identifier,
-    UriRef,
 } from "@gooddata/sdk-model";
 import {
     ChartType,
