@@ -11,7 +11,8 @@ import {
 } from "../execution/buckets";
 import { isAttributeSort, isMeasureSort, ISortItem, sortEntityIds } from "../execution/base/sort";
 import { ITotal } from "../execution/base/totals";
-import { attributeLocalId, isAttribute } from "../execution/attribute";
+import { attributeLocalId, isAttribute, IAttribute } from "../execution/attribute";
+import { areObjRefsEqual } from "../objRef";
 
 /**
  * Makes sure the insight does not have any nonsensical data (like totals that no longer make sense, etc.), before it is saved.
@@ -24,12 +25,12 @@ export function insightSanitize<T extends IInsightDefinition>(insight: T): T {
 }
 
 function getNonRepeatedBucketAttribute(bucket: IBucket): IAttributeOrMeasure[] {
-    return bucket.items.filter((item, index, originalArray) => {
+    const bucketAttributes = bucket.items.filter(isAttribute);
+    return bucket.items.filter((item, index) => {
         if (isAttribute(item)) {
             return (
-                originalArray.findIndex(
-                    //@ts-ignore uri - ObjRef??
-                    (t: any) => t.attribute.displayForm.uri === item.attribute.displayForm.uri,
+                bucketAttributes.findIndex((t: IAttribute) =>
+                    areObjRefsEqual(t.attribute.displayForm, item.attribute.displayForm),
                 ) === index
             );
         }
