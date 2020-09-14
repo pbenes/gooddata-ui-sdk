@@ -32,32 +32,6 @@ export const insightDefinition: IInsightDefinition = newInsightDefinition("visua
         .filters([newNegativeAttributeFilter(Department, [])]);
 });
 
-export const expectedInsightDefinitionDrillToRegion: IInsightDefinition = newInsightDefinition(
-    "visualizationClass-url",
-    (b) => {
-        return b
-            .title("sourceInsight")
-            .buckets([
-                newBucket("measure", Won),
-                newBucket(
-                    "view",
-                    newAttribute(uriRef(targetUri), (b) => b.localId(Region.attribute.localIdentifier)),
-                ),
-            ])
-            .filters([
-                newNegativeAttributeFilter(Department, []),
-                newPositiveAttributeFilter(
-                    modifyAttribute(Region, (a) => a.displayForm(uriRef(regionUri))),
-                    { uris: [westCostUri] },
-                ),
-                newPositiveAttributeFilter(
-                    modifyAttribute(Department, (a) => a.displayForm(uriRef(departmentUri))),
-                    { uris: [directSalesUri] },
-                ),
-            ]);
-    },
-);
-
 const departmentUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027";
 const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
 
@@ -99,6 +73,32 @@ export const expectedInsightDefinitionWithStackByDrillToRegion: IInsightDefiniti
                     newAttribute(uriRef(targetUri), (b) => b.localId(Region.attribute.localIdentifier)),
                 ),
                 newBucket("view", Department),
+            ])
+            .filters([
+                newNegativeAttributeFilter(Department, []),
+                newPositiveAttributeFilter(
+                    modifyAttribute(Region, (a) => a.displayForm(uriRef(regionUri))),
+                    { uris: [westCostUri] },
+                ),
+                newPositiveAttributeFilter(
+                    modifyAttribute(Department, (a) => a.displayForm(uriRef(departmentUri))),
+                    { uris: [directSalesUri] },
+                ),
+            ]);
+    },
+);
+
+export const expectedInsightDefinitionDrillToRegion: IInsightDefinition = newInsightDefinition(
+    "visualizationClass-url",
+    (b) => {
+        return b
+            .title("sourceInsight")
+            .buckets([
+                newBucket("measure", Won),
+                newBucket(
+                    "view",
+                    newAttribute(uriRef(targetUri), (b) => b.localId(Region.attribute.localIdentifier)),
+                ),
             ])
             .filters([
                 newNegativeAttributeFilter(Department, []),
