@@ -17,45 +17,18 @@ import {
 } from "@gooddata/sdk-model";
 import { IImplicitDrillDown, IVisualizationProperties } from "../../../..";
 import { Department, Region, Status, Won } from "@gooddata/reference-workspace/dist/ldm/full";
+import { newWidthForAttributeColumn, newWidthForAllMeasureColumns } from "@gooddata/sdk-ui-pivot";
 
 const properties: IVisualizationProperties = {
     controls: {
         columnWidths: [
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: Region.attribute.localIdentifier,
-                    width: { value: 131 },
-                },
-            },
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: Status.attribute.localIdentifier,
-                    width: { value: 125 },
-                },
-            },
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: Department.attribute.localIdentifier,
-                    width: { value: 97 },
-                },
-            },
-            { measureColumnWidthItem: { width: { value: 270 } } },
+            newWidthForAttributeColumn(Region, 131, false),
+            newWidthForAttributeColumn(Status, 125, false),
+            newWidthForAttributeColumn(Department, 97, false),
+            newWidthForAllMeasureColumns(270),
         ],
     },
-    sortItems: [
-        {
-            attributeSortItem: {
-                attributeIdentifier: Region.attribute.localIdentifier,
-                direction: "desc",
-            },
-        },
-        {
-            attributeSortItem: {
-                attributeIdentifier: Status.attribute.localIdentifier,
-                direction: "asc",
-            },
-        },
-    ],
+    sortItems: [newAttributeSort(Region, "desc"), newAttributeSort(Status)],
 };
 
 const filters: IFilter[] = [newPositiveAttributeFilter(Department, ["Inside Sales"])];
@@ -125,35 +98,12 @@ const expectedProperties: IVisualizationProperties = {
     ...sourceInsight.insight.properties,
     controls: {
         columnWidths: [
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: Status.attribute.localIdentifier,
-                    width: { value: 125 },
-                },
-            },
-            {
-                attributeColumnWidthItem: {
-                    attributeIdentifier: Department.attribute.localIdentifier,
-                    width: { value: 97 },
-                },
-            },
-            { measureColumnWidthItem: { width: { value: 270 } } },
+            newWidthForAttributeColumn(Status, 125, false),
+            newWidthForAttributeColumn(Department, 97, false),
+            newWidthForAllMeasureColumns(270),
         ],
     },
-    sortItems: [
-        {
-            attributeSortItem: {
-                attributeIdentifier: Region.attribute.localIdentifier,
-                direction: "desc",
-            },
-        },
-        {
-            attributeSortItem: {
-                attributeIdentifier: Status.attribute.localIdentifier,
-                direction: "asc",
-            },
-        },
-    ],
+    sortItems: [newAttributeSort(Region, "desc"), newAttributeSort(Status)],
 };
 
 const expectedInsightDefinition: IInsightDefinition = newInsightDefinition(
