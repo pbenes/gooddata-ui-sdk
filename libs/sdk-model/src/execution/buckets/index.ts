@@ -471,22 +471,22 @@ export function bucketModifyItems(
 
 /**
  * Creates a new bucket by modifying items of the provided input bucket.
- * Array of item from the input bucket will be dispatched to the modification function
+ * Array of item from the input bucket will be dispatched to the reducer function
  * and the result of the modification will be included in the new bucket.
  *
  *
  * @param bucket - bucket in which all items are applied the modification function
- * @param modifications - the modification to apply to reduce the bucket items
+ * @param reducer - the reducer function to apply to the bucket items
  * @returns new instance of bucket with modified bucket items
  * @public
  */
-export function bucketReduceItems(bucket: IBucket, modifications: BucketItemReductions = identity): IBucket {
+export function bucketItemReducer(bucket: IBucket, reducer: BucketItemReductions = identity): IBucket {
     invariant(bucket, "bucket must be specified");
     const items: IAttributeOrMeasure[] = bucketItems(bucket);
 
     const result: IAttributeOrMeasure[] = items.reduce(
         (acc: IAttributeOrMeasure[], cur: IAttributeOrMeasure, idx: number, src: IAttributeOrMeasure[]) => {
-            return modifications(acc, cur, idx, src);
+            return reducer(acc, cur, idx, src);
         },
         [],
     );
