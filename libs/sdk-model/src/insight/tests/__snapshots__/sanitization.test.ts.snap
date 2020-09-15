@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`insightSanitize should remove duplicate drillable bucket attribute items 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "attribute": Object {
+        "displayForm": Object {
+          "uri": "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091",
+        },
+        "localIdentifier": "a_label.account.id",
+      },
+    },
+    Object {
+      "attribute": Object {
+        "displayForm": Object {
+          "uri": "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103",
+        },
+        "localIdentifier": "a_label.owner.department",
+      },
+    },
+  ],
+  "localIdentifier": "attribute",
+}
+`;

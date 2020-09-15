@@ -3,10 +3,10 @@ import { insightSanitize } from "../sanitization";
 import { newTotal, ITotal } from "../../execution/base/totals";
 import { newMeasureSort, newAttributeSort, ISortItem } from "../../execution/base/sort";
 import { newInsightDefinition } from "../factory";
-import { bucketTotals, IBucket } from "../../execution/buckets";
+import { bucketTotals } from "../../execution/buckets";
 import { insightBucket } from "..";
 import { Account, ActivityType, Department, Velocity, Won } from "../../../__mocks__/model";
-import { modifyAttribute, uriRef, newAttribute } from "../..";
+import { modifyAttribute, uriRef } from "../..";
 
 describe("insightSanitize", () => {
     const m1 = Won;
@@ -101,14 +101,6 @@ describe("insightSanitize", () => {
         );
         const sanitized = insightSanitize(insight);
         const result = insightBucket(sanitized, "attribute");
-        const expectedResult: IBucket = {
-            localIdentifier: "attribute",
-            items: [
-                newAttribute(uriRef(targetDrillUri), (a) => a.localId("a_label.account.id")),
-                newAttribute(uriRef(departmentUri), (a) => a.localId(Department.attribute.localIdentifier)),
-            ],
-        };
-
-        expect(result).toEqual(expectedResult);
+        expect(result).toMatchSnapshot();
     });
 });
