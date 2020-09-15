@@ -48,6 +48,7 @@ import {
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
 } from "../drillDownUtil";
+import { drillDownFromAttributeLocalId } from "../../../utils/ImplicitDrillDownHelper";
 
 export class PluggableTreemap extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -119,7 +120,7 @@ export class PluggableTreemap extends PluggableBaseChart {
     }
 
     private addFiltersForTreemap(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
-        const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
+        const clicked = drillDownFromAttributeLocalId(drillConfig);
 
         // intersection returned from treemap visualization is from outer to inner parts -> reverse
         const reorderedIntersection = event.drillContext.intersection.slice().reverse();

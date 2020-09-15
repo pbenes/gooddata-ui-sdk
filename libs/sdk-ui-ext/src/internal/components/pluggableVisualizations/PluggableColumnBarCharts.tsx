@@ -6,6 +6,7 @@ import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
+import { drillDownFromAttributeLocalId } from "../../utils/ImplicitDrillDownHelper";
 import {
     IBucketOfFun,
     IExtendedReferencePoint,
@@ -76,7 +77,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     private addFiltersForColumnBar(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
-        const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
+        const clicked = drillDownFromAttributeLocalId(drillConfig);
 
         const reorderedIntersection = adjustIntersectionForColumnBar(source, event);
         const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);

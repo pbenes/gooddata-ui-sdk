@@ -37,6 +37,7 @@ import {
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
 } from "../drillDownUtil";
+import { drillDownFromAttributeLocalId } from "../../../utils/ImplicitDrillDownHelper";
 
 export class PluggableBulletChart extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -78,7 +79,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
     }
 
     private addFiltersForBullet(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
-        const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
+        const clicked = drillDownFromAttributeLocalId(drillConfig);
 
         const cutIntersection = getIntersectionPartAfter(event.drillContext.intersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
