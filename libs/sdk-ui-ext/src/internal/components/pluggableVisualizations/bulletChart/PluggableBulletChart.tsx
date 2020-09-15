@@ -28,15 +28,11 @@ import { DEFAULT_BULLET_CHART_CONFIG } from "../../../constants/uiConfig";
 import { BULLET_CHART_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 import BulletChartConfigurationPanel from "../../configurationPanels/BulletChartConfigurationPanel";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { VisualizationTypes, IDrillEvent, getIntersectionPartAfter } from "@gooddata/sdk-ui";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { transformBuckets } from "./bucketHelper";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import {
-    modifyBucketsAttributesForDrillDown,
-    addIntersectionFiltersToInsight,
-    getIntersectionPartAfter,
-} from "../drillDownUtil";
+import { modifyBucketsAttributesForDrillDown, addIntersectionFiltersToInsight } from "../drillDownUtil";
 import { drillDownFromAttributeLocalId } from "../../../utils/ImplicitDrillDownHelper";
 
 export class PluggableBulletChart extends PluggableBaseChart {

@@ -12,7 +12,12 @@ import {
     bucketIsEmpty,
 } from "@gooddata/sdk-model";
 import { arrayUtils } from "@gooddata/util";
-import { BucketNames, IDrillEvent, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
+import {
+    BucketNames,
+    IDrillEvent,
+    IDrillEventIntersectionElement,
+    getIntersectionPartAfter,
+} from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
@@ -42,11 +47,7 @@ import {
 } from "../../utils/propertiesHelper";
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
-import {
-    modifyBucketsAttributesForDrillDown,
-    addIntersectionFiltersToInsight,
-    getIntersectionPartAfter,
-} from "./drillDownUtil";
+import { modifyBucketsAttributesForDrillDown, addIntersectionFiltersToInsight } from "./drillDownUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {

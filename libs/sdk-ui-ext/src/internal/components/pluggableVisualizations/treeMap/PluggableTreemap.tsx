@@ -5,7 +5,7 @@ import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import tail from "lodash/tail";
-import { BucketNames, VisualizationTypes, IDrillEvent } from "@gooddata/sdk-ui";
+import { BucketNames, VisualizationTypes, IDrillEvent, getIntersectionPartAfter } from "@gooddata/sdk-ui";
 import { render } from "react-dom";
 import { BUCKETS } from "../../../constants/bucket";
 import { TREEMAP_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
@@ -43,11 +43,7 @@ import TreeMapConfigurationPanel from "../../configurationPanels/TreeMapConfigur
 import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import { IInsight, IInsightDefinition } from "@gooddata/sdk-model";
 import { SettingCatalog } from "@gooddata/sdk-backend-spi";
-import {
-    modifyBucketsAttributesForDrillDown,
-    addIntersectionFiltersToInsight,
-    getIntersectionPartAfter,
-} from "../drillDownUtil";
+import { modifyBucketsAttributesForDrillDown, addIntersectionFiltersToInsight } from "../drillDownUtil";
 import { drillDownFromAttributeLocalId } from "../../../utils/ImplicitDrillDownHelper";
 
 export class PluggableTreemap extends PluggableBaseChart {
