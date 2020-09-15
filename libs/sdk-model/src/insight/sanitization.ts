@@ -3,7 +3,13 @@ import { InvariantError } from "ts-invariant";
 import { uniqWith } from "lodash";
 
 import { IInsightDefinition, insightAttributes, insightBuckets, insightSetBuckets, insightSorts } from ".";
-import { bucketAttributeIndex, bucketSetTotals, bucketTotals, IBucket } from "../execution/buckets";
+import {
+    bucketAttributeIndex,
+    bucketSetTotals,
+    bucketTotals,
+    IBucket,
+    newBucket,
+} from "../execution/buckets";
 import { isAttributeSort, isMeasureSort, ISortItem, sortEntityIds } from "../execution/base/sort";
 import { ITotal } from "../execution/base/totals";
 import { attributeLocalId, isAttribute } from "../execution/attribute";
@@ -21,13 +27,19 @@ export function insightSanitize<T extends IInsightDefinition>(insight: T): T {
 function removeDuplicateDrillAttributes<T extends IInsightDefinition>(insight: T): T {
     const removed = insightBuckets(insight).map((bucket) => {
         if (bucket.localIdentifier === "attribute") {
-            bucket.items = uniqWith(bucket.items, (firstItem, secondItem) => {
-                if (isAttribute(firstItem) && isAttribute(secondItem)) {
-                    return areObjRefsEqual(firstItem.attribute.displayForm, secondItem.attribute.displayForm);
-                }
+            return newBucket(
+                bucket.localIdentifier,
+                ...uniqWith(bucket.items, (firstItem, secondItem) => {
+                    if (isAttribute(firstItem) && isAttribute(secondItem)) {
+                        return areObjRefsEqual(
+                            firstItem.attribute.displayForm,
+                            secondItem.attribute.displayForm,
+                        );
+                    }
 
-                return false;
-            });
+                    return false;
+                }),
+            );
         }
 
         return bucket;
