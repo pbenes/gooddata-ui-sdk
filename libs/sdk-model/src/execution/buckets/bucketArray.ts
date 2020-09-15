@@ -14,7 +14,7 @@ import {
     MeasureInBucket,
     bucketModifyItems,
     BucketItemModifications,
-    bucketReduceItems,
+    bucketItemReducer,
     BucketItemReductions,
 } from "./index";
 import { anyAttribute, AttributePredicate, IAttribute, idMatchAttribute, isAttribute } from "../attribute";
@@ -266,5 +266,5 @@ export function bucketsReduceItem(
     modifications: BucketItemReductions = identity,
 ): IBucket[] {
     invariant(buckets, "buckets must be specified");
-    return buckets.map((bucket: IBucket): IBucket => bucketReduceItems(bucket, modifications));
+    return buckets.map((bucket: IBucket): IBucket => bucketItemReducer(bucket, modifications));
 }
