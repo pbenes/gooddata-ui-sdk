@@ -528,7 +528,7 @@ describe("insightModifyItems", () => {
             MixedBucket,
         ]);
         const modifiedInsight: IInsight = insightModifyItems(insightWithSomeBuckets, modifications);
-        expect(modifiedInsight).not.toEqual(insightWithSomeBuckets);
+        expect(modifiedInsight).not.toBe(insightWithSomeBuckets);
         expect(modifiedInsight.insight.buckets.length).toBe(3);
         expect(modifiedInsight.insight.buckets[0].items.length).toBe(1);
         expect((modifiedInsight.insight.buckets[0].items[0] as IAttribute).attribute.alias).toBe(
@@ -575,7 +575,7 @@ describe("insightReduceItems", () => {
         const insightWithSomeBuckets: IInsight = insightSetBuckets(EmptyInsight, [MultiAttributeBucket]);
 
         const modifiedInsight: IInsight = insightReduceItems(insightWithSomeBuckets, modifications);
-        expect(modifiedInsight).not.toEqual(insightWithSomeBuckets);
+        expect(modifiedInsight).not.toBe(insightWithSomeBuckets);
         expect(modifiedInsight.insight.buckets[0].items.length).toBe(1);
     });
 });
