@@ -70,16 +70,4 @@ describe("insightSanitize", () => {
         expect(resultTotals1).toEqual([grandTotal]);
         expect(resultTotals2).toEqual([grandTotal]);
     });
-
-    it("should remove duplicate drillable bucket attribute items", () => {
-        const insight = newInsightDefinition("foo", (m) =>
-            m.buckets([
-                newBucket("measures", m1, m2),
-                newBucket("attribute", Department, Department, Account.Default),
-            ]),
-        );
-        const sanitized = insightSanitize(insight);
-        const result = insightBucket(sanitized, "attribute");
-        expect(result).toMatchSnapshot();
-    });
 });

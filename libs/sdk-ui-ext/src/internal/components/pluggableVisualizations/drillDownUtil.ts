@@ -17,6 +17,7 @@ import {
     bucketItemLocalId,
     newPositiveAttributeFilter,
     uriRef,
+    areObjRefsEqual,
 } from "@gooddata/sdk-model";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
@@ -49,7 +50,7 @@ export function modifyBucketsAttributesForDrillDown(
         },
     );
 
-    return insightModifyItems(
+    const replacedDrill = insightModifyItems(
         removedLeftAttributes,
         (bucketItem: IAttributeOrMeasure): IAttributeOrMeasure => {
             if (isAttribute(bucketItem) && matchesDrillDownTargetAttribute(drillDefinition, bucketItem)) {
@@ -59,6 +60,22 @@ export function modifyBucketsAttributesForDrillDown(
             return bucketItem;
         },
     );
+
+    const removedDuplicitAttributes = insightReduceItems(
+        replacedDrill,
+        (acc: IAttributeOrMeasure[], cur: IAttributeOrMeasure): IAttributeOrMeasure[] => {
+            if (isAttribute(cur)) {
+                const alreadyContainsTarget = acc
+                    .filter(isAttribute)
+                    .find((attr) => areObjRefsEqual(cur.attribute.displayForm, attr.attribute.displayForm));
+                return alreadyContainsTarget ? acc : [...acc, cur];
+            }
+
+            return [...acc, cur];
+        },
+    );
+
+    return removedDuplicitAttributes;
 }
 
 function removePropertiesForRemovedAttributes(insight: IInsight): IInsight {
