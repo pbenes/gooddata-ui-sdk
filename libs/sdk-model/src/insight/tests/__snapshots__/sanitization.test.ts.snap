@@ -6,17 +6,19 @@ Object {
     Object {
       "attribute": Object {
         "displayForm": Object {
-          "uri": "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091",
+          "identifier": "label.owner.department",
+          "type": "displayForm",
         },
-        "localIdentifier": "a_label.account.id",
+        "localIdentifier": "a_label.owner.department",
       },
     },
     Object {
       "attribute": Object {
         "displayForm": Object {
-          "uri": "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103",
+          "identifier": "label.account.id",
+          "type": "displayForm",
         },
-        "localIdentifier": "a_label.owner.department",
+        "localIdentifier": "a_label.account.id",
       },
     },
   ],

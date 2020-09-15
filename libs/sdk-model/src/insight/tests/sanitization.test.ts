@@ -6,7 +6,6 @@ import { newInsightDefinition } from "../factory";
 import { bucketTotals, newBucket } from "../../execution/buckets";
 import { insightBucket } from "..";
 import { Account, ActivityType, Department, Velocity, Won } from "../../../__mocks__/model";
-import { modifyAttribute, uriRef } from "../..";
 
 describe("insightSanitize", () => {
     const m1 = Won;
@@ -73,17 +72,10 @@ describe("insightSanitize", () => {
     });
 
     it("should remove duplicate drillable bucket attribute items", () => {
-        const targetDrillUri = "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1091";
-        const departmentUri = "/gdc/md/heo9nbbna28ol3jnai0ut79tjer5cqdn/obj/1103";
         const insight = newInsightDefinition("foo", (m) =>
             m.buckets([
                 newBucket("measures", m1, m2),
-                newBucket(
-                    "attribute",
-                    modifyAttribute(a1, (a) => a.displayForm(uriRef(targetDrillUri))),
-                    modifyAttribute(a2, (a) => a.displayForm(uriRef(targetDrillUri))),
-                    modifyAttribute(a3, (a) => a.displayForm(uriRef(departmentUri))),
-                ),
+                newBucket("attribute", Department, Department, Account.Default),
             ]),
         );
         const sanitized = insightSanitize(insight);
