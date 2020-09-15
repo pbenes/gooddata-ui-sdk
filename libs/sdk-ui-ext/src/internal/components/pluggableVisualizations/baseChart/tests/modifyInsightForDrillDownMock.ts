@@ -13,7 +13,7 @@ import { Department, Region, Won } from "@gooddata/reference-workspace/dist/ldm/
 import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 
 const regionUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024";
-const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
+const westCoastUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
 const departmentUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027";
 const directSalesUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226";
 
@@ -35,7 +35,7 @@ export const intersection: IDrillEventIntersectionElement[] = [
         header: {
             attributeHeaderItem: {
                 name: "West Coast",
-                uri: westCostUri,
+                uri: westCoastUri,
             },
             attributeHeader: {
                 name: Region.attribute.alias,
@@ -83,7 +83,7 @@ export const expectedInsightDefRegion: IInsightDefinition = newInsightDefinition
             .filters([
                 newNegativeAttributeFilter(Department, []),
                 newPositiveAttributeFilter(newAttribute(uriRef(regionUri)), {
-                    uris: [westCostUri],
+                    uris: [westCoastUri],
                 }),
                 newPositiveAttributeFilter(newAttribute(uriRef(departmentUri)), {
                     uris: [directSalesUri],

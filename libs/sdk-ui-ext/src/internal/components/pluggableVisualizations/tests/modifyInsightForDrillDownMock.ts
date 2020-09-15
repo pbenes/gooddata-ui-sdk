@@ -33,7 +33,7 @@ export const insightDefinition: IInsightDefinition = newInsightDefinition("visua
 });
 
 const departmentUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1027";
-const westCostUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
+const westCoastUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1023/elements?id=1237";
 
 const regionUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1024";
 const directSalesUri = "/gdc/md/lmnivlu3sowt63jvr2mo1wlse5fyv203/obj/1026/elements?id=1226";
@@ -78,7 +78,7 @@ export const expectedInsightDefinitionWithStackByDrillToRegion: IInsightDefiniti
                 newNegativeAttributeFilter(Department, []),
                 newPositiveAttributeFilter(
                     modifyAttribute(Region, (a) => a.displayForm(uriRef(regionUri))),
-                    { uris: [westCostUri] },
+                    { uris: [westCoastUri] },
                 ),
                 newPositiveAttributeFilter(
                     modifyAttribute(Department, (a) => a.displayForm(uriRef(departmentUri))),
@@ -104,7 +104,7 @@ export const expectedInsightDefinitionDrillToRegion: IInsightDefinition = newIns
                 newNegativeAttributeFilter(Department, []),
                 newPositiveAttributeFilter(
                     modifyAttribute(Region, (a) => a.displayForm(uriRef(regionUri))),
-                    { uris: [westCostUri] },
+                    { uris: [westCoastUri] },
                 ),
                 newPositiveAttributeFilter(
                     modifyAttribute(Department, (a) => a.displayForm(uriRef(departmentUri))),
@@ -127,7 +127,7 @@ export const measureHeader: IMeasureDescriptor = {
 export const westCoastHeader: IDrillIntersectionAttributeItem = {
     attributeHeaderItem: {
         name: "West Coast",
-        uri: westCostUri,
+        uri: westCoastUri,
     },
     attributeHeader: {
         name: Region.attribute.alias,
