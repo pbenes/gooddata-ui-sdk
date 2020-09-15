@@ -16,18 +16,11 @@ import {
     insightItems,
     bucketItemLocalId,
     newPositiveAttributeFilter,
-    insightBuckets,
-    bucketsFind,
-    IBucket,
-    bucketIsEmpty,
-    idMatchBucket,
     uriRef,
 } from "@gooddata/sdk-model";
-import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
 import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
-import { arrayUtils } from "@gooddata/util";
 import { ColumnWidthItem, isAttributeColumnWidthItem } from "@gooddata/sdk-ui-pivot";
 
 function matchesDrillDownTargetAttribute(
@@ -138,16 +131,4 @@ export function getIntersectionPartAfter(
     );
 
     return intersection.slice(index);
-}
-
-export function adjustIntersectionForColumnBar(
-    source: IInsight,
-    event: IDrillEvent,
-): IDrillEventIntersectionElement[] {
-    const hasStackByAttributes = bucketsFind(insightBuckets(source), (bucket: IBucket) => {
-        return idMatchBucket(BucketNames.STACK) && !bucketIsEmpty(bucket);
-    });
-
-    const intersection = event.drillContext.intersection;
-    return hasStackByAttributes ? arrayUtils.shiftArrayRight(intersection) : intersection;
 }

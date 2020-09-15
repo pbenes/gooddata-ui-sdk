@@ -1,8 +1,18 @@
 // (C) 2019 GoodData Corporation
 import get from "lodash/get";
 import set from "lodash/set";
-import { IInsight, bucketsItems, IInsightDefinition, insightBuckets } from "@gooddata/sdk-model";
-import { BucketNames, IDrillEvent } from "@gooddata/sdk-ui";
+import {
+    IInsight,
+    bucketsItems,
+    IInsightDefinition,
+    insightBuckets,
+    bucketsFind,
+    IBucket,
+    idMatchBucket,
+    bucketIsEmpty,
+} from "@gooddata/sdk-model";
+import { arrayUtils } from "@gooddata/util";
+import { BucketNames, IDrillEvent, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
 import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT, UICONFIG, UICONFIG_AXIS } from "../../constants/uiConfig";
@@ -36,7 +46,6 @@ import {
     modifyBucketsAttributesForDrillDown,
     addIntersectionFiltersToInsight,
     getIntersectionPartAfter,
-    adjustIntersectionForColumnBar,
 } from "./drillDownUtil";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
@@ -76,10 +85,22 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         );
     }
 
+    private adjustIntersectionForColumnBar(
+        source: IInsight,
+        event: IDrillEvent,
+    ): IDrillEventIntersectionElement[] {
+        const hasStackByAttributes = bucketsFind(insightBuckets(source), (bucket: IBucket) => {
+            return idMatchBucket(BucketNames.STACK) && !bucketIsEmpty(bucket);
+        });
+
+        const intersection = event.drillContext.intersection;
+        return hasStackByAttributes ? arrayUtils.shiftArrayRight(intersection) : intersection;
+    }
+
     private addFiltersForColumnBar(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
         const clicked = drillDownFromAttributeLocalId(drillConfig);
 
-        const reorderedIntersection = adjustIntersectionForColumnBar(source, event);
+        const reorderedIntersection = this.adjustIntersectionForColumnBar(source, event);
         const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
