@@ -305,11 +305,26 @@ describe("PluggableTreemap", () => {
 
     describe("Drill Down", () => {
         it.each([
-            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDefRegion],
-            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDefDepartment],
+            [
+                "on segmentby attribute",
+                sourceInsightDef,
+                Region,
+                targetUri,
+                intersection,
+                expectedInsightDefRegion,
+            ],
+            [
+                "on viewby attribute",
+                sourceInsightDef,
+                Department,
+                targetUri,
+                intersection,
+                expectedInsightDefDepartment,
+            ],
         ])(
-            "should replace the drill down attribute and add intersection filters",
+            "%s should replace the drill down attribute and add intersection filters",
             (
+                _testName: string,
                 sourceInsightDefinition: IInsightDefinition,
                 drillSourceAttribute: IAttribute,
                 drillTargetUri: string,

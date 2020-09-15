@@ -746,9 +746,19 @@ describe("PluggableBaseChart", () => {
     });
 
     describe("Drill Down", () => {
-        it.each([[sourceInsightDef, Region, targetUri, intersection, expectedInsightDefRegion]])(
-            "should replace the drill down attribute and add intersection filters",
+        it.each([
+            [
+                "on viewby attribute",
+                sourceInsightDef,
+                Region,
+                targetUri,
+                intersection,
+                expectedInsightDefRegion,
+            ],
+        ])(
+            "%s should replace the drill down attribute and add intersection filters",
             (
+                _testName: string,
                 sourceInsightDefinition: IInsightDefinition,
                 drillSourceAttribute: IAttribute,
                 drillTargetUri: string,

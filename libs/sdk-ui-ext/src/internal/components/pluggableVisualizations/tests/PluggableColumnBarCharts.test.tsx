@@ -372,6 +372,7 @@ describe("PluggableColumnBarCharts", () => {
     describe("Drill Down", () => {
         it.each([
             [
+                "on viewby when stacks present",
                 insightDefinitionWithStackBy,
                 Department,
                 targetUri,
@@ -379,16 +380,25 @@ describe("PluggableColumnBarCharts", () => {
                 expectedInsightDefinitionWithStackByDrillToDepartment,
             ],
             [
+                "on stackby when stacks present",
                 insightDefinitionWithStackBy,
                 Region,
                 targetUri,
                 intersection,
                 expectedInsightDefinitionWithStackByDrillToRegion,
             ],
-            [insightDefinition, Region, targetUri, intersection, expectedInsightDefinitionDrillToRegion],
+            [
+                "on viewby when stacks not present",
+                insightDefinition,
+                Region,
+                targetUri,
+                intersection,
+                expectedInsightDefinitionDrillToRegion,
+            ],
         ])(
-            "should replace the drill down attribute and add intersection filters",
+            "%s should replace the drill down attribute and add intersection filters",
             (
+                _testName: string,
                 sourceInsightDefinition: IInsightDefinition,
                 drillSourceAttribute: IAttribute,
                 drillTargetUri: string,

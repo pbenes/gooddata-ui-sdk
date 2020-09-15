@@ -495,23 +495,38 @@ describe("PluggableBulletChart", () => {
 
     describe("Drill Down", () => {
         it.each([
-            [sourceInsightDef, Region, targetUri, intersection, expectedInsightDefRegion],
-            [sourceInsightDef, Department, targetUri, intersection, expectedInsightDefDepartment],
+            [
+                "on outer viewby attribute",
+                sourceInsightDef,
+                Region,
+                targetUri,
+                intersection,
+                expectedInsightDefRegion,
+            ],
+            [
+                "on inner viewby attribute",
+                sourceInsightDef,
+                Department,
+                targetUri,
+                intersection,
+                expectedInsightDefDepartment,
+            ],
         ])(
-            "should replace the drill down attribute and add intersection filters",
+            "%s should replace the drill down attribute and add correct intersection filters",
             (
+                _testName: string,
                 sourceInsightDefinition: IInsightDefinition,
                 drillSourceAttribute: IAttribute,
                 drillTargetUri: string,
                 drillIntersection: IDrillEventIntersectionElement[],
                 expectedInsightDefinition: IInsightDefinition,
             ) => {
-                const bulletChart = createComponent();
+                const chart = createComponent();
                 const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
                 const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
                 const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
 
-                const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
+                const result: IInsight = chart.modifyInsightForDrillDown(sourceInsight, {
                     drillDefinition,
                     event: createDrillEvent("bullet", drillIntersection),
                 });
