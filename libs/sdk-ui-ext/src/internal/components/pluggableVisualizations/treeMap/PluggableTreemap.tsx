@@ -121,7 +121,7 @@ export class PluggableTreemap extends PluggableBaseChart {
     private addFiltersForTreemap(source: IInsight, drillConfig: IImplicitDrillDown, event: IDrillEvent) {
         const clicked = drillConfig.implicitDrillDown.from.drillFromAttribute.localIdentifier;
 
-        // treemap just reverse the intersection
+        // intersection returned from treemap visualization is from outer to inner parts -> reverse
         const reorderedIntersection = event.drillContext.intersection.slice().reverse();
         const cutIntersection = getIntersectionPartAfter(reorderedIntersection, clicked);
         return addIntersectionFiltersToInsight(source, cutIntersection);
