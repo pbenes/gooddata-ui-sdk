@@ -48,7 +48,7 @@ class DummyClass extends AbstractPluggableVisualization {
         return;
     }
 
-    public modifyInsightForDrillDown(
+    public getInsightWithDrillDownApplied(
         sourceVisualization: IInsight,
         _drillDownContext: IDrillDownContext,
     ): IInsight {

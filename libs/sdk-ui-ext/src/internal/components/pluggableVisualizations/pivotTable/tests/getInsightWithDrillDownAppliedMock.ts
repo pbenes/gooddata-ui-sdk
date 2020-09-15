@@ -162,7 +162,7 @@ const expectedInsightWithTotals: IInsight = {
     },
 };
 
-export const modifyInsightForDrillDown = {
+export const getInsightWithDrillDownApplied = {
     properties,
     sourceInsight,
     sourceInsightWithTotals,

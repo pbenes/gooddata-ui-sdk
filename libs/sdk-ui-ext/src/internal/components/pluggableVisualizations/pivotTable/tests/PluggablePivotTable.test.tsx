@@ -48,7 +48,7 @@ import {
     validAttributeSort,
     validMeasureSort,
 } from "./sortMocks";
-import { modifyInsightForDrillDown } from "./modifyInsightForDrillDownMock";
+import { getInsightWithDrillDownApplied } from "./getInsightWithDrillDownAppliedMock";
 
 describe("PluggablePivotTable", () => {
     const backend = dummyBackend();
@@ -83,28 +83,28 @@ describe("PluggablePivotTable", () => {
     describe("Drill Down", () => {
         it("should delete intersection filter attributes and sanitize properties", () => {
             const pivotTable = createComponent();
-            const result: IInsight = pivotTable.modifyInsightForDrillDown(
-                modifyInsightForDrillDown.sourceInsight,
+            const result: IInsight = pivotTable.getInsightWithDrillDownApplied(
+                getInsightWithDrillDownApplied.sourceInsight,
                 {
-                    drillDefinition: modifyInsightForDrillDown.drillConfig,
+                    drillDefinition: getInsightWithDrillDownApplied.drillConfig,
                     event: null,
                 },
             );
 
-            expect(result).toEqual(modifyInsightForDrillDown.expectedInsight);
+            expect(result).toEqual(getInsightWithDrillDownApplied.expectedInsight);
         });
 
         it("should update totals according to the deleted intersection attribute filters", () => {
             const pivotTable = createComponent();
-            const result: IInsight = pivotTable.modifyInsightForDrillDown(
-                modifyInsightForDrillDown.sourceInsightWithTotals,
+            const result: IInsight = pivotTable.getInsightWithDrillDownApplied(
+                getInsightWithDrillDownApplied.sourceInsightWithTotals,
                 {
-                    drillDefinition: modifyInsightForDrillDown.drillConfig,
+                    drillDefinition: getInsightWithDrillDownApplied.drillConfig,
                     event: null,
                 },
             );
 
-            expect(result).toEqual(modifyInsightForDrillDown.expectedInsightWithTotals);
+            expect(result).toEqual(getInsightWithDrillDownApplied.expectedInsightWithTotals);
         });
     });
 

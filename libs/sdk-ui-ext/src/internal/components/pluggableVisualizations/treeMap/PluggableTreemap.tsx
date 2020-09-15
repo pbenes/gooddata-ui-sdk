@@ -124,7 +124,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
-    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+    public getInsightWithDrillDownApplied(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
         const withFilters = this.addFiltersForTreemap(
             source,
             drillDownContext.drillDefinition,

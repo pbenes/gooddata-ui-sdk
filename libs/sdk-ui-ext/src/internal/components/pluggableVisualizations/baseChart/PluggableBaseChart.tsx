@@ -140,7 +140,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         return Promise.resolve(sanitizeFilters(newReferencePoint));
     }
 
-    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+    public getInsightWithDrillDownApplied(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
         const intersection = drillDownContext.event.drillContext.intersection;
         const withFilters = addIntersectionFiltersToInsight(source, intersection);
         return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);

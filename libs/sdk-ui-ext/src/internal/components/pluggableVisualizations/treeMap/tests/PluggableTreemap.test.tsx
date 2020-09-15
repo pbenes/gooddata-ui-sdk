@@ -16,7 +16,7 @@ import {
     expectedInsightDefRegion,
     expectedInsightDefDepartment,
     targetUri,
-} from "./modifyInsightForDrillDownMock";
+} from "./getInsightWithDrillDownAppliedMock";
 
 describe("PluggableTreemap", () => {
     const defaultProps = {
@@ -340,7 +340,7 @@ describe("PluggableTreemap", () => {
                     "first",
                 );
 
-                const result: IInsight = chart.modifyInsightForDrillDown(sourceInsight, {
+                const result: IInsight = chart.getInsightWithDrillDownApplied(sourceInsight, {
                     drillDefinition,
                     event: createDrillEvent("treemap", drillIntersection),
                 });

@@ -15,7 +15,7 @@ import {
     expectedInsightDefRegion,
     expectedInsightDefDepartment,
     targetUri,
-} from "./modifyInsightForDrillDownMock";
+} from "./getInsightWithDrillDownAppliedMock";
 
 const defaultProps: IVisConstruct = {
     backend: dummyBackend(),
@@ -530,7 +530,7 @@ describe("PluggableBulletChart", () => {
                     "first",
                 );
 
-                const result: IInsight = chart.modifyInsightForDrillDown(sourceInsight, {
+                const result: IInsight = chart.getInsightWithDrillDownApplied(sourceInsight, {
                     drillDefinition,
                     event: createDrillEvent("bullet", drillIntersection),
                 });

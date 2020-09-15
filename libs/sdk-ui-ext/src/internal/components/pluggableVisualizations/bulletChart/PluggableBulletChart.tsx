@@ -81,7 +81,7 @@ export class PluggableBulletChart extends PluggableBaseChart {
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
-    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+    public getInsightWithDrillDownApplied(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
         const withFilters = this.addFiltersForBullet(
             source,
             drillDownContext.drillDefinition,

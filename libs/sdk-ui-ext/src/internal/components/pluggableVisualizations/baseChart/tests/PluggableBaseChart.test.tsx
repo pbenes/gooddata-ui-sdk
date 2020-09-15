@@ -19,7 +19,7 @@ import {
     intersection,
     expectedInsightDefRegion,
     targetUri,
-} from "./modifyInsightForDrillDownMock";
+} from "./getInsightWithDrillDownAppliedMock";
 import { DASHBOARDS_ENVIRONMENT } from "../../../../constants/properties";
 
 describe("PluggableBaseChart", () => {
@@ -774,7 +774,7 @@ describe("PluggableBaseChart", () => {
                     "first",
                 );
 
-                const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
+                const result: IInsight = bulletChart.getInsightWithDrillDownApplied(sourceInsight, {
                     drillDefinition,
                     event: createDrillEvent("column", drillIntersection),
                 });

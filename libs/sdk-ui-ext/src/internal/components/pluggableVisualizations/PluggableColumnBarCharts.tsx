@@ -106,7 +106,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         return addIntersectionFiltersToInsight(source, cutIntersection);
     }
 
-    public modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
+    public getInsightWithDrillDownApplied(source: IInsight, drillDownContext: IDrillDownContext): IInsight {
         const withFilters = this.addFiltersForColumnBar(
             source,
             drillDownContext.drillDefinition,

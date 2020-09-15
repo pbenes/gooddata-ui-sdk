@@ -22,7 +22,7 @@ import {
     expectedInsightDefinitionWithStackByDrillToRegion,
     insightDefinition,
     expectedInsightDefinitionDrillToRegion,
-} from "./modifyInsightForDrillDownMock";
+} from "./getInsightWithDrillDownAppliedMock";
 import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { createDrillEvent, createDrillDefinition, insightDefinitionToInsight } from "../testHelpers";
 import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
@@ -414,7 +414,7 @@ describe("PluggableColumnBarCharts", () => {
                     "first",
                 );
 
-                const result: IInsight = columnChart.modifyInsightForDrillDown(sourceInsight, {
+                const result: IInsight = columnChart.getInsightWithDrillDownApplied(sourceInsight, {
                     drillDefinition,
                     event: createDrillEvent("column", drillIntersection),
                 });

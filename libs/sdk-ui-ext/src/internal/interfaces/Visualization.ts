@@ -336,7 +336,7 @@ export interface IVisualization {
         previousReferencePoint?: IReferencePoint,
     ): Promise<IExtendedReferencePoint>;
 
-    modifyInsightForDrillDown(source: IInsight, drillDownContext: IDrillDownContext): IInsight;
+    getInsightWithDrillDownApplied(source: IInsight, drillDownContext: IDrillDownContext): IInsight;
 }
 
 export interface IGdcConfig {
