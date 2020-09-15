@@ -28,6 +28,7 @@ import { IImplicitDrillDown } from "../../interfaces/Visualization";
 import { isDrillIntersectionAttributeItem, IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { drillDownFromAttributeLocalId, drillDownDisplayForm } from "../../utils/ImplicitDrillDownHelper";
 import { arrayUtils } from "@gooddata/util";
+import { ColumnWidthItem, isAttributeColumnWidthItem } from "@gooddata/sdk-ui-pivot";
 
 function matchesDrillDownTargetAttribute(
     drillDefinition: IImplicitDrillDown,
@@ -35,20 +36,6 @@ function matchesDrillDownTargetAttribute(
 ): boolean {
     return attributeLocalId(attribute) === drillDownFromAttributeLocalId(drillDefinition);
 }
-
-type TColumnWidths = {
-    attributeColumnWidthItem?: {
-        attributeIdentifier: string;
-        width: {
-            value: number;
-        };
-    };
-    measureColumnWidthItem?: {
-        width: {
-            value: number;
-        };
-    };
-};
 
 enum ENUM_PROPERTIES_TYPE {
     CONTROLS = "controls",
@@ -94,11 +81,12 @@ function removePropertiesForRemovedAttributes(insight: IInsight): IInsight {
 
     const result = Object.entries(properties).reduce((acc, [key, value]) => {
         if (key === ENUM_PROPERTIES_TYPE.CONTROLS && value.columnWidths) {
-            const columns = value.columnWidths.filter(
-                (c: TColumnWidths) =>
-                    c?.attributeColumnWidthItem?.attributeIdentifier === undefined ||
-                    identifiers.includes(c.attributeColumnWidthItem.attributeIdentifier),
-            );
+            const columns = value.columnWidths.filter((columnWidth: ColumnWidthItem) => {
+                if (isAttributeColumnWidthItem(columnWidth)) {
+                    return identifiers.includes(columnWidth.attributeColumnWidthItem.attributeIdentifier);
+                }
+                return true;
+            });
 
             return {
                 ...acc,
