@@ -24,7 +24,7 @@ import {
     expectedInsightDefinitionDrillToRegion,
 } from "./modifyInsightForDrillDownMock";
 import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
-import { createDrillEvent, createDrillDefinition, wrapUriIdentifier } from "../testHelpers";
+import { createDrillEvent, createDrillDefinition, insightDefinitionToInsight } from "../testHelpers";
 import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
 
 describe("PluggableColumnBarCharts", () => {
@@ -407,8 +407,12 @@ describe("PluggableColumnBarCharts", () => {
             ) => {
                 const columnChart = createComponent();
                 const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
-                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
-                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+                const sourceInsight = insightDefinitionToInsight(sourceInsightDefinition, "first", "first");
+                const expectedInsight = insightDefinitionToInsight(
+                    expectedInsightDefinition,
+                    "first",
+                    "first",
+                );
 
                 const result: IInsight = columnChart.modifyInsightForDrillDown(sourceInsight, {
                     drillDefinition,

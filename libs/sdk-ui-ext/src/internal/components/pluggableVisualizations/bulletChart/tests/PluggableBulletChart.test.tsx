@@ -8,7 +8,7 @@ import { OverTimeComparisonTypes, BucketNames, IDrillEventIntersectionElement } 
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
 import { IInsight, IInsightDefinition, IAttribute } from "@gooddata/sdk-model";
 import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
-import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
+import { createDrillEvent, insightDefinitionToInsight, createDrillDefinition } from "../../testHelpers";
 import {
     sourceInsightDef,
     intersection,
@@ -523,8 +523,12 @@ describe("PluggableBulletChart", () => {
             ) => {
                 const chart = createComponent();
                 const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
-                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
-                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+                const sourceInsight = insightDefinitionToInsight(sourceInsightDefinition, "first", "first");
+                const expectedInsight = insightDefinitionToInsight(
+                    expectedInsightDefinition,
+                    "first",
+                    "first",
+                );
 
                 const result: IInsight = chart.modifyInsightForDrillDown(sourceInsight, {
                     drillDefinition,

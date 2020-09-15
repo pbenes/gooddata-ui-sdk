@@ -9,7 +9,7 @@ import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";
 import { Department, Region } from "@gooddata/reference-workspace/dist/ldm/full";
 import { IInsight, IInsightDefinition, IAttribute } from "@gooddata/sdk-model";
-import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
+import { createDrillEvent, insightDefinitionToInsight, createDrillDefinition } from "../../testHelpers";
 import {
     sourceInsightDef,
     intersection,
@@ -333,8 +333,12 @@ describe("PluggableTreemap", () => {
             ) => {
                 const chart = createComponent();
                 const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
-                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
-                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+                const sourceInsight = insightDefinitionToInsight(sourceInsightDefinition, "first", "first");
+                const expectedInsight = insightDefinitionToInsight(
+                    expectedInsightDefinition,
+                    "first",
+                    "first",
+                );
 
                 const result: IInsight = chart.modifyInsightForDrillDown(sourceInsight, {
                     drillDefinition,

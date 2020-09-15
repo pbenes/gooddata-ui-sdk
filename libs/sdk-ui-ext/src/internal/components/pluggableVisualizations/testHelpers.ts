@@ -17,7 +17,7 @@ export function createDrillDefinition(fromAttribute: IAttribute, targetUri: stri
     };
 }
 
-export function wrapUriIdentifier(
+export function insightDefinitionToInsight(
     insightDefinition: IInsightDefinition,
     uri: string,
     identifier: string,

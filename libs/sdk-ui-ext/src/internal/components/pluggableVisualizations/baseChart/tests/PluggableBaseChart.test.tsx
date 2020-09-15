@@ -13,7 +13,7 @@ import { IInsight, IAttribute, IInsightDefinition, insightSetProperties } from "
 import noop from "lodash/noop";
 import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
 import { Region } from "@gooddata/reference-workspace/dist/ldm/full";
-import { createDrillEvent, wrapUriIdentifier, createDrillDefinition } from "../../testHelpers";
+import { createDrillEvent, insightDefinitionToInsight, createDrillDefinition } from "../../testHelpers";
 import {
     sourceInsightDef,
     intersection,
@@ -767,8 +767,12 @@ describe("PluggableBaseChart", () => {
             ) => {
                 const bulletChart = createComponent();
                 const drillDefinition = createDrillDefinition(drillSourceAttribute, drillTargetUri);
-                const sourceInsight = wrapUriIdentifier(sourceInsightDefinition, "first", "first");
-                const expectedInsight = wrapUriIdentifier(expectedInsightDefinition, "first", "first");
+                const sourceInsight = insightDefinitionToInsight(sourceInsightDefinition, "first", "first");
+                const expectedInsight = insightDefinitionToInsight(
+                    expectedInsightDefinition,
+                    "first",
+                    "first",
+                );
 
                 const result: IInsight = bulletChart.modifyInsightForDrillDown(sourceInsight, {
                     drillDefinition,
