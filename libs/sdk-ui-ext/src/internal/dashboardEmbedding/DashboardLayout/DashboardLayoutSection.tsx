@@ -1,6 +1,6 @@
 // (C) 2007-2020 GoodData Corporation
 import React from "react";
-import flatMap from "lodash/flatMap";
+import map from "lodash/map";
 import { ScreenSize } from "@gooddata/sdk-backend-spi";
 import {
     IDashboardLayoutItemKeyGetter,
@@ -44,7 +44,7 @@ export function DashboardLayoutSection<TWidget>(props: IDashboardLayoutSectionPr
     } = props;
     const renderProps = { section, screen };
 
-    const items = flatMap(section.items().asGridRows(screen), (itemsInRow) => {
+    const items = map(section.items().asGridRows(screen), (itemsInRow) => {
         const rowItems = itemsInRow.map((item) => (
             <DashboardLayoutItem
                 key={itemKeyGetter({ item, screen })}
@@ -58,19 +58,28 @@ export function DashboardLayoutSection<TWidget>(props: IDashboardLayoutSectionPr
             ? gridRowRenderer({ children: rowItems, screen, section, items: itemsInRow })
             : rowItems;
     });
+    const headItem = items[0];
+    const tailItems = items.slice(1).map((item) => (
+        <div style={{ width: "100%" }} className="gd-row-without-header">
+            {item}
+        </div>
+    ));
 
     return sectionRenderer({
         ...renderProps,
         DefaultSectionRenderer: DashboardLayoutSectionRenderer,
         children: (
             <>
-                {sectionHeaderRenderer &&
-                    sectionHeaderRenderer({
-                        section,
-                        screen,
-                        DefaultSectionHeaderRenderer: DashboardLayoutSectionHeaderRenderer,
-                    })}
-                {items}
+                <div style={{ width: "100%" }} className="gd-row-with-header">
+                    {sectionHeaderRenderer &&
+                        sectionHeaderRenderer({
+                            section,
+                            screen,
+                            DefaultSectionHeaderRenderer: DashboardLayoutSectionHeaderRenderer,
+                        })}
+                    {headItem}
+                </div>
+                {tailItems}
             </>
         ),
     });
