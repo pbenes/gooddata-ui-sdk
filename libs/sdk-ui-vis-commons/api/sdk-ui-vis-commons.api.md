@@ -279,6 +279,8 @@ export interface ILegendProps {
     // (undocumented)
     height?: number;
     // (undocumented)
+    legendDetails?: any;
+    // (undocumented)
     legendItemsEnabled?: any[];
     // (undocumented)
     locale?: string;
@@ -378,6 +380,8 @@ export class Legend extends React_2.PureComponent<ILegendProps> {
     renderFluid: () => React_2.ReactNode;
     // (undocumented)
     renderStatic: () => React_2.ReactNode;
+    // (undocumented)
+    renderSuper: (legendDetails: any) => React_2.ReactNode;
 }
 
 // @internal (undocumented)

@@ -28,6 +28,7 @@ const selectAllItemsWithInsights: DashboardLayoutItemsSelector = (items) =>
 const layoutWithFullSizeItems: DashboardLayoutTransform = (layout) =>
     layout.modifySections((section) => section.modifyItems(makeItemFullSize));
 
+// example
 const layoutWithHalfSizeItems: DashboardLayoutTransform = (layout) => {
     const facade = layout.facade();
     const flatItems = facade.sections().flatMap((section) => {

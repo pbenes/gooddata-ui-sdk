@@ -15,6 +15,7 @@ import { ItemBorderRadiusPredicate } from "./types";
  * @internal
  */
 export interface ILegendProps {
+    legendDetails?: any;
     responsive?: boolean;
     legendItemsEnabled?: any[];
     height?: number;
@@ -64,6 +65,10 @@ export class Legend extends React.PureComponent<ILegendProps> {
         }
 
         return seriesWithVisibility;
+    };
+
+    public renderSuper = (legendDetails: any): React.ReactNode => {
+        return <div>{JSON.stringify(legendDetails)}</div>;
     };
 
     public renderFluid = (): React.ReactNode => {
@@ -128,9 +133,13 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { responsive, showFluidLegend, heatmapLegend } = this.props;
+        const { responsive, showFluidLegend, heatmapLegend, legendDetails } = this.props;
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
+
+        if (true) {
+            return this.renderSuper(legendDetails);
+        }
 
         if (heatmapLegend) {
             return this.renderHeatmapLegend();
