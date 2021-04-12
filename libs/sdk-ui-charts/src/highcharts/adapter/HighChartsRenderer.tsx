@@ -1,5 +1,6 @@
 // (C) 2007-2018 GoodData Corporation
 import React from "react";
+import Measure  from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
@@ -248,7 +249,28 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    public renderLegend(): React.ReactNode {
+    public getLegendDetails(contentRect: any, legendProps: any) {
+        const { width, height } = contentRect?.client;
+
+        if (width < 630) {
+            if (height < 280) {
+                return { type: "no-legend" };
+            } else {
+                return { position: TOP, type: "top, 1row" };
+            }
+        } else {
+            // width >= 630
+            if (height < 280) {
+                return { position: RIGHT, type: "right, paging" };
+            } else if (height < 360) {
+                return { position: legendProps.position, type: "user, max 1 row for top/bottom" };
+            } else {
+                return { position: legendProps.position, type: "user, max 2 rows for top/bottom" };
+            }
+        }
+    }
+
+    public renderLegend(legendDetails: any): React.ReactNode {
         const { chartOptions, legend, height, legendRenderer, locale } = this.props;
         const { items, format } = legend;
         const { showFluidLegend } = this.state;
@@ -272,6 +294,7 @@ export class HighChartsRenderer extends React.PureComponent<
             legendItemsEnabled: this.state.legendItemsEnabled,
             heatmapLegend: isHeatmap(type),
             height,
+            legendDetails,
             format,
             locale,
             showFluidLegend,
@@ -340,15 +363,29 @@ export class HighChartsRenderer extends React.PureComponent<
             },
         );
 
-        const isLegendRenderedFirst: boolean =
-            legend.position === TOP || legend.position === LEFT || showFluidLegend;
         return (
-            <div className={classes} ref={this.highchartsRendererRef}>
-                {this.renderZoomOutButton()}
-                {isLegendRenderedFirst && this.renderLegend()}
-                {this.renderHighcharts()}
-                {!isLegendRenderedFirst && this.renderLegend()}
-            </div>
+            <Measure client={true}>
+                {({ measureRef, contentRect }: any) => {
+                    console.log("cr", contentRect);
+                    const legendDetails = this.getLegendDetails(contentRect, legend);
+
+                    const isLegendRenderedFirst: boolean =
+                        legend.position === TOP || legend.position === LEFT || showFluidLegend;
+                    // TODO: :w
+                    //
+
+                    return (
+                        <div className={classes} ref={measureRef}>
+                            <div className={classes} ref={this.highchartsRendererRef}>
+                                {this.renderZoomOutButton()}
+                                {isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                                {this.renderHighcharts()}
+                                {!isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                            </div>
+                        </div>
+                    );
+                }}
+            </Measure>
         );
     }
 

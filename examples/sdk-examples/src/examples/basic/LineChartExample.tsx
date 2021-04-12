@@ -5,6 +5,7 @@ import { LineChart } from "@gooddata/sdk-ui-charts";
 import { Ldm, LdmExt } from "../../ldm";
 
 import { CUSTOM_COLOR_PALETTE } from "../../constants/colors";
+import { LEFT } from "../../../../../libs/sdk-ui-vis-commons/src/legend/PositionTypes";
 
 const measures = [
     LdmExt.FranchiseFees,
@@ -13,7 +14,7 @@ const measures = [
     LdmExt.FranchiseFeesOngoingRoyalty,
 ];
 
-const chartConfig = { colorPalette: CUSTOM_COLOR_PALETTE };
+const chartConfig = { colorPalette: CUSTOM_COLOR_PALETTE, legend: { position: LEFT } };
 
 const style = { height: 300 };
 
