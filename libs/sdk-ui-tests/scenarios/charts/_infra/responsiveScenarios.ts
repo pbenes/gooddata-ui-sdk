@@ -13,20 +13,25 @@ export function responsiveScenarios<T extends VisProps>(
     component: React.ComponentType<T>,
     baseProps: UnboundVisProps<T>,
     sizes: Array<IResponsiveSize>,
+    generateInsight: boolean = false,
     customizer?: ScenarioCustomizer<T>,
 ) {
+    const tags = generateInsight ? [] : ["mock-no-insight"];
+
     return sizes.map((size) => {
         const groupLabel = size.label ? size.label : `${size.width}x${size.height}`;
+
         const label = size.label
             ? `${size.width}x${size.height} - ${size.label}`
             : `${size.width}x${size.height}`;
+
         const scenario = scenariosFor<T>(chart, component)
             .withGroupNames(...groupNames)
             .withVisualTestConfig({
                 groupUnder: groupLabel,
                 screenshotSize: { width: size.width, height: size.height },
             })
-            .withDefaultTags("vis-config-only", "mock-no-scenario-meta");
+            .withDefaultTags("vis-config-only", "mock-no-scenario-meta", ...tags);
 
         if (customizer) {
             scenario.addScenarios(label, baseProps, customizer);

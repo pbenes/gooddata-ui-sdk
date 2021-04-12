@@ -141,6 +141,8 @@ export interface IChartOptions {
     colorPalette?: IColorPalette;
     forceDisableDrillOnAxes?: boolean;
     verticalAlign?: ChartAlignTypes;
+    legendName?: string;
+    legendLabel?: string;
 }
 
 export interface IPatternOptionsObject {

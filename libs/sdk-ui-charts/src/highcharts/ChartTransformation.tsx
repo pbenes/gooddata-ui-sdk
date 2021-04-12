@@ -18,6 +18,7 @@ import {
     renderChart as chartRenderer,
     renderLegend as legendRenderer,
 } from "./adapter/HighChartsRenderer";
+import { HighChartsMeasuredRenderer } from "./adapter/HighChartsMeasuredRenderer";
 import buildLegendOptions from "./adapter/legendBuilder";
 import noop from "lodash/noop";
 import isEqual from "lodash/isEqual";
@@ -32,7 +33,11 @@ import Highcharts from "./lib";
 import { isChartSupported, stringifyChartTypes } from "./chartTypes/_util/common";
 
 export function renderHighCharts(props: IHighChartsRendererProps): JSX.Element {
-    return <HighChartsRenderer {...props} />;
+    return (
+        <HighChartsMeasuredRenderer>
+            <HighChartsRenderer {...props} />
+        </HighChartsMeasuredRenderer>
+    );
 }
 
 /**
