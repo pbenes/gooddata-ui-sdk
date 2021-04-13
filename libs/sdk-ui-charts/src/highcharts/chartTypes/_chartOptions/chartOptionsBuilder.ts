@@ -568,6 +568,7 @@ export function getChartOptions(
         hasStackByAttribute: Boolean(stackByAttribute),
         hasViewByAttribute: Boolean(viewByAttribute),
         legendLayout: config.legendLayout || "horizontal",
+        legendName: stackByAttribute?.name,
         xAxes,
         yAxes,
         data: {

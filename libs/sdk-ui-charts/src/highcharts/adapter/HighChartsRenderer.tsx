@@ -251,23 +251,25 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    public getLegendDetails(contentRect: any, legendProps: any) {
+    public getLegendDetails(contentRect: any, legendProps: any, chartOptions: any) {
         const { width, height } = contentRect?.client;
+
+        const name = chartOptions?.legendName ? { name: chartOptions?.legendName } : {};
 
         if (width < 630) {
             if (height < 280) {
-                return { type: "no-legend" };
+                return { ...name, type: "no-legend" };
             } else {
-                return { position: TOP, type: "top, 1row" };
+                return { ...name, position: TOP, type: "top, 1row" };
             }
         } else {
             // width >= 630
             if (height < 280) {
-                return { position: RIGHT, type: "right, paging" };
+                return { ...name, position: RIGHT, type: "right, paging" };
             } else if (height < 360) {
-                return { position: legendProps.position, type: "user, max 1 row for top/bottom" };
+                return { ...name, position: legendProps.position, type: "user, max 1 row for top/bottom" };
             } else {
-                return { position: legendProps.position, type: "user, max 2 rows for top/bottom" };
+                return { ...name, position: legendProps.position, type: "user, max 2 rows for top/bottom" };
             }
         }
     }
@@ -353,7 +355,7 @@ export class HighChartsRenderer extends React.PureComponent<
     }
 
     public render(): React.ReactNode {
-        const { legend } = this.props;
+        const { legend, chartOptions } = this.props;
         const { showFluidLegend } = this.state;
 
         const classes = cx(
@@ -370,7 +372,7 @@ export class HighChartsRenderer extends React.PureComponent<
             <Measure client={true}>
                 {({ measureRef, contentRect }: any) => {
                     console.log("cr", contentRect);
-                    const legendDetails = this.getLegendDetails(contentRect, legend);
+                    const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
 
                     const isLegendRenderedFirst: boolean =
                         legend.position === TOP || legend.position === LEFT || showFluidLegend;
