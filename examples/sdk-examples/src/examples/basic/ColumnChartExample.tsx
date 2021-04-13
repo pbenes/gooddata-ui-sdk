@@ -9,7 +9,11 @@ const style = { height: 300 };
 export const ColumnChartExample: React.FC = () => {
     return (
         <div style={style} className="s-column-chart">
-            <ColumnChart measures={[LdmExt.TotalSales1]} viewBy={LdmExt.monthDate} />
+            <ColumnChart
+                measures={[LdmExt.TotalSales1]}
+                viewBy={LdmExt.LocationState}
+                stackBy={LdmExt.monthDate}
+            />
         </div>
     );
 };

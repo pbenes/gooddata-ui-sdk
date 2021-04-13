@@ -1,4 +1,4 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 
 import {
     ColorAxisOptions,
@@ -116,6 +116,7 @@ export interface IChartOptions {
     colorAssignments?: IColorAssignment[];
     colorPalette?: IColorPalette;
     forceDisableDrillOnAxes?: boolean;
+    legendName?: string;
 }
 
 export interface IPatternOptionsObject {
