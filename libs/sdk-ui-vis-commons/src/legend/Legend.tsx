@@ -69,7 +69,9 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderSuper = (legendDetails: any): React.ReactNode => {
-        return <div>{JSON.stringify(legendDetails)}</div>;
+        const { position } = legendDetails;
+        const classNames = cx("viz-static-legend-wrap", `position-${position}`);
+        return <div className={classNames}>{JSON.stringify(legendDetails)}</div>;
     };
 
     public renderPopUpLegend = (): React.ReactNode => {
