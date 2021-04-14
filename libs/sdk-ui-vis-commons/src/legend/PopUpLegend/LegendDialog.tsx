@@ -1,5 +1,5 @@
 // (C) 2007-2021 GoodData Corporation
-import React, { Component, useState } from "react";
+import React from "react";
 import { Overlay, useMediaQuery } from "@gooddata/sdk-ui-kit";
 import { legendDialogAlignPoints, legendMobileDialogAlignPoints } from "./alignPoints";
 
