@@ -74,8 +74,8 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return <div className={classNames}>{JSON.stringify(legendDetails)}</div>;
     };
 
-    public renderPopUpLegend = (): React.ReactNode => {
-        return <PopUpLegend series={this.getSeries()} />;
+    public renderPopUpLegend = (legendDetails: any): React.ReactNode => {
+        return <PopUpLegend series={this.getSeries()} legendDetails />;
     };
 
     public renderFluid = (): React.ReactNode => {
@@ -144,7 +144,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
 
-        if (true) {
+        /* if (true) {
             return this.renderSuper(legendDetails);
         }
 
@@ -156,9 +156,9 @@ export class Legend extends React.PureComponent<ILegendProps> {
             return this.renderFluid();
         }
 
-        return this.renderStatic();
+        return this.renderStatic();*/
 
-        // return this.renderPopUpLegend();
+        return this.renderPopUpLegend(legendDetails);
     }
 
     private renderHeatmapLegend = (): React.ReactNode => {

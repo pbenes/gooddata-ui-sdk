@@ -359,7 +359,7 @@ export class Legend extends React_2.PureComponent<ILegendProps> {
     // (undocumented)
     renderFluid: () => React_2.ReactNode;
     // (undocumented)
-    renderPopUpLegend: () => React_2.ReactNode;
+    renderPopUpLegend: (legendDetails: any) => React_2.ReactNode;
     // (undocumented)
     renderStatic: () => React_2.ReactNode;
     // (undocumented)

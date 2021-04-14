@@ -10,23 +10,25 @@ const LegendDialogWrapper: React.FC<{ children: (isMobile: boolean) => JSX.Eleme
 
 export interface ILegendDialogProps {
     isOpen: boolean;
+    alignTo: string;
     onCloseDialog: () => void;
     children?: React.ReactNode;
 }
 
 export const LegendDialog: React.FC<ILegendDialogProps> = (props: ILegendDialogProps) => {
-    const { children, isOpen, onCloseDialog } = props;
+    const { children, isOpen, alignTo, onCloseDialog } = props;
 
     if (!isOpen) {
         return null;
     }
+    const alignToSelector = `.${alignTo}`;
 
     return (
         <LegendDialogWrapper>
             {(isMobile) => {
                 return (
                     <Overlay
-                        alignTo={".s-legend-anchor"}
+                        alignTo={alignToSelector}
                         alignPoints={isMobile ? legendMobileDialogAlignPoints : legendDialogAlignPoints}
                         closeOnOutsideClick={!isMobile}
                         onClose={onCloseDialog}
