@@ -9,6 +9,7 @@ import { IPushpinCategoryLegendItem } from "../types";
 
 import { LegendDialog } from "./LegendDialog";
 import LegendItem from "../LegendItem";
+import { ITEM_HEIGHT } from "../helpers";
 
 export interface IRowLegendProps {
     maxRowsCount: number;
@@ -17,9 +18,12 @@ export interface IRowLegendProps {
 }
 
 export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
-    const { onClick, series } = props;
+    const { onClick, series, maxRowsCount } = props;
+    const [isOverflow, setOverFlow] = useState(false);
 
-    const legendItemList = [...series, ...series].map((item: any, index: number) => {
+    const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
+
+    const legendItemList = [...series, ...series, ...series].map((item: any, index: number) => {
         const { type, labelKey, data } = item;
         // const borderRadius = shouldItemHaveBorderRadius(item, enableBorderRadius);
         const borderRadius = false;
@@ -43,25 +47,32 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
         /* }*/
     });
 
-    /*const legendButton =  <Button
-        className={"gd-button-primary"}
-        iconLeft={<Icon.Explore />}
-    />*/
+    const checkOverFlow = (element: HTMLDivElement | null) => {
+        if (!element) return;
+        const { clientHeight, scrollHeight } = element;
+        console.log("clientHeight:", clientHeight, "scrollHeight", scrollHeight);
+        setOverFlow(scrollHeight > clientHeight);
+    };
 
-    const legendButton = (
-        <div onClick={onClick} style={{ border: "1px solid" }}>
+    const legendButton = isOverflow && (
+        <div onClick={onClick} style={{ width: 16 }}>
             <Icon.Explore />
         </div>
     );
 
     return (
-        <div style={{ border: "1px solid green" }}>
+        <div
+            style={{ display: "flex", flexDirection: "row-reverse", height: LEGEND_HEIGHT }}
+            ref={(element) => {
+                checkOverFlow(element);
+            }}
+        >
+            {legendButton}
             <div className={"viz-legend static position-top"}>
-                <div style={{ border: "1px solid red" }} className="series">
+                <div style={{ overflow: "hidden" }} className="series">
                     {legendItemList}
                 </div>
             </div>
-            {legendButton}
         </div>
     );
 };
@@ -89,7 +100,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
     return (
         <div className={classNames}>
             <RowLegend
-                maxRowsCount={2}
+                maxRowsCount={1}
                 series={series}
                 onClick={() => {
                     setDialogOpen(true);
