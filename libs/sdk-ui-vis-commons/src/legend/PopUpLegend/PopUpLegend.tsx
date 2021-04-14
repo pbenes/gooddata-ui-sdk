@@ -19,7 +19,7 @@ export interface IRowLegendProps {
 
 export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
     const { onClick, series, maxRowsCount } = props;
-    const [isOverflow, setOverFlow] = useState(false);
+    const [isOverflow, setOverFlow] = useState(true);
 
     const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
 
@@ -54,7 +54,7 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
         setOverFlow(scrollHeight > clientHeight);
     };
 
-    const legendButton = isOverflow && (
+    const legendButton = (
         <div onClick={onClick} style={{ width: 16 }}>
             <Icon.Explore />
         </div>
