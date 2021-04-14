@@ -268,16 +268,30 @@ export class HighChartsRenderer extends React.PureComponent<
             //            if (height < 280) {
             //                return { ...name, type: "no-legend" };
             //            } else {
-            return { ...name, position: TOP, type: "top, 1row" };
+            return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
             //            }
         } else {
+            const isLegendTopBottom = legendProps.position === "top" || legendProps.position === "bottom";
+
             // width >= 630
             if (height < 280) {
-                return { ...name, position: RIGHT, type: "right, paging" };
+                return { ...name, position: RIGHT, type: "right, paging", renderPopUp: false };
             } else if (height < 360) {
-                return { ...name, position: legendProps.position, type: "user, max 1 row for top/bottom" };
+                return {
+                    ...name,
+                    position: legendProps.position,
+                    renderPopUp: isLegendTopBottom,
+                    maxRows: 1,
+                    type: "user, max 1 row for top/bottom",
+                };
             } else {
-                return { ...name, position: legendProps.position, type: "user, max 2 rows for top/bottom" };
+                return {
+                    ...name,
+                    position: legendProps.position,
+                    renderPopUp: isLegendTopBottom,
+                    maxRows: 2,
+                    type: "user, max 2 rows for top/bottom",
+                };
             }
         }
     }
