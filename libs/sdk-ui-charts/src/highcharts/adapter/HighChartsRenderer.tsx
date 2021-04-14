@@ -1,6 +1,6 @@
 // (C) 2007-2018 GoodData Corporation
 import React from "react";
-import Measure  from "react-measure";
+import Measure from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
@@ -255,11 +255,12 @@ export class HighChartsRenderer extends React.PureComponent<
         const name = chartOptions?.legendName ? { name: chartOptions?.legendName } : {};
 
         if (width < 630) {
-            if (height < 280) {
-                return { ...name, type: "no-legend" };
-            } else {
-                return { ...name, position: TOP, type: "top, 1row" };
-            }
+            //            // latest update: never without legend
+            //            if (height < 280) {
+            //                return { ...name, type: "no-legend" };
+            //            } else {
+            return { ...name, position: TOP, type: "top, 1row" };
+            //            }
         } else {
             // width >= 630
             if (height < 280) {
@@ -373,8 +374,12 @@ export class HighChartsRenderer extends React.PureComponent<
 
                     const isLegendRenderedFirst: boolean =
                         legend.position === TOP || legend.position === LEFT || showFluidLegend;
-                    // TODO: :w
-                    //
+
+                    // TODO: bind on param
+                    // if (legend.responsive === "popup") {
+                    if (true) {
+                        legend.position = legendDetails.position;
+                    }
 
                     return (
                         <div className={classes} ref={measureRef}>

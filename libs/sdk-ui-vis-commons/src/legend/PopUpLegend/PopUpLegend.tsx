@@ -1,5 +1,5 @@
 // (C) 2007-2021 GoodData Corporation
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import cx from "classnames";
 
 import { StaticLegend } from "../StaticLegend";
