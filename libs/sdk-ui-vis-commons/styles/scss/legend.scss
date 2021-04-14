@@ -312,3 +312,17 @@ $responsive-legend: "only screen and (max-width: 767px)";
         }
     }
 }
+
+.legend-popup-dialog {
+    .legend-header {
+        padding-left: 10px;
+        .legend-header-title {
+            line-height: 45px;
+            height: 45px;
+        }
+    }
+    .legend-content {
+        background: white;
+        padding: 10px;
+    }
+}
