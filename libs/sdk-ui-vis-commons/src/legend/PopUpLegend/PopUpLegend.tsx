@@ -12,6 +12,7 @@ import LegendItem from "../LegendItem";
 
 export interface IRowLegendProps {
     maxRowsCount: number;
+    legendDetails: any;
     series: IPushpinCategoryLegendItem[];
     onClick: () => void;
 }
@@ -73,7 +74,7 @@ export interface IPopUpLegendProps {
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProps) => {
     const { series } = props;
-    const { position } = props.legendDetails;
+    const { position, name } = props.legendDetails;
     const [isDialogOpen, setDialogOpen] = useState(false);
     const [dialogId, setDialogId] = useState<string>("");
 
@@ -98,6 +99,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
 
             <LegendDialog alignTo={dialogId} isOpen={isDialogOpen} onCloseDialog={onCloseDialog}>
                 <div className="kpi-alert-dialog">
+                    {name}
                     <div className="action-close icon-cross" onClick={onCloseDialog} />
                     <StaticLegend
                         containerHeight={300}
