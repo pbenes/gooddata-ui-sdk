@@ -75,7 +75,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderPopUpLegend = (legendDetails: any): React.ReactNode => {
-        return <PopUpLegend series={this.getSeries()} legendDetails />;
+        return <PopUpLegend series={this.getSeries()} legendDetails={legendDetails} />;
     };
 
     public renderFluid = (): React.ReactNode => {
