@@ -177,10 +177,17 @@ export class HighChartsRenderer extends React.PureComponent<
         this.chartRef = chartRef;
     };
 
-    public getFlexDirection(): React.CSSProperties["flexDirection"] {
-        const { legend } = this.props;
+    public getLegendPosition(legendDetails: any) {
+        if (true) {
+            return legendDetails.position;
+        }
 
-        if (legend.position === TOP || legend.position === BOTTOM) {
+        return this.props.legend.position;
+    }
+
+    public getFlexDirection(legendDetails: any): React.CSSProperties["flexDirection"] {
+        const position = this.getLegendPosition(legendDetails);
+        if (position === TOP || position === BOTTOM) {
             return "column";
         }
 
@@ -289,8 +296,15 @@ export class HighChartsRenderer extends React.PureComponent<
             type = VisualizationTypes.PIE;
         }
 
+        let pos = legend.position;
+        // TODO: responsive === "popup"
+        if (true) {
+            pos = legendDetails.position;
+        }
+
+        console.log("rendering position", pos);
         const legendProps: ILegendProps = {
-            position: legend.position,
+            position: pos,
             responsive: legend.responsive,
             enableBorderRadius: legend.enableBorderRadius,
             seriesMapper: legend.seriesMapper,
@@ -359,30 +373,25 @@ export class HighChartsRenderer extends React.PureComponent<
         const { legend, chartOptions } = this.props;
         const { showFluidLegend } = this.state;
 
-        const classes = cx(
-            "viz-line-family-chart-wrap",
-            "s-viz-line-family-chart-wrap",
-            legend.responsive ? "responsive-legend" : "non-responsive-legend",
-            {
-                [`flex-direction-${this.getFlexDirection()}`]: true,
-                "legend-position-bottom": this.isBottomLegend(legend),
-            },
-        );
-
         return (
             <Measure client={true}>
                 {({ measureRef, contentRect }: any) => {
-                    console.log("cr", contentRect);
                     const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
-
-                    const isLegendRenderedFirst: boolean =
-                        legend.position === TOP || legend.position === LEFT || showFluidLegend;
+                    const classes = cx(
+                        "viz-line-family-chart-wrap",
+                        "s-viz-line-family-chart-wrap",
+                        legend.responsive ? "responsive-legend" : "non-responsive-legend",
+                        {
+                            [`flex-direction-${this.getFlexDirection(legendDetails)}`]: true,
+                            "legend-position-bottom": this.isBottomLegend(legendDetails),
+                        },
+                    );
 
                     // TODO: bind on param
                     // if (legend.responsive === "popup") {
-                    if (true) {
-                        legend.position = legendDetails.position;
-                    }
+                    let pos = this.getLegendPosition(legendDetails);
+
+                    const isLegendRenderedFirst: boolean = pos === TOP || pos === LEFT || showFluidLegend;
 
                     return (
                         <div className={classes} ref={measureRef}>
@@ -410,7 +419,8 @@ export class HighChartsRenderer extends React.PureComponent<
         }
     }
 
-    private isBottomLegend(legend: ILegendOptions): boolean {
-        return legend.position === BOTTOM;
+    private isBottomLegend(legendDetails: any): boolean {
+        const pos = this.getLegendPosition(legendDetails);
+        return pos === BOTTOM;
     }
 }
