@@ -384,38 +384,56 @@ export class HighChartsRenderer extends React.PureComponent<
         return null;
     }
 
+    private renderVisualization(legendDetails: any) {
+        if (!legendDetails) {
+            return null;
+        }
+
+        const { legend } = this.props;
+        const { showFluidLegend } = this.state;
+
+        const classes = cx(
+            "viz-line-family-chart-wrap",
+            "s-viz-line-family-chart-wrap",
+            legend.responsive ? "responsive-legend" : "non-responsive-legend",
+            {
+                [`flex-direction-${this.getFlexDirection(legendDetails)}`]: true,
+                "legend-position-bottom": this.isBottomLegend(legendDetails),
+            },
+        );
+
+        // TODO: bind on param
+        // if (legend.responsive === "popup") {
+        let pos = this.getLegendPosition(legendDetails);
+
+        const isLegendRenderedFirst: boolean = pos === TOP || pos === LEFT || showFluidLegend;
+
+        return (
+            <div className={classes}>
+                <div className={classes} ref={this.highchartsRendererRef}>
+                    {this.renderZoomOutButton()}
+                    {isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                    {this.renderHighcharts()}
+                    {!isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                </div>
+            </div>
+        );
+    }
+
     public render(): React.ReactNode {
         const { legend, chartOptions } = this.props;
-        const { showFluidLegend } = this.state;
 
         return (
             <Measure client={true}>
                 {({ measureRef, contentRect }: any) => {
                     const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
-                    const classes = cx(
-                        "viz-line-family-chart-wrap",
-                        "s-viz-line-family-chart-wrap",
-                        legend.responsive ? "responsive-legend" : "non-responsive-legend",
-                        {
-                            [`flex-direction-${this.getFlexDirection(legendDetails)}`]: true,
-                            "legend-position-bottom": this.isBottomLegend(legendDetails),
-                        },
-                    );
-
-                    // TODO: bind on param
-                    // if (legend.responsive === "popup") {
-                    let pos = this.getLegendPosition(legendDetails);
-
-                    const isLegendRenderedFirst: boolean = pos === TOP || pos === LEFT || showFluidLegend;
-
                     return (
-                        <div className={classes} ref={measureRef}>
-                            <div className={classes} ref={this.highchartsRendererRef}>
-                                {this.renderZoomOutButton()}
-                                {isLegendRenderedFirst && this.renderLegend(legendDetails)}
-                                {this.renderHighcharts()}
-                                {!isLegendRenderedFirst && this.renderLegend(legendDetails)}
-                            </div>
+                        <div
+                            className="visualization-container-measure-wrap"
+                            style={{ width: "100%", height: "100%" }}
+                            ref={measureRef}
+                        >
+                            {this.renderVisualization(legendDetails)}
                         </div>
                     );
                 }}

@@ -353,7 +353,7 @@ export class Legend extends React_2.PureComponent<ILegendProps> {
     // (undocumented)
     getSeries: () => any;
     // (undocumented)
-    onItemClick: (item: any) => void;
+    onItemClick: (item: IPushpinCategoryLegendItem) => void;
     // (undocumented)
     render(): React_2.ReactNode;
     // (undocumented)
