@@ -14,6 +14,7 @@ import { ITEM_HEIGHT } from "../helpers";
 import { LegendList } from "../LegendList";
 
 export interface IRowLegendProps {
+    legendLabel: string;
     maxRowsCount: number;
     series: IPushpinCategoryLegendItem[];
     enableBorderRadius?: boolean; //TODO where get this props?
@@ -94,8 +95,9 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
     return (
         <div className={classNames}>
             <RowLegend
+                legendLabel={name}
                 maxRowsCount={maxRows}
-                series={[...series]}
+                series={series}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -110,7 +112,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             >
                 <StaticLegend
                     containerHeight={300}
-                    series={[...series]}
+                    series={series}
                     position={"left"}
                     onItemClick={onLegendItemClick}
                 />
