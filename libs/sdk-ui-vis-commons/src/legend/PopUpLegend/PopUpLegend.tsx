@@ -50,7 +50,7 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
                 >
                     <LegendList
                         enableBorderRadius={enableBorderRadius}
-                        series={series}
+                        series={[...series, ...series]}
                         onItemClick={onLegendItemClick}
                     />
                 </div>
@@ -58,6 +58,17 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
             {legendButton}
         </div>
     );
+};
+
+export const useRandomComponentId = (idPrefix: string) => {
+    const [componentId, setComponentId] = useState<string>("");
+
+    useEffect(() => {
+        const id = v4();
+        setComponentId(`${idPrefix}${id}`);
+    }, []);
+
+    return componentId;
 };
 
 export interface IPopUpLegendProps {
@@ -69,14 +80,9 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
     const { series } = props;
     const { position, name } = props.legendDetails;
     const [isDialogOpen, setDialogOpen] = useState(false);
-    const [dialogId, setDialogId] = useState<string>("");
+    const dialogId = useRandomComponentId("s-legend-anchor-");
 
     const onCloseDialog = () => setDialogOpen(false);
-
-    useEffect(() => {
-        const id = v4();
-        setDialogId(`s-legend-anchor-${id}`);
-    }, []);
 
     const classNames = cx("viz-static-legend-wrap", `position-${position}`, dialogId);
 
@@ -93,20 +99,12 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
                 }}
             />
 
-            <LegendDialog alignTo={dialogId} isOpen={isDialogOpen} onCloseDialog={onCloseDialog}>
-                <div className="legend-popup-dialog kpi-alert-dialog">
-                    <div className="legend-header">
-                        <div className="legend-header-title">{name}</div>
-                        <div className="legend-close action-close icon-cross" onClick={onCloseDialog} />
-                    </div>
-                    <div className="legend-content">
-                        <StaticLegend
-                            containerHeight={300}
-                            series={[...series, ...series, ...series]}
-                            position={"left"}
-                        />
-                    </div>
-                </div>
+            <LegendDialog name={name} alignTo={dialogId} isOpen={isDialogOpen} onCloseDialog={onCloseDialog}>
+                <StaticLegend
+                    containerHeight={300}
+                    series={[...series, ...series, ...series]}
+                    position={"left"}
+                />
             </LegendDialog>
         </div>
     );
