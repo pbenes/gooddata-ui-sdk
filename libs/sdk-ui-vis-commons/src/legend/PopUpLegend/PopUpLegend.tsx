@@ -8,44 +8,22 @@ import { StaticLegend } from "../StaticLegend";
 import { IPushpinCategoryLegendItem } from "../types";
 
 import { LegendDialog } from "./LegendDialog";
-import LegendItem from "../LegendItem";
 import { ITEM_HEIGHT } from "../helpers";
+import { LegendList } from "../LegendList";
 
 export interface IRowLegendProps {
     maxRowsCount: number;
     series: IPushpinCategoryLegendItem[];
-    onClick: () => void;
+    enableBorderRadius?: boolean; //TODO where get this props?
+    onDialogIconClick: () => void;
+    onLegendItemClick: () => void;
 }
 
 export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
-    const { onClick, series, maxRowsCount } = props;
-    const [isOverflow, setOverFlow] = useState(true);
+    const { series, maxRowsCount, enableBorderRadius, onDialogIconClick, onLegendItemClick } = props;
+    const [isOverflow, setOverFlow] = useState(false);
 
     const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
-
-    const legendItemList = [...series, ...series, ...series].map((item: any, index: number) => {
-        const { type, labelKey, data } = item;
-        // const borderRadius = shouldItemHaveBorderRadius(item, enableBorderRadius);
-        const borderRadius = false;
-
-        /*if (type === LEGEND_AXIS_INDICATOR) {
-            return <LegendAxisIndicator key={index} labelKey={labelKey} data={data} width={width} />;
-        } else if (type === LEGEND_SEPARATOR) {
-            return <LegendSeparator key={index} />;
-        } else {*/
-        return (
-            <LegendItem
-                enableBorderRadius={borderRadius}
-                key={index}
-                item={item}
-                // width={width}
-                onItemClick={() => {
-                    console.log("OnlegendItemclick");
-                }}
-            />
-        );
-        /* }*/
-    });
 
     const checkOverFlow = (element: HTMLDivElement | null) => {
         if (!element) return;
@@ -54,31 +32,36 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
         setOverFlow(scrollHeight > clientHeight);
     };
 
-    const legendButton = (
-        <div onClick={onClick} style={{ width: 16 }}>
+    const legendButton = isOverflow && (
+        <div onClick={onDialogIconClick} style={{ width: 16 }}>
             <Icon.Explore />
         </div>
     );
 
     return (
-        <div
-            style={{ display: "flex", flexDirection: "row-reverse", height: LEGEND_HEIGHT }}
-            ref={(element) => {
-                checkOverFlow(element);
-            }}
-        >
-            {legendButton}
+        <div style={{ display: "flex", justifyContent: "flex-end", height: LEGEND_HEIGHT }}>
             <div className={"viz-legend static position-top"}>
-                <div style={{ overflow: "hidden" }} className="series">
-                    {legendItemList}
+                <div
+                    style={{ overflow: "hidden" }}
+                    className="series"
+                    ref={(element) => {
+                        checkOverFlow(element);
+                    }}
+                >
+                    <LegendList
+                        enableBorderRadius={enableBorderRadius}
+                        series={series}
+                        onItemClick={onLegendItemClick}
+                    />
                 </div>
             </div>
+            {legendButton}
         </div>
     );
 };
 
 export interface IPopUpLegendProps {
-    legendDetails: any;
+    legendDetails: any; //TODO Add types
     series: IPushpinCategoryLegendItem[];
 }
 
@@ -102,8 +85,11 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
             <RowLegend
                 maxRowsCount={1}
                 series={series}
-                onClick={() => {
+                onDialogIconClick={() => {
                     setDialogOpen(true);
+                }}
+                onLegendItemClick={() => {
+                    console.log("legend item click");
                 }}
             />
 
