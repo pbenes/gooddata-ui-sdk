@@ -50,7 +50,7 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
                 >
                     <LegendList
                         enableBorderRadius={enableBorderRadius}
-                        series={[...series, ...series]}
+                        series={series}
                         onItemClick={onLegendItemClick}
                     />
                 </div>
