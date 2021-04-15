@@ -82,6 +82,8 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
 
+    // TODO: intl for default
+    const legendTitle = name || "Legend";
     const onCloseDialog = () => setDialogOpen(false);
 
     const classNames = cx("viz-static-legend-wrap", `position-${position}`, dialogId);
