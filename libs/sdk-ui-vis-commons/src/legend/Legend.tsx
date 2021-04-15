@@ -9,7 +9,7 @@ import { FluidLegend } from "./FluidLegend";
 import { StaticLegend, IStaticLegendProps } from "./StaticLegend";
 import { HeatmapLegend } from "./HeatmapLegend";
 import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } from "@gooddata/sdk-ui";
-import { ItemBorderRadiusPredicate } from "./types";
+import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
 import { PopUpLegend } from "./PopUpLegend/PopUpLegend";
 
 /**
@@ -45,8 +45,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
         enableBorderRadius: false,
     };
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    public onItemClick = (item: any): void => {
+    public onItemClick = (item: IPushpinCategoryLegendItem): void => {
         this.props.onItemClick(item);
     };
 
@@ -75,7 +74,13 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderPopUpLegend = (legendDetails: any): React.ReactNode => {
-        return <PopUpLegend series={this.getSeries()} legendDetails={legendDetails} />;
+        return (
+            <PopUpLegend
+                series={this.getSeries()}
+                legendDetails={legendDetails}
+                onLegendItemClick={this.onItemClick}
+            />
+        );
     };
 
     public renderFluid = (): React.ReactNode => {
