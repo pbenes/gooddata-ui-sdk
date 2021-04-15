@@ -175,9 +175,9 @@ export class HighChartsRenderer extends React.PureComponent<
         this.chartRef = chartRef;
     };
 
-    public getLegendPosition(legendDetails: any) {
+    public getLegendPosition(legendDetails: any | null) {
         if (true) {
-            return legendDetails.position;
+            return legendDetails?.position;
         }
 
         return this.props.legend.position;
@@ -259,6 +259,10 @@ export class HighChartsRenderer extends React.PureComponent<
     public getLegendDetails(contentRect: any, legendProps: any, chartOptions: any) {
         const { width, height } = contentRect?.client;
 
+        if (!width || !height) {
+            return null;
+        }
+
         const name = chartOptions?.legendName ? { name: chartOptions?.legendName } : {};
 
         if (width < 630) {
@@ -311,7 +315,7 @@ export class HighChartsRenderer extends React.PureComponent<
         let pos = legend.position;
         // TODO: responsive === "popup"
         if (true) {
-            pos = legendDetails.position;
+            pos = legendDetails?.position;
         }
 
         console.log("rendering position", pos);
