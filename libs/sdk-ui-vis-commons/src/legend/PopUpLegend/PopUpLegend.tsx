@@ -13,6 +13,37 @@ import { LegendDialog } from "./LegendDialog";
 import { ITEM_HEIGHT } from "../helpers";
 import { LegendList } from "../LegendList";
 
+const useCheckOverflow = (): [boolean, (element: HTMLDivElement | null) => void] => {
+    const [isOverflow, setOverFlow] = useState(false);
+
+    const checkOverFlow = (element: HTMLDivElement | null) => {
+        if (!element) return;
+        const { clientHeight, scrollHeight } = element;
+        setOverFlow(scrollHeight > clientHeight);
+    };
+
+    return [isOverflow, checkOverFlow];
+};
+
+export interface IRowLegendIcoButton {
+    isVisible: boolean;
+    onIconClick: () => void;
+}
+
+export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
+    const { isVisible, onIconClick } = props;
+
+    if (!isVisible) {
+        return null;
+    }
+
+    return (
+        <div onClick={onIconClick} style={{ width: 16 }}>
+            <Icon.Explore />
+        </div>
+    );
+};
+
 export interface IRowLegendProps {
     legendLabel: string;
     maxRowsCount: number;
@@ -24,21 +55,9 @@ export interface IRowLegendProps {
 
 export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
     const { series, maxRowsCount, enableBorderRadius, onDialogIconClick, onLegendItemClick } = props;
-    const [isOverflow, setOverFlow] = useState(false);
+    const [isOverflow, checkOverFlow] = useCheckOverflow();
 
     const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
-
-    const checkOverFlow = (element: HTMLDivElement | null) => {
-        if (!element) return;
-        const { clientHeight, scrollHeight } = element;
-        setOverFlow(scrollHeight > clientHeight);
-    };
-
-    const legendButton = isOverflow && (
-        <div onClick={onDialogIconClick} style={{ width: 16 }}>
-            <Icon.Explore />
-        </div>
-    );
 
     return (
         <div style={{ display: "flex", justifyContent: "flex-end", height: LEGEND_HEIGHT }}>
@@ -57,12 +76,12 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
                     />
                 </div>
             </div>
-            {legendButton}
+            <RowLegendIcoButton isVisible={isOverflow} onIconClick={onDialogIconClick} />
         </div>
     );
 };
 
-export const useRandomComponentId = (idPrefix: string) => {
+const useRandomComponentId = (idPrefix: string) => {
     const [componentId, setComponentId] = useState<string>("");
 
     useEffect(() => {
