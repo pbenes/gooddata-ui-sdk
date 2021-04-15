@@ -1,8 +1,10 @@
 // (C) 2007-2021 GoodData Corporation
 import React, { useEffect, useState } from "react";
+import { useIntl } from "react-intl";
 import cx from "classnames";
-import { Button, Icon } from "@gooddata/sdk-ui-kit";
 import { v4 } from "uuid";
+
+import { Icon } from "@gooddata/sdk-ui-kit";
 
 import { StaticLegend } from "../StaticLegend";
 import { IPushpinCategoryLegendItem } from "../types";
@@ -28,7 +30,6 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
     const checkOverFlow = (element: HTMLDivElement | null) => {
         if (!element) return;
         const { clientHeight, scrollHeight } = element;
-        console.log("clientHeight:", clientHeight, "scrollHeight", scrollHeight);
         setOverFlow(scrollHeight > clientHeight);
     };
 
@@ -77,25 +78,24 @@ export interface IPopUpLegendProps {
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
 }
 
-export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProps) => {
+export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
     const { series, legendDetails, onLegendItemClick } = props;
     const { position, name, maxRows } = legendDetails;
+    const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
 
-    // TODO: intl for default
-    const dialogTitle = name || "Legend";
+    const dialogTitle = name || intl.formatMessage({ id: "properties.legend.title" });
+
     const onCloseDialog = () => setDialogOpen(false);
 
     const classNames = cx("viz-static-legend-wrap", `position-${position}`, dialogId);
-
-    console.log("maxRows", maxRows);
 
     return (
         <div className={classNames}>
             <RowLegend
                 maxRowsCount={maxRows}
-                series={[...series, ...series, ...series]}
+                series={[...series]}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -110,7 +110,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
             >
                 <StaticLegend
                     containerHeight={300}
-                    series={[...series, ...series, ...series]}
+                    series={[...series]}
                     position={"left"}
                     onItemClick={onLegendItemClick}
                 />
