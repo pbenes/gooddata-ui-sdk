@@ -148,6 +148,10 @@ export class Legend extends React.PureComponent<ILegendProps> {
         // const { responsive, showFluidLegend, heatmapLegend, legendDetails } = this.props;
         const { legendDetails } = this.props;
 
+        if (!legendDetails) {
+            return null;
+        }
+
         // const isFluidLegend = Boolean(responsive && showFluidLegend);
 
         /* if (true) {

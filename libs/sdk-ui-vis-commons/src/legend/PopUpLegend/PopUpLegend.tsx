@@ -84,23 +84,30 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
     const dialogId = useRandomComponentId("s-legend-anchor-");
 
     // TODO: intl for default
-    const legendTitle = name || "Legend";
+    const dialogTitle = name || "Legend";
     const onCloseDialog = () => setDialogOpen(false);
 
     const classNames = cx("viz-static-legend-wrap", `position-${position}`, dialogId);
+
+    console.log("maxRows", maxRows);
 
     return (
         <div className={classNames}>
             <RowLegend
                 maxRowsCount={maxRows}
-                series={series}
+                series={[...series, ...series, ...series]}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
                 onLegendItemClick={onLegendItemClick}
             />
 
-            <LegendDialog name={name} alignTo={dialogId} isOpen={isDialogOpen} onCloseDialog={onCloseDialog}>
+            <LegendDialog
+                name={dialogTitle}
+                alignTo={dialogId}
+                isOpen={isDialogOpen}
+                onCloseDialog={onCloseDialog}
+            >
                 <StaticLegend
                     containerHeight={300}
                     series={[...series, ...series, ...series]}
