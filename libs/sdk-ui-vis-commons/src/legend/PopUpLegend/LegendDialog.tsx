@@ -8,15 +8,34 @@ const LegendDialogWrapper: React.FC<{ children: (isMobile: boolean) => JSX.Eleme
     return children(isMobile);
 };
 
+interface ILegendDialogContent {
+    name: string;
+    onCloseDialog: () => void;
+}
+
+const LegendDialogContent: React.FC<ILegendDialogContent> = (props) => {
+    const { name, onCloseDialog, children } = props;
+
+    return (
+        <div className="legend-popup-dialog kpi-alert-dialog">
+            <div className="legend-header">
+                <div className="legend-header-title">{name}</div>
+                <div className="legend-close action-close icon-cross" onClick={onCloseDialog} />
+            </div>
+            <div className="legend-content">{children}</div>
+        </div>
+    );
+};
+
 export interface ILegendDialogProps {
+    name: string;
     isOpen: boolean;
     alignTo: string;
     onCloseDialog: () => void;
-    children?: React.ReactNode;
 }
 
-export const LegendDialog: React.FC<ILegendDialogProps> = (props: ILegendDialogProps) => {
-    const { children, isOpen, alignTo, onCloseDialog } = props;
+export const LegendDialog: React.FC<ILegendDialogProps> = (props) => {
+    const { name, children, isOpen, alignTo, onCloseDialog } = props;
 
     if (!isOpen) {
         return null;
@@ -34,7 +53,9 @@ export const LegendDialog: React.FC<ILegendDialogProps> = (props: ILegendDialogP
                         onClose={onCloseDialog}
                         className="kpi-alert-dialog-overlay"
                     >
-                        {children}
+                        <LegendDialogContent name={name} onCloseDialog={onCloseDialog}>
+                            {children}
+                        </LegendDialogContent>
                     </Overlay>
                 );
             }}
