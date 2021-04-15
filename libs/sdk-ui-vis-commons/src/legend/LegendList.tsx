@@ -6,7 +6,7 @@ import { LEGEND_AXIS_INDICATOR, LEGEND_SEPARATOR } from "./helpers";
 import { ItemBorderRadiusPredicate } from "./types";
 
 export interface ILegendListProps {
-    series: any;
+    series: any; // TODO Add typings
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     width?: number;
     onItemClick: (item: any) => void;

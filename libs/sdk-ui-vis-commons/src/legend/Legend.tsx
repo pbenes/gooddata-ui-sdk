@@ -10,7 +10,7 @@ import { StaticLegend, IStaticLegendProps } from "./StaticLegend";
 import { HeatmapLegend } from "./HeatmapLegend";
 import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } from "@gooddata/sdk-ui";
 import { ItemBorderRadiusPredicate } from "./types";
-import { PopUpLegend } from "./PopUpLegend/PopUpLegend";
+import { PopUpLegend } from "./PopUpLegend/PopupLegend";
 
 /**
  * @internal
