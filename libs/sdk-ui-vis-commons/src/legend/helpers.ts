@@ -475,21 +475,14 @@ export function getColorLegendConfiguration(
     theme?: ITheme,
 ): IColorLegendConfig {
     const legendLabels = getColorLegendLabels(series, format, numericSymbols);
-    let finalPosition;
 
-    if (isSmall) {
-        finalPosition = position === TOP ? TOP : BOTTOM;
-    } else {
-        finalPosition = position || RIGHT;
-    }
-
-    const classes = ["viz-legend", "color-legend", `position-${finalPosition}`];
+    const classes = ["viz-legend", "color-legend", `position-${position}`];
 
     if (isSmall) {
         classes.push("small");
     }
 
-    const isVertical = finalPosition === LEFT || finalPosition === RIGHT;
+    const isVertical = position === LEFT || position === RIGHT;
     const finalLabels = getColorLegendLabelsConfiguration(legendLabels, isSmall, isVertical);
     const boxes = getColorBoxes(series, theme);
 
@@ -497,7 +490,7 @@ export function getColorLegendConfiguration(
         classes,
         labels: finalLabels,
         boxes,
-        position: finalPosition,
+        position,
     };
 }
 
