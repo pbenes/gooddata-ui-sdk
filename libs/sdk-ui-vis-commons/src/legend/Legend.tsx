@@ -11,6 +11,7 @@ import { HeatmapLegend } from "./HeatmapLegend";
 import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } from "@gooddata/sdk-ui";
 import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
 import { PopUpLegend } from "./PopUpLegend/PopUpLegend";
+import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
 
 /**
  * @internal
@@ -146,7 +147,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
 
     public render(): React.ReactNode {
         // const { responsive, showFluidLegend, heatmapLegend, legendDetails } = this.props;
-        const { legendDetails } = this.props;
+        const { heatmapLegend, legendDetails } = this.props;
 
         if (!legendDetails) {
             return null;
@@ -154,14 +155,11 @@ export class Legend extends React.PureComponent<ILegendProps> {
 
         // const isFluidLegend = Boolean(responsive && showFluidLegend);
 
-        /* if (true) {
-            return this.renderSuper(legendDetails);
-        }
-
         if (heatmapLegend) {
-            return this.renderHeatmapLegend();
+            return this.renderHeatmapLegend(legendDetails);
         }
 
+        /*
         if (isFluidLegend) {
             return this.renderFluid();
         }
@@ -171,11 +169,29 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return this.renderPopUpLegend(legendDetails);
     }
 
-    private renderHeatmapLegend = (): React.ReactNode => {
+    private getHeatmapLegendPosition(legendDetails: any) {
+        const { locale, format, responsive, position } = this.props;
+        const { showFluidLegend } = this.props;
+        // if (responsive === "popup") {
+        if (true) {
+            return legendDetails?.position;
+        } else {
+            const isSmall = Boolean(responsive && showFluidLegend);
+            if (isSmall) {
+                return position === TOP ? TOP : BOTTOM;
+            } else {
+                return position || RIGHT;
+            }
+        }
+    }
+
+    private renderHeatmapLegend = (legendDetails: any): React.ReactNode => {
         const { locale, format, responsive, position } = this.props;
         const { showFluidLegend } = this.props;
         const series = this.getSeries();
+        // TODO: isSmall also for new popup cases, legend sometimes overflows
         const isSmall = Boolean(responsive && showFluidLegend);
+        let finalPosition = this.getHeatmapLegendPosition(legendDetails);
 
         return (
             <IntlWrapper locale={locale}>
@@ -186,7 +202,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
                             format={format}
                             isSmall={isSmall}
                             numericSymbols={props.numericSymbols}
-                            position={position}
+                            position={finalPosition}
                         />
                     )}
                 </IntlTranslationsProvider>
