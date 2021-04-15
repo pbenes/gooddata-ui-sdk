@@ -16,7 +16,7 @@ export interface IRowLegendProps {
     series: IPushpinCategoryLegendItem[];
     enableBorderRadius?: boolean; //TODO where get this props?
     onDialogIconClick: () => void;
-    onLegendItemClick: () => void;
+    onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
 }
 
 export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
@@ -74,11 +74,12 @@ export const useRandomComponentId = (idPrefix: string) => {
 export interface IPopUpLegendProps {
     legendDetails: any; //TODO Add types
     series: IPushpinCategoryLegendItem[];
+    onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
 }
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProps) => {
-    const { series } = props;
-    const { position, name } = props.legendDetails;
+    const { series, legendDetails, onLegendItemClick } = props;
+    const { position, name, maxRows } = legendDetails;
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
 
@@ -91,14 +92,12 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
     return (
         <div className={classNames}>
             <RowLegend
-                maxRowsCount={1}
+                maxRowsCount={maxRows}
                 series={series}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
-                onLegendItemClick={() => {
-                    console.log("legend item click");
-                }}
+                onLegendItemClick={onLegendItemClick}
             />
 
             <LegendDialog name={name} alignTo={dialogId} isOpen={isDialogOpen} onCloseDialog={onCloseDialog}>
@@ -106,6 +105,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props: IPopUpLegendProp
                     containerHeight={300}
                     series={[...series, ...series, ...series]}
                     position={"left"}
+                    onItemClick={onLegendItemClick}
                 />
             </LegendDialog>
         </div>
