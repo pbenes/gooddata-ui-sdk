@@ -476,6 +476,7 @@ export function getChartOptions(
             type,
             stacking: null,
             legendLayout: "horizontal",
+            legendName: unwrap(measureGroup?.items[0])?.name,
             title: {
                 x: viewByAttribute ? viewByAttribute.name : "",
                 y: stackByAttribute ? stackByAttribute.name : "",
