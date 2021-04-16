@@ -273,9 +273,9 @@ export class HighChartsRenderer extends React.PureComponent<
             return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
             //            }
         } else {
+            // width >= 630
             const isLegendTopBottom = legendProps.position === "top" || legendProps.position === "bottom";
 
-            // width >= 630
             if (height < 280) {
                 return { ...name, position: RIGHT, type: "right, paging", renderPopUp: false };
             } else if (height < 360) {

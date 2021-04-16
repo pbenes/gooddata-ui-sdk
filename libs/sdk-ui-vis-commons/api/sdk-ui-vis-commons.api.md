@@ -24,7 +24,7 @@ export class AttributeColorStrategy extends ColorStrategy {
 }
 
 // @internal (undocumented)
-export const ColorLegend: React_2.ComponentType<Pick<IColorLegendProps, "data" | "format" | "position" | "numericSymbols" | "isSmall">>;
+export const ColorLegend: React_2.ComponentType<Pick<IColorLegendProps, "data" | "title" | "format" | "position" | "numericSymbols" | "isSmall">>;
 
 // @internal (undocumented)
 export abstract class ColorStrategy implements IColorStrategy {
@@ -156,6 +156,8 @@ export interface IColorLegendProps {
     position: string;
     // (undocumented)
     theme?: ITheme;
+    // (undocumented)
+    title?: string;
 }
 
 // @public (undocumented)
@@ -226,6 +228,8 @@ export interface IHeatmapLegendProps {
     position: string;
     // (undocumented)
     series: IHeatmapLegendItem[];
+    // (undocumented)
+    title?: string;
 }
 
 // @internal (undocumented)
@@ -362,8 +366,6 @@ export class Legend extends React_2.PureComponent<ILegendProps> {
     renderPopUpLegend: (legendDetails: any) => React_2.ReactNode;
     // (undocumented)
     renderStatic: () => React_2.ReactNode;
-    // (undocumented)
-    renderSuper: (legendDetails: any) => React_2.ReactNode;
 }
 
 // @internal (undocumented)

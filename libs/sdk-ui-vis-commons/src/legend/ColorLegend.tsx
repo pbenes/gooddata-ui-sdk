@@ -7,7 +7,7 @@ import {
     IHeatmapLegendLabel as IColorLegendLabel,
     getColorLegendConfiguration,
 } from "./helpers";
-import { TOP } from "./PositionTypes";
+import { TOP, BOTTOM } from "./PositionTypes";
 import { IColorLegendItem } from "./types";
 import { ITheme } from "@gooddata/sdk-backend-spi";
 import { withTheme } from "@gooddata/sdk-ui-theme-provider";
@@ -22,6 +22,7 @@ export interface IColorLegendProps {
     isSmall?: boolean;
     format?: string;
     theme?: ITheme;
+    title?: string;
 }
 
 interface IColorLabelsProps {
@@ -69,7 +70,7 @@ export function ColorBoxes(colorBoxProps: IColorBoxesProps): JSX.Element {
  * @internal
  */
 export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
-    const { data, format, numericSymbols, isSmall = false, position, theme } = colorLegendProps;
+    const { title, data, format, numericSymbols, isSmall = false, position, theme } = colorLegendProps;
     if (!data.length) {
         return null;
     }
@@ -86,11 +87,48 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
     const renderLabelsFirst = config.position === TOP;
     const { boxes, labels } = config;
 
+    const direction = position === TOP || position === BOTTOM ? "row" : "column";
+    const justifyContent = position === TOP || position === BOTTOM ? "flex-end" : "flex-start";
+    const innerFlexDirection = position === TOP || position === BOTTOM ? "column" : "row";
+    const titleStyle =
+        position === TOP || position === BOTTOM
+            ? {
+                  marginRight: 10,
+                  alignSelf: "center",
+              }
+            : {
+                  maxWidth: 210,
+                  marginBottom: 10,
+              };
+
     return (
         <div className={classes}>
-            {renderLabelsFirst && <ColorLabels labels={labels} />}
-            <ColorBoxes boxes={boxes} />
-            {!renderLabelsFirst && <ColorLabels labels={labels} />}
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent,
+                    flexDirection: direction,
+                }}
+            >
+                <div
+                    style={{
+                        overflow: "hidden",
+                        ...titleStyle,
+                        maxHeight: "20px",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                    }}
+                >
+                    {title}
+                </div>
+                <div style={{ display: "flex", flexDirection: innerFlexDirection }}>
+                    {renderLabelsFirst && <ColorLabels labels={labels} />}
+                    <ColorBoxes boxes={boxes} />
+                    {!renderLabelsFirst && <ColorLabels labels={labels} />}
+                </div>
+            </div>
         </div>
     );
 });

@@ -68,12 +68,6 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return seriesWithVisibility;
     };
 
-    public renderSuper = (legendDetails: any): React.ReactNode => {
-        const { position } = legendDetails;
-        const classNames = cx("viz-static-legend-wrap", `position-${position}`);
-        return <div className={classNames}>{JSON.stringify(legendDetails)}</div>;
-    };
-
     public renderPopUpLegend = (legendDetails: any): React.ReactNode => {
         return (
             <PopUpLegend
@@ -192,12 +186,14 @@ export class Legend extends React.PureComponent<ILegendProps> {
         // TODO: isSmall also for new popup cases, legend sometimes overflows
         const isSmall = Boolean(responsive && showFluidLegend);
         let finalPosition = this.getHeatmapLegendPosition(legendDetails);
+        const title = "legend with very large long text name which should be shortened";
 
         return (
             <IntlWrapper locale={locale}>
                 <IntlTranslationsProvider>
                     {(props: ITranslationsComponentProps) => (
                         <HeatmapLegend
+                            title={title}
                             series={series}
                             format={format}
                             isSmall={isSmall}
