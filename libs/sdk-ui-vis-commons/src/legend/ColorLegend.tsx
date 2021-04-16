@@ -97,6 +97,7 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
                   alignSelf: "center",
               }
             : {
+                  marginLeft: 20,
                   maxWidth: 210,
                   marginBottom: 10,
               };
