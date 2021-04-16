@@ -186,7 +186,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
         // TODO: isSmall also for new popup cases, legend sometimes overflows
         const isSmall = Boolean(responsive && showFluidLegend);
         let finalPosition = this.getHeatmapLegendPosition(legendDetails);
-        const title = "legend with very large long text name which should be shortened";
+        const title = legendDetails?.name;
 
         return (
             <IntlWrapper locale={locale}>
