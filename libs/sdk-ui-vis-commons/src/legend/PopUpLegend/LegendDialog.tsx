@@ -9,17 +9,17 @@ const LegendDialogWrapper: React.FC<{ children: (isMobile: boolean) => JSX.Eleme
 };
 
 interface ILegendDialogContent {
-    name: string;
+    title: string;
     onCloseDialog: () => void;
 }
 
 const LegendDialogContent: React.FC<ILegendDialogContent> = (props) => {
-    const { name, onCloseDialog, children } = props;
+    const { title, onCloseDialog, children } = props;
 
     return (
         <div className="legend-popup-dialog kpi-alert-dialog">
             <div className="legend-header">
-                <div className="legend-header-title">{name}</div>
+                <div className="legend-header-title">{title}</div>
                 <div className="legend-close action-close icon-cross" onClick={onCloseDialog} />
             </div>
             <div className="legend-content">{children}</div>
@@ -53,7 +53,7 @@ export const LegendDialog: React.FC<ILegendDialogProps> = (props) => {
                         onClose={onCloseDialog}
                         className="kpi-alert-dialog-overlay"
                     >
-                        <LegendDialogContent name={name} onCloseDialog={onCloseDialog}>
+                        <LegendDialogContent title={name} onCloseDialog={onCloseDialog}>
                             {children}
                         </LegendDialogContent>
                     </Overlay>

@@ -1,5 +1,5 @@
 // (C) 2007-2021 GoodData Corporation
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useIntl } from "react-intl";
 import cx from "classnames";
 import { v4 } from "uuid";
@@ -25,6 +25,15 @@ const useCheckOverflow = (): [boolean, (element: HTMLDivElement | null) => void]
     return [isOverflow, checkOverFlow];
 };
 
+const useRandomComponentId = (idPrefix: string) => {
+    const val = useRef("");
+    if (!val.current) {
+        const id = v4();
+        val.current = `${idPrefix}${id}`;
+    }
+    return val.current;
+};
+
 export interface IRowLegendIcoButton {
     isVisible: boolean;
     onIconClick: () => void;
@@ -44,6 +53,19 @@ export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
     );
 };
 
+export interface ILegendLabel {
+    label: string;
+}
+
+export const LegendLabelItem: React.FC<ILegendLabel> = (props) => {
+    const { label } = props;
+    return (
+        <div className="series-item">
+            <div className="series-name">{`${label}:`}</div>
+        </div>
+    );
+};
+
 export interface IRowLegendProps {
     legendLabel: string;
     maxRowsCount: number;
@@ -53,8 +75,15 @@ export interface IRowLegendProps {
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
 }
 
-export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => {
-    const { series, maxRowsCount, enableBorderRadius, onDialogIconClick, onLegendItemClick } = props;
+export const RowLegend: React.FC<IRowLegendProps> = (props) => {
+    const {
+        series,
+        maxRowsCount,
+        legendLabel,
+        enableBorderRadius,
+        onDialogIconClick,
+        onLegendItemClick,
+    } = props;
     const [isOverflow, checkOverFlow] = useCheckOverflow();
 
     const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
@@ -69,6 +98,7 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
                         checkOverFlow(element);
                     }}
                 >
+                    <LegendLabelItem label={legendLabel} />
                     <LegendList
                         enableBorderRadius={enableBorderRadius}
                         series={series}
@@ -79,17 +109,6 @@ export const RowLegend: React.FC<IRowLegendProps> = (props: IRowLegendProps) => 
             <RowLegendIcoButton isVisible={isOverflow} onIconClick={onDialogIconClick} />
         </div>
     );
-};
-
-const useRandomComponentId = (idPrefix: string) => {
-    const [componentId, setComponentId] = useState<string>("");
-
-    useEffect(() => {
-        const id = v4();
-        setComponentId(`${idPrefix}${id}`);
-    }, []);
-
-    return componentId;
 };
 
 export interface IPopUpLegendProps {
