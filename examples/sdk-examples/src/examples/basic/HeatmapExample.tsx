@@ -7,13 +7,39 @@ const style = { height: 300 };
 
 export const HeatmapExample: React.FC = () => {
     return (
-        <div style={style} className="s-heat-map">
-            <Heatmap
-                measure={LdmExt.TotalSales1}
-                rows={Ldm.LocationState}
-                columns={Ldm.MenuCategory}
-                config={{ legend: { position: "left" } }}
-            />
-        </div>
+        <>
+            <div style={style} className="s-heat-map">
+                <Heatmap
+                    measure={LdmExt.TotalSales1}
+                    rows={Ldm.LocationState}
+                    columns={Ldm.MenuCategory}
+                    config={{ legend: { position: "right" } }}
+                />
+            </div>
+            <div style={style} className="s-heat-map">
+                <Heatmap
+                    measure={LdmExt.TotalSales1}
+                    rows={Ldm.LocationState}
+                    columns={Ldm.MenuCategory}
+                    config={{ legend: { position: "left" } }}
+                />
+            </div>
+            <div style={style} className="s-heat-map">
+                <Heatmap
+                    measure={LdmExt.TotalSales1}
+                    rows={Ldm.LocationState}
+                    columns={Ldm.MenuCategory}
+                    config={{ legend: { position: "top" } }}
+                />
+            </div>
+            <div style={style} className="s-heat-map">
+                <Heatmap
+                    measure={LdmExt.TotalSales1}
+                    rows={Ldm.LocationState}
+                    columns={Ldm.MenuCategory}
+                    config={{ legend: { position: "bottom" } }}
+                />
+            </div>
+        </>
     );
 };
