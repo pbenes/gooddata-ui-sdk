@@ -48,7 +48,7 @@ export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
 
     return (
         <div onClick={onIconClick} style={{ width: 16 }}>
-            <Icon.Explore />
+            <Icon.LegendMenu />
         </div>
     );
 };
@@ -135,7 +135,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             <RowLegend
                 legendLabel={name}
                 maxRowsCount={maxRows}
-                series={series}
+                series={[...series, ...series, ...series]}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -150,7 +150,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             >
                 <StaticLegend
                     containerHeight={300}
-                    series={series}
+                    series={[...series, ...series, ...series]}
                     position={"left"}
                     onItemClick={onLegendItemClick}
                 />

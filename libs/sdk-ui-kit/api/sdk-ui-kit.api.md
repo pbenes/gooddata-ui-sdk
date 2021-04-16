@@ -704,6 +704,7 @@ export const Icon: {
     DragHandle: import("react").FC<import("./typings").IIconProps>;
     Interaction: import("react").FC<import("./typings").IIconProps>;
     AttributeFilter: import("react").FC<import("./typings").IIconProps>;
+    LegendMenu: import("react").FC<import("./typings").IIconProps>;
 };
 
 // @internal (undocumented)
