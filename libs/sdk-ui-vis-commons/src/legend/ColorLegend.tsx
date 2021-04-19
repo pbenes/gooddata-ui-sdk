@@ -82,43 +82,12 @@ function renderLegendBoxes(
 
 function LegendWithTitle(props: { title: string; position: string; children: any }): JSX.Element {
     const { title, position, children } = props;
-    const direction = position === TOP || position === BOTTOM ? "row" : "column";
-    const justifyContent = position === TOP || position === BOTTOM ? "flex-end" : "flex-start";
-    const innerFlexDirection = position === TOP || position === BOTTOM ? "column" : "row";
-    const titleStyle =
-        position === TOP || position === BOTTOM
-            ? {
-                  marginRight: 10,
-                  alignSelf: "center",
-                  minWidth: 50,
-              }
-            : {
-                  marginLeft: 20,
-                  maxWidth: 210,
-                  marginBottom: 10,
-              };
+    const isHorizontal = position === TOP || position === BOTTOM;
+    const classes = cx("heatmap-legend-with-title", { horizontal: isHorizontal });
     return (
-        <div
-            style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent,
-                flexDirection: direction,
-            }}
-        >
-            <div
-                style={{
-                    overflow: "hidden",
-                    ...titleStyle,
-                    maxHeight: "20px",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                }}
-            >
-                {title}
-            </div>
-            <div style={{ display: "flex", flexDirection: innerFlexDirection }}>{props.children}</div>
+        <div className={classes}>
+            <div className="heatmap-legend-title">{title}</div>
+            <div className="heatmap-legend-boxes">{props.children}</div>
         </div>
     );
 }
@@ -136,6 +105,7 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
         data,
         format,
         numericSymbols,
+        // 350 vs 276
         isSmall,
         position,
         theme,
