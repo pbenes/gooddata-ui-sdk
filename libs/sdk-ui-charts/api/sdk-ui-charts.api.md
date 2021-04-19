@@ -331,7 +331,7 @@ export interface IHeatmapProps extends IBucketChartProps, IHeatmapBucketProps {
 export interface ILegendConfig {
     enabled?: boolean;
     position?: PositionType;
-    responsive?: boolean;
+    responsive?: boolean | "popup";
 }
 
 // @public (undocumented)

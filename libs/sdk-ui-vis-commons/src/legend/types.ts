@@ -1,4 +1,4 @@
-// (C) 2007-2020 GoodData Corporation
+// (C) 2007-2021 GoodData Corporation
 
 /**
  * @internal
@@ -25,7 +25,7 @@ export interface ILegendOptions {
     position: PositionType;
     format: string;
     items: LegendOptionsItemType[];
-    responsive?: boolean;
+    responsive?: boolean | "popup";
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     seriesMapper?: (visibleSeries: any) => any;
 }
