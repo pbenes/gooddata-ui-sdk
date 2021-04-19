@@ -1,6 +1,6 @@
 // (C) 2007-2018 GoodData Corporation
 import React from "react";
-import Measure from "react-measure";
+import Measure, { MeasuredComponentProps, ContentRect } from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
@@ -54,6 +54,14 @@ export interface IHighChartsRendererProps {
 export interface IHighChartsRendererState {
     legendItemsEnabled: boolean[];
     showFluidLegend: boolean;
+}
+
+export interface ILegendDetails {
+    name?: string;
+    position: any;
+    maxRows?: number;
+    renderPopUp?: boolean;
+    type?: string; // TODO: this is to be removed, so far just debug description
 }
 
 export function renderChart(props: IChartProps): JSX.Element {
@@ -177,7 +185,7 @@ export class HighChartsRenderer extends React.PureComponent<
         this.chartRef = chartRef;
     };
 
-    public getLegendPosition(legendDetails: any | null) {
+    public getLegendPosition(legendDetails: ILegendDetails | null) {
         const { responsive } = this.props?.legend;
         if (responsive === "popup") {
             return legendDetails?.position;
@@ -186,7 +194,7 @@ export class HighChartsRenderer extends React.PureComponent<
         return this.props.legend.position;
     }
 
-    public getFlexDirection(legendDetails: any): React.CSSProperties["flexDirection"] {
+    public getFlexDirection(legendDetails: ILegendDetails): React.CSSProperties["flexDirection"] {
         const position = this.getLegendPosition(legendDetails);
         if (position === TOP || position === BOTTOM) {
             return "column";
@@ -259,7 +267,7 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    public getLegendDetails(contentRect: any, legendProps: any, chartOptions: any) {
+    public getLegendDetails(contentRect: any, legendProps: any, chartOptions: any): ILegendDetails {
         const { width, height } = contentRect?.client;
 
         if (!width || !height) {
@@ -269,14 +277,8 @@ export class HighChartsRenderer extends React.PureComponent<
         const name = chartOptions?.legendName ? { name: chartOptions?.legendName } : {};
 
         if (width < 630) {
-            //            // latest update: never without legend
-            //            if (height < 280) {
-            //                return { ...name, type: "no-legend" };
-            //            } else {
             return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
-            //            }
         } else {
-            // width >= 630
             const isLegendTopBottom = legendProps.position === "top" || legendProps.position === "bottom";
 
             if (height < 280) {
@@ -301,7 +303,7 @@ export class HighChartsRenderer extends React.PureComponent<
         }
     }
 
-    public renderLegend(legendDetails: any): React.ReactNode {
+    public renderLegend(legendDetails: ILegendDetails): React.ReactNode {
         const { chartOptions, legend, height, legendRenderer, locale } = this.props;
         const { items, format } = legend;
         const { showFluidLegend } = this.state;
@@ -386,12 +388,13 @@ export class HighChartsRenderer extends React.PureComponent<
         return null;
     }
 
-    private renderVisualization(legendDetails: any) {
+    private renderVisualization(contentRect: ContentRect) {
+        const { legend, chartOptions } = this.props;
+        const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
         if (!legendDetails) {
             return null;
         }
 
-        const { legend } = this.props;
         const { showFluidLegend } = this.state;
 
         const classes = cx(
@@ -420,19 +423,16 @@ export class HighChartsRenderer extends React.PureComponent<
     }
 
     public render(): React.ReactNode {
-        const { legend, chartOptions } = this.props;
-
         return (
             <Measure client={true}>
-                {({ measureRef, contentRect }: any) => {
-                    const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
+                {({ measureRef, contentRect }: MeasuredComponentProps) => {
                     return (
                         <div
                             className="visualization-container-measure-wrap"
                             style={{ width: "100%", height: "100%" }}
                             ref={measureRef}
                         >
-                            {this.renderVisualization(legendDetails)}
+                            {this.renderVisualization(contentRect)}
                         </div>
                     );
                 }}
@@ -451,8 +451,7 @@ export class HighChartsRenderer extends React.PureComponent<
         }
     }
 
-    private isBottomLegend(legendDetails: any): boolean {
-        const pos = this.getLegendPosition(legendDetails);
-        return pos === BOTTOM;
+    private isBottomLegend(legendDetails: ILegendDetails): boolean {
+        return this.getLegendPosition(legendDetails) === BOTTOM;
     }
 }

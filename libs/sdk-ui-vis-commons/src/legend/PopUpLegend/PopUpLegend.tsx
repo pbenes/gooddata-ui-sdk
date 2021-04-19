@@ -112,14 +112,15 @@ export const RowLegend: React.FC<IRowLegendProps> = (props) => {
 };
 
 export interface IPopUpLegendProps {
-    legendDetails: any; //TODO Add types
     series: IPushpinCategoryLegendItem[];
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
+    position: string;
+    name: string;
+    maxRows: number;
 }
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
-    const { series, legendDetails, onLegendItemClick } = props;
-    const { position, name, maxRows } = legendDetails;
+    const { position, name, maxRows, series, onLegendItemClick } = props;
     const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");

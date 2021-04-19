@@ -17,6 +17,10 @@ import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
  * @internal
  */
 export interface ILegendProps {
+    // TODO: get rid of legendDetails, have
+    // * pre-configured authoritative position from above
+    // * computed maxRows from above
+    // * computed name from above (based on ff/etc)
     legendDetails?: any;
     responsive?: boolean | "popup";
     legendItemsEnabled?: any[];
@@ -68,11 +72,13 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return seriesWithVisibility;
     };
 
-    public renderPopUpLegend = (legendDetails: any): React.ReactNode => {
+    public renderPopUpLegend = (name, position, maxRows): React.ReactNode => {
         return (
             <PopUpLegend
                 series={this.getSeries()}
-                legendDetails={legendDetails}
+                maxRows={maxRows}
+                name={name}
+                position={position}
                 onLegendItemClick={this.onItemClick}
             />
         );
@@ -140,26 +146,26 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { responsive, heatmapLegend, legendDetails } = this.props;
+        const { responsive, heatmapLegend, legendDetails, showFluidLegend } = this.props;
 
         if (!legendDetails) {
             return null;
         }
 
-        // const isFluidLegend = Boolean(responsive && showFluidLegend);
-
         if (heatmapLegend) {
             return this.renderHeatmapLegend(legendDetails);
         }
 
-        /*
+        if (responsive === "popup") {
+            return this.renderPopUpLegend(legendDetails.name, legendDetails.position, legendDetails.maxRows);
+        }
+
+        const isFluidLegend = Boolean(responsive && showFluidLegend);
         if (isFluidLegend) {
             return this.renderFluid();
         }
 
-        return this.renderStatic();*/
-
-        return this.renderPopUpLegend(legendDetails);
+        return this.renderStatic();
     }
 
     private getHeatmapLegendPosition(legendDetails: any) {
