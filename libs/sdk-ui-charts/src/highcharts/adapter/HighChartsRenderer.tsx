@@ -317,13 +317,23 @@ export class HighChartsRenderer extends React.PureComponent<
             type = VisualizationTypes.PIE;
         }
 
+        // TODO: wrap method
         let pos = legend.position;
         if (legend.responsive === "popup") {
             pos = legendDetails?.position;
+        } else {
+            if (isHeatmap(type)) {
+                const isSmall = Boolean(legend.responsive && showFluidLegend);
+                if (isSmall) {
+                    pos = legend.position === TOP ? TOP : BOTTOM;
+                } else {
+                    pos = legend.position || RIGHT;
+                }
+            }
         }
 
+        const legendName = legend.responsive === "popup" ? legendDetails?.name : null;
         const legendProps: ILegendProps = {
-            position: pos,
             responsive: legend.responsive,
             enableBorderRadius: legend.enableBorderRadius,
             seriesMapper: legend.seriesMapper,
@@ -332,7 +342,9 @@ export class HighChartsRenderer extends React.PureComponent<
             legendItemsEnabled: this.state.legendItemsEnabled,
             heatmapLegend: isHeatmap(type),
             height,
-            legendDetails,
+            legendName,
+            maximumRows: legendDetails?.maxRows,
+            position: pos,
             format,
             locale,
             showFluidLegend,
@@ -407,8 +419,9 @@ export class HighChartsRenderer extends React.PureComponent<
             },
         );
 
-        let pos = this.getLegendPosition(legendDetails);
-        const isLegendRenderedFirst: boolean = pos === TOP || pos === LEFT || showFluidLegend;
+        let legendPosition = this.getLegendPosition(legendDetails);
+        const isLegendRenderedFirst: boolean =
+            legendPosition === TOP || legendPosition === LEFT || showFluidLegend;
 
         return (
             <div className={classes}>

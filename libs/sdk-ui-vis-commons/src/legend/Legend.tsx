@@ -17,11 +17,8 @@ import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
  * @internal
  */
 export interface ILegendProps {
-    // TODO: get rid of legendDetails, have
-    // * pre-configured authoritative position from above
-    // * computed maxRows from above
-    // * computed name from above (based on ff/etc)
-    legendDetails?: any;
+    legendName?: string;
+    maximumRows?: number;
     responsive?: boolean | "popup";
     legendItemsEnabled?: any[];
     height?: number;
@@ -146,18 +143,14 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { responsive, heatmapLegend, legendDetails, showFluidLegend } = this.props;
-
-        if (!legendDetails) {
-            return null;
-        }
+        const { responsive, heatmapLegend, showFluidLegend, legendName, position, maximumRows } = this.props;
 
         if (heatmapLegend) {
-            return this.renderHeatmapLegend(legendDetails);
+            return this.renderHeatmapLegend();
         }
 
         if (responsive === "popup") {
-            return this.renderPopUpLegend(legendDetails.name, legendDetails.position, legendDetails.maxRows);
+            return this.renderPopUpLegend(legendName, position, maximumRows);
         }
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
@@ -168,43 +161,26 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return this.renderStatic();
     }
 
-    private getHeatmapLegendPosition(legendDetails: any) {
-        const { locale, format, responsive, position } = this.props;
-        const { showFluidLegend } = this.props;
-        if (responsive === "popup") {
-            return legendDetails?.position;
-        } else {
-            const isSmall = Boolean(responsive && showFluidLegend);
-            if (isSmall) {
-                return position === TOP ? TOP : BOTTOM;
-            } else {
-                return position || RIGHT;
-            }
-        }
-    }
-
-    private renderHeatmapLegend = (legendDetails: any): React.ReactNode => {
-        const { locale, format, responsive, position } = this.props;
+    private renderHeatmapLegend = (): React.ReactNode => {
+        const { locale, format, responsive, position, legendName } = this.props;
         const { showFluidLegend } = this.props;
         const series = this.getSeries();
         // TODO: isSmall also for new popup cases, legend sometimes overflows
         // responsive === true || responsive === "popup"
         // TODO: if small also, it does not work for left/right legend (needs css tweak)
         const isSmall = Boolean(responsive && showFluidLegend);
-        let finalPosition = this.getHeatmapLegendPosition(legendDetails);
-        const title = responsive === "popup" ? legendDetails?.name : null;
 
         return (
             <IntlWrapper locale={locale}>
                 <IntlTranslationsProvider>
                     {(props: ITranslationsComponentProps) => (
                         <HeatmapLegend
-                            title={title}
+                            title={legendName}
                             series={series}
                             format={format}
                             isSmall={isSmall}
                             numericSymbols={props.numericSymbols}
-                            position={finalPosition}
+                            position={position}
                         />
                     )}
                 </IntlTranslationsProvider>
