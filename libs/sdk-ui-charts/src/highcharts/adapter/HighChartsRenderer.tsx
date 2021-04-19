@@ -274,7 +274,7 @@ export class HighChartsRenderer extends React.PureComponent<
             return null;
         }
 
-        const name = chartOptions?.legendName ? { name: chartOptions?.legendName } : {};
+        const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
 
         if (width < 630) {
             return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
@@ -332,7 +332,7 @@ export class HighChartsRenderer extends React.PureComponent<
             }
         }
 
-        const legendName = legend.responsive === "popup" ? legendDetails?.name : null;
+        const legendLabel = legend.responsive === "popup" ? legendDetails?.name : null;
         const legendProps: ILegendProps = {
             responsive: legend.responsive,
             enableBorderRadius: legend.enableBorderRadius,
@@ -342,7 +342,7 @@ export class HighChartsRenderer extends React.PureComponent<
             legendItemsEnabled: this.state.legendItemsEnabled,
             heatmapLegend: isHeatmap(type),
             height,
-            legendName,
+            legendLabel,
             maximumRows: legendDetails?.maxRows,
             position: pos,
             format,

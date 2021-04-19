@@ -142,6 +142,7 @@ export interface IChartOptions {
     forceDisableDrillOnAxes?: boolean;
     verticalAlign?: ChartAlignTypes;
     legendName?: string;
+    legendLabel?: string;
 }
 
 export interface IPatternOptionsObject {

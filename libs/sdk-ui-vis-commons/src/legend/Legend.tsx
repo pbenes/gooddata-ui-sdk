@@ -17,7 +17,7 @@ import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
  * @internal
  */
 export interface ILegendProps {
-    legendName?: string;
+    legendLabel?: string;
     maximumRows?: number;
     responsive?: boolean | "popup";
     legendItemsEnabled?: any[];
@@ -143,14 +143,14 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { responsive, heatmapLegend, showFluidLegend, legendName, position, maximumRows } = this.props;
+        const { responsive, heatmapLegend, showFluidLegend, legendLabel, position, maximumRows } = this.props;
 
         if (heatmapLegend) {
             return this.renderHeatmapLegend();
         }
 
         if (responsive === "popup") {
-            return this.renderPopUpLegend(legendName, position, maximumRows);
+            return this.renderPopUpLegend(legendLabel, position, maximumRows);
         }
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
@@ -162,7 +162,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
     }
 
     private renderHeatmapLegend = (): React.ReactNode => {
-        const { locale, format, responsive, position, legendName } = this.props;
+        const { locale, format, responsive, position, legendLabel } = this.props;
         const { showFluidLegend } = this.props;
         const series = this.getSeries();
         // TODO: isSmall also for new popup cases, legend sometimes overflows
@@ -175,7 +175,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
                 <IntlTranslationsProvider>
                     {(props: ITranslationsComponentProps) => (
                         <HeatmapLegend
-                            title={legendName}
+                            title={legendLabel}
                             series={series}
                             format={format}
                             isSmall={isSmall}
