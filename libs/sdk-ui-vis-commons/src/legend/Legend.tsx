@@ -186,7 +186,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
         // TODO: if small also, it does not work for left/right legend (needs css tweak)
         const isSmall = Boolean(responsive && showFluidLegend);
         let finalPosition = this.getHeatmapLegendPosition(legendDetails);
-        const title = legendDetails?.name;
+        const title = responsive === "popup" ? legendDetails?.name : null;
 
         return (
             <IntlWrapper locale={locale}>

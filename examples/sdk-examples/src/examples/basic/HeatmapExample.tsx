@@ -5,7 +5,7 @@ import { Ldm, LdmExt } from "../../ldm";
 
 const style = { height: 300 };
 
-export const HeatmapExample: React.FC = () => {
+function renderH(responsive: boolean | "popup") {
     return (
         <>
             <div style={style} className="s-heat-map">
@@ -13,7 +13,7 @@ export const HeatmapExample: React.FC = () => {
                     measure={LdmExt.TotalSales1}
                     rows={Ldm.LocationState}
                     columns={Ldm.MenuCategory}
-                    config={{ legend: { position: "right" } }}
+                    config={{ legend: { position: "right", responsive } }}
                 />
             </div>
             <div style={style} className="s-heat-map">
@@ -21,7 +21,7 @@ export const HeatmapExample: React.FC = () => {
                     measure={LdmExt.TotalSales1}
                     rows={Ldm.LocationState}
                     columns={Ldm.MenuCategory}
-                    config={{ legend: { position: "left" } }}
+                    config={{ legend: { position: "left", responsive } }}
                 />
             </div>
             <div style={style} className="s-heat-map">
@@ -29,7 +29,7 @@ export const HeatmapExample: React.FC = () => {
                     measure={LdmExt.TotalSales1}
                     rows={Ldm.LocationState}
                     columns={Ldm.MenuCategory}
-                    config={{ legend: { position: "top" } }}
+                    config={{ legend: { position: "top", responsive } }}
                 />
             </div>
             <div style={style} className="s-heat-map">
@@ -37,9 +37,21 @@ export const HeatmapExample: React.FC = () => {
                     measure={LdmExt.TotalSales1}
                     rows={Ldm.LocationState}
                     columns={Ldm.MenuCategory}
-                    config={{ legend: { position: "bottom" } }}
+                    config={{ legend: { position: "bottom", responsive } }}
                 />
             </div>
+        </>
+    );
+}
+export const HeatmapExample: React.FC = () => {
+    return (
+        <>
+            <div>true</div>
+            {renderH(true)}
+            <div>false</div>
+            {renderH(false)}
+            <div>popup</div>
+            {renderH("popup")}
         </>
     );
 };

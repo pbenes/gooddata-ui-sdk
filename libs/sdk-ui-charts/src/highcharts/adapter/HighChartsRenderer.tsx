@@ -176,7 +176,8 @@ export class HighChartsRenderer extends React.PureComponent<
     };
 
     public getLegendPosition(legendDetails: any | null) {
-        if (true) {
+        const { responsive } = this.props?.legend;
+        if (responsive === "popup") {
             return legendDetails?.position;
         }
 
@@ -313,12 +314,10 @@ export class HighChartsRenderer extends React.PureComponent<
         }
 
         let pos = legend.position;
-        // TODO: responsive === "popup"
-        if (true) {
+        if (legend.responsive === "popup") {
             pos = legendDetails?.position;
         }
 
-        console.log("rendering position", pos);
         const legendProps: ILegendProps = {
             position: pos,
             responsive: legend.responsive,
@@ -402,10 +401,7 @@ export class HighChartsRenderer extends React.PureComponent<
             },
         );
 
-        // TODO: bind on param
-        // if (legend.responsive === "popup") {
         let pos = this.getLegendPosition(legendDetails);
-
         const isLegendRenderedFirst: boolean = pos === TOP || pos === LEFT || showFluidLegend;
 
         return (

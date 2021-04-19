@@ -279,7 +279,7 @@ export interface ILegendConfig {
      * Turns on responsive behavior. Legend items will be rendered horizontally on
      * screens smaller than 767px.
      */
-    responsive?: boolean;
+    responsive?: boolean | "popup";
 }
 
 /**
