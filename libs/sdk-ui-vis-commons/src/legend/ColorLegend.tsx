@@ -66,6 +66,63 @@ export function ColorBoxes(colorBoxProps: IColorBoxesProps): JSX.Element {
     );
 }
 
+function renderLegendBoxes(
+    renderLabelsFirst: boolean,
+    boxes: IColorLegendBox[],
+    labels: IColorLegendLabel[],
+) {
+    return (
+        <>
+            {renderLabelsFirst && <ColorLabels labels={labels} />}
+            <ColorBoxes boxes={boxes} />
+            {!renderLabelsFirst && <ColorLabels labels={labels} />}
+        </>
+    );
+}
+
+function LegendWithTitle(props: { title: string; position: string; children: any }): JSX.Element {
+    const { title, position, children } = props;
+    const direction = position === TOP || position === BOTTOM ? "row" : "column";
+    const justifyContent = position === TOP || position === BOTTOM ? "flex-end" : "flex-start";
+    const innerFlexDirection = position === TOP || position === BOTTOM ? "column" : "row";
+    const titleStyle =
+        position === TOP || position === BOTTOM
+            ? {
+                  marginRight: 10,
+                  alignSelf: "center",
+                  minWidth: 50,
+              }
+            : {
+                  marginLeft: 20,
+                  maxWidth: 210,
+                  marginBottom: 10,
+              };
+    return (
+        <div
+            style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent,
+                flexDirection: direction,
+            }}
+        >
+            <div
+                style={{
+                    overflow: "hidden",
+                    ...titleStyle,
+                    maxHeight: "20px",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                }}
+            >
+                {title}
+            </div>
+            <div style={{ display: "flex", flexDirection: innerFlexDirection }}>{props.children}</div>
+        </div>
+    );
+}
+
 /**
  * @internal
  */
@@ -87,49 +144,16 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
     const renderLabelsFirst = config.position === TOP;
     const { boxes, labels } = config;
 
-    const direction = position === TOP || position === BOTTOM ? "row" : "column";
-    const justifyContent = position === TOP || position === BOTTOM ? "flex-end" : "flex-start";
-    const innerFlexDirection = position === TOP || position === BOTTOM ? "column" : "row";
-    const titleStyle =
-        position === TOP || position === BOTTOM
-            ? {
-                  marginRight: 10,
-                  alignSelf: "center",
-              }
-            : {
-                  marginLeft: 20,
-                  maxWidth: 210,
-                  marginBottom: 10,
-              };
-
+    const renderedBoxes = renderLegendBoxes(renderLabelsFirst, boxes, labels);
     return (
         <div className={classes}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    justifyContent,
-                    flexDirection: direction,
-                }}
-            >
-                <div
-                    style={{
-                        overflow: "hidden",
-                        ...titleStyle,
-                        maxHeight: "20px",
-                        whiteSpace: "nowrap",
-                        textOverflow: "ellipsis",
-                    }}
-                >
-                    {title}
-                </div>
-                <div style={{ display: "flex", flexDirection: innerFlexDirection }}>
-                    {renderLabelsFirst && <ColorLabels labels={labels} />}
-                    <ColorBoxes boxes={boxes} />
-                    {!renderLabelsFirst && <ColorLabels labels={labels} />}
-                </div>
-            </div>
+            {title ? (
+                <LegendWithTitle title={title} position={position}>
+                    {renderedBoxes}
+                </LegendWithTitle>
+            ) : (
+                renderedBoxes
+            )}
         </div>
     );
 });
