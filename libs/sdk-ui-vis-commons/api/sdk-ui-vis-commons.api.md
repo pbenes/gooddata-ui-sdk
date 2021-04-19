@@ -263,11 +263,13 @@ export interface ILegendProps {
     // (undocumented)
     height?: number;
     // (undocumented)
-    legendDetails?: any;
-    // (undocumented)
     legendItemsEnabled?: any[];
     // (undocumented)
+    legendName?: string;
+    // (undocumented)
     locale?: string;
+    // (undocumented)
+    maximumRows?: number;
     // (undocumented)
     onItemClick(item: any): void;
     // (undocumented)
