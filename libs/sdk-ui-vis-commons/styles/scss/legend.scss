@@ -326,3 +326,45 @@ $responsive-legend: "only screen and (max-width: 767px)";
         padding: 10px;
     }
 }
+
+.heatmap-legend-with-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .heatmap-legend-title {
+        font-size: 12px;
+        max-height: 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        max-width: 210px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .heatmap-legend-boxes {
+        display: flex;
+        flex-direction: row;
+    }
+
+    justify-content: flex-start;
+    flex-direction: column;
+
+    &.horizontal {
+        justify-content: flex-end;
+        flex-direction: row;
+
+        .heatmap-legend-boxes {
+            flex-direction: column;
+        }
+
+        .heatmap-legend-title {
+            margin-bottom: 0;
+            margin-right: 10px;
+            align-self: center;
+            min-width: 50px;
+        }
+    }
+}
