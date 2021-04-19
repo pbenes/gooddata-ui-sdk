@@ -408,7 +408,8 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         // Set legend position by bucket items and environment
         set(supportedControls, "legend.position", legendPosition);
         if (this.environment === DASHBOARDS_ENVIRONMENT) {
-            set(supportedControls, "legend.responsive", true);
+            const legendResponsiveness = this.featureFlags["enableKDWidgetCustomHeight"] ? "popup" : true;
+            set(supportedControls, "legend.responsive", legendResponsiveness);
         }
 
         supportedControls = getHighchartsAxisNameConfiguration(

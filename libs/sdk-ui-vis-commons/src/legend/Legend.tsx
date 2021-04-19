@@ -18,7 +18,7 @@ import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
  */
 export interface ILegendProps {
     legendDetails?: any;
-    responsive?: boolean;
+    responsive?: boolean | "popup";
     legendItemsEnabled?: any[];
     height?: number;
     position: string;
@@ -140,8 +140,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        // const { responsive, showFluidLegend, heatmapLegend, legendDetails } = this.props;
-        const { heatmapLegend, legendDetails } = this.props;
+        const { responsive, heatmapLegend, legendDetails } = this.props;
 
         if (!legendDetails) {
             return null;
@@ -166,8 +165,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
     private getHeatmapLegendPosition(legendDetails: any) {
         const { locale, format, responsive, position } = this.props;
         const { showFluidLegend } = this.props;
-        // if (responsive === "popup") {
-        if (true) {
+        if (responsive === "popup") {
             return legendDetails?.position;
         } else {
             const isSmall = Boolean(responsive && showFluidLegend);
@@ -184,6 +182,8 @@ export class Legend extends React.PureComponent<ILegendProps> {
         const { showFluidLegend } = this.props;
         const series = this.getSeries();
         // TODO: isSmall also for new popup cases, legend sometimes overflows
+        // responsive === true || responsive === "popup"
+        // TODO: if small also, it does not work for left/right legend (needs css tweak)
         const isSmall = Boolean(responsive && showFluidLegend);
         let finalPosition = this.getHeatmapLegendPosition(legendDetails);
         const title = legendDetails?.name;
