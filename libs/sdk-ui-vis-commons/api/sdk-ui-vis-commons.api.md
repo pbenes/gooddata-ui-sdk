@@ -265,7 +265,7 @@ export interface ILegendProps {
     // (undocumented)
     legendItemsEnabled?: any[];
     // (undocumented)
-    legendName?: string;
+    legendLabel?: string;
     // (undocumented)
     locale?: string;
     // (undocumented)

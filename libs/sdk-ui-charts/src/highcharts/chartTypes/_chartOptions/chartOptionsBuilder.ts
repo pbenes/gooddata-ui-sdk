@@ -476,7 +476,7 @@ export function getChartOptions(
             type,
             stacking: null,
             legendLayout: "horizontal",
-            legendName: unwrap(measureGroup?.items[0])?.name,
+            legendLabel: unwrap(measureGroup?.items[0])?.name,
             title: {
                 x: viewByAttribute ? viewByAttribute.name : "",
                 y: stackByAttribute ? stackByAttribute.name : "",
@@ -570,7 +570,7 @@ export function getChartOptions(
         hasStackByAttribute: Boolean(stackByAttribute),
         hasViewByAttribute: Boolean(viewByAttribute),
         legendLayout: config.legendLayout || "horizontal",
-        legendName: stackByAttribute?.name,
+        legendLabel: stackByAttribute?.name,
         xAxes,
         yAxes,
         data: {

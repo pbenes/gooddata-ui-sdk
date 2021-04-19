@@ -116,7 +116,7 @@ export interface IChartOptions {
     colorAssignments?: IColorAssignment[];
     colorPalette?: IColorPalette;
     forceDisableDrillOnAxes?: boolean;
-    legendName?: string;
+    legendLabel?: string;
 }
 
 export interface IPatternOptionsObject {
