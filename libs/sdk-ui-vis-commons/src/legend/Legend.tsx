@@ -32,6 +32,7 @@ export interface ILegendProps {
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     onItemClick(item: any): void;
     validateOverHeight(legendClient: Rect): void;
+    contentDimensions: { width: number; height: number };
 }
 
 /**
@@ -143,10 +144,18 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { responsive, heatmapLegend, showFluidLegend, legendLabel, position, maximumRows } = this.props;
+        const {
+            contentDimensions,
+            responsive,
+            heatmapLegend,
+            showFluidLegend,
+            legendLabel,
+            position,
+            maximumRows,
+        } = this.props;
 
         if (heatmapLegend) {
-            return this.renderHeatmapLegend();
+            return this.renderHeatmapLegend(contentDimensions);
         }
 
         if (responsive === "popup") {
@@ -161,14 +170,18 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return this.renderStatic();
     }
 
-    private renderHeatmapLegend = (): React.ReactNode => {
+    private renderHeatmapLegend = (contentDimensions: { width: number; height: number }): React.ReactNode => {
         const { locale, format, responsive, position, legendLabel } = this.props;
         const { showFluidLegend } = this.props;
         const series = this.getSeries();
-        // TODO: isSmall also for new popup cases, legend sometimes overflows
-        // responsive === true || responsive === "popup"
-        // TODO: if small also, it does not work for left/right legend (needs css tweak)
-        const isSmall = Boolean(responsive && showFluidLegend);
+        const isFluidResponsive = Boolean(responsive === true && showFluidLegend);
+        const isPopupResponsive =
+            (position === TOP || position === BOTTOM) &&
+            responsive === "popup" &&
+            contentDimensions.width &&
+            contentDimensions.width < 460;
+
+        const isSmall = isFluidResponsive || isPopupResponsive;
 
         return (
             <IntlWrapper locale={locale}>
