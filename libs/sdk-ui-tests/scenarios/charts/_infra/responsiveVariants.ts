@@ -11,6 +11,7 @@ const SizeVariants: Array<IResponsiveSize> = [
     { label: "310x230", width: 310, height: 230 },
     { label: "620x230", width: 620, height: 230 },
     { label: "820x530", width: 820, height: 530 },
+    { label: "820x250", width: 820, height: 250 },
 ];
 
 export function legendResponsiveScenarios<T extends VisProps>(
