@@ -255,6 +255,11 @@ export interface ILegendOptions {
 // @internal (undocumented)
 export interface ILegendProps {
     // (undocumented)
+    contentDimensions: {
+        width: number;
+        height: number;
+    };
+    // (undocumented)
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     // (undocumented)
     format?: string;

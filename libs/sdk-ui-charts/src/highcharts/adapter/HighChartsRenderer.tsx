@@ -265,7 +265,11 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    public getLegendDetails(contentRect: any, legendProps: any, chartOptions: any): ILegendDetails {
+    public getLegendDetails(
+        contentRect: ContentRect,
+        legendProps: ILegendOptions,
+        chartOptions: any,
+    ): ILegendDetails {
         const { width, height } = contentRect?.client;
 
         if (!width || !height) {
@@ -338,6 +342,7 @@ export class HighChartsRenderer extends React.PureComponent<
             series: items,
             onItemClick: this.onLegendItemClick,
             legendItemsEnabled: this.state.legendItemsEnabled,
+            heatmapLegend: isHeatmap(type),
             height,
             legendLabel,
             maximumRows: legendDetails?.maxRows,
@@ -346,7 +351,6 @@ export class HighChartsRenderer extends React.PureComponent<
             locale,
             showFluidLegend,
             validateOverHeight: () => {},
-            heatmapLegend: isHeatmap(legend),
             contentDimensions: contentRect?.client,
         };
 
