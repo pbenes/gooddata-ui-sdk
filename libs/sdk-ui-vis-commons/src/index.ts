@@ -65,6 +65,7 @@ export {
     IRange,
     LegendOptionsItemType,
     ItemBorderRadiusPredicate,
+    IHeatmapLegendSize,
 } from "./legend/types";
 
 export { fixEmptyHeaderItems } from "./utils/fixEmptyHeaderItems";

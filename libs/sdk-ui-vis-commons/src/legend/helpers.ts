@@ -6,7 +6,7 @@ import last from "lodash/last";
 import inRange from "lodash/inRange";
 import isEqual from "lodash/isEqual";
 import { numberFormat } from "@gooddata/numberjs";
-import { IColorLegendItem } from "./types";
+import { IColorLegendItem, IHeatmapLegendSize } from "./types";
 import { LEFT, RIGHT, TOP, BOTTOM } from "./PositionTypes";
 import { ITheme } from "@gooddata/sdk-backend-spi";
 import { parseRGBString } from "../coloring/color";
@@ -297,7 +297,7 @@ const SMALL_LABEL_LENGTH_THRESHOLDS = [4, 7, 9, 13, 15];
 
 function getColorLegendLabelsConfiguration(
     legendLabels: string[],
-    size: "large" | "medium" | "small",
+    size: IHeatmapLegendSize,
     isVertical: boolean,
 ) {
     const numberOfLabels = legendLabels.length;
@@ -317,11 +317,16 @@ function getColorLegendLabelsConfiguration(
 function getHorizontalShorteningLabelConfig(
     labelLengths: number[],
     maxLabelLength: number,
-    size: "large" | "medium" | "small",
+    size: IHeatmapLegendSize,
     numberOfLabels: number,
 ): IColorLabelConfigItem[] {
     const shorteningLevel = getColorLabelShorteningLevel(labelLengths, maxLabelLength);
     if (size === "small") {
+        // return [
+        //     { type: "label", labelIndex: 0, style: { width: 41, textAlign: ALEFT } },
+        //     { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
+        //     { type: "label", labelIndex: 7, style: { width: 41, textAlign: ARIGHT } },
+        // ];
         return [
             { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
             { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
@@ -483,7 +488,7 @@ export function getColorLegendConfiguration(
     series: IColorLegendItem[],
     format: string | undefined,
     numericSymbols: string[],
-    size: "large" | "medium" | "small",
+    size: IHeatmapLegendSize,
     position: string | null,
     theme?: ITheme,
 ): IColorLegendConfig {

@@ -108,3 +108,8 @@ export type PositionType = "left" | "right" | "top" | "bottom" | "auto";
  * @internal
  */
 export type ItemBorderRadiusPredicate = (item: any) => boolean;
+
+/**
+ * @internal
+ */
+export type IHeatmapLegendSize = "large" | "medium" | "small";
