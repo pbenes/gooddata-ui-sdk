@@ -153,7 +153,7 @@ export interface IColorLegendProps {
     // (undocumented)
     position: string;
     // (undocumented)
-    size?: "large" | "medium" | "small";
+    size?: IHeatmapLegendSize;
     // (undocumented)
     theme?: ITheme;
     // (undocumented)
@@ -227,10 +227,13 @@ export interface IHeatmapLegendProps {
     // (undocumented)
     series: IHeatmapLegendItem[];
     // (undocumented)
-    size: "large" | "medium" | "small";
+    size: IHeatmapLegendSize;
     // (undocumented)
     title?: string;
 }
+
+// @internal (undocumented)
+export type IHeatmapLegendSize = "large" | "medium" | "small";
 
 // @internal (undocumented)
 export interface ILegendOptions {

@@ -1,4 +1,4 @@
-// (C) 2019-2020 GoodData Corporation
+// (C) 2019-2021 GoodData Corporation
 
 /*
  *
@@ -63,6 +63,7 @@ export {
     IRange,
     LegendOptionsItemType,
     ItemBorderRadiusPredicate,
+    IHeatmapLegendSize,
 } from "./legend/types";
 
 export { fixEmptyHeaderItems } from "./utils/fixEmptyHeaderItems";
