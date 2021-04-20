@@ -5,6 +5,7 @@ import { dataLabelCustomizer } from "../_infra/dataLabelVariants";
 import { legendCustomizer } from "../_infra/legendVariants";
 import { HeatmapWithMeasureRowsAndColumns } from "./base";
 import { ScenarioGroupNames } from "../_infra/groupNames";
+import { legendResponsiveScenarios } from "../_infra/responsiveVariants";
 import { legendResponsiveVariants } from "../_infra/legendResponsiveVariants";
 
 const legendScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
@@ -13,11 +14,13 @@ const legendScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
     .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
     .addScenarios("legend position", HeatmapWithMeasureRowsAndColumns, legendCustomizer);
 
-const legendResponziveScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
-    .withGroupNames(ScenarioGroupNames.ConfigurationCustomization)
-    .withVisualTestConfig({ groupUnder: "legend responsive" })
-    .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
-    .addScenarios("legend position", HeatmapWithMeasureRowsAndColumns, legendResponsiveVariants);
+const legendResponziveScenarios = legendResponsiveScenarios(
+    "Heatmap",
+    ScenarioGroupNames.LegendResponsive,
+    Heatmap,
+    HeatmapWithMeasureRowsAndColumns,
+    legendResponsiveVariants,
+);
 
 const dataLabelScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
     .withGroupNames(ScenarioGroupNames.ConfigurationCustomization)
@@ -25,4 +28,4 @@ const dataLabelScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
     .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
     .addScenarios("data labels", HeatmapWithMeasureRowsAndColumns, dataLabelCustomizer);
 
-export default [legendScenarios, legendResponziveScenarios, dataLabelScenarios];
+export default [legendScenarios, ...legendResponziveScenarios, dataLabelScenarios];
