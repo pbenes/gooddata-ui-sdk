@@ -263,9 +263,23 @@ export class HighChartsRenderer extends React.PureComponent<
         chartOptions: any,
     ): ILegendDetails {
         if (legendOptions.responsive !== "popup") {
+            const { showFluidLegend } = this.state;
+            const { type } = chartOptions;
+            const { legend } = this.props;
+            let pos = legend.position;
+            if (isHeatmap(type)) {
+                const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
+                if (isSmall) {
+                    pos = legend.position === TOP ? TOP : BOTTOM;
+                } else {
+                    pos = legend.position || RIGHT;
+                }
+            }
+
             return {
-                position: this.props.legend.position,
+                position: pos,
                 renderPopUp: false,
+                name: null,
                 type: "fallback, non-popup",
             };
         }
@@ -319,22 +333,6 @@ export class HighChartsRenderer extends React.PureComponent<
             type = VisualizationTypes.PIE;
         }
 
-        // TODO: wrap method
-        let pos = legend.position;
-        if (legend.responsive === "popup") {
-            pos = legendDetails?.position;
-        } else {
-            if (isHeatmap(type)) {
-                const isSmall = Boolean(legend.responsive && showFluidLegend);
-                if (isSmall) {
-                    pos = legend.position === TOP ? TOP : BOTTOM;
-                } else {
-                    pos = legend.position || RIGHT;
-                }
-            }
-        }
-
-        const legendLabel = legend.responsive === "popup" ? legendDetails?.name : null;
         const legendProps: ILegendProps = {
             responsive: legend.responsive,
             enableBorderRadius: legend.enableBorderRadius,
@@ -344,9 +342,9 @@ export class HighChartsRenderer extends React.PureComponent<
             legendItemsEnabled: this.state.legendItemsEnabled,
             heatmapLegend: isHeatmap(type),
             height,
-            legendLabel,
+            legendLabel: legendDetails?.name,
             maximumRows: legendDetails?.maxRows,
-            position: pos,
+            position: legendDetails.position,
             format,
             locale,
             showFluidLegend,
