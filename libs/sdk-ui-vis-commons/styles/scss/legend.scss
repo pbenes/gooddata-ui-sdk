@@ -242,7 +242,6 @@ $responsive-legend: "only screen and (max-width: 767px)";
             }
 
             &.medium {
-                background: yellow;
                 .boxes {
                     // refactor?
                     // stylelint-disable-next-line max-nesting-depth
@@ -259,7 +258,6 @@ $responsive-legend: "only screen and (max-width: 767px)";
             }
 
             &.small {
-                background: red;
                 .boxes {
                     // refactor?
                     // stylelint-disable-next-line max-nesting-depth
