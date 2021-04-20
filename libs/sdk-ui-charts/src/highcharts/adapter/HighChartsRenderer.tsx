@@ -301,7 +301,7 @@ export class HighChartsRenderer extends React.PureComponent<
         }
     }
 
-    public renderLegend(legendDetails: ILegendDetails): React.ReactNode {
+    public renderLegend(legendDetails: ILegendDetails, contentRect: ContentRect): React.ReactNode {
         const { chartOptions, legend, height, legendRenderer, locale } = this.props;
         const { items, format } = legend;
         const { showFluidLegend } = this.state;
@@ -338,7 +338,6 @@ export class HighChartsRenderer extends React.PureComponent<
             series: items,
             onItemClick: this.onLegendItemClick,
             legendItemsEnabled: this.state.legendItemsEnabled,
-            heatmapLegend: isHeatmap(type),
             height,
             legendLabel,
             maximumRows: legendDetails?.maxRows,
@@ -347,6 +346,8 @@ export class HighChartsRenderer extends React.PureComponent<
             locale,
             showFluidLegend,
             validateOverHeight: () => {},
+            heatmapLegend: isHeatmap(legend),
+            contentDimensions: contentRect?.client,
         };
 
         return legendRenderer(legendProps);
@@ -424,9 +425,9 @@ export class HighChartsRenderer extends React.PureComponent<
             <div className={classes}>
                 <div className={classes} ref={this.highchartsRendererRef}>
                     {this.renderZoomOutButton()}
-                    {isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect)}
                     {this.renderHighcharts()}
-                    {!isLegendRenderedFirst && this.renderLegend(legendDetails)}
+                    {!isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect)}
                 </div>
             </div>
         );
