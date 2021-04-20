@@ -44,15 +44,13 @@ function renderH(responsive: boolean | "popup") {
     );
 }
 export const HeatmapExample: React.FC = () => {
-    /*
-     *
+    // TODO: delete this, we will use storybook
+    return (
+        <>
             <div>true</div>
             {renderH(true)}
             <div>false</div>
             {renderH(false)}
-     * */
-    return (
-        <>
             <div>popup</div>
             {renderH("popup")}
         </>
