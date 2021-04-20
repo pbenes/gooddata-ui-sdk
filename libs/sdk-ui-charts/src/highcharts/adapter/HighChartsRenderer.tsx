@@ -260,18 +260,17 @@ export class HighChartsRenderer extends React.PureComponent<
         contentRect: ContentRect,
         legendOptions: ILegendOptions,
         chartOptions: any,
+        showFluidLegend: boolean,
     ): ILegendDetails {
         if (legendOptions.responsive !== "popup") {
-            const { showFluidLegend } = this.state;
             const { type } = chartOptions;
-            const { legend } = this.props;
-            let pos = legend.position;
+            let pos = legendOptions.position;
             if (isHeatmap(type)) {
                 const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
                 if (isSmall) {
-                    pos = legend.position === TOP ? TOP : BOTTOM;
+                    pos = legendOptions.position === TOP ? TOP : BOTTOM;
                 } else {
-                    pos = legend.position || RIGHT;
+                    pos = legendOptions.position || RIGHT;
                 }
             }
 
@@ -401,7 +400,12 @@ export class HighChartsRenderer extends React.PureComponent<
 
     private renderVisualization(contentRect: ContentRect) {
         const { legend, chartOptions } = this.props;
-        const legendDetails = this.getLegendDetails(contentRect, legend, chartOptions);
+        const legendDetails = this.getLegendDetails(
+            contentRect,
+            legend,
+            chartOptions,
+            this.state.showFluidLegend,
+        );
         if (!legendDetails) {
             return null;
         }
