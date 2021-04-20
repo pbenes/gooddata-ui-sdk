@@ -185,17 +185,7 @@ export class HighChartsRenderer extends React.PureComponent<
         this.chartRef = chartRef;
     };
 
-    public getLegendPosition(legendDetails: ILegendDetails | null) {
-        const { responsive } = this.props?.legend;
-        if (responsive === "popup") {
-            return legendDetails?.position;
-        }
-
-        return this.props.legend.position;
-    }
-
-    public getFlexDirection(legendDetails: ILegendDetails): React.CSSProperties["flexDirection"] {
-        const position = this.getLegendPosition(legendDetails);
+    public getFlexDirection(position: string): React.CSSProperties["flexDirection"] {
         if (position === TOP || position === BOTTOM) {
             return "column";
         }
@@ -269,9 +259,17 @@ export class HighChartsRenderer extends React.PureComponent<
 
     public getLegendDetails(
         contentRect: ContentRect,
-        legendProps: ILegendOptions,
+        legendOptions: ILegendOptions,
         chartOptions: any,
     ): ILegendDetails {
+        if (legendOptions.responsive !== "popup") {
+            return {
+                position: this.props.legend.position,
+                renderPopUp: false,
+                type: "fallback, non-popup",
+            };
+        }
+
         const { width, height } = contentRect?.client;
 
         if (!width || !height) {
@@ -283,14 +281,14 @@ export class HighChartsRenderer extends React.PureComponent<
         if (width < 630) {
             return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
         } else {
-            const isLegendTopBottom = legendProps.position === "top" || legendProps.position === "bottom";
+            const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
             if (height < 280) {
                 return { ...name, position: RIGHT, type: "right, paging", renderPopUp: false };
             } else if (height < 360) {
                 return {
                     ...name,
-                    position: legendProps.position,
+                    position: legendOptions.position,
                     renderPopUp: isLegendTopBottom,
                     maxRows: 1,
                     type: "user, max 1 row for top/bottom",
@@ -298,7 +296,7 @@ export class HighChartsRenderer extends React.PureComponent<
             } else {
                 return {
                     ...name,
-                    position: legendProps.position,
+                    position: legendOptions.position,
                     renderPopUp: isLegendTopBottom,
                     maxRows: 2,
                     type: "user, max 2 rows for top/bottom",
@@ -412,21 +410,18 @@ export class HighChartsRenderer extends React.PureComponent<
             return null;
         }
 
-        const { showFluidLegend } = this.state;
-
         const classes = cx(
             "viz-line-family-chart-wrap",
             "s-viz-line-family-chart-wrap",
             legend.responsive ? "responsive-legend" : "non-responsive-legend",
             {
-                [`flex-direction-${this.getFlexDirection(legendDetails)}`]: true,
-                "legend-position-bottom": this.isBottomLegend(legendDetails),
+                [`flex-direction-${this.getFlexDirection(legendDetails.position)}`]: true,
+                "legend-position-bottom": legendDetails.position === BOTTOM,
             },
         );
 
-        let legendPosition = this.getLegendPosition(legendDetails);
-        const isLegendRenderedFirst: boolean =
-            legendPosition === TOP || legendPosition === LEFT || showFluidLegend;
+        let legendPosition = legendDetails.position;
+        const isLegendRenderedFirst: boolean = legendPosition === TOP || legendPosition === LEFT;
 
         return (
             <div className={classes}>
@@ -467,9 +462,5 @@ export class HighChartsRenderer extends React.PureComponent<
         if (isPieOrDonutChart(type) && chartRef) {
             alignChart(chartRef.getChart(), verticalAlign);
         }
-    }
-
-    private isBottomLegend(legendDetails: ILegendDetails): boolean {
-        return this.getLegendPosition(legendDetails) === BOTTOM;
     }
 }
