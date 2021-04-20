@@ -240,26 +240,45 @@ $responsive-legend: "only screen and (max-width: 767px)";
                     width: 50px;
                 }
             }
+
+            &.medium {
+                background: yellow;
+                .boxes {
+                    // refactor?
+                    // stylelint-disable-next-line max-nesting-depth
+                    .box {
+                        width: 40px;
+
+                        // refactor?
+                        // stylelint-disable-next-line max-nesting-depth
+                        &.middle {
+                            width: 36px;
+                        }
+                    }
+                }
+            }
+
+            &.small {
+                background: red;
+                .boxes {
+                    // refactor?
+                    // stylelint-disable-next-line max-nesting-depth
+                    .box {
+                        // TODO: why important is needed here?
+                        width: 18px; // !important;
+
+                        // refactor?
+                        // stylelint-disable-next-line max-nesting-depth
+                        &.middle {
+                            width: 16px; // !important;
+                        }
+                    }
+                }
+            }
         }
 
         &.position-bottom {
             margin-top: 2px;
-        }
-
-        &.small {
-            .boxes {
-                // refactor?
-                // stylelint-disable-next-line max-nesting-depth
-                .box {
-                    width: 40px;
-
-                    // refactor?
-                    // stylelint-disable-next-line max-nesting-depth
-                    &.middle {
-                        width: 36px;
-                    }
-                }
-            }
         }
 
         &.position-left,

@@ -9,7 +9,7 @@ import { TOP, BOTTOM } from "./PositionTypes";
  */
 export interface IHeatmapLegendProps {
     series: IHeatmapLegendItem[];
-    isSmall: boolean;
+    size: "large" | "medium" | "small";
     format?: string;
     numericSymbols: string[];
     position: string;
@@ -21,7 +21,7 @@ export interface IHeatmapLegendProps {
  */
 export class HeatmapLegend extends React.PureComponent<IHeatmapLegendProps> {
     public render(): React.ReactNode {
-        const { title, series, format, numericSymbols, isSmall, position } = this.props;
+        const { title, series, format, numericSymbols, size, position } = this.props;
         const data = series.map(
             (item: IHeatmapLegendItem): IColorLegendItem => {
                 const { range, color } = item;
@@ -33,7 +33,7 @@ export class HeatmapLegend extends React.PureComponent<IHeatmapLegendProps> {
             <ColorLegend
                 data={data}
                 format={format}
-                isSmall={isSmall}
+                size={size}
                 numericSymbols={numericSymbols}
                 position={position}
                 title={title}

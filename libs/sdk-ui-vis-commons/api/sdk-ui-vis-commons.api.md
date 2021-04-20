@@ -30,7 +30,7 @@ export function calculateHeadlineHeightFontSize(secondaryItem?: boolean, clientH
 };
 
 // @internal (undocumented)
-export const ColorLegend: React_2.ComponentType<Pick<IColorLegendProps, "data" | "title" | "format" | "position" | "numericSymbols" | "isSmall">>;
+export const ColorLegend: React_2.ComponentType<Pick<IColorLegendProps, "data" | "title" | "format" | "size" | "position" | "numericSymbols">>;
 
 // @internal (undocumented)
 export abstract class ColorStrategy implements IColorStrategy {
@@ -161,11 +161,11 @@ export interface IColorLegendProps {
     // (undocumented)
     format?: string;
     // (undocumented)
-    isSmall?: boolean;
-    // (undocumented)
     numericSymbols: string[];
     // (undocumented)
     position: string;
+    // (undocumented)
+    size?: "large" | "medium" | "small";
     // (undocumented)
     theme?: ITheme;
     // (undocumented)
@@ -241,13 +241,13 @@ export interface IHeatmapLegendProps {
     // (undocumented)
     format?: string;
     // (undocumented)
-    isSmall: boolean;
-    // (undocumented)
     numericSymbols: string[];
     // (undocumented)
     position: string;
     // (undocumented)
     series: IHeatmapLegendItem[];
+    // (undocumented)
+    size: "large" | "medium" | "small";
     // (undocumented)
     title?: string;
 }

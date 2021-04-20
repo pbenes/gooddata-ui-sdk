@@ -214,7 +214,7 @@ const colorLegendConfigMatrix: IColorLabelConfigItem[][] = [
 
 const defaultHeatmapSmallLegendStyle = { width: 40, textAlign: ACENTER };
 
-export const heatmapSmallLegendConfigMatrix: IColorLabelConfigItem[][] = [
+export const heatmapMediumLegendConfigMatrix: IColorLabelConfigItem[][] = [
     [
         { type: "label", labelIndex: 0, style: { width: 138, textAlign: ALEFT } },
         { type: "label", labelIndex: 7, style: { width: 138, textAlign: ARIGHT } },
@@ -295,16 +295,21 @@ export function buildColorLabelsConfig(labels: string[], config: any[]): any[] {
 const LABEL_LENGTH_THRESHOLDS = [5, 8, 10, 15, 18];
 const SMALL_LABEL_LENGTH_THRESHOLDS = [4, 7, 9, 13, 15];
 
-function getColorLegendLabelsConfiguration(legendLabels: string[], isSmall: boolean, isVertical: boolean) {
+function getColorLegendLabelsConfiguration(
+    legendLabels: string[],
+    size: "large" | "medium" | "small",
+    isVertical: boolean,
+) {
     const numberOfLabels = legendLabels.length;
     const firstLabelLength = head(legendLabels)?.length ?? 0;
     const lastLabelLength = last(legendLabels)?.length ?? 0;
     const maxLabelLength = firstLabelLength > lastLabelLength ? firstLabelLength : lastLabelLength;
-    const labelLengths = isSmall ? SMALL_LABEL_LENGTH_THRESHOLDS : LABEL_LENGTH_THRESHOLDS;
+    // TODO
+    const labelLengths = size === "medium" ? SMALL_LABEL_LENGTH_THRESHOLDS : LABEL_LENGTH_THRESHOLDS;
 
     const shorteningConfig = isVertical
         ? verticalHeatmapConfig
-        : getHorizontalShorteningLabelConfig(labelLengths, maxLabelLength, isSmall, numberOfLabels);
+        : getHorizontalShorteningLabelConfig(labelLengths, maxLabelLength, size, numberOfLabels);
 
     return buildColorLabelsConfig(legendLabels, shorteningConfig);
 }
@@ -312,13 +317,21 @@ function getColorLegendLabelsConfiguration(legendLabels: string[], isSmall: bool
 function getHorizontalShorteningLabelConfig(
     labelLengths: number[],
     maxLabelLength: number,
-    isSmall: boolean,
+    size: "large" | "medium" | "small",
     numberOfLabels: number,
 ): IColorLabelConfigItem[] {
     const shorteningLevel = getColorLabelShorteningLevel(labelLengths, maxLabelLength);
-    if (isSmall) {
-        return heatmapSmallLegendConfigMatrix[shorteningLevel];
+    if (size === "small") {
+        return [
+            { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
+            { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
+        ];
     }
+
+    if (size === "medium") {
+        return heatmapMediumLegendConfigMatrix[shorteningLevel];
+    }
+
     if (numberOfLabels === 8) {
         return heatmapLegendConfigMatrix[shorteningLevel];
     }
@@ -470,20 +483,16 @@ export function getColorLegendConfiguration(
     series: IColorLegendItem[],
     format: string | undefined,
     numericSymbols: string[],
-    isSmall: boolean,
+    size: "large" | "medium" | "small",
     position: string | null,
     theme?: ITheme,
 ): IColorLegendConfig {
     const legendLabels = getColorLegendLabels(series, format, numericSymbols);
 
-    const classes = ["viz-legend", "color-legend", `position-${position}`];
-
-    if (isSmall) {
-        classes.push("small");
-    }
+    const classes = ["viz-legend", "color-legend", `position-${position}`, size];
 
     const isVertical = position === LEFT || position === RIGHT;
-    const finalLabels = getColorLegendLabelsConfiguration(legendLabels, isSmall, isVertical);
+    const finalLabels = getColorLegendLabelsConfiguration(legendLabels, size, isVertical);
     const boxes = getColorBoxes(series, theme);
 
     return {

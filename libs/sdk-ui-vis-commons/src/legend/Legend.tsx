@@ -181,7 +181,13 @@ export class Legend extends React.PureComponent<ILegendProps> {
             contentDimensions.width &&
             contentDimensions.width < 460;
 
-        const isSmall = isFluidResponsive || isPopupResponsive;
+        let size: "large" | "medium" | "small" = "large";
+        if (isFluidResponsive) {
+            size = "medium";
+        }
+        if (isPopupResponsive) {
+            size = "small";
+        }
 
         return (
             <IntlWrapper locale={locale}>
@@ -191,7 +197,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
                             title={legendLabel}
                             series={series}
                             format={format}
-                            isSmall={isSmall}
+                            size={size}
                             numericSymbols={props.numericSymbols}
                             position={position}
                         />
