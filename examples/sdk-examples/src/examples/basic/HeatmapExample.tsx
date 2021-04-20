@@ -44,12 +44,15 @@ function renderH(responsive: boolean | "popup") {
     );
 }
 export const HeatmapExample: React.FC = () => {
-    return (
-        <>
+    /*
+     *
             <div>true</div>
             {renderH(true)}
             <div>false</div>
             {renderH(false)}
+     * */
+    return (
+        <>
             <div>popup</div>
             {renderH("popup")}
         </>

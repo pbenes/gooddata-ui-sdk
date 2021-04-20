@@ -255,6 +255,7 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
+    // TODO: cleanup this, remove tye "type" annotation
     public getLegendDetails(
         contentRect: ContentRect,
         legendOptions: ILegendOptions,

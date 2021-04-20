@@ -19,7 +19,7 @@ export interface IColorLegendProps {
     data: IColorLegendItem[];
     numericSymbols: string[];
     position: string;
-    isSmall?: boolean;
+    size?: "large" | "medium" | "small";
     format?: string;
     theme?: ITheme;
     title?: string;
@@ -96,7 +96,7 @@ function LegendWithTitle(props: { title: string; position: string; children: any
  * @internal
  */
 export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
-    const { title, data, format, numericSymbols, isSmall = false, position, theme } = colorLegendProps;
+    const { title, data, format, numericSymbols, size = "large", position, theme } = colorLegendProps;
     if (!data.length) {
         return null;
     }
@@ -105,8 +105,7 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
         data,
         format,
         numericSymbols,
-        // 350 vs 276
-        isSmall,
+        size,
         position,
         theme,
     );
