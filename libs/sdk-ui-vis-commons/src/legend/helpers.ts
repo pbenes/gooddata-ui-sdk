@@ -478,7 +478,7 @@ function getColorLegendLabels(
             value = get(series, `${index}.range.from`, 0);
         }
 
-        return "12"; //formatLegendLabel(value, format, diff, numericSymbols);
+        return formatLegendLabel(value, format, diff, numericSymbols);
     });
 }
 
