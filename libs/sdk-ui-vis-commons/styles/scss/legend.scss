@@ -262,14 +262,7 @@ $responsive-legend: "only screen and (max-width: 767px)";
                     // refactor?
                     // stylelint-disable-next-line max-nesting-depth
                     .box {
-                        // TODO: why important is needed here?
-                        width: 18px; // !important;
-
-                        // refactor?
-                        // stylelint-disable-next-line max-nesting-depth
-                        &.middle {
-                            width: 16px; // !important;
-                        }
+                        width: 18px;
                     }
                 }
             }
