@@ -111,7 +111,7 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
     );
     const classes = cx(...config.classes);
     const renderLabelsFirst = config.position === TOP;
-    const { boxes, labels } = config;
+    let { boxes, labels } = config;
 
     const renderedBoxes = renderLegendBoxes(renderLabelsFirst, boxes, labels);
     return (

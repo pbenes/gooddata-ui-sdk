@@ -214,6 +214,35 @@ const colorLegendConfigMatrix: IColorLabelConfigItem[][] = [
 
 const defaultHeatmapSmallLegendStyle = { width: 40, textAlign: ACENTER };
 
+export const heatmapSmallLegendConfigMatrix: IColorLabelConfigItem[][] = [
+    [
+        { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
+        { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
+    ],
+    [
+        { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
+        { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
+    ],
+    [
+        { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
+        { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
+    ],
+    [
+        { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
+        { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
+    ],
+    [
+        { type: "label", labelIndex: 0, style: { width: 32, textAlign: ALEFT } },
+        { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
+        { type: "label", labelIndex: 7, style: { width: 50, textAlign: ARIGHT } },
+    ],
+    [
+        { type: "label", labelIndex: 0, style: { width: 32, textAlign: ALEFT } },
+        { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
+        { type: "label", labelIndex: 7, style: { width: 50, textAlign: ARIGHT } },
+    ],
+];
+
 export const heatmapMediumLegendConfigMatrix: IColorLabelConfigItem[][] = [
     [
         { type: "label", labelIndex: 0, style: { width: 138, textAlign: ALEFT } },
@@ -292,8 +321,11 @@ export function buildColorLabelsConfig(labels: string[], config: any[]): any[] {
         .filter((value: any) => value !== null);
 }
 
-const LABEL_LENGTH_THRESHOLDS = [5, 8, 10, 15, 18];
-const SMALL_LABEL_LENGTH_THRESHOLDS = [4, 7, 9, 13, 15];
+const LABEL_THRESHOLDS = {
+    large: [5, 8, 10, 15, 18],
+    medium: [4, 7, 9, 13, 15],
+    small: [2, 5, 8, 10, 12],
+};
 
 function getColorLegendLabelsConfiguration(
     legendLabels: string[],
@@ -304,8 +336,7 @@ function getColorLegendLabelsConfiguration(
     const firstLabelLength = head(legendLabels)?.length ?? 0;
     const lastLabelLength = last(legendLabels)?.length ?? 0;
     const maxLabelLength = firstLabelLength > lastLabelLength ? firstLabelLength : lastLabelLength;
-    // TODO
-    const labelLengths = size === "medium" ? SMALL_LABEL_LENGTH_THRESHOLDS : LABEL_LENGTH_THRESHOLDS;
+    const labelLengths = LABEL_THRESHOLDS[size];
 
     const shorteningConfig = isVertical
         ? verticalHeatmapConfig
@@ -322,15 +353,7 @@ function getHorizontalShorteningLabelConfig(
 ): IColorLabelConfigItem[] {
     const shorteningLevel = getColorLabelShorteningLevel(labelLengths, maxLabelLength);
     if (size === "small") {
-        // return [
-        //     { type: "label", labelIndex: 0, style: { width: 41, textAlign: ALEFT } },
-        //     { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
-        //     { type: "label", labelIndex: 7, style: { width: 41, textAlign: ARIGHT } },
-        // ];
-        return [
-            { type: "label", labelIndex: 0, style: { width: 62, textAlign: ALEFT } },
-            { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
-        ];
+        return heatmapSmallLegendConfigMatrix[shorteningLevel];
     }
 
     if (size === "medium") {
