@@ -232,12 +232,12 @@ export const heatmapSmallLegendConfigMatrix: IColorLabelConfigItem[][] = [
         { type: "label", labelIndex: 7, style: { width: 62, textAlign: ARIGHT } },
     ],
     [
-        { type: "label", labelIndex: 0, style: { width: 32, textAlign: ALEFT } },
+        { type: "label", labelIndex: 0, style: { width: 33, textAlign: ALEFT } },
         { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
         { type: "label", labelIndex: 7, style: { width: 50, textAlign: ARIGHT } },
     ],
     [
-        { type: "label", labelIndex: 0, style: { width: 32, textAlign: ALEFT } },
+        { type: "label", labelIndex: 0, style: { width: 33, textAlign: ALEFT } },
         { type: "label", labelIndex: 3, style: { width: 41, textAlign: ACENTER } },
         { type: "label", labelIndex: 7, style: { width: 50, textAlign: ARIGHT } },
     ],
@@ -478,7 +478,7 @@ function getColorLegendLabels(
             value = get(series, `${index}.range.from`, 0);
         }
 
-        return formatLegendLabel(value, format, diff, numericSymbols);
+        return "12"; //formatLegendLabel(value, format, diff, numericSymbols);
     });
 }
 
