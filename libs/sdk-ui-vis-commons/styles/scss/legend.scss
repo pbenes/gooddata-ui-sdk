@@ -166,6 +166,27 @@ $responsive-legend: "only screen and (max-width: 767px)";
             }
         }
 
+        &.position-row {
+            align-items: flex-end;
+            margin-left: 0;
+
+            .series {
+                flex-flow: row wrap;
+                box-sizing: border-box;
+                justify-content: flex-start;
+                width: auto;
+                overflow: hidden;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                min-width: 0; // hack for FF
+                max-width: 100%; // hack for IE
+            }
+
+            .series-item {
+                margin-left: 15px;
+            }
+        }
+
         .series {
             flex-direction: column;
             justify-content: flex-start;
@@ -334,6 +355,38 @@ $responsive-legend: "only screen and (max-width: 767px)";
     .legend-content {
         background: white;
         padding: 10px;
+    }
+}
+
+.legend-popup-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.legend-popup-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+}
+
+.legend-popup-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: $is-focused-background;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $gd-color-state-blank;
+
+        #LegendIcoContent {
+            fill: $gd-color-white;
+        }
     }
 }
 
