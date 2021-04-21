@@ -7,21 +7,16 @@ export interface IResponsiveSize {
     height: number;
 }
 
-const SizeVariants: Array<IResponsiveSize> = [
-    { label: "310x230", width: 310, height: 230 },
-    { label: "620x230", width: 620, height: 230 },
-    { label: "820x530", width: 820, height: 530 },
-    { label: "820x250", width: 820, height: 250 },
-];
-
-export function legendResponsiveScenarios<T extends VisProps>(
+export function responsiveScenarios<T extends VisProps>(
     chart: string,
     groupNames: string[],
     component: React.ComponentType<T>,
     baseProps: UnboundVisProps<T>,
     customizer: ScenarioCustomizer<T>,
+    sizes: Array<IResponsiveSize>,
 ) {
-    return SizeVariants.map((size) => {
+    return sizes.map((size) => {
+        const label = `${size.width}x${size.height} - ${size.label}`;
         return scenariosFor<T>(chart, component)
             .withGroupNames(...groupNames)
             .withVisualTestConfig({
@@ -29,6 +24,6 @@ export function legendResponsiveScenarios<T extends VisProps>(
                 screenshotSize: { width: size.width, height: size.height },
             })
             .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
-            .addScenarios(size.label, baseProps, customizer);
+            .addScenarios(label, baseProps, customizer);
     });
 }
