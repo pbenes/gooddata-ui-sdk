@@ -5,8 +5,8 @@ import { dataLabelCustomizer } from "../_infra/dataLabelVariants";
 import { legendCustomizer } from "../_infra/legendVariants";
 import { HeatmapWithMeasureRowsAndColumns } from "./base";
 import { ScenarioGroupNames } from "../_infra/groupNames";
-import { legendResponsiveScenarios } from "../_infra/responsiveVariants";
-import { legendResponsiveVariants } from "../_infra/legendResponsiveVariants";
+import { responsiveScenarios } from "../_infra/responsiveScenarios";
+import { legendResponsiveVariants, legendResponsiveSizeVariants } from "../_infra/legendResponsiveVariants";
 
 const legendScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
     .withGroupNames(ScenarioGroupNames.ConfigurationCustomization)
@@ -14,12 +14,13 @@ const legendScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
     .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
     .addScenarios("legend position", HeatmapWithMeasureRowsAndColumns, legendCustomizer);
 
-const legendResponziveScenarios = legendResponsiveScenarios(
+const legendResponziveScenarios = responsiveScenarios(
     "Heatmap",
     ScenarioGroupNames.LegendResponsive,
     Heatmap,
     HeatmapWithMeasureRowsAndColumns,
     legendResponsiveVariants,
+    legendResponsiveSizeVariants,
 );
 
 const dataLabelScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)
