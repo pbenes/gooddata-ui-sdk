@@ -10,8 +10,10 @@ import { StaticLegend } from "../StaticLegend";
 import { IPushpinCategoryLegendItem } from "../types";
 
 import { LegendDialog } from "./LegendDialog";
-import { ITEM_HEIGHT } from "../helpers";
 import { LegendList } from "../LegendList";
+
+const LEGEND_ROW_HEIGHT = 20;
+const LEGEND_TOP_BOTTOM_PADDING = 10;
 
 const useCheckOverflow = (): [boolean, (element: HTMLDivElement | null) => void] => {
     const [isOverflow, setOverFlow] = useState(false);
@@ -47,8 +49,10 @@ export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
     }
 
     return (
-        <div onClick={onIconClick} style={{ width: 16 }}>
-            <Icon.LegendMenu />
+        <div className="legend-popup-button">
+            <div onClick={onIconClick} className="legend-popup-icon">
+                <Icon.LegendMenu />
+            </div>
         </div>
     );
 };
@@ -86,13 +90,12 @@ export const RowLegend: React.FC<IRowLegendProps> = (props) => {
     } = props;
     const [isOverflow, checkOverFlow] = useCheckOverflow();
 
-    const LEGEND_HEIGHT = maxRowsCount * ITEM_HEIGHT;
+    const LEGEND_HEIGHT = maxRowsCount * LEGEND_ROW_HEIGHT + LEGEND_TOP_BOTTOM_PADDING;
 
     return (
-        <div style={{ display: "flex", justifyContent: "flex-end", height: LEGEND_HEIGHT }}>
-            <div className={"viz-legend static position-top"}>
+        <div className="legend-popup-row" style={{ height: LEGEND_HEIGHT }}>
+            <div className="viz-legend static position-row">
                 <div
-                    style={{ overflow: "hidden" }}
                     className="series"
                     ref={(element) => {
                         checkOverFlow(element);
@@ -114,13 +117,12 @@ export const RowLegend: React.FC<IRowLegendProps> = (props) => {
 export interface IPopUpLegendProps {
     series: IPushpinCategoryLegendItem[];
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
-    position: string;
     name: string;
     maxRows: number;
 }
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
-    const { position, name, maxRows, series, onLegendItemClick } = props;
+    const { name, maxRows, series, onLegendItemClick } = props;
     const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
@@ -129,14 +131,12 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
 
     const onCloseDialog = () => setDialogOpen(false);
 
-    const classNames = cx("viz-static-legend-wrap", `position-${position}`, dialogId);
-
     return (
-        <div className={classNames}>
+        <div className={dialogId}>
             <RowLegend
                 legendLabel={name}
                 maxRowsCount={maxRows}
-                series={[...series, ...series, ...series]}
+                series={series}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -151,7 +151,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             >
                 <StaticLegend
                     containerHeight={300}
-                    series={[...series, ...series, ...series]}
+                    series={series}
                     position={"left"}
                     onItemClick={onLegendItemClick}
                 />
