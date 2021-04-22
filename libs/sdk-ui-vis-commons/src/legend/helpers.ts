@@ -426,14 +426,20 @@ export function calculateFluidLegend(
     };
 }
 
-function getStaticVisibleItemsCount(containerHeight: number, withPaging: boolean = false) {
+function getStaticVisibleItemsCount(
+    containerHeight: number,
+    columnsNumber: number,
+    withPaging: boolean = false,
+) {
     const pagingHeight = withPaging ? STATIC_PAGING_HEIGHT : 0;
-    return Math.floor((containerHeight - pagingHeight) / ITEM_HEIGHT);
+    const height = containerHeight - pagingHeight;
+    return Math.floor(height / ITEM_HEIGHT) * columnsNumber;
 }
 
 export function calculateStaticLegend(
     seriesCount: number,
     containerHeight: number,
+    columnsNumber: number = 1,
 ): {
     hasPaging: boolean;
     visibleItemsCount: number;
@@ -445,7 +451,7 @@ export function calculateStaticLegend(
         };
     }
 
-    const visibleItemsCount = getStaticVisibleItemsCount(containerHeight);
+    const visibleItemsCount = getStaticVisibleItemsCount(containerHeight, columnsNumber);
     if (visibleItemsCount >= seriesCount) {
         return {
             hasPaging: false,
@@ -454,7 +460,7 @@ export function calculateStaticLegend(
     }
     return {
         hasPaging: true,
-        visibleItemsCount: getStaticVisibleItemsCount(containerHeight, true),
+        visibleItemsCount: getStaticVisibleItemsCount(containerHeight, columnsNumber, true),
     };
 }
 

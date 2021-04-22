@@ -167,7 +167,7 @@ $responsive-legend: "only screen and (max-width: 767px)";
         }
 
         &.position-row {
-            align-items: flex-end;
+            align-items: normal;
             margin-left: 0;
 
             .series {
@@ -184,6 +184,30 @@ $responsive-legend: "only screen and (max-width: 767px)";
 
             .series-item {
                 margin-left: 15px;
+            }
+        }
+
+        &.position-dialog {
+            margin-left: 0;
+
+            .series {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                box-sizing: border-box;
+                justify-content: flex-start;
+                width: auto;
+                overflow: hidden;
+                min-width: 0; // hack for FF
+                max-width: 100%; // hack for IE
+            }
+
+            .series-item {
+                margin-left: 15px;
+                width: 118px;
+            }
+            .paging {
+                justify-content: center;
             }
         }
 

@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 import noop from "lodash/noop";
 import { LegendList } from "./LegendList";
-import { Paging } from "./Paging";
+import { ButtonsOrientationType, Paging } from "./Paging";
 import { BOTTOM, TOP } from "./PositionTypes";
 import { calculateStaticLegend, ITEM_HEIGHT } from "./helpers";
 import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
@@ -38,7 +38,10 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 
     public renderPaging = (visibleItemsCount: number): React.ReactNode => {
         const { page } = this.state;
+        const { position } = this.props;
+
         const pagesCount = Math.ceil(this.props.series.length / visibleItemsCount);
+        const buttonOrientation: ButtonsOrientationType = position === "dialog" ? "leftRight" : "upDown";
 
         return (
             <Paging
@@ -46,6 +49,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
                 pagesCount={pagesCount}
                 showNextPage={this.showNextPage}
                 showPrevPage={this.showPrevPage}
+                buttonsOrientation={buttonOrientation}
             />
         );
     };
@@ -78,16 +82,22 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
             );
         }
 
+        const columnNum = position === "dialog" ? 2 : 1;
+
         const seriesCount = series.length;
-        const { hasPaging, visibleItemsCount } = calculateStaticLegend(seriesCount, containerHeight);
+        const { hasPaging, visibleItemsCount } = calculateStaticLegend(
+            seriesCount,
+            containerHeight,
+            columnNum,
+        );
 
         const start = (page - 1) * visibleItemsCount;
         const end = Math.min(visibleItemsCount * page, series.length);
 
         const pagedSeries = series.slice(start, end);
 
-        const heightOfAvailableSpace = visibleItemsCount * ITEM_HEIGHT;
-        const heightOfVisibleItems = Math.min(visibleItemsCount, seriesCount) * ITEM_HEIGHT;
+        const heightOfAvailableSpace = (visibleItemsCount / columnNum) * ITEM_HEIGHT;
+        const heightOfVisibleItems = Math.min(visibleItemsCount / columnNum, seriesCount) * ITEM_HEIGHT;
         const seriesHeight = shouldFillAvailableSpace ? heightOfAvailableSpace : heightOfVisibleItems;
 
         return (
