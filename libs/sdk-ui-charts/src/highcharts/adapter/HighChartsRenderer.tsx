@@ -293,7 +293,7 @@ export class HighChartsRenderer extends React.PureComponent<
         const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
 
         if (width < 630) {
-            return { ...name, position: TOP, type: "top, 1row", renderPopUp: true };
+            return { ...name, position: TOP, type: "top, 1row", renderPopUp: true, maxRows: 1 };
         } else {
             const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
