@@ -5,6 +5,8 @@ import { dataLabelCustomizer } from "../_infra/dataLabelVariants";
 import { legendCustomizer } from "../_infra/legendVariants";
 import { ColumnChartWithTwoMeasuresAndViewBy } from "./base";
 import { ScenarioGroupNames } from "../_infra/groupNames";
+import { responsiveScenarios } from "../_infra/responsiveScenarios";
+import { legendResponsiveVariants, legendResponsiveSizeVariants } from "../_infra/legendResponsiveVariants";
 
 const legendScenarios = scenariosFor<IColumnChartProps>("ColumnChart", ColumnChart)
     .withGroupNames(ScenarioGroupNames.ConfigurationCustomization)
@@ -18,4 +20,13 @@ const dataLabelScenarios = scenariosFor<IColumnChartProps>("ColumnChart", Column
     .withDefaultTags("vis-config-only", "mock-no-scenario-meta")
     .addScenarios("data labels", ColumnChartWithTwoMeasuresAndViewBy, dataLabelCustomizer);
 
-export default [legendScenarios, dataLabelScenarios];
+const legendResponziveScenarios = responsiveScenarios(
+    "ColumnChart",
+    ScenarioGroupNames.LegendResponsive,
+    ColumnChart,
+    ColumnChartWithTwoMeasuresAndViewBy,
+    legendResponsiveVariants,
+    legendResponsiveSizeVariants,
+);
+
+export default [legendScenarios, ...legendResponziveScenarios, dataLabelScenarios];

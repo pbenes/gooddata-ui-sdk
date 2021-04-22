@@ -136,7 +136,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             <RowLegend
                 legendLabel={name}
                 maxRowsCount={maxRows}
-                series={series}
+                series={[...series, ...series, ...series, ...series, ...series, ...series, ...series]}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -150,10 +150,11 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                 onCloseDialog={onCloseDialog}
             >
                 <StaticLegend
-                    containerHeight={300}
-                    series={series}
-                    position={"left"}
+                    containerHeight={260}
+                    series={[...series, ...series, ...series, ...series, ...series, ...series, ...series]}
+                    position={"dialog"}
                     onItemClick={onLegendItemClick}
+                    shouldFillAvailableSpace={false}
                 />
             </LegendDialog>
         </div>
