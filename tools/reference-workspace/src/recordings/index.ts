@@ -786,6 +786,12 @@ const fp_ff74085f6f31c71f4797251924d3205d = {
     dataView_o0_0s100_1000: require("./uiTestScenarios/executions/ff74085f6f31c71f4797251924d3205d/dataView_o0_0s100_1000.json"),
     dataView_o0_0s22_1000: require("./uiTestScenarios/executions/ff74085f6f31c71f4797251924d3205d/dataView_o0_0s22_1000.json"),
 };
+const fp_e64109cb6d5a6be202121d94ce6812cf = {
+    definition: require("./uiTestScenarios/executions/e64109cb6d5a6be202121d94ce6812cf/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/e64109cb6d5a6be202121d94ce6812cf/executionResult.json"),
+    dataView_all: require("./uiTestScenarios/executions/e64109cb6d5a6be202121d94ce6812cf/dataView_all.json"),
+    scenarios: require("./uiTestScenarios/executions/e64109cb6d5a6be202121d94ce6812cf/scenarios.json"),
+};
 export const Scenarios = {
     ComboChart: {
         MultipleMeasuresAndNoViewBy: { scenarioIndex: 0, execution: fp_00ab8c432637030b305313405b3f4efc },
@@ -980,6 +986,10 @@ export const Scenarios = {
         SingleMeasureWithViewByAndStackBy: {
             scenarioIndex: 3,
             execution: fp_e1030dca208f6b7b3ac060bfdb341df6,
+        },
+        SingleMeasureWithOneViewByAndOneStackByWithMultipleItems: {
+            scenarioIndex: 0,
+            execution: fp_e64109cb6d5a6be202121d94ce6812cf,
         },
     },
     LineChart: {
@@ -1706,6 +1716,9 @@ const i_BulletChart_f3706c5aa88949e26f0d012becf773d7 = {
 const i_BulletChart_f8ec03c3f97f94fd3b3fab50e703c85d = {
     obj: require("./uiTestScenarios/insights/BulletChart.f8ec03c3f97f94fd3b3fab50e703c85d/obj.json"),
 };
+const i_ColumnChart_0190e76a688b56b31b91cbfec32edc86 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.0190e76a688b56b31b91cbfec32edc86/obj.json"),
+};
 const i_ColumnChart_03f9eeefe8cbe771aef07c10551fb420 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.03f9eeefe8cbe771aef07c10551fb420/obj.json"),
 };
@@ -1724,8 +1737,14 @@ const i_ColumnChart_0934b8b983f5ab908707537766f5cd71 = {
 const i_ColumnChart_09fb9884ed202b18cfb1a46f2e6e700d = {
     obj: require("./uiTestScenarios/insights/ColumnChart.09fb9884ed202b18cfb1a46f2e6e700d/obj.json"),
 };
+const i_ColumnChart_1cf2ebe39dafd517cc5faaed2c7767ff = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.1cf2ebe39dafd517cc5faaed2c7767ff/obj.json"),
+};
 const i_ColumnChart_228632fc70c04d2c91af3d85d24c77da = {
     obj: require("./uiTestScenarios/insights/ColumnChart.228632fc70c04d2c91af3d85d24c77da/obj.json"),
+};
+const i_ColumnChart_231c820aed5d8d6320614f5b7d1333f2 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.231c820aed5d8d6320614f5b7d1333f2/obj.json"),
 };
 const i_ColumnChart_23db582c794f971f89df2d69be5c1d38 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.23db582c794f971f89df2d69be5c1d38/obj.json"),
@@ -1733,8 +1752,14 @@ const i_ColumnChart_23db582c794f971f89df2d69be5c1d38 = {
 const i_ColumnChart_268430742d18f0dcc464bbec0aafb5b1 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.268430742d18f0dcc464bbec0aafb5b1/obj.json"),
 };
+const i_ColumnChart_287a7f0cd2ddd3008e4a6c82db02c24d = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.287a7f0cd2ddd3008e4a6c82db02c24d/obj.json"),
+};
 const i_ColumnChart_2887907d5936aa17cc69a09f5275decd = {
     obj: require("./uiTestScenarios/insights/ColumnChart.2887907d5936aa17cc69a09f5275decd/obj.json"),
+};
+const i_ColumnChart_2ba3b0d6e0243d3f4b0fdbd79575393a = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.2ba3b0d6e0243d3f4b0fdbd79575393a/obj.json"),
 };
 const i_ColumnChart_2d409c3fb03a652a74b99638a669b8f4 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.2d409c3fb03a652a74b99638a669b8f4/obj.json"),
@@ -1742,20 +1767,44 @@ const i_ColumnChart_2d409c3fb03a652a74b99638a669b8f4 = {
 const i_ColumnChart_2fd3062807f240a5bb89d671ee22d0e7 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.2fd3062807f240a5bb89d671ee22d0e7/obj.json"),
 };
+const i_ColumnChart_30e8c31dde7912abad8bc7bb5cc98301 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.30e8c31dde7912abad8bc7bb5cc98301/obj.json"),
+};
 const i_ColumnChart_33344970efff62dab11f154a504fe2f1 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.33344970efff62dab11f154a504fe2f1/obj.json"),
+};
+const i_ColumnChart_357b0abed102921e6481ee6a112a0f95 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.357b0abed102921e6481ee6a112a0f95/obj.json"),
+};
+const i_ColumnChart_3688ccbd7f0fe1539b1d401d538dbe89 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.3688ccbd7f0fe1539b1d401d538dbe89/obj.json"),
+};
+const i_ColumnChart_38e8b1a5d6d78bee3c0de043a53b7b69 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.38e8b1a5d6d78bee3c0de043a53b7b69/obj.json"),
 };
 const i_ColumnChart_3a05b6f5480f74cec8061c0fea3ade42 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.3a05b6f5480f74cec8061c0fea3ade42/obj.json"),
 };
+const i_ColumnChart_3e0c7af52ffd8ee35a6dee46409d15d9 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.3e0c7af52ffd8ee35a6dee46409d15d9/obj.json"),
+};
+const i_ColumnChart_3e0f5869b74a5798bc34280f774cb14a = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.3e0f5869b74a5798bc34280f774cb14a/obj.json"),
+};
 const i_ColumnChart_3e8baf9a4a568e084ddc2ebb560d3fd4 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.3e8baf9a4a568e084ddc2ebb560d3fd4/obj.json"),
+};
+const i_ColumnChart_43280dc648476209c055156a88fbc89f = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.43280dc648476209c055156a88fbc89f/obj.json"),
 };
 const i_ColumnChart_457b8e5227317c1f629c84ab2b012fd2 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.457b8e5227317c1f629c84ab2b012fd2/obj.json"),
 };
 const i_ColumnChart_46803fa6ce6742f0dafa2b80c19fd334 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.46803fa6ce6742f0dafa2b80c19fd334/obj.json"),
+};
+const i_ColumnChart_49908516e08405f06c837d40924f4e96 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.49908516e08405f06c837d40924f4e96/obj.json"),
 };
 const i_ColumnChart_4cb4f154acf50903d4a60b0cd22613a0 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.4cb4f154acf50903d4a60b0cd22613a0/obj.json"),
@@ -1777,6 +1826,9 @@ const i_ColumnChart_542567e30ce3910c84b9fb15d103ec9f = {
 };
 const i_ColumnChart_56058d1d1601efbadc4e78ca5ee3402a = {
     obj: require("./uiTestScenarios/insights/ColumnChart.56058d1d1601efbadc4e78ca5ee3402a/obj.json"),
+};
+const i_ColumnChart_584b3f14c72a55ab3b298f6527a98035 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.584b3f14c72a55ab3b298f6527a98035/obj.json"),
 };
 const i_ColumnChart_5bf781ccd438cfa4d6013266b5b07376 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.5bf781ccd438cfa4d6013266b5b07376/obj.json"),
@@ -1805,6 +1857,9 @@ const i_ColumnChart_6f255f99aa969be8ccd672ef7b092235 = {
 const i_ColumnChart_74128830a2cd1cff35b8ce52a900787d = {
     obj: require("./uiTestScenarios/insights/ColumnChart.74128830a2cd1cff35b8ce52a900787d/obj.json"),
 };
+const i_ColumnChart_7648a0f625cec8a7a130303ab8c9889b = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.7648a0f625cec8a7a130303ab8c9889b/obj.json"),
+};
 const i_ColumnChart_815cceda14b0fc7f8699e015ea323fa9 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.815cceda14b0fc7f8699e015ea323fa9/obj.json"),
 };
@@ -1820,6 +1875,12 @@ const i_ColumnChart_88ba6379a6376de945cc8a64ecc642e7 = {
 const i_ColumnChart_8fd4fabc6ef55b616a2d4d2ec9b51ac3 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.8fd4fabc6ef55b616a2d4d2ec9b51ac3/obj.json"),
 };
+const i_ColumnChart_90921bab2c45c8ea0a2ca6e9cdb9cc4b = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.90921bab2c45c8ea0a2ca6e9cdb9cc4b/obj.json"),
+};
+const i_ColumnChart_92ea0625f70926e7278679565bcd6e6e = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.92ea0625f70926e7278679565bcd6e6e/obj.json"),
+};
 const i_ColumnChart_9316349da207566f196a6e52a855e46b = {
     obj: require("./uiTestScenarios/insights/ColumnChart.9316349da207566f196a6e52a855e46b/obj.json"),
 };
@@ -1832,17 +1893,26 @@ const i_ColumnChart_9734f5d20a842690a4ad77294a025f1a = {
 const i_ColumnChart_9b5eb36b8b1a70103433cdd071f5048c = {
     obj: require("./uiTestScenarios/insights/ColumnChart.9b5eb36b8b1a70103433cdd071f5048c/obj.json"),
 };
+const i_ColumnChart_9df4b9261d2d05c3aff9c0a756d71abd = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.9df4b9261d2d05c3aff9c0a756d71abd/obj.json"),
+};
 const i_ColumnChart_a1d78c2ff1eadee2661527000e9ac28b = {
     obj: require("./uiTestScenarios/insights/ColumnChart.a1d78c2ff1eadee2661527000e9ac28b/obj.json"),
 };
 const i_ColumnChart_a2c07d4f9f7836c47c5816d7538cb6bf = {
     obj: require("./uiTestScenarios/insights/ColumnChart.a2c07d4f9f7836c47c5816d7538cb6bf/obj.json"),
 };
+const i_ColumnChart_a3f6361167da6025e8e9883b42c183df = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.a3f6361167da6025e8e9883b42c183df/obj.json"),
+};
 const i_ColumnChart_a67aa69b9fa6147a0c8fea3c63e08eac = {
     obj: require("./uiTestScenarios/insights/ColumnChart.a67aa69b9fa6147a0c8fea3c63e08eac/obj.json"),
 };
 const i_ColumnChart_a7183c68b307ff28fed7c1bfc399ac8f = {
     obj: require("./uiTestScenarios/insights/ColumnChart.a7183c68b307ff28fed7c1bfc399ac8f/obj.json"),
+};
+const i_ColumnChart_a7bd3ff260a8bce01631f0295a360012 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.a7bd3ff260a8bce01631f0295a360012/obj.json"),
 };
 const i_ColumnChart_a8a5e59d545347bf96522192c9bf5d20 = {
     obj: require("./uiTestScenarios/insights/ColumnChart.a8a5e59d545347bf96522192c9bf5d20/obj.json"),
@@ -1889,11 +1959,29 @@ const i_ColumnChart_da946854c93045942fc9af202cb05ed1 = {
 const i_ColumnChart_dd99a0f74cad15f75536c9e47e79fd1b = {
     obj: require("./uiTestScenarios/insights/ColumnChart.dd99a0f74cad15f75536c9e47e79fd1b/obj.json"),
 };
+const i_ColumnChart_dddfec7ccb8c2e0df85278a7185d2e5b = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.dddfec7ccb8c2e0df85278a7185d2e5b/obj.json"),
+};
+const i_ColumnChart_e31bffd00e5272491479bf2c0bf2cc9a = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.e31bffd00e5272491479bf2c0bf2cc9a/obj.json"),
+};
 const i_ColumnChart_e6dea24512e0c6636814818198c6498d = {
     obj: require("./uiTestScenarios/insights/ColumnChart.e6dea24512e0c6636814818198c6498d/obj.json"),
 };
+const i_ColumnChart_e725f741b97623ab3f5234384b68f83a = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.e725f741b97623ab3f5234384b68f83a/obj.json"),
+};
+const i_ColumnChart_e7a25153983e1a01165abbf8b8562ee8 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.e7a25153983e1a01165abbf8b8562ee8/obj.json"),
+};
+const i_ColumnChart_e7d0774ab5d0ce572dff916edb2def13 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.e7d0774ab5d0ce572dff916edb2def13/obj.json"),
+};
 const i_ColumnChart_e92bbedae0f71c75110b05e62b55577a = {
     obj: require("./uiTestScenarios/insights/ColumnChart.e92bbedae0f71c75110b05e62b55577a/obj.json"),
+};
+const i_ColumnChart_e98d01ae91cd0415028ff206ffa518a7 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.e98d01ae91cd0415028ff206ffa518a7/obj.json"),
 };
 const i_ColumnChart_eb08731e5397c48ad7e458d4f04eb6bb = {
     obj: require("./uiTestScenarios/insights/ColumnChart.eb08731e5397c48ad7e458d4f04eb6bb/obj.json"),
@@ -1906,6 +1994,12 @@ const i_ColumnChart_f4ccd00f52a246a41d55f9be30e75205 = {
 };
 const i_ColumnChart_f4dfbea34ad5deab7a7a89324299f08e = {
     obj: require("./uiTestScenarios/insights/ColumnChart.f4dfbea34ad5deab7a7a89324299f08e/obj.json"),
+};
+const i_ColumnChart_f7a7c1f20094f1d47fa887bcee53be2a = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.f7a7c1f20094f1d47fa887bcee53be2a/obj.json"),
+};
+const i_ColumnChart_fb9a20592311659f92bedec32c48a798 = {
+    obj: require("./uiTestScenarios/insights/ColumnChart.fb9a20592311659f92bedec32c48a798/obj.json"),
 };
 const i_ComboChart_0122a0844bfc95266eae1f0d284d9c1c = {
     obj: require("./uiTestScenarios/insights/ComboChart.0122a0844bfc95266eae1f0d284d9c1c/obj.json"),
@@ -2306,20 +2400,44 @@ const i_Headline_f8d7e425a7cbfce667963e56ed6ab517 = {
 const i_Heatmap_035c68e0082fa6ffe0d0e5a08920afad = {
     obj: require("./uiTestScenarios/insights/Heatmap.035c68e0082fa6ffe0d0e5a08920afad/obj.json"),
 };
+const i_Heatmap_05d47860ade6287dcb2179cb7b53d8ce = {
+    obj: require("./uiTestScenarios/insights/Heatmap.05d47860ade6287dcb2179cb7b53d8ce/obj.json"),
+};
 const i_Heatmap_0d92e621bf0cff8f0a0d7e941d01c2df = {
     obj: require("./uiTestScenarios/insights/Heatmap.0d92e621bf0cff8f0a0d7e941d01c2df/obj.json"),
 };
 const i_Heatmap_116ca7e07cce3dbbf95797ba78abb88d = {
     obj: require("./uiTestScenarios/insights/Heatmap.116ca7e07cce3dbbf95797ba78abb88d/obj.json"),
 };
+const i_Heatmap_1a5ac7249013363b03f2767d6b7bb4c3 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.1a5ac7249013363b03f2767d6b7bb4c3/obj.json"),
+};
+const i_Heatmap_1f42f9aff4954bde346ba4025db271d0 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.1f42f9aff4954bde346ba4025db271d0/obj.json"),
+};
+const i_Heatmap_212de77f1853ea012c572667c2dc9d23 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.212de77f1853ea012c572667c2dc9d23/obj.json"),
+};
 const i_Heatmap_2649e76eb41a09cc82f4240ee46099c9 = {
     obj: require("./uiTestScenarios/insights/Heatmap.2649e76eb41a09cc82f4240ee46099c9/obj.json"),
+};
+const i_Heatmap_2a0597255046fabca3b5857884b5cb9f = {
+    obj: require("./uiTestScenarios/insights/Heatmap.2a0597255046fabca3b5857884b5cb9f/obj.json"),
 };
 const i_Heatmap_2a2d8ea6e07a1ff6fb192121091e1c7e = {
     obj: require("./uiTestScenarios/insights/Heatmap.2a2d8ea6e07a1ff6fb192121091e1c7e/obj.json"),
 };
+const i_Heatmap_3338112eef4718bb43c490c90e0837b0 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.3338112eef4718bb43c490c90e0837b0/obj.json"),
+};
+const i_Heatmap_36a4bdd68ae0274c11ceb7fc5b52ef5e = {
+    obj: require("./uiTestScenarios/insights/Heatmap.36a4bdd68ae0274c11ceb7fc5b52ef5e/obj.json"),
+};
 const i_Heatmap_3785d25a2a1233f5690bc9bb9051e28e = {
     obj: require("./uiTestScenarios/insights/Heatmap.3785d25a2a1233f5690bc9bb9051e28e/obj.json"),
+};
+const i_Heatmap_3c1681db9876b995912befc9c99d2513 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.3c1681db9876b995912befc9c99d2513/obj.json"),
 };
 const i_Heatmap_40e3c62f627ed32f7cad2a66b1cc230a = {
     obj: require("./uiTestScenarios/insights/Heatmap.40e3c62f627ed32f7cad2a66b1cc230a/obj.json"),
@@ -2327,11 +2445,32 @@ const i_Heatmap_40e3c62f627ed32f7cad2a66b1cc230a = {
 const i_Heatmap_4627efb0aca983766004829c0f3af509 = {
     obj: require("./uiTestScenarios/insights/Heatmap.4627efb0aca983766004829c0f3af509/obj.json"),
 };
+const i_Heatmap_4ae54e11b3a060e304587a89f9eeb6bf = {
+    obj: require("./uiTestScenarios/insights/Heatmap.4ae54e11b3a060e304587a89f9eeb6bf/obj.json"),
+};
+const i_Heatmap_505ed70b748c93f1d9d42bb1ce7c3ec1 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.505ed70b748c93f1d9d42bb1ce7c3ec1/obj.json"),
+};
+const i_Heatmap_55e063d499e8d4e4f72cebf56d5f771e = {
+    obj: require("./uiTestScenarios/insights/Heatmap.55e063d499e8d4e4f72cebf56d5f771e/obj.json"),
+};
+const i_Heatmap_5b17377ba4bcb03ff309eb85a81f6c19 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.5b17377ba4bcb03ff309eb85a81f6c19/obj.json"),
+};
+const i_Heatmap_5ce61203603b0ba9b10548f1cb99a19c = {
+    obj: require("./uiTestScenarios/insights/Heatmap.5ce61203603b0ba9b10548f1cb99a19c/obj.json"),
+};
 const i_Heatmap_6826d528772239d85286067634e058c2 = {
     obj: require("./uiTestScenarios/insights/Heatmap.6826d528772239d85286067634e058c2/obj.json"),
 };
+const i_Heatmap_6a2bb657216fc9265517692cdc5ca1d9 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.6a2bb657216fc9265517692cdc5ca1d9/obj.json"),
+};
 const i_Heatmap_6ac68ac043aad55e3db19d1689f602e7 = {
     obj: require("./uiTestScenarios/insights/Heatmap.6ac68ac043aad55e3db19d1689f602e7/obj.json"),
+};
+const i_Heatmap_71192dc5aa785461bcb587db0fe69079 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.71192dc5aa785461bcb587db0fe69079/obj.json"),
 };
 const i_Heatmap_75fef34ee9083fc510d4d5bd085f8b45 = {
     obj: require("./uiTestScenarios/insights/Heatmap.75fef34ee9083fc510d4d5bd085f8b45/obj.json"),
@@ -2339,11 +2478,26 @@ const i_Heatmap_75fef34ee9083fc510d4d5bd085f8b45 = {
 const i_Heatmap_7654db596ed899eb5729c112b8c8f9b2 = {
     obj: require("./uiTestScenarios/insights/Heatmap.7654db596ed899eb5729c112b8c8f9b2/obj.json"),
 };
+const i_Heatmap_7716238c703720ba331a5cf3a1ed126e = {
+    obj: require("./uiTestScenarios/insights/Heatmap.7716238c703720ba331a5cf3a1ed126e/obj.json"),
+};
 const i_Heatmap_796c5a43d0842ef52a14deda5b505836 = {
     obj: require("./uiTestScenarios/insights/Heatmap.796c5a43d0842ef52a14deda5b505836/obj.json"),
 };
+const i_Heatmap_79b39a9d082e9224bb72ed905a2e8be2 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.79b39a9d082e9224bb72ed905a2e8be2/obj.json"),
+};
 const i_Heatmap_7b010e8337b0bba7d873778265f54a0d = {
     obj: require("./uiTestScenarios/insights/Heatmap.7b010e8337b0bba7d873778265f54a0d/obj.json"),
+};
+const i_Heatmap_7b07d2ce6637c18e3a1a161b4207226d = {
+    obj: require("./uiTestScenarios/insights/Heatmap.7b07d2ce6637c18e3a1a161b4207226d/obj.json"),
+};
+const i_Heatmap_7b20ab68cf658b55ba13b403f4e56da2 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.7b20ab68cf658b55ba13b403f4e56da2/obj.json"),
+};
+const i_Heatmap_81b6e3debe825a1eba748ddd31c32f18 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.81b6e3debe825a1eba748ddd31c32f18/obj.json"),
 };
 const i_Heatmap_86de8be2c848fa2a3197e293c4c6a60a = {
     obj: require("./uiTestScenarios/insights/Heatmap.86de8be2c848fa2a3197e293c4c6a60a/obj.json"),
@@ -2354,11 +2508,23 @@ const i_Heatmap_907a9ac13628eff0ebb120ae7667bb8d = {
 const i_Heatmap_93245bbede9d790024b2f5aad922c336 = {
     obj: require("./uiTestScenarios/insights/Heatmap.93245bbede9d790024b2f5aad922c336/obj.json"),
 };
+const i_Heatmap_95d5f6bd315c7f7fc4ef1e24b1be13cb = {
+    obj: require("./uiTestScenarios/insights/Heatmap.95d5f6bd315c7f7fc4ef1e24b1be13cb/obj.json"),
+};
 const i_Heatmap_9824ef5804cfab871ba9215ae8884eb9 = {
     obj: require("./uiTestScenarios/insights/Heatmap.9824ef5804cfab871ba9215ae8884eb9/obj.json"),
 };
+const i_Heatmap_9939eb3bf62ca218b4daf8e28bdc8574 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.9939eb3bf62ca218b4daf8e28bdc8574/obj.json"),
+};
 const i_Heatmap_9abe3c0b85046fb6e0c6e09d8899e9d8 = {
     obj: require("./uiTestScenarios/insights/Heatmap.9abe3c0b85046fb6e0c6e09d8899e9d8/obj.json"),
+};
+const i_Heatmap_9f282baab7a78f849731cbf736f1191c = {
+    obj: require("./uiTestScenarios/insights/Heatmap.9f282baab7a78f849731cbf736f1191c/obj.json"),
+};
+const i_Heatmap_a0bf2524ac7af0636f105db8bae99ed4 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.a0bf2524ac7af0636f105db8bae99ed4/obj.json"),
 };
 const i_Heatmap_a2950fddaa59d9999e22607cb40d091d = {
     obj: require("./uiTestScenarios/insights/Heatmap.a2950fddaa59d9999e22607cb40d091d/obj.json"),
@@ -2372,8 +2538,35 @@ const i_Heatmap_af6093abd513214ff6645f14f3db3b19 = {
 const i_Heatmap_c6c2be21010fed976c107e2a32e2af73 = {
     obj: require("./uiTestScenarios/insights/Heatmap.c6c2be21010fed976c107e2a32e2af73/obj.json"),
 };
+const i_Heatmap_c76f98c9d07ca64041c2e49c108cbd85 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.c76f98c9d07ca64041c2e49c108cbd85/obj.json"),
+};
 const i_Heatmap_cc68ee3158b652e4bc319824183472eb = {
     obj: require("./uiTestScenarios/insights/Heatmap.cc68ee3158b652e4bc319824183472eb/obj.json"),
+};
+const i_Heatmap_d1cf1c73ecfe91c99264821afa348a41 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.d1cf1c73ecfe91c99264821afa348a41/obj.json"),
+};
+const i_Heatmap_e45ed81dfe76ee37a332f98574964c74 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.e45ed81dfe76ee37a332f98574964c74/obj.json"),
+};
+const i_Heatmap_f0a708fb42453ae7103c962a85e610bf = {
+    obj: require("./uiTestScenarios/insights/Heatmap.f0a708fb42453ae7103c962a85e610bf/obj.json"),
+};
+const i_Heatmap_f0e1464fbd67cc86be016374746edabb = {
+    obj: require("./uiTestScenarios/insights/Heatmap.f0e1464fbd67cc86be016374746edabb/obj.json"),
+};
+const i_Heatmap_f10dc98ead2fae4acd08a888f049d5e0 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.f10dc98ead2fae4acd08a888f049d5e0/obj.json"),
+};
+const i_Heatmap_f58b121c4333269bf2fa058a8648e0c8 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.f58b121c4333269bf2fa058a8648e0c8/obj.json"),
+};
+const i_Heatmap_fd17f7cbf408029974f69ac1ee6051ab = {
+    obj: require("./uiTestScenarios/insights/Heatmap.fd17f7cbf408029974f69ac1ee6051ab/obj.json"),
+};
+const i_Heatmap_fea3cd35f3498bfaee2743895f3cdd45 = {
+    obj: require("./uiTestScenarios/insights/Heatmap.fea3cd35f3498bfaee2743895f3cdd45/obj.json"),
 };
 const i_LineChart_04218fab4ef03b9e9fcaf6d33a6eea79 = {
     obj: require("./uiTestScenarios/insights/LineChart.04218fab4ef03b9e9fcaf6d33a6eea79/obj.json"),
@@ -3006,6 +3199,7 @@ export const Insights = {
         TwoMeasuresWithViewBy: i_ColumnChart_03f9eeefe8cbe771aef07c10551fb420,
         SingleMeasure: i_ColumnChart_08e4e6e427792d7c3626512d4c38e4cc,
         ViewByDateAndPoPMeasure: i_ColumnChart_09fb9884ed202b18cfb1a46f2e6e700d,
+        SingleMeasureWithOneViewByAndOneStackByWithMultipleItems: i_ColumnChart_3e0f5869b74a5798bc34280f774cb14a,
         SingleRatioMeasureWithViewBy: i_ColumnChart_457b8e5227317c1f629c84ab2b012fd2,
         ArithmeticMeasures: i_ColumnChart_4dae9618d5e6146ba96491d97ed0a05d,
         Themed: i_ColumnChart_664abe005b55b0467cc05cdaac3791a6,
@@ -3286,6 +3480,7 @@ export const Recordings = {
         fp_fd4473fef32dc8b57cdba96564af53e1,
         fp_fde7a6a9ba205f28ce4a5391836f1153,
         fp_ff74085f6f31c71f4797251924d3205d,
+        fp_e64109cb6d5a6be202121d94ce6812cf,
     },
     metadata: {
         catalog,
@@ -3473,23 +3668,36 @@ export const Recordings = {
             i_BulletChart_f0964a098c6f56eff11df80b20a3b8af,
             i_BulletChart_f3706c5aa88949e26f0d012becf773d7,
             i_BulletChart_f8ec03c3f97f94fd3b3fab50e703c85d,
+            i_ColumnChart_0190e76a688b56b31b91cbfec32edc86,
             i_ColumnChart_03f9eeefe8cbe771aef07c10551fb420,
             i_ColumnChart_04e10d4aaa7bbcc117345f3c17929789,
             i_ColumnChart_07c8df01c7cf8bd1113388769d89a040,
             i_ColumnChart_08e4e6e427792d7c3626512d4c38e4cc,
             i_ColumnChart_0934b8b983f5ab908707537766f5cd71,
             i_ColumnChart_09fb9884ed202b18cfb1a46f2e6e700d,
+            i_ColumnChart_1cf2ebe39dafd517cc5faaed2c7767ff,
             i_ColumnChart_228632fc70c04d2c91af3d85d24c77da,
+            i_ColumnChart_231c820aed5d8d6320614f5b7d1333f2,
             i_ColumnChart_23db582c794f971f89df2d69be5c1d38,
             i_ColumnChart_268430742d18f0dcc464bbec0aafb5b1,
+            i_ColumnChart_287a7f0cd2ddd3008e4a6c82db02c24d,
             i_ColumnChart_2887907d5936aa17cc69a09f5275decd,
+            i_ColumnChart_2ba3b0d6e0243d3f4b0fdbd79575393a,
             i_ColumnChart_2d409c3fb03a652a74b99638a669b8f4,
             i_ColumnChart_2fd3062807f240a5bb89d671ee22d0e7,
+            i_ColumnChart_30e8c31dde7912abad8bc7bb5cc98301,
             i_ColumnChart_33344970efff62dab11f154a504fe2f1,
+            i_ColumnChart_357b0abed102921e6481ee6a112a0f95,
+            i_ColumnChart_3688ccbd7f0fe1539b1d401d538dbe89,
+            i_ColumnChart_38e8b1a5d6d78bee3c0de043a53b7b69,
             i_ColumnChart_3a05b6f5480f74cec8061c0fea3ade42,
+            i_ColumnChart_3e0c7af52ffd8ee35a6dee46409d15d9,
+            i_ColumnChart_3e0f5869b74a5798bc34280f774cb14a,
             i_ColumnChart_3e8baf9a4a568e084ddc2ebb560d3fd4,
+            i_ColumnChart_43280dc648476209c055156a88fbc89f,
             i_ColumnChart_457b8e5227317c1f629c84ab2b012fd2,
             i_ColumnChart_46803fa6ce6742f0dafa2b80c19fd334,
+            i_ColumnChart_49908516e08405f06c837d40924f4e96,
             i_ColumnChart_4cb4f154acf50903d4a60b0cd22613a0,
             i_ColumnChart_4dae9618d5e6146ba96491d97ed0a05d,
             i_ColumnChart_4e0e56523cb818fafe4fd84f892bd94f,
@@ -3497,6 +3705,7 @@ export const Recordings = {
             i_ColumnChart_5297edc66c43eed6742a366f292b4452,
             i_ColumnChart_542567e30ce3910c84b9fb15d103ec9f,
             i_ColumnChart_56058d1d1601efbadc4e78ca5ee3402a,
+            i_ColumnChart_584b3f14c72a55ab3b298f6527a98035,
             i_ColumnChart_5bf781ccd438cfa4d6013266b5b07376,
             i_ColumnChart_5cf79325c3bc787dc2c11b11e048d270,
             i_ColumnChart_5d51880b3ab6fc2fe172fec0bc407aa2,
@@ -3506,19 +3715,25 @@ export const Recordings = {
             i_ColumnChart_68a492ced997d45c37454002fdc735ab,
             i_ColumnChart_6f255f99aa969be8ccd672ef7b092235,
             i_ColumnChart_74128830a2cd1cff35b8ce52a900787d,
+            i_ColumnChart_7648a0f625cec8a7a130303ab8c9889b,
             i_ColumnChart_815cceda14b0fc7f8699e015ea323fa9,
             i_ColumnChart_81c2542441e09e7ddd855964dba75161,
             i_ColumnChart_81f9e4a5ed54c9274699608b44b3f436,
             i_ColumnChart_88ba6379a6376de945cc8a64ecc642e7,
             i_ColumnChart_8fd4fabc6ef55b616a2d4d2ec9b51ac3,
+            i_ColumnChart_90921bab2c45c8ea0a2ca6e9cdb9cc4b,
+            i_ColumnChart_92ea0625f70926e7278679565bcd6e6e,
             i_ColumnChart_9316349da207566f196a6e52a855e46b,
             i_ColumnChart_93d3b4d7b56be8ef943fc3c591374740,
             i_ColumnChart_9734f5d20a842690a4ad77294a025f1a,
             i_ColumnChart_9b5eb36b8b1a70103433cdd071f5048c,
+            i_ColumnChart_9df4b9261d2d05c3aff9c0a756d71abd,
             i_ColumnChart_a1d78c2ff1eadee2661527000e9ac28b,
             i_ColumnChart_a2c07d4f9f7836c47c5816d7538cb6bf,
+            i_ColumnChart_a3f6361167da6025e8e9883b42c183df,
             i_ColumnChart_a67aa69b9fa6147a0c8fea3c63e08eac,
             i_ColumnChart_a7183c68b307ff28fed7c1bfc399ac8f,
+            i_ColumnChart_a7bd3ff260a8bce01631f0295a360012,
             i_ColumnChart_a8a5e59d545347bf96522192c9bf5d20,
             i_ColumnChart_ae5fb577ced044b2ee37d1e39b3de8e6,
             i_ColumnChart_aed769d32853cb0cde7ff06da591a8fa,
@@ -3534,12 +3749,20 @@ export const Recordings = {
             i_ColumnChart_da2f10a3af96a2912f8db54115c386c2,
             i_ColumnChart_da946854c93045942fc9af202cb05ed1,
             i_ColumnChart_dd99a0f74cad15f75536c9e47e79fd1b,
+            i_ColumnChart_dddfec7ccb8c2e0df85278a7185d2e5b,
+            i_ColumnChart_e31bffd00e5272491479bf2c0bf2cc9a,
             i_ColumnChart_e6dea24512e0c6636814818198c6498d,
+            i_ColumnChart_e725f741b97623ab3f5234384b68f83a,
+            i_ColumnChart_e7a25153983e1a01165abbf8b8562ee8,
+            i_ColumnChart_e7d0774ab5d0ce572dff916edb2def13,
             i_ColumnChart_e92bbedae0f71c75110b05e62b55577a,
+            i_ColumnChart_e98d01ae91cd0415028ff206ffa518a7,
             i_ColumnChart_eb08731e5397c48ad7e458d4f04eb6bb,
             i_ColumnChart_edf8058444feabd65d03f89149a01dd5,
             i_ColumnChart_f4ccd00f52a246a41d55f9be30e75205,
             i_ColumnChart_f4dfbea34ad5deab7a7a89324299f08e,
+            i_ColumnChart_f7a7c1f20094f1d47fa887bcee53be2a,
+            i_ColumnChart_fb9a20592311659f92bedec32c48a798,
             i_ComboChart_0122a0844bfc95266eae1f0d284d9c1c,
             i_ComboChart_03a2e68403590876a02749f5b1bf2752,
             i_ComboChart_08fbb5596018c8171b01cd5163e3ef03,
@@ -3673,29 +3896,62 @@ export const Recordings = {
             i_Headline_edcc7ebea5a250c5e311f9f243545471,
             i_Headline_f8d7e425a7cbfce667963e56ed6ab517,
             i_Heatmap_035c68e0082fa6ffe0d0e5a08920afad,
+            i_Heatmap_05d47860ade6287dcb2179cb7b53d8ce,
             i_Heatmap_0d92e621bf0cff8f0a0d7e941d01c2df,
             i_Heatmap_116ca7e07cce3dbbf95797ba78abb88d,
+            i_Heatmap_1a5ac7249013363b03f2767d6b7bb4c3,
+            i_Heatmap_1f42f9aff4954bde346ba4025db271d0,
+            i_Heatmap_212de77f1853ea012c572667c2dc9d23,
             i_Heatmap_2649e76eb41a09cc82f4240ee46099c9,
+            i_Heatmap_2a0597255046fabca3b5857884b5cb9f,
             i_Heatmap_2a2d8ea6e07a1ff6fb192121091e1c7e,
+            i_Heatmap_3338112eef4718bb43c490c90e0837b0,
+            i_Heatmap_36a4bdd68ae0274c11ceb7fc5b52ef5e,
             i_Heatmap_3785d25a2a1233f5690bc9bb9051e28e,
+            i_Heatmap_3c1681db9876b995912befc9c99d2513,
             i_Heatmap_40e3c62f627ed32f7cad2a66b1cc230a,
             i_Heatmap_4627efb0aca983766004829c0f3af509,
+            i_Heatmap_4ae54e11b3a060e304587a89f9eeb6bf,
+            i_Heatmap_505ed70b748c93f1d9d42bb1ce7c3ec1,
+            i_Heatmap_55e063d499e8d4e4f72cebf56d5f771e,
+            i_Heatmap_5b17377ba4bcb03ff309eb85a81f6c19,
+            i_Heatmap_5ce61203603b0ba9b10548f1cb99a19c,
             i_Heatmap_6826d528772239d85286067634e058c2,
+            i_Heatmap_6a2bb657216fc9265517692cdc5ca1d9,
             i_Heatmap_6ac68ac043aad55e3db19d1689f602e7,
+            i_Heatmap_71192dc5aa785461bcb587db0fe69079,
             i_Heatmap_75fef34ee9083fc510d4d5bd085f8b45,
             i_Heatmap_7654db596ed899eb5729c112b8c8f9b2,
+            i_Heatmap_7716238c703720ba331a5cf3a1ed126e,
             i_Heatmap_796c5a43d0842ef52a14deda5b505836,
+            i_Heatmap_79b39a9d082e9224bb72ed905a2e8be2,
             i_Heatmap_7b010e8337b0bba7d873778265f54a0d,
+            i_Heatmap_7b07d2ce6637c18e3a1a161b4207226d,
+            i_Heatmap_7b20ab68cf658b55ba13b403f4e56da2,
+            i_Heatmap_81b6e3debe825a1eba748ddd31c32f18,
             i_Heatmap_86de8be2c848fa2a3197e293c4c6a60a,
             i_Heatmap_907a9ac13628eff0ebb120ae7667bb8d,
             i_Heatmap_93245bbede9d790024b2f5aad922c336,
+            i_Heatmap_95d5f6bd315c7f7fc4ef1e24b1be13cb,
             i_Heatmap_9824ef5804cfab871ba9215ae8884eb9,
+            i_Heatmap_9939eb3bf62ca218b4daf8e28bdc8574,
             i_Heatmap_9abe3c0b85046fb6e0c6e09d8899e9d8,
+            i_Heatmap_9f282baab7a78f849731cbf736f1191c,
+            i_Heatmap_a0bf2524ac7af0636f105db8bae99ed4,
             i_Heatmap_a2950fddaa59d9999e22607cb40d091d,
             i_Heatmap_a2db3e5e502d4b4d81a3ba13ce532af2,
             i_Heatmap_af6093abd513214ff6645f14f3db3b19,
             i_Heatmap_c6c2be21010fed976c107e2a32e2af73,
+            i_Heatmap_c76f98c9d07ca64041c2e49c108cbd85,
             i_Heatmap_cc68ee3158b652e4bc319824183472eb,
+            i_Heatmap_d1cf1c73ecfe91c99264821afa348a41,
+            i_Heatmap_e45ed81dfe76ee37a332f98574964c74,
+            i_Heatmap_f0a708fb42453ae7103c962a85e610bf,
+            i_Heatmap_f0e1464fbd67cc86be016374746edabb,
+            i_Heatmap_f10dc98ead2fae4acd08a888f049d5e0,
+            i_Heatmap_f58b121c4333269bf2fa058a8648e0c8,
+            i_Heatmap_fd17f7cbf408029974f69ac1ee6051ab,
+            i_Heatmap_fea3cd35f3498bfaee2743895f3cdd45,
             i_LineChart_04218fab4ef03b9e9fcaf6d33a6eea79,
             i_LineChart_0c3cfda1ddce21d70dd3835cb1225d49,
             i_LineChart_0f8f689a3a7d175276fb9a8089eab3bb,
