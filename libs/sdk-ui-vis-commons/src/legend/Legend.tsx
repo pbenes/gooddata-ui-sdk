@@ -70,12 +70,15 @@ export class Legend extends React.PureComponent<ILegendProps> {
         return seriesWithVisibility;
     };
 
-    public renderPopUpLegend = (name, maxRows): React.ReactNode => {
+    public renderPopUpLegend = (): React.ReactNode => {
+        const { legendLabel, maximumRows, enableBorderRadius } = this.props;
+
         return (
             <PopUpLegend
                 series={this.getSeries()}
-                maxRows={maxRows}
-                name={name}
+                maxRows={maximumRows}
+                name={legendLabel}
+                enableBorderRadius={enableBorderRadius}
                 onLegendItemClick={this.onItemClick}
             />
         );
@@ -143,21 +146,14 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const {
-            contentDimensions,
-            responsive,
-            heatmapLegend,
-            showFluidLegend,
-            legendLabel,
-            maximumRows,
-        } = this.props;
+        const { contentDimensions, responsive, heatmapLegend, showFluidLegend } = this.props;
 
         if (heatmapLegend) {
             return this.renderHeatmapLegend(contentDimensions);
         }
 
         if (responsive === "popup") {
-            return this.renderPopUpLegend(legendLabel, maximumRows);
+            return this.renderPopUpLegend();
         }
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
