@@ -1567,11 +1567,23 @@
     "Heatmap.fea3cd35f3498bfaee2743895f3cdd45": {
         "comment": "Auto-generated insight for test scenario Heatmap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
     },
+    "LineChart.0384dd5bd8193a5ef1d419153265c781": {
+        "comment": "Auto-generated insight for test scenario LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
     "LineChart.04218fab4ef03b9e9fcaf6d33a6eea79": {
         "comment": "Auto-generated insight for test scenario LineChart - data labels - auto visibility."
     },
     "LineChart.0c3cfda1ddce21d70dd3835cb1225d49": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - sparse chart - forced hidden."
+    },
+    "LineChart.0cabc94465128aecfaf11994b85e251d": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "LineChart.0d370cfb508d7ecbe883554a3a616c4e": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "LineChart.0e4a106d57be4ee223768daa4a16d414": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x154 - Force position RIGHT - legend on left."
     },
     "LineChart.0f8f689a3a7d175276fb9a8089eab3bb": {
         "comment": "Auto-generated insight for test scenario LineChart - dual axis name configuration - invisible."
@@ -1584,16 +1596,40 @@
     "LineChart.163bab002bb394a581239db6d95a4f98": {
         "comment": "Auto-generated insight for test scenario LineChart - legend position - legend at bottom."
     },
+    "LineChart.1c5884886948860877de42c1f8b8f56f": {
+        "comment": "Auto-generated insight for test scenario LineChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "LineChart.1e340938f43d76525ed6235a33c8ab4c": {
         "comment": "Auto-generated insight for test scenario LineChart - Y axis on the right."
+    },
+    "LineChart.1ed8ff2ebdcc177fad4cdda05e46323a": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "LineChart.23ac7edf81ca8a4b5fe5d664beaa888f": {
+        "comment": "Auto-generated insight for test scenario LineChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "LineChart.24d439db1672e2243224fa42f5f45afa": {
         "comment": "Auto-generated insight for test scenario LineChart - arithmetic measures.",
         "scenarioName": "arithmetic measures",
         "visName": "LineChart"
     },
+    "LineChart.2652c7558af4d8c1ee980cf562a2f71e": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x154 - Force position RIGHT - legend on top."
+    },
+    "LineChart.297405f51a58b42600f8bbf26df57e39": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x154 - Force position RIGHT - legend on right."
+    },
+    "LineChart.2db02d33d08bdfe19d6582f75f254d9a": {
+        "comment": "Auto-generated insight for test scenario LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
+    "LineChart.3100b271780a6db3f8db11049dffaee8": {
+        "comment": "Auto-generated insight for test scenario LineChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "LineChart.34043572c98eac3dc8887f3cac95c479": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - sparse chart - forced visible."
+    },
+    "LineChart.39aa413b637f6e7de71f1a0ac4e72983": {
+        "comment": "Auto-generated insight for test scenario LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
     },
     "LineChart.3a3c66b7979613ef10d1cd4f54c3eebb": {
         "comment": "Auto-generated insight for test scenario LineChart - dual axis name configuration - middle."
@@ -1604,11 +1640,17 @@
     "LineChart.458c9384ce6e0a0f8e4e7dc55812a6ce": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - dense chart - forced hidden."
     },
+    "LineChart.4a521c7daccfeabc6c139a3ef02f1275": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
+    },
     "LineChart.4a67b094ea5e96873cb4ff1de72b0274": {
         "comment": "Auto-generated insight for test scenario LineChart - legend position - legend on left."
     },
     "LineChart.4b9123d4da99344e4873ac9dde1d2347": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - dense chart - auto visibility."
+    },
+    "LineChart.4ba48245bac5a629ccbb870eddfdec11": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
     },
     "LineChart.57a5157d052ee2d68824971b542d25a8": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - high."
@@ -1618,6 +1660,9 @@
     },
     "LineChart.5df0206b8eccca34fb10d0e937c0a39c": {
         "comment": "Auto-generated insight for test scenario LineChart - legend position - legend on top."
+    },
+    "LineChart.619a1c954e08db29f823c2885838ac6a": {
+        "comment": "Auto-generated insight for test scenario LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
     },
     "LineChart.63a55aa096a7265f90154dc939040d73": {
         "comment": "Auto-generated insight for test scenario LineChart - legend position - auto legend."
@@ -1630,8 +1675,20 @@
         "scenarioName": "two measures with trendBy",
         "visName": "LineChart"
     },
+    "LineChart.68fdde55c7d0a26020e17add08058057": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
+    "LineChart.6e09a15346b4fec49066f611ce19243e": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
     "LineChart.6f6687d93afdd73fd2e903b2e7e3fa21": {
         "comment": "Auto-generated insight for test scenario LineChart - dual axis name configuration - high."
+    },
+    "LineChart.711f9d8c73626cc29142457eecf5f253": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "LineChart.755c59cde54bfda74e91c59a96232355": {
+        "comment": "Auto-generated insight for test scenario LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
     },
     "LineChart.78f74c25d0e6f6da93bbb7f3ca1474df": {
         "comment": "Auto-generated insight for test scenario LineChart - data labels - forced visible and german separators."
@@ -1647,6 +1704,9 @@
     "LineChart.85909a0a262e8fac3660c88b40095580": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - invisible."
     },
+    "LineChart.893934b2e499072547caa299d8d8df06": {
+        "comment": "Auto-generated insight for test scenario LineChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "LineChart.8b6aa8716535cffcbc957ebb58a47127": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - dense chart - default."
     },
@@ -1655,11 +1715,23 @@
         "scenarioName": "single measure with % and trendBy",
         "visName": "LineChart"
     },
+    "LineChart.8c54d81cc7f45f24bc1be0d13637fa17": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
     "LineChart.9f577ebe31c509c6af49a635a29fda64": {
         "comment": "Auto-generated insight for test scenario LineChart - data labels - forced hidden."
     },
+    "LineChart.a3387250890a992275f3fcc03f1d392c": {
+        "comment": "Auto-generated insight for test scenario LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "LineChart.a3da043f2b31dac48b4dd0a2bd96a594": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - dense chart - forced visible."
+    },
+    "LineChart.a4a3221a8a5cb2626124e15c453b0cde": {
+        "comment": "Auto-generated insight for test scenario LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "LineChart.a50e3e4501a99d471f92f6a92ba740f5": {
+        "comment": "Auto-generated insight for test scenario LineChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
     },
     "LineChart.a9b12ed216e07806395dd7afe624fc1e": {
         "comment": "Auto-generated insight for test scenario LineChart - single measure.",
@@ -1671,6 +1743,9 @@
     },
     "LineChart.b387a237e94c58750537dd59d16bbc8d": {
         "comment": "Auto-generated insight for test scenario LineChart - dual axes with one right measure."
+    },
+    "LineChart.b4fb2cf8cdac698cb9d8df9d91f9b6e0": {
+        "comment": "Auto-generated insight for test scenario LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "LineChart.b832188c324a733fb5122f9fff36631f": {
         "comment": "Auto-generated insight for test scenario LineChart - coloring - custom palette."
@@ -1689,6 +1764,21 @@
     "LineChart.c09e228243ada7888fa2ed63cc18bd13": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - middle."
     },
+    "LineChart.c11bac0a9dbcea843305f97473ec718f": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
+    "LineChart.c1e40f24aa24fed304858133c7147da6": {
+        "comment": "Auto-generated insight for test scenario LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
+    "LineChart.c424a9c39ff2a3de11774187d342c056": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "LineChart.c9667fd532e37d60a9b6564278b2e717": {
+        "comment": "Auto-generated insight for test scenario LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
+    },
+    "LineChart.cd70877bbacbc71af936d3d96c87e49b": {
+        "comment": "Auto-generated insight for test scenario LineChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
     "LineChart.cd83fa57c3b4b69d618f678e8070cbfb": {
         "comment": "Auto-generated insight for test scenario LineChart - data labels - forced visible."
     },
@@ -1698,11 +1788,17 @@
     "LineChart.dd2fbeaac58234eadce0f1bed9542acf": {
         "comment": "Auto-generated insight for test scenario LineChart - Y axis min/max configuration."
     },
+    "LineChart.dec5097d5a050a9874c44e1a7c0e8ea9": {
+        "comment": "Auto-generated insight for test scenario LineChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "LineChart.e0b1b0c97bdb74bf90a51004c74e49c7": {
         "comment": "Auto-generated insight for test scenario LineChart - data labels - default."
     },
     "LineChart.e42047517322f7adc149f3b16bfbede5": {
         "comment": "Auto-generated insight for test scenario LineChart - data points - sparse chart - default."
+    },
+    "LineChart.e5f4dca25c2f33cbcb8c7a438ea97435": {
+        "comment": "Auto-generated insight for test scenario LineChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
     },
     "LineChart.e7e8c59a406f3a142124f1ccfe33e17e": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - low."
