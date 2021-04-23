@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 import { Icon } from "@gooddata/sdk-ui-kit";
 
 import { StaticLegend } from "../StaticLegend";
-import { IPushpinCategoryLegendItem } from "../types";
+import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "../types";
 
 import { LegendDialog } from "./LegendDialog";
 import { LegendList } from "../LegendList";
@@ -77,7 +77,7 @@ export interface IRowLegendProps {
     legendLabel: string;
     maxRowsCount: number;
     series: IPushpinCategoryLegendItem[];
-    enableBorderRadius?: boolean; //TODO where get this props?
+    enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     onDialogIconClick: () => void;
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
 }
@@ -122,10 +122,11 @@ export interface IPopUpLegendProps {
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
     name: string;
     maxRows: number;
+    enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
 }
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
-    const { name, maxRows, series, onLegendItemClick } = props;
+    const { name, maxRows, enableBorderRadius, series, onLegendItemClick } = props;
     const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
@@ -144,6 +145,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                     setDialogOpen(true);
                 }}
                 onLegendItemClick={onLegendItemClick}
+                enableBorderRadius={enableBorderRadius}
             />
 
             <LegendDialog
@@ -158,6 +160,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                     position={"dialog"}
                     onItemClick={onLegendItemClick}
                     shouldFillAvailableSpace={false}
+                    enableBorderRadius={enableBorderRadius}
                 />
             </LegendDialog>
         </div>
