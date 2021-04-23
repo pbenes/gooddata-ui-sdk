@@ -1,10 +1,15 @@
 // (C) 2007-2020 GoodData Corporation
+@import "~@gooddata/sdk-ui-kit/styles/scss/Button/_variables";
+@import "~@gooddata/sdk-ui-kit/styles/scss/Bubble/_variables";
 @import "~@gooddata/sdk-ui-kit/styles/scss/variables";
 @import "~@gooddata/sdk-ui-kit/styles/scss/mixins";
+
 $legend-paging-background: #eee;
 $legend-right-width: 190px;
 $paging-button-small-size: 22px;
 $responsive-legend: "only screen and (max-width: 767px)";
+$dialog-border: $default-bubble-light-border-base;
+$dialog-background: $is-focused-background;
 
 @media #{$responsive-legend} {
     .viz-line-family-chart-wrap {
@@ -368,20 +373,6 @@ $responsive-legend: "only screen and (max-width: 767px)";
     }
 }
 
-.legend-popup-dialog {
-    .legend-header {
-        padding-left: 10px;
-        .legend-header-title {
-            line-height: 45px;
-            height: 45px;
-        }
-    }
-    .legend-content {
-        background: white;
-        padding: 10px;
-    }
-}
-
 .legend-popup-row {
     display: flex;
     justify-content: flex-end;
@@ -453,6 +444,295 @@ $responsive-legend: "only screen and (max-width: 767px)";
             margin-right: 10px;
             align-self: center;
             min-width: 50px;
+        }
+    }
+}
+
+// legend dialog
+
+.legend-popup-dialog {
+    .legend-header {
+        padding-left: 10px;
+        .legend-header-title {
+            line-height: 45px;
+            height: 45px;
+        }
+    }
+    .legend-content {
+        background: white;
+        padding: 10px;
+    }
+}
+
+.legend-popup-dialog-content {
+    position: relative;
+    z-index: 10;
+    min-height: 148px;
+    border: 1px solid var(--gd-palette-complementary-3, transparentize($dialog-border, 0.5));
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 0 $button-shadow-lighter, 0 2px 9px 0 $button-shadow-darker;
+    background: $dialog-background;
+
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        margin-right: 0;
+        border: solid transparent;
+        pointer-events: none;
+    }
+
+    &::before {
+        border-width: 12px;
+    }
+
+    &::after {
+        border-width: 11px;
+    }
+
+    @media #{$medium-up} {
+        width: 288px;
+    }
+
+    .action-close {
+        position: absolute;
+        top: 15px;
+        right: 19px;
+        color: $gd-color-label;
+        cursor: pointer;
+    }
+
+    .buttons {
+        margin-top: 10px;
+
+        .gd-button {
+            width: 100%;
+            margin: 10px 0 0;
+            text-align: center;
+        }
+
+        .delete-link {
+            width: auto;
+            padding-left: 0;
+            text-align: left;
+        }
+
+        @media #{$xsmall-only}, #{$small-only} {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 5px -5px 0;
+
+            .gd-button {
+                flex: 0 0 auto;
+                width: auto;
+                margin: 10px 5px 0;
+            }
+
+            .delete-link {
+                order: 1;
+                margin-right: 7px;
+            }
+
+            .cancel-button {
+                flex: 1 0 auto;
+                order: 2;
+            }
+
+            .save-button {
+                flex: 2 0 auto;
+                order: 3;
+            }
+        }
+    }
+}
+
+// legend dialog arrow
+.target-tr.self-tl,
+.target-tl.self-tr,
+.target-cc.self-cr {
+    .legend-popup-dialog-content {
+        &::before {
+            margin-top: -12px;
+        }
+
+        &::after {
+            margin-top: -11px;
+        }
+    }
+}
+
+.target-tr.self-tl,
+.target-tl.self-tr {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            top: 93px;
+        }
+    }
+}
+
+.target-cc.self-cr {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            top: 50%;
+        }
+    }
+}
+
+.target-tr.self-tl,
+.target-br.self-bl {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            right: 100%;
+        }
+
+        &::before {
+            border-right-color: var(--gd-palette-complementary-3, transparentize($dialog-border, 0.5));
+        }
+
+        &::after {
+            border-right-color: $dialog-background;
+        }
+    }
+}
+
+.target-tl.self-tr,
+.target-bl.self-br,
+.target-cc.self-cr {
+    .legend-popup-dialog-content {
+        &::after,
+        &::before {
+            left: 100%;
+        }
+
+        &::after {
+            border-left-color: $dialog-background;
+        }
+
+        &::before {
+            border-left-color: var(--gd-palette-complementary-3, transparentize($dialog-border, 0.5));
+        }
+    }
+}
+
+.target-br.self-bl,
+.target-bl.self-br {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            bottom: 93px;
+        }
+
+        &::before {
+            margin-bottom: -12px;
+        }
+
+        &::after {
+            margin-bottom: -11px;
+        }
+    }
+}
+
+.target-bc.self-tc,
+.target-tc.self-bc,
+.target-bl.self-tl,
+.target-br.self-tr,
+.target-tl.self-bl,
+.target-tr.self-br,
+.target-cc.self-tc,
+.target-cl.self-tl,
+.target-cr.self-tr {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            border-right-color: transparent;
+        }
+
+        &::before {
+            margin-left: -12px;
+        }
+
+        &::after {
+            margin-left: -11px;
+        }
+    }
+}
+
+.target-bc.self-tc,
+.target-bl.self-tl,
+.target-br.self-tr,
+.target-cc.self-tc,
+.target-cl.self-tl,
+.target-cr.self-tr {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            bottom: 100%;
+        }
+
+        &::before {
+            border-bottom-color: var(--gd-palette-complementary-3, transparentize($dialog-border, 0.5));
+        }
+
+        &::after {
+            border-bottom-color: $dialog-background;
+        }
+    }
+}
+
+.target-tc.self-bc,
+.target-tl.self-bl,
+.target-tr.self-br {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            top: 100%;
+        }
+
+        &::before {
+            border-top-color: var(--gd-palette-complementary-3, transparentize($dialog-border, 0.5));
+        }
+
+        &::after {
+            border-top-color: $dialog-background;
+        }
+    }
+}
+
+.target-bc.self-tc,
+.target-tc.self-bc,
+.target-cc.self-tc {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            left: 50%;
+        }
+    }
+}
+
+.target-bl.self-tl,
+.target-tl.self-bl,
+.target-cl.self-tl {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            left: 25%;
+        }
+    }
+}
+
+.target-br.self-tr,
+.target-tr.self-br,
+.target-cr.self-tr {
+    .legend-popup-dialog-content {
+        &::before,
+        &::after {
+            left: 75%;
         }
     }
 }

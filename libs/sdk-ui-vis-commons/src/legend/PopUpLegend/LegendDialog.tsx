@@ -17,7 +17,7 @@ const LegendDialogContent: React.FC<ILegendDialogContent> = (props) => {
     const { title, onCloseDialog, children } = props;
 
     return (
-        <div className="legend-popup-dialog kpi-alert-dialog">
+        <div className="legend-popup-dialog legend-popup-dialog-content">
             <div className="legend-header">
                 <div className="legend-header-title">{title}</div>
                 <div className="legend-close action-close icon-cross" onClick={onCloseDialog} />
