@@ -146,13 +146,13 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
-        const { contentDimensions, responsive, heatmapLegend, showFluidLegend } = this.props;
+        const { contentDimensions, responsive, heatmapLegend, showFluidLegend, maximumRows } = this.props;
 
         if (heatmapLegend) {
             return this.renderHeatmapLegend(contentDimensions);
         }
 
-        if (responsive === "popup") {
+        if (responsive === "popup" && maximumRows) {
             return this.renderPopUpLegend();
         }
 

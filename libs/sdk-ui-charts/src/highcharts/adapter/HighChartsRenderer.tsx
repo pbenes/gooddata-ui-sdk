@@ -304,7 +304,7 @@ export class HighChartsRenderer extends React.PureComponent<
                     ...name,
                     position: legendOptions.position,
                     renderPopUp: isLegendTopBottom,
-                    maxRows: 1,
+                    maxRows: isLegendTopBottom ? 1 : undefined,
                     type: "user, max 1 row for top/bottom",
                 };
             } else {
@@ -312,7 +312,7 @@ export class HighChartsRenderer extends React.PureComponent<
                     ...name,
                     position: legendOptions.position,
                     renderPopUp: isLegendTopBottom,
-                    maxRows: 2,
+                    maxRows: isLegendTopBottom ? 2 : undefined,
                     type: "user, max 2 rows for top/bottom",
                 };
             }
