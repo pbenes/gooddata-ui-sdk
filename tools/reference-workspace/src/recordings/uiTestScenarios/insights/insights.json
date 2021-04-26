@@ -305,6 +305,12 @@
     "BarChart.243625b3a69a7d7252da0164b5045730": {
         "comment": "Auto-generated insight for test scenario BarChart - 120x354 - without y axis labels."
     },
+    "BarChart.26fa2c24798aa652058bed4b7175b20d": {
+        "comment": "Auto-generated insight for test scenario BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
+    },
+    "BarChart.2adb8e4e27626c92e3e64de370bae48c": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
     "BarChart.2b46da54f9b7adb3edceb4e6fd04daf9": {
         "comment": "Auto-generated insight for test scenario BarChart - assign color to measures."
     },
@@ -419,6 +425,9 @@
     "BarChart.8537a4830814bd9845e151d65a074234": {
         "comment": "Auto-generated insight for test scenario BarChart - 650x120 - without x axis title."
     },
+    "BarChart.85fec9bf52d5bd0e5fa255d350b45782": {
+        "comment": "Auto-generated insight for test scenario BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "BarChart.860b8a056b59bddd0964d1ea48e797d6": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures with viewBy sorted by attribute.",
         "scenarioName": "two measures with viewBy sorted by attribute",
@@ -502,8 +511,26 @@
         "scenarioName": "single measure with viewBy",
         "visName": "BarChart"
     },
+    "BarChart.d1116b5597f35c01cabadbb28fc7da73": {
+        "comment": "Auto-generated insight for test scenario BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "BarChart.d484610280e20db19c92f028ee33a6f0": {
+        "comment": "Auto-generated insight for test scenario BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
+    },
+    "BarChart.d4c16d1b4f1f4a739776ecc6f10e80b5": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "BarChart.d706856930ec53db515c6e71802595f7": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "BarChart.d9ef9ac56871c9a8ea984f199d3d3611": {
         "comment": "Auto-generated insight for test scenario BarChart - 165x354 - without y axis title."
+    },
+    "BarChart.dd9a26c4466907efc60b4000e177eaf3": {
+        "comment": "Auto-generated insight for test scenario BarChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "BarChart.e0e9d6bbb85c26c1b30b011b130e1b09": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
     },
     "BarChart.e189b9db80a38a0d68059130702f6154": {
         "comment": "Auto-generated insight for test scenario BarChart - four measures and PoP.",
@@ -937,6 +964,12 @@
     "ColumnChart.68a492ced997d45c37454002fdc735ab": {
         "comment": "Auto-generated insight for test scenario ColumnChart - assign color to attribute element stack."
     },
+    "ColumnChart.69b0d95c95c9465079be3478033a0248": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "ColumnChart.6c096355283042f97dfc7b81533a76c2": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
     "ColumnChart.6f255f99aa969be8ccd672ef7b092235": {
         "comment": "Auto-generated insight for test scenario ColumnChart - 60x354 - without y axis labels."
     },
@@ -1019,10 +1052,22 @@
     "ColumnChart.aed769d32853cb0cde7ff06da591a8fa": {
         "comment": "Auto-generated insight for test scenario ColumnChart - 40x60 - without x axis, without y axis (very small container)."
     },
+    "ColumnChart.b47e055f0b0d7b051b05663671149ef0": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "ColumnChart.ba83c3c2a0109e7c461e8aacfeb12ef5": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "ColumnChart.bad6dc958b4e0e96571ad5a7fea2ed4b": {
         "comment": "Auto-generated insight for test scenario ColumnChart - two measures with two viewBy.",
         "scenarioName": "two measures with two viewBy",
         "visName": "ColumnChart"
+    },
+    "ColumnChart.bb0f2f067498ae42d57659a2adcb35c7": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "ColumnChart.bdfda23ff21632259d6b7b692d7a4966": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "ColumnChart.bee745160f8c7d8f60d01cef5903af32": {
         "comment": "Auto-generated insight for test scenario ColumnChart - 650x120 - without x axis title."
@@ -1035,8 +1080,14 @@
         "scenarioName": "single measure with viewBy and stackBy filtered to single stack",
         "visName": "ColumnChart"
     },
+    "ColumnChart.c5987531e9974d2fde6ff11359b7d596": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "ColumnChart.c746b54b3b5f239b0b7d9b67d0032d4f": {
         "comment": "Auto-generated insight for test scenario ColumnChart - 120x354 - without y axis title."
+    },
+    "ColumnChart.c951fcfdc83ea4c1b720b1fc97a9c1c4": {
+        "comment": "Auto-generated insight for test scenario ColumnChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "ColumnChart.cd123c4fd374f3c0fa3841fff19d6dad": {
         "comment": "Auto-generated insight for test scenario ColumnChart - two measures with viewBy sorted by measure.",
@@ -1838,6 +1889,9 @@
     "LineChart.57a5157d052ee2d68824971b542d25a8": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - high."
     },
+    "LineChart.59c14842d21752e14edc7591393d22a0": {
+        "comment": "Auto-generated insight for test scenario LineChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "LineChart.5dbc15a1a83b91aef73966cc83d10b94": {
         "comment": "Auto-generated insight for test scenario LineChart - 650x140 - without x axis title."
     },
@@ -1944,6 +1998,9 @@
     "LineChart.bddc8796df9e0cacad351e0128ebdf30": {
         "comment": "Auto-generated insight for test scenario LineChart - 40x70 - without x axis, without y axis (very small container)."
     },
+    "LineChart.c007f856363b2b0efbc7de9987c05a81": {
+        "comment": "Auto-generated insight for test scenario LineChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "LineChart.c09e228243ada7888fa2ed63cc18bd13": {
         "comment": "Auto-generated insight for test scenario LineChart - single axis name configuration - middle."
     },
@@ -1988,6 +2045,9 @@
     },
     "LineChart.f1549e99b31f4a59bd086b37c25e48d0": {
         "comment": "Auto-generated insight for test scenario LineChart - 140x354 - without y axis title."
+    },
+    "LineChart.f2f3b7183019e9665e8b07b23bd89ae5": {
+        "comment": "Auto-generated insight for test scenario LineChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
     },
     "LineChart.f53080815428049f4d855f171c225465": {
         "comment": "Auto-generated insight for test scenario LineChart - single measure with trendBy.",
