@@ -61,7 +61,6 @@ export interface ILegendDetails {
     position: any;
     maxRows?: number;
     renderPopUp?: boolean;
-    type?: string; // TODO: this is to be removed, so far just debug description
 }
 
 export function renderChart(props: IChartProps): JSX.Element {
@@ -257,33 +256,11 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    // TODO: cleanup this, remove tye "type" annotation
-    public getLegendDetails(
+    private getLegendDetailsForAutoResponsive(
         contentRect: ContentRect,
         legendOptions: ILegendOptions,
         chartOptions: any,
-        showFluidLegend: boolean,
     ): ILegendDetails {
-        if (legendOptions.responsive !== "popup") {
-            const { type } = chartOptions;
-            let pos = legendOptions.position;
-            if (isHeatmap(type)) {
-                const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
-                if (isSmall) {
-                    pos = legendOptions.position === TOP ? TOP : BOTTOM;
-                } else {
-                    pos = legendOptions.position || RIGHT;
-                }
-            }
-
-            return {
-                position: pos,
-                renderPopUp: false,
-                name: null,
-                type: "fallback, non-popup",
-            };
-        }
-
         const { width, height } = contentRect?.client;
 
         if (!width || !height) {
@@ -292,31 +269,60 @@ export class HighChartsRenderer extends React.PureComponent<
 
         const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
 
-        if (width < 630) {
-            return { ...name, position: TOP, type: "top, 1row", renderPopUp: true, maxRows: 1 };
+        // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
+        if (width < 460) {
+            return { ...name, position: TOP, renderPopUp: true, maxRows: 1 };
         } else {
             const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
-            if (height < 280) {
-                return { ...name, position: RIGHT, type: "right, paging", renderPopUp: false };
-            } else if (height < 360) {
-                return {
-                    ...name,
-                    position: legendOptions.position,
-                    renderPopUp: isLegendTopBottom,
-                    maxRows: isLegendTopBottom ? 1 : undefined,
-                    type: "user, max 1 row for top/bottom",
-                };
+            if (height < 240) {
+                return { ...name, position: RIGHT, renderPopUp: false };
             } else {
+                const maxRowsForTopBottom = height < 320 ? 1 : 2;
                 return {
                     ...name,
                     position: legendOptions.position,
                     renderPopUp: isLegendTopBottom,
-                    maxRows: isLegendTopBottom ? 2 : undefined,
-                    type: "user, max 2 rows for top/bottom",
+                    maxRows: isLegendTopBottom ? maxRowsForTopBottom : undefined,
                 };
             }
         }
+    }
+
+    private getLegendDetailsForStandard(
+        legendOptions: ILegendOptions,
+        chartOptions: any,
+        showFluidLegend: boolean,
+    ): ILegendDetails {
+        const { type } = chartOptions;
+        let pos = legendOptions.position;
+        if (isHeatmap(type)) {
+            const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
+            if (isSmall) {
+                pos = legendOptions.position === TOP ? TOP : BOTTOM;
+            } else {
+                pos = legendOptions.position || RIGHT;
+            }
+        }
+
+        return {
+            position: pos,
+            renderPopUp: false,
+            name: null,
+        };
+    }
+
+    public getLegendDetails(
+        contentRect: ContentRect,
+        legendOptions: ILegendOptions,
+        chartOptions: any,
+        showFluidLegend: boolean,
+    ): ILegendDetails {
+        if (legendOptions.responsive !== "popup") {
+            return this.getLegendDetailsForStandard(legendOptions, chartOptions, showFluidLegend);
+        }
+
+        return this.getLegendDetailsForAutoResponsive(contentRect, legendOptions, chartOptions);
     }
 
     public renderLegend(legendDetails: ILegendDetails, contentRect: ContentRect): React.ReactNode {
