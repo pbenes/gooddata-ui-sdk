@@ -423,7 +423,7 @@ export class HighChartsRenderer extends React.PureComponent<
         const classes = cx(
             "viz-line-family-chart-wrap",
             "s-viz-line-family-chart-wrap",
-            legend.responsive ? "responsive-legend" : "non-responsive-legend",
+            legend.responsive === true ? "responsive-legend" : "non-responsive-legend",
             {
                 [`flex-direction-${this.getFlexDirection(legendDetails.position)}`]: true,
                 "legend-position-bottom": legendDetails.position === BOTTOM,
