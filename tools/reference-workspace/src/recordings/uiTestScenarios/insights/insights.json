@@ -1,6 +1,39 @@
 {
+    "AreaChart.0229f24b92f336871eeb04e1e16c4e68": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
+    "AreaChart.0637e2cc1ef5baa0f26e54a386d1b15f": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
+    "AreaChart.09671f119d62c33892c77b10b72d18a3": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
+    "AreaChart.0e549d862b33f56aa1c153013ff70237": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "AreaChart.112fcccbed8de49ac416faaa00b8ec12": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "AreaChart.12e3ca007cb1d365f078f464261dfc91": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
+    "AreaChart.132f2c56a03598d73d6ce331e7e97210": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "AreaChart.141e496201b32738d0233842253651b4": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - sparse chart - forced hidden."
+    },
+    "AreaChart.1a4ea08f078bc13057ca387ef3daa96c": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "AreaChart.1bd7d238a2e217057762704e077d1e44": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
+    "AreaChart.1c089ea09bf7883f60a125518ee42e41": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x154 - Force position RIGHT - legend on top."
+    },
+    "AreaChart.1dcaf3e553f0d038c7fede1377090511": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "AreaChart.20d32557278cff623a76fa588f47c055": {
         "comment": "Auto-generated insight for test scenario AreaChart - legend position - legend at bottom."
@@ -8,13 +41,31 @@
     "AreaChart.21f7e2ed19e9d5b38c9feeba8cc7c838": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with viewBy and stackBy and stack to percent."
     },
+    "AreaChart.2451bb5901c83c044ba382a23ad31185": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "AreaChart.2dbe5ddfb4f994a9bc2294199b35372a": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy and disabled stacking."
+    },
+    "AreaChart.2feabd2f35d6313707ed28d7a5aa5a45": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "AreaChart.302b3398b3c630ac89d13eda1ab28635": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
+    "AreaChart.30a0732df2d11cffebf31635b12076f1": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
     },
     "AreaChart.30b5cbb74f1c5f97855094094008d51f": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy.",
         "scenarioName": "two measures with viewBy",
         "visName": "AreaChart"
+    },
+    "AreaChart.34bf27fde9b753b11133ba639d486dcd": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "AreaChart.39520432eb51882c49fa3e04857048e3": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
     },
     "AreaChart.39b0a54e2c935324b2b2806bc7b72bd0": {
         "comment": "Auto-generated insight for test scenario AreaChart - data labels - forced visible and german separators."
@@ -23,6 +74,9 @@
         "comment": "Auto-generated insight for test scenario AreaChart - single measure.",
         "scenarioName": "single measure",
         "visName": "AreaChart"
+    },
+    "AreaChart.4365fe855a9a5c9778c9a99eee58d0fe": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
     },
     "AreaChart.472c7f31bc503ae4a5ca61406edc9826": {
         "comment": "Auto-generated insight for test scenario AreaChart - data labels - auto visibility."
@@ -44,11 +98,23 @@
     "AreaChart.543d2d6b6ad82c742f65843929e2e2e9": {
         "comment": "Auto-generated insight for test scenario AreaChart - data labels - default."
     },
+    "AreaChart.55aa65f71b1b5edf85d29d819d87e5b9": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "AreaChart.568952b51f0ab0669506969d70cd3bf6": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy and enabled stacking."
     },
+    "AreaChart.5f072aef5439d6747fd28cef547beef1": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "AreaChart.619c9e00650f9ccc7ca48f89cbac3e41": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x154 - Force position RIGHT - legend on left."
+    },
     "AreaChart.624b16b6f2a7495cbfec5f57f0d990f5": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy and enabled stack measures."
+    },
+    "AreaChart.6a5e4283c6cfc80214a03a6386e9a6ce": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "AreaChart.6dd8c3643c5ad952779492b45b72fb61": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy and stack measures to percent."
@@ -56,11 +122,20 @@
     "AreaChart.705a79dc5f269128348343e5743e2824": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy and disabled stack measures."
     },
+    "AreaChart.75395555b2bfc787cfc49a0e7796ad0f": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
+    "AreaChart.75bc651b5f212f555ea607ead295e89f": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x154 - Force position RIGHT - legend on right."
+    },
     "AreaChart.76cbd726035415ee305add1cdcc31bbd": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with viewBy and stackBy and stack to percent with labels."
     },
     "AreaChart.7e6c24553abc866ceb685d635f258ff1": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - dense chart - forced visible."
+    },
+    "AreaChart.81b15f9c94dfe35bc5dc15773a4af684": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
     },
     "AreaChart.85c4df7e31bfdd5c5f7062b291383f06": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy sorted by measure.",
@@ -76,14 +151,26 @@
     "AreaChart.8e8af17e1365acee583b670300326efd": {
         "comment": "Auto-generated insight for test scenario AreaChart - coloring - custom palette."
     },
+    "AreaChart.8fd3974a77746d52edc7cc6f9d1ee598": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x154 - Force position RIGHT - auto legend."
+    },
     "AreaChart.9d2908f6b71d80aca6157eb1c8d6d413": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with viewBy and stackBy and disabled stacking."
     },
     "AreaChart.9d78d560b2c516ad90ee68faabfc2b5d": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - sparse chart - auto visibility."
     },
+    "AreaChart.9e71ce3b20316e9959515fac24a5d77f": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
+    "AreaChart.9f7469d784ef888b85281c88d7aee946": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "AreaChart.a97be468994b89529a3efba0a264a799": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - dense chart - default."
+    },
+    "AreaChart.aedd6ea8e2e5e26bc4e296132ae58e3f": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
     },
     "AreaChart.b4af78751c72ad83631f811af30a8ad9": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with viewBy and stackBy.",
@@ -96,6 +183,9 @@
     "AreaChart.b8d7deaba83986efd6dd2e789bf6d241": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with viewBy and stack to percent."
     },
+    "AreaChart.b9d865d9900bec06c1a57cc6a0326fc1": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
     "AreaChart.c0ffd5beca0faa46b342d7fbbaf871f0": {
         "comment": "Auto-generated insight for test scenario AreaChart - two measures with viewBy sorted by attribute.",
         "scenarioName": "two measures with viewBy sorted by attribute",
@@ -103,6 +193,9 @@
     },
     "AreaChart.c27c510bc3157164911125cc456798d0": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - sparse chart - default."
+    },
+    "AreaChart.c4132587276d38863254d8b9caa7302a": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
     },
     "AreaChart.c4e35792e01a9249b8eed38ad42b91e9": {
         "comment": "Auto-generated insight for test scenario AreaChart - single measure with two viewBy.",
@@ -128,6 +221,12 @@
         "scenarioName": "single measure with viewBy",
         "visName": "AreaChart"
     },
+    "AreaChart.e19bac0422f6c793cc80c2a93a3af5cc": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
+    "AreaChart.e4bafa7bbd0ff7763cf93867566611c7": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "AreaChart.e4be9b3a2dc9a70ada8138be9365fa45": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - dense chart - auto visibility."
     },
@@ -136,11 +235,17 @@
         "scenarioName": "arithmetic measures",
         "visName": "AreaChart"
     },
+    "AreaChart.e8e983e79c7a883022a8cb64d54fcfee": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "AreaChart.ee95794f99faf70bacf711500d0f3a8e": {
         "comment": "Auto-generated insight for test scenario AreaChart - legend position - legend on left."
     },
     "AreaChart.f1db7d153c7e72cf8191c5c3444db7b4": {
         "comment": "Auto-generated insight for test scenario AreaChart - legend position - disabled."
+    },
+    "AreaChart.f8a38f34dcbf06a65dfb37d6c653479e": {
+        "comment": "Auto-generated insight for test scenario AreaChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
     },
     "AreaChart.ff657add1d4710e8859f761deb11ad04": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - dense chart - forced hidden."
