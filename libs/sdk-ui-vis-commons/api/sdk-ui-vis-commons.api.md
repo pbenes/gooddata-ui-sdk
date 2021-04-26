@@ -23,14 +23,14 @@ export class AttributeColorStrategy extends ColorStrategy {
     protected createColorAssignment(colorPalette: IColorPalette, colorMapping: IColorMapping[], viewByAttribute: any, stackByAttribute: any, dv: DataViewFacade): ICreateColorAssignmentReturnValue;
 }
 
+// @internal (undocumented)
+export type ButtonsOrientationType = "upDown" | "leftRight";
+
 // @internal
 export function calculateHeadlineHeightFontSize(secondaryItem?: boolean, clientHeight?: number): {
     height: number | undefined;
     fontSize: number | undefined;
 };
-
-// @internal (undocumented)
-export type ButtonsOrientationType = "upDown" | "leftRight";
 
 // @internal (undocumented)
 export const ColorLegend: React_2.ComponentType<Pick<IColorLegendProps, "data" | "title" | "format" | "size" | "position" | "numericSymbols">>;
@@ -111,7 +111,7 @@ export function getColorMappingPredicate(testValue: string): IHeaderPredicate;
 export function getColorPaletteFromColors(colors: string[]): IColorPalette;
 
 // @internal
-export const getHeadlineResponsiveClassName: (width: number, isShorttened?: boolean | undefined) => string;
+export const getHeadlineResponsiveClassName: (width: number, isShorttened?: boolean) => string;
 
 // @internal
 export function getLighterColor(color: string, percent: number): string;

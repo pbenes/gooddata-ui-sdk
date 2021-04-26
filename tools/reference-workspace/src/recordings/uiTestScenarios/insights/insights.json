@@ -567,17 +567,35 @@
     "BarChart.fe6d09ce2bab557b21d43e57ddb2f152": {
         "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - legend at bottom."
     },
+    "BubbleChart.02241bd86f6d83501c2363174d214e51": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
+    },
+    "BubbleChart.09627734974931b4326333230b8d07f4": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "BubbleChart.0ae5faf2e56ba18f70708ecf5fec395d": {
         "comment": "Auto-generated insight for test scenario BubbleChart - legend position - auto legend."
     },
     "BubbleChart.129d834000f6c98815f42a4a5c5775d9": {
         "comment": "Auto-generated insight for test scenario BubbleChart - axis name customization - high."
     },
+    "BubbleChart.187b19728bcdce1d24f670b4dd6d9c10": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
     "BubbleChart.21697aaaa62aef0d043164c26c2f3270": {
         "comment": "Auto-generated insight for test scenario BubbleChart - axis name customization - middle."
     },
+    "BubbleChart.234bd8313686a9a28f209a77414d42bf": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x154 - Force position RIGHT - legend on top."
+    },
     "BubbleChart.27504b660066a45f0c6353af59a85551": {
         "comment": "Auto-generated insight for test scenario BubbleChart - axis name customization - invisible."
+    },
+    "BubbleChart.27928fe0ee9e0c16d629e1167654b2cb": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "BubbleChart.2871d1f46ba549c6db169b7eabe4e330": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
     },
     "BubbleChart.2e768324a3104fbbd53ae6c4475858ee": {
         "comment": "Auto-generated insight for test scenario BubbleChart - x axis measure with viewBy.",
@@ -592,6 +610,9 @@
         "scenarioName": "x and y axis and size measures with viewBy and sorted by attr",
         "visName": "BubbleChart"
     },
+    "BubbleChart.3ecf933b7825eff690b448e03f982314": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
+    },
     "BubbleChart.4275769d6ca57e43e8ae3fb29732c5b0": {
         "comment": "Auto-generated insight for test scenario BubbleChart - data labels - forced visible."
     },
@@ -600,8 +621,14 @@
         "scenarioName": "themed",
         "visName": "BubbleChart"
     },
+    "BubbleChart.4ea22f13439590a79ccd61d17911efd3": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
     "BubbleChart.59dbe407a6045bfe2aa7a60afca1597a": {
         "comment": "Auto-generated insight for test scenario BubbleChart - assign color to attribute bubbles."
+    },
+    "BubbleChart.5d4b98d0edb554b5acaca77008d6707a": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "BubbleChart.601f46507db5fc0cdbada227c0375784": {
         "comment": "Auto-generated insight for test scenario BubbleChart - legend position - legend at bottom."
@@ -614,8 +641,14 @@
         "scenarioName": "y axis and size measures with viewBy",
         "visName": "BubbleChart"
     },
+    "BubbleChart.6a5320141a88e58baf7eb194cee674f3": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "BubbleChart.72220bd60460303f63ae5460a8d9e387": {
         "comment": "Auto-generated insight for test scenario BubbleChart - data labels - forced visible and german separators."
+    },
+    "BubbleChart.74b39864c905486ef6b9b9f47e428c84": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
     },
     "BubbleChart.7d51166aa18010e5b37656280f18a374": {
         "comment": "Auto-generated insight for test scenario BubbleChart - x axis measure.",
@@ -635,8 +668,35 @@
         "scenarioName": "x axis and size measures with viewBy",
         "visName": "BubbleChart"
     },
+    "BubbleChart.807a4e8180e0094e90c114d96aeb5989": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
+    "BubbleChart.82fc2cf4d9ff67b4c263b191e64abb55": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "BubbleChart.8854b1b46b4b9168a45abdef2b6a0ea9": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x154 - Force position RIGHT - legend on right."
+    },
+    "BubbleChart.89fc2e060159607fb180be1c62f19998": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "BubbleChart.9042440da9dbb07edd253cd73fabe556": {
         "comment": "Auto-generated insight for test scenario BubbleChart - axis name customization - low."
+    },
+    "BubbleChart.9083e34d1bb43f34453c93882130e876": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "BubbleChart.93e76bd4fe2872778aa263c275681353": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "BubbleChart.98c64e8a13e4bad494d70d35dc35cdbf": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "BubbleChart.9a858fdd3ea577088afd63ae44282cd5": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "BubbleChart.9d97bdb52790247470ac71464c8191b1": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
     },
     "BubbleChart.9da8fee513a17c0e906f2a8524179d24": {
         "comment": "Auto-generated insight for test scenario BubbleChart - Y axis max only configuration."
@@ -644,19 +704,55 @@
     "BubbleChart.9f86a341a81326c70b02cb3bfda0c21a": {
         "comment": "Auto-generated insight for test scenario BubbleChart - X axis min/max configuration."
     },
+    "BubbleChart.a58bb4201884a42b0bdfde4b6393e296": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
+    "BubbleChart.a824a73f6447d854028ce095b9b46307": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
+    },
+    "BubbleChart.aa7975bfd9f5d7a210d8e6f2fc8157cc": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "BubbleChart.b1414e96acb0ef6e6857f2fa4dce259a": {
         "comment": "Auto-generated insight for test scenario BubbleChart - data labels - auto visibility."
+    },
+    "BubbleChart.bbe4c0df1b9e32b58bc9708e0770e4f4": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
+    "BubbleChart.bed6ad5dd0a259372f462bb262ebd5c1": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
+    },
+    "BubbleChart.bf579156bf5b21576fa9460715d35655": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "BubbleChart.c132d074341308f314793b49fa531273": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
     },
     "BubbleChart.c15166dce90b758606af1f98c611aa28": {
         "comment": "Auto-generated insight for test scenario BubbleChart - arithmetic measure.",
         "scenarioName": "arithmetic measure",
         "visName": "BubbleChart"
     },
+    "BubbleChart.c23dec7287ad8506ad02fa053b511fca": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
+    "BubbleChart.c311918a483e536f1c13867b4ce64b43": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x154 - Force position RIGHT - legend on left."
+    },
+    "BubbleChart.c518e3a635e92c04b191bb9982e8ea72": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
     "BubbleChart.cc61fcee08d81a12a7be5b00692ef9b4": {
         "comment": "Auto-generated insight for test scenario BubbleChart - X axis max only configuration."
     },
+    "BubbleChart.d27e1756f3693a41c8439c57792ed51e": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
     "BubbleChart.d437d583b8458cd0aa9c366b7983d66c": {
         "comment": "Auto-generated insight for test scenario BubbleChart - X and Y axis min/max configuration."
+    },
+    "BubbleChart.d653a6d6b6ded5d68945e5b5fb6c3c11": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
     },
     "BubbleChart.d66b7567aeb6f7f46086dbbd00165cae": {
         "comment": "Auto-generated insight for test scenario BubbleChart - legend position - legend on right."
@@ -675,16 +771,37 @@
     "BubbleChart.ebf408e63f9aee60993e76d5a397e4f2": {
         "comment": "Auto-generated insight for test scenario BubbleChart - coloring - custom palette."
     },
+    "BubbleChart.eed602cacbc8e2b6058d6d6e99a3cb71": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
     "BubbleChart.f30091bf89e13f79c54233b5695efbf0": {
         "comment": "Auto-generated insight for test scenario BubbleChart - x and y axis measures with viewBy.",
         "scenarioName": "x and y axis measures with viewBy",
         "visName": "BubbleChart"
     },
+    "BubbleChart.f90a6e116f696b702faca11037c25e47": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "BubbleChart.fb583ff66ce3ee44ace867a9efc29b3b": {
         "comment": "Auto-generated insight for test scenario BubbleChart - Y axis min/max configuration."
     },
+    "BubbleChart.ffdbd68b994163b1459257ac075541cb": {
+        "comment": "Auto-generated insight for test scenario BubbleChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "BulletChart.013ca975a072db0098e506a236d0dd76": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "BulletChart.01bf6f2ed0c9e8d223e73513e4b13f08": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
     "BulletChart.0bd9002fb1578725e8eafb366864a633": {
         "comment": "Auto-generated insight for test scenario BulletChart - axis name customization - middle."
+    },
+    "BulletChart.17e1d9afa5fc2ef25b16fe0da8d29549": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
+    "BulletChart.1bc8f8edb61ad978b3f506f36e9cc45b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
     },
     "BulletChart.1be22c7c48b88ad33083d86ea40733c0": {
         "comment": "Auto-generated insight for test scenario BulletChart - 650x50 - without x axis labels."
@@ -701,8 +818,20 @@
     "BulletChart.24506ca2533d040a388c782368317547": {
         "comment": "Auto-generated insight for test scenario BulletChart - data labels - forced visible."
     },
+    "BulletChart.2a1254ccf80d138514991e243acff074": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "BulletChart.2aab1f5e93d592c84bf4e2d7eed228bf": {
         "comment": "Auto-generated insight for test scenario BulletChart - legend position - legend on left."
+    },
+    "BulletChart.2b7793fcbe30f835e0299d52daa1889b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "BulletChart.30cff9724e53d90b37c5c27119cb0f3b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "BulletChart.311dc58821fbf8ca8eea3db6318eacfb": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
     },
     "BulletChart.314a074574b65c6082f53a4901cacdd1": {
         "comment": "Auto-generated insight for test scenario BulletChart - primary and target measures.",
@@ -712,14 +841,32 @@
     "BulletChart.35b589c35e0704e8d8ffdf3dc4f529f5": {
         "comment": "Auto-generated insight for test scenario BulletChart - data labels - forced visible and german separators."
     },
+    "BulletChart.395cec4a19597bbe67c174f809ee5f6c": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "BulletChart.3b7d032b1b15e14b8048f762d6d1fc43": {
         "comment": "Auto-generated insight for test scenario BulletChart - X axis hidden."
     },
     "BulletChart.424a621eb766e36c22c7ac3483f52081": {
         "comment": "Auto-generated insight for test scenario BulletChart - data labels - default."
     },
+    "BulletChart.444d3fb73ac4d375be56cfe758e3580f": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "BulletChart.46d9e79d4804e793f25fed425ab53c01": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x154 - Force position RIGHT - legend on top."
+    },
     "BulletChart.47caa4e3a376570774eb9fd16c5bd387": {
         "comment": "Auto-generated insight for test scenario BulletChart - 650x80 - without x axis labels, with x axis title."
+    },
+    "BulletChart.4a5b6bc16c5df2ea93660ead56aa164e": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x154 - Force position RIGHT - legend on left."
+    },
+    "BulletChart.5060fe42286de716f574a922a1d4d587": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
+    "BulletChart.509c1cb238c47c374226df985849b862": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
     },
     "BulletChart.54e655a733f7f1f12a302bd974eecfef": {
         "comment": "Auto-generated insight for test scenario BulletChart - 165x354 - without y axis title."
@@ -729,11 +876,29 @@
         "scenarioName": "primary, target and comparative measures with two viewBy",
         "visName": "BulletChart"
     },
+    "BulletChart.55d61dc7f456d1b91e68d929c38a198e": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
     "BulletChart.5841c8f8f5524c87a5f4df4015bf4e17": {
         "comment": "Auto-generated insight for test scenario BulletChart - X axis rotation."
     },
+    "BulletChart.5a345abe3c7226a1e1fdf8d1dbdbf51a": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
     "BulletChart.5bbcc5691de72a6f7f5825d8a2d4b79f": {
         "comment": "Auto-generated insight for test scenario BulletChart - Y axis hidden."
+    },
+    "BulletChart.5bc06151e2b851f487e5f29d5408ff39": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "BulletChart.60a3b9c605668a4591bf3a14f6adca32": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
+    "BulletChart.6c90232928eeef40d2237c01c36afd89": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
+    "BulletChart.702466d7b857af63210f73cda6d9e643": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
     },
     "BulletChart.742e6982386dccf205ad271935df0b8c": {
         "comment": "Auto-generated insight for test scenario BulletChart - X axis max only configuration."
@@ -743,17 +908,41 @@
         "scenarioName": "primary and comparative measures",
         "visName": "BulletChart"
     },
+    "BulletChart.779c6c270a75daff41fe074a29295d8b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "BulletChart.78b99bb98e8cc761d32d847e8f80a2a0": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
+    "BulletChart.7b4b1e0a0374739174c723450704128b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
     "BulletChart.7e31e59d366e33a32bf5cb770b643699": {
         "comment": "Auto-generated insight for test scenario BulletChart - Y axis rotation."
     },
     "BulletChart.870587ad8613c200781c83d9ff94a2cb": {
         "comment": "Auto-generated insight for test scenario BulletChart - 650x120 - without x axis title."
     },
+    "BulletChart.8cf8137f9a14ddb38eb1e28b04917b95": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x154 - Force position RIGHT - legend on right."
+    },
+    "BulletChart.8d01581feefd77d1ff90dd096260adbd": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "BulletChart.8e52065801e0086965d8f96ae8b12ca4": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
+    },
+    "BulletChart.8fdc2c99478a2e28d5b28fedfc65150a": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
     "BulletChart.9244e3f0eed03fe42034ddcd4f20e5b0": {
         "comment": "Auto-generated insight for test scenario BulletChart - 80x50 - without x axis, without y axis (very small container)."
     },
     "BulletChart.97af170b51b9cfc849dd85269c4d721c": {
         "comment": "Auto-generated insight for test scenario BulletChart - data labels - forced hidden."
+    },
+    "BulletChart.9ab98cf1d638b9ced3346d5dd49bbc67": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
     },
     "BulletChart.9be07d86a1096d1fd5b70c69382b02b8": {
         "comment": "Auto-generated insight for test scenario BulletChart - themed.",
@@ -762,6 +951,18 @@
     },
     "BulletChart.a8755ab06b1f32f6a5f616f2277a3815": {
         "comment": "Auto-generated insight for test scenario BulletChart - legend position - auto legend."
+    },
+    "BulletChart.a8f6960d2766224e80db511e5e92e9e8": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
+    "BulletChart.b3a109a87ebfeb49cb456ae46d595c5b": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
+    "BulletChart.b805b96e494234466b3182f509ddf899": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "BulletChart.bea63d545e1c06d20c30079b912f19bf": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "BulletChart.c06cb5aaaef663bffec3ca92e74efb59": {
         "comment": "Auto-generated insight for test scenario BulletChart - primary and target measures with viewBy.",
@@ -776,6 +977,9 @@
     "BulletChart.c3f156c30a003796cdcdc9b19c4f433e": {
         "comment": "Auto-generated insight for test scenario BulletChart - legend position - legend on right."
     },
+    "BulletChart.ccf578a6f2eb9a5c712697ca60ffcb17": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
+    },
     "BulletChart.d415352165826af0be3800d18b47e977": {
         "comment": "Auto-generated insight for test scenario BulletChart - axis name customization - low."
     },
@@ -786,6 +990,9 @@
         "comment": "Auto-generated insight for test scenario BulletChart - primary, target and comparative measures.",
         "scenarioName": "primary, target and comparative measures",
         "visName": "BulletChart"
+    },
+    "BulletChart.e304a09b9f78d6442479cebeed6b0e51": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
     },
     "BulletChart.e519c36a4e8c5b75162e2561f0b174f0": {
         "comment": "Auto-generated insight for test scenario BulletChart - axis name customization - invisible."
@@ -811,6 +1018,9 @@
         "comment": "Auto-generated insight for test scenario BulletChart - primary, target and comparative measures with viewBy.",
         "scenarioName": "primary, target and comparative measures with viewBy",
         "visName": "BulletChart"
+    },
+    "BulletChart.f3b6ccf154cf01ded8df2e7d72227dbb": {
+        "comment": "Auto-generated insight for test scenario BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "BulletChart.f8ec03c3f97f94fd3b3fab50e703c85d": {
         "comment": "Auto-generated insight for test scenario BulletChart - X axis min/max configuration."
