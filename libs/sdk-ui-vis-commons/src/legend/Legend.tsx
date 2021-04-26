@@ -156,7 +156,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
             return this.renderPopUpLegend();
         }
 
-        const isFluidLegend = Boolean(responsive && showFluidLegend);
+        const isFluidLegend = responsive === true && showFluidLegend;
         if (isFluidLegend) {
             return this.renderFluid();
         }
