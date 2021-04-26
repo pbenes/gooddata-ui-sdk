@@ -1,0 +1,50 @@
+{
+    "insight": {
+        "buckets": [
+            {
+                "items": [
+                    {
+                        "measure": {
+                            "definition": {
+                                "measureDefinition": {
+                                    "item": { "identifier": "aangOxLSeztu", "type": "measure" }
+                                }
+                            },
+                            "localIdentifier": "m_aangOxLSeztu"
+                        }
+                    }
+                ],
+                "localIdentifier": "measures"
+            },
+            {
+                "items": [
+                    {
+                        "attribute": {
+                            "displayForm": { "identifier": "label.owner.region", "type": "displayForm" },
+                            "localIdentifier": "a_label.owner.region"
+                        }
+                    }
+                ],
+                "localIdentifier": "view"
+            },
+            {
+                "items": [
+                    {
+                        "attribute": {
+                            "displayForm": { "identifier": "label.product.id.name", "type": "displayForm" },
+                            "localIdentifier": "a_label.product.id.name"
+                        }
+                    }
+                ],
+                "localIdentifier": "stack"
+            }
+        ],
+        "filters": [],
+        "identifier": "BarChart.85fec9bf52d5bd0e5fa255d350b45782",
+        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "sorts": [],
+        "title": "BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom",
+        "uri": "BarChart.85fec9bf52d5bd0e5fa255d350b45782",
+        "visualizationUrl": "local:bar"
+    }
+}
