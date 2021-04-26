@@ -35,6 +35,12 @@ export const BarChartWithTwoMeasuresAndTwoViewByFiltered = {
     ],
 };
 
+export const BarChartWithSingleMeasureAndViewByAndStackMultipleItems = {
+    measures: [ReferenceLdm.Amount],
+    viewBy: [ReferenceLdm.Region],
+    stackBy: ReferenceLdm.Product.Name,
+};
+
 export const BarChartWithSingleMeasureAndTwoViewByAndStack = {
     measures: [ReferenceLdm.Amount],
     viewBy: [ReferenceLdm.Product.Name, ReferenceLdm.Region],

@@ -250,8 +250,14 @@
     "AreaChart.ff657add1d4710e8859f761deb11ad04": {
         "comment": "Auto-generated insight for test scenario AreaChart - data points - dense chart - forced hidden."
     },
+    "BarChart.0083d87ee070111e3eed9fd86e6a77e0": {
+        "comment": "Auto-generated insight for test scenario BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "BarChart.0251b7d885d8120a12178d2b8e7c53f4": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures with dual axis and stack measures to 100%."
+    },
+    "BarChart.0475859add85413f4a4fa5b615eace3b": {
+        "comment": "Auto-generated insight for test scenario BarChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
     },
     "BarChart.04d3e21dab8b8c927c0ac11e0dbc4390": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures with dual axis ignores stack measures."
@@ -261,16 +267,25 @@
         "scenarioName": "two measures with two viewBy",
         "visName": "BarChart"
     },
+    "BarChart.067b435c4f5f67ec5ed5134f5a4a55c3": {
+        "comment": "Auto-generated insight for test scenario BarChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
     "BarChart.07f578eb761f5b47360b308ef12684ca": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures with viewBy.",
         "scenarioName": "two measures with viewBy",
         "visName": "BarChart"
+    },
+    "BarChart.08cb746ddb3400e007d9955b5cd7ca20": {
+        "comment": "Auto-generated insight for test scenario BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "BarChart.08d5154e6bcf1ebb58b6888ded386550": {
         "comment": "Auto-generated insight for test scenario BarChart - data labels - auto visibility."
     },
     "BarChart.0cab5e6747f96ee77eab11064f2d4692": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures and two viewBy with top axis and stackMeasuresToPercent."
+    },
+    "BarChart.0d8018680ce7407d2dd8494783ee9349": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
     },
     "BarChart.0d94f2ea4521fda952fe3d404545d604": {
         "comment": "Auto-generated insight for test scenario BarChart - dual axis label rotation - 90."
@@ -302,8 +317,17 @@
     "BarChart.3113b97459905e0890f35683a193d448": {
         "comment": "Auto-generated insight for test scenario BarChart - two measures and two viewBy with stackMeasuresToPercent."
     },
+    "BarChart.33669fff0c6e5d7e0fc08b11e52df660": {
+        "comment": "Auto-generated insight for test scenario BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "BarChart.33764d7a2820ed3836289cd61c70e9da": {
         "comment": "Auto-generated insight for test scenario BarChart - coloring - custom palette."
+    },
+    "BarChart.33a84581d93ef473a85b2016a527aaa0": {
+        "comment": "Auto-generated insight for test scenario BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
+    "BarChart.3ae50f5d7ec946bb8dc87f72509f4527": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
     },
     "BarChart.3ebc580f5b7d6595ac599160003ca34c": {
         "comment": "Auto-generated insight for test scenario BarChart - dual axis label rotation - 60."
@@ -339,6 +363,9 @@
     "BarChart.4e0ac95066705bb9e90e2f931c68bdc3": {
         "comment": "Auto-generated insight for test scenario BarChart - assign color to master measure impacts derived PoP."
     },
+    "BarChart.4e5a335beeb72be76b881c91cb26e017": {
+        "comment": "Auto-generated insight for test scenario BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "BarChart.4f67e58629863f139c791769bb8df688": {
         "comment": "Auto-generated insight for test scenario BarChart - single measure with viewBy and stackBy.",
         "scenarioName": "single measure with viewBy and stackBy",
@@ -346,6 +373,9 @@
     },
     "BarChart.5031770cf6df0ded9597dcfc4ca55146": {
         "comment": "Auto-generated insight for test scenario BarChart - stack measures and dual axis."
+    },
+    "BarChart.544b073235ffcc41396b4b5f71c8efdd": {
+        "comment": "Auto-generated insight for test scenario BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "BarChart.58cc5b2ca9519b01ed3e4cd2d8709f62": {
         "comment": "Auto-generated insight for test scenario BarChart - data labels - forced hidden."
@@ -356,11 +386,26 @@
     "BarChart.6133b501880144aef2ab5c2ddb9f7e90": {
         "comment": "Auto-generated insight for test scenario BarChart - stack measures to 100% and dual axis."
     },
+    "BarChart.6201d108341b3adb0a8bcb4d5c4367d7": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
+    "BarChart.6575d13986ce677af020e1aaaae5f46d": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - legend on top."
+    },
     "BarChart.6645e7061dab075a089f3be89ead8cc3": {
         "comment": "Auto-generated insight for test scenario BarChart - Y axis rotation."
     },
+    "BarChart.704f7bc26452493cc2cd42df7f3d23b4": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - legend on left."
+    },
     "BarChart.729ec4bf667375ab9a5a80e30d70f4ce": {
         "comment": "Auto-generated insight for test scenario BarChart - single measure with stack to 100%."
+    },
+    "BarChart.75cceba7d94dd88d8f815023115d9634": {
+        "comment": "Auto-generated insight for test scenario BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "BarChart.78224df82139412e23fe13b4cc5d79bf": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - legend on right."
     },
     "BarChart.7b6cec05c593bb2e4584220b2f0327f0": {
         "comment": "Auto-generated insight for test scenario BarChart - X axis on top."
@@ -390,8 +435,29 @@
     "BarChart.88991eece3fa913bcdcec54777b5f666": {
         "comment": "Auto-generated insight for test scenario BarChart - dual axis label rotation - minus60."
     },
+    "BarChart.892b14fdee1127398f52d90dcd0e2942": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "BarChart.903f653bb4deff8c90f7d729220b0f63": {
+        "comment": "Auto-generated insight for test scenario BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
+    "BarChart.92a530c961482b88683582ff3bca6214": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
+    "BarChart.961142693b4f4ad412cd7ee2798ab279": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "BarChart.9737da2ce37541840b98c782c2f0a8b4": {
+        "comment": "Auto-generated insight for test scenario BarChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "BarChart.a0caa606b10e86cf6a71c41c40e8237d": {
         "comment": "Auto-generated insight for test scenario BarChart - single axis name customization - high."
+    },
+    "BarChart.a978210f7d500ff71efecba68ada1a20": {
+        "comment": "Auto-generated insight for test scenario BarChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "BarChart.ab11a614588713b103a74232d32e7c10": {
+        "comment": "Auto-generated insight for test scenario BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "BarChart.ace8942b9cda5691366075554b4d89d4": {
         "comment": "Auto-generated insight for test scenario BarChart - X axis min/max configuration."
@@ -407,11 +473,20 @@
     "BarChart.b154b24d8a50b3d9360114f0c36669b3": {
         "comment": "Auto-generated insight for test scenario BarChart - single axis name customization - low."
     },
+    "BarChart.bda508bdb9882eb3251e2e4c7442b9ed": {
+        "comment": "Auto-generated insight for test scenario BarChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
+    "BarChart.bee0bd65314b3f42b57eb242e42ed9ab": {
+        "comment": "Auto-generated insight for test scenario BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
     "BarChart.c4a936f3d1a6cfa509c7bf15ca715a83": {
         "comment": "Auto-generated insight for test scenario BarChart - legend position - legend on left."
     },
     "BarChart.c6bd498beca0eae141f07b5cd9684d93": {
         "comment": "Auto-generated insight for test scenario BarChart - assign color to attribute element stack."
+    },
+    "BarChart.c6de29a9263c8f6eeb509db7098d6fa7": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
     },
     "BarChart.cc7038354e629ca3e5bb2469c3ce62a4": {
         "comment": "Auto-generated insight for test scenario BarChart - dual axis name customization - high."
@@ -461,6 +536,9 @@
     },
     "BarChart.f94bd544b667ff6bc6474e9495ea65e0": {
         "comment": "Auto-generated insight for test scenario BarChart - stack measures to 100% with dual axis and axis min/max."
+    },
+    "BarChart.fe6d09ce2bab557b21d43e57ddb2f152": {
+        "comment": "Auto-generated insight for test scenario BarChart - 610x154 - Force position RIGHT - legend at bottom."
     },
     "BubbleChart.0ae5faf2e56ba18f70708ecf5fec395d": {
         "comment": "Auto-generated insight for test scenario BubbleChart - legend position - auto legend."
