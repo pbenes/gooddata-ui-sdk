@@ -253,6 +253,7 @@ $dialog-background: $is-focused-background;
                 margin: 0 10px;
                 font-size: 12px;
                 color: $gd-color-state-blank;
+                font-family: $gd-font-primary;
 
                 // refactor?
                 // stylelint-disable-next-line max-nesting-depth
@@ -461,6 +462,9 @@ $dialog-background: $is-focused-background;
     .legend-header {
         padding-left: 10px;
         .legend-header-title {
+            font-family: $gd-font-primary;
+            color: $default-gd-color-text;
+            font-size: 14px;
             line-height: 45px;
             height: 45px;
         }
