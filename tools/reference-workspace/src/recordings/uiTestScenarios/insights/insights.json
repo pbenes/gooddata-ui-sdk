@@ -1366,6 +1366,9 @@
     "ColumnChart.fb9a20592311659f92bedec32c48a798": {
         "comment": "Auto-generated insight for test scenario ColumnChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
     },
+    "ComboChart.00b4799960d5fea0ee5e0691adf4ee57": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "ComboChart.0122a0844bfc95266eae1f0d284d9c1c": {
         "comment": "Auto-generated insight for test scenario ComboChart - discard stacking when primary measures are not specified - secondary is area."
     },
@@ -1381,17 +1384,38 @@
     "ComboChart.0b3abccd234cd1f793b878ee32a46fde": {
         "comment": "Auto-generated insight for test scenario ComboChart - data labels - forced visible."
     },
+    "ComboChart.0e8c85b0312a5e9a43ec391bad60debe": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
     "ComboChart.112bb8ed17270ab40c861716760d73b9": {
         "comment": "Auto-generated insight for test scenario ComboChart - coloring - custom palette."
     },
     "ComboChart.113336e3b9f6c7dcc7b19ba29b839334": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures with slicingcolumn-line."
     },
+    "ComboChart.1622769ec118069d1bbeea322010715a": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "ComboChart.1a9dcb5ff33d7a966dae20ac74909def": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
     "ComboChart.1bbbc47042ec3a6f5e5bdebf2cd453ed": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingarea-line."
     },
+    "ComboChart.1c118e8588d3b9d84f28e3ad5660e150": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
     "ComboChart.1cf0f02da65a39d02ce0cb906c4eba30": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingarea-area."
+    },
+    "ComboChart.1da6803c712f92bc3bcfe1caa27676f0": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "ComboChart.200b0669ae4a16ad347f66224e1cc414": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "ComboChart.204a40f1dd9809d346c3046d11e69d45": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
     },
     "ComboChart.232f904bf853783d8961db5d6382749f": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures with slicingcolumn-column."
@@ -1401,11 +1425,20 @@
         "scenarioName": "one primary measure",
         "visName": "ComboChart"
     },
+    "ComboChart.25b70eff6d895a70f2217717e782f537": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x154 - Force position RIGHT - legend on top."
+    },
     "ComboChart.274bd3cfde195215fdb2f2a18334e251": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis disabled."
     },
     "ComboChart.2768caf9fa8f6ca4ce3ca332f2f7dd1e": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures with slicingcolumn-area."
+    },
+    "ComboChart.2a4c4be9ed470123c8ddbfdc195e4bac": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "ComboChart.2b3cf83bac880edae50681b483b2b662": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
     },
     "ComboChart.2d62dbd040a7baeb541a17abd294e25b": {
         "comment": "Auto-generated insight for test scenario ComboChart - one primary and secondary measure with viewBy sorted by secondary measure.",
@@ -1430,6 +1463,9 @@
     "ComboChart.3a3ed7851f5a954c6cd206ae0f071c5f": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingarea-area."
     },
+    "ComboChart.3e74cf601110a23e0435cfcc1db91f95": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "ComboChart.3eaadd3ef95f4900850b1677891bc4ba": {
         "comment": "Auto-generated insight for test scenario ComboChart - discard stacking when primary measures are not specified - secondary is column."
     },
@@ -1442,8 +1478,14 @@
     "ComboChart.473b39d9d81e5e2813449ae3976844c5": {
         "comment": "Auto-generated insight for test scenario ComboChart - stack primary measures to 100% with different chart type - column."
     },
+    "ComboChart.4c702caf7312315939d0354659298ddd": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "ComboChart.4eae63ead3118617c88af35faef00efd": {
         "comment": "Auto-generated insight for test scenario ComboChart - stack primary measures with different chart type - column."
+    },
+    "ComboChart.4eb1adcd3cc952da142dbdaf5ff007b6": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
     },
     "ComboChart.4efd29a0bf1dc1f5491906c84786af36": {
         "comment": "Auto-generated insight for test scenario ComboChart - data points - sparse chart - auto visibility."
@@ -1456,16 +1498,31 @@
         "scenarioName": "one primary and secondary measure no viewBy",
         "visName": "ComboChart"
     },
+    "ComboChart.537ed26c4ddcaee1b82810e55c15c178": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
+    "ComboChart.54fa12b8a8bfffff0cfaa49613236227": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
     "ComboChart.563f80d38e070f5e58ff56e0cf899c2f": {
         "comment": "Auto-generated insight for test scenario ComboChart - legend position - legend on left."
     },
     "ComboChart.56a95e3e11797c4aaaac441b1a441b2c": {
         "comment": "Auto-generated insight for test scenario ComboChart - data points - dense chart - auto visibility."
     },
+    "ComboChart.56db314e231aebd6dfdf672566e3ac06": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
+    },
+    "ComboChart.5ba05f989d11e68325c4ff897f3b6b6d": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
     "ComboChart.5f37ca2fb2ee5ce7db5cd0baa57a9e1b": {
         "comment": "Auto-generated insight for test scenario ComboChart - arithmetic measures.",
         "scenarioName": "arithmetic measures",
         "visName": "ComboChart"
+    },
+    "ComboChart.5f7c5895932277548d2be1ae6ccf12a3": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
     },
     "ComboChart.5fd7420a1c3a0966d4c7cfcdc98ca524": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures with slicingarea-column."
@@ -1476,6 +1533,12 @@
     "ComboChart.614dd3752805f2a135d1687e0655a019": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures with slicingarea-line."
     },
+    "ComboChart.62e6b76b1bd8c9d2a5451b553da0e138": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
+    "ComboChart.6406facc20d63e8907877162023a9518": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x154 - Force position RIGHT - legend on right."
+    },
     "ComboChart.64135239f9f66d250e14579ef50513f4": {
         "comment": "Auto-generated insight for test scenario ComboChart - one primary and secondary measure with viewBy sorted by attr.",
         "scenarioName": "one primary and secondary measure with viewBy sorted by attr",
@@ -1483,6 +1546,9 @@
     },
     "ComboChart.6641bb6c43ebcb9c5aa871f61ea2efbe": {
         "comment": "Auto-generated insight for test scenario ComboChart - axis name configuration - invisible."
+    },
+    "ComboChart.681f8ac7ed155147970adeedec317add": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "ComboChart.68eb620854fbd4e48c78427acdc893c9": {
         "comment": "Auto-generated insight for test scenario ComboChart - stack primary measures with different chart type - area."
@@ -1493,10 +1559,16 @@
     "ComboChart.709200a13cc59b9ddea45280fd54557d": {
         "comment": "Auto-generated insight for test scenario ComboChart - legend position - disabled."
     },
+    "ComboChart.70c7f5a8341ccc8b2c7479586a8f84e7": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
     "ComboChart.71fd05988f1418549928ffe9a2ce06b6": {
         "comment": "Auto-generated insight for test scenario ComboChart - themed.",
         "scenarioName": "themed",
         "visName": "ComboChart"
+    },
+    "ComboChart.75895995b91596dcd42c25e6240f754a": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
     },
     "ComboChart.7b9f8804a0583d9541325829dab5dd2b": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingarea-column."
@@ -1504,8 +1576,14 @@
     "ComboChart.80b0c83be70ea2b4d79f15b0c6e0308b": {
         "comment": "Auto-generated insight for test scenario ComboChart - legend position - legend on top."
     },
+    "ComboChart.80e73abed68dae986813de645abd0e2a": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "ComboChart.8215ae8ad428e7219cfc93c10f8d5cc8": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingcolumn-area."
+    },
+    "ComboChart.8290a3513be866c5adda71e538e38d81": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
     },
     "ComboChart.8478d50a15ab0a7da9c44becf905f56d": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures with slicingcolumn-line."
@@ -1519,8 +1597,14 @@
     "ComboChart.8a4e966b901b888f7cf5d0c0cdd7ae87": {
         "comment": "Auto-generated insight for test scenario ComboChart - data points - sparse chart - default."
     },
+    "ComboChart.8b2188078b25369a172591c5544d1aa0": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
     "ComboChart.8c9aa8fea51d87446debe6e42fa37bb1": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingline-line."
+    },
+    "ComboChart.8dd0cf81c3cb9f4745922dd5c8a0c6e9": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x154 - Force position RIGHT - legend on left."
     },
     "ComboChart.9664fb0c104bf3774eecf8847b5c6c01": {
         "comment": "Auto-generated insight for test scenario ComboChart - data points - dense chart - forced hidden."
@@ -1551,6 +1635,9 @@
     "ComboChart.ac77eb870277235b221b0e6af671eff2": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingcolumn-column."
     },
+    "ComboChart.b529ce49bcac0794a39f2d95bafb8048": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
     "ComboChart.b5eef2a766c7c089941db284fed158bb": {
         "comment": "Auto-generated insight for test scenario ComboChart - stack primary measures when both column chart - normal stacking."
     },
@@ -1571,6 +1658,12 @@
     "ComboChart.beab73fd9a8de45656e41cd783ccfdc0": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingarea-line."
     },
+    "ComboChart.c013dbcb21421c10f52e4ce9d37e262d": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "ComboChart.c5808c8cc165da014af3d19c8238f30b": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "ComboChart.c7d76d50d9d09ba9d7af7e8170956fd8": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingline-line."
     },
@@ -1579,6 +1672,9 @@
     },
     "ComboChart.caedde63fb0c968318dac540ecb57f84": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis multiple measures without slicingcolumn-line."
+    },
+    "ComboChart.cc351132894ed1cf76b8f4be0e1384cc": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "ComboChart.ce55fc5c7ffeb85429dec261cc16bb33": {
         "comment": "Auto-generated insight for test scenario ComboChart - multiple measures and no viewBy.",
@@ -1590,6 +1686,9 @@
     },
     "ComboChart.d30b35a3f394feeaea3c496bcba471bc": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingline-area."
+    },
+    "ComboChart.d4f03dc6de2faad5e3abcd7e3b5b0d38": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
     },
     "ComboChart.d58ee5f24ef932fcaba6f6799d96ee91": {
         "comment": "Auto-generated insight for test scenario ComboChart - data points - sparse chart - forced hidden."
@@ -1609,6 +1708,9 @@
     },
     "ComboChart.e74b514535d04212b743758c4ccc1c31": {
         "comment": "Auto-generated insight for test scenario ComboChart - stack primary measures when both column chart - stack to 100%."
+    },
+    "ComboChart.ea14a0100fe76317539fa0c8f1dcffd4": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
     },
     "ComboChart.eba0312c73accf44b490f120cbbcb625": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingcolumn-area."
@@ -1650,6 +1752,9 @@
         "scenarioName": "one primary and secondary measure with viewBy",
         "visName": "ComboChart"
     },
+    "ComboChart.ff84681fe4d08edbd8c318c881e6c555": {
+        "comment": "Auto-generated insight for test scenario ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
     "ComboChart.fffb333237c8b044a6a7fcc495cd0cd1": {
         "comment": "Auto-generated insight for test scenario ComboChart - dual axis two measures without slicingcolumn-column."
     },
@@ -1664,6 +1769,12 @@
     "DonutChart.0dd23ca4a0c492213b5992f62edf894a": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - single measure and viewBy - auto legend."
     },
+    "DonutChart.0e3c64518324cc77afc15be1624b7108": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "DonutChart.105e6b5720986f72c3c6037fe8a5d3f7": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
     "DonutChart.1479899f20a895c7b5f2d66f6b07131c": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - single measure and viewBy - legend on top."
     },
@@ -1676,19 +1787,46 @@
     "DonutChart.1cf883eaa22fdec8757fa3bd753529cf": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - single measure and viewBy - legend at bottom."
     },
+    "DonutChart.1d6dce17df1dde5a6f6089ee651d7d1a": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
+    },
+    "DonutChart.234fe2c5c31e9f2df3f1a831ca21c18c": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
     "DonutChart.2373f0f706a1afc63c7e580cb15fdad4": {
         "comment": "Auto-generated insight for test scenario DonutChart - data labels - forced visible."
+    },
+    "DonutChart.2649394dd5fd567a4875b5c9624073ad": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "DonutChart.273b7c5c89bd19936a31f3e693fe46a5": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
+    },
+    "DonutChart.288f667b5aff24ec6f99ce1fda5d84ff": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "DonutChart.2aa9181edbc0a33d2bb32bfc107dd7e3": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
     },
     "DonutChart.2fe4d70fba5af83a3f350e7358504d4f": {
         "comment": "Auto-generated insight for test scenario DonutChart - themed.",
         "scenarioName": "themed",
         "visName": "DonutChart"
     },
+    "DonutChart.39acbf2ae3691d4a76a15a40ae33bc72": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "DonutChart.408ee39e4a296288e0828526fcb6ecb4": {
         "comment": "Auto-generated insight for test scenario DonutChart - data labels - forced visible and german separators."
     },
+    "DonutChart.4a6a1b87c358f1b6630dbe18db687f70": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
     "DonutChart.4b7733c14dbaf4daceaeeba467da9dd0": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - two measures - disabled."
+    },
+    "DonutChart.4cc3c0eb85d14e6544827ed63d718dc6": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
     },
     "DonutChart.50954a90f95d6ddde1d3ce8e30b962e9": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - two measures - auto legend."
@@ -1697,6 +1835,18 @@
         "comment": "Auto-generated insight for test scenario DonutChart - two measures.",
         "scenarioName": "two measures",
         "visName": "DonutChart"
+    },
+    "DonutChart.524169f215284c1ba58a572a74c019c2": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
+    "DonutChart.58b438b98ccd05fe53f959ab8f29e686": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "DonutChart.592023358a39c67a5dc3854eba58ce6f": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "DonutChart.5b5f2b8d7dd90c2492839215638e119e": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
     },
     "DonutChart.630aff6ec1fcdb0c8630c65be293a31e": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - single measure and viewBy - legend on right."
@@ -1718,34 +1868,82 @@
     "DonutChart.8d1538c79f39d7ddcbdce28f1e85c0ea": {
         "comment": "Auto-generated insight for test scenario DonutChart - vertical alignment - default."
     },
+    "DonutChart.8d2ba1429a19e0251104eb14a866ddee": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
+    "DonutChart.941ef10408d50196a4f1d50dc9cd1b67": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
     "DonutChart.948a5c12f729b22c17bb2cd220c93833": {
         "comment": "Auto-generated insight for test scenario DonutChart - data labels - default."
     },
     "DonutChart.9937bfe9fd945e881cd563132b4b43c8": {
         "comment": "Auto-generated insight for test scenario DonutChart - data labels - auto visibility."
     },
+    "DonutChart.9a7d0711f8fef4d8d1f3b64a817778cb": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "DonutChart.9b97aa4f7ae007493489b6e34cde5aac": {
         "comment": "Auto-generated insight for test scenario DonutChart - assign color to measures."
+    },
+    "DonutChart.9f6c99844de2d734c100c77128354d0d": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
+    },
+    "DonutChart.a38100914c118cc9f2a859f45882d9c1": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
     },
     "DonutChart.ac1d5d41b18b87c1f21972d49b082a9c": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - two measures - legend on left."
     },
+    "DonutChart.b0cc4cb4d75301405b3e5f015c9666fb": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
+    "DonutChart.b26b5c1f0c07749782c109a9f87f8372": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
+    },
     "DonutChart.b5ec25ed1e54c641ffefce22c9bba0be": {
         "comment": "Auto-generated insight for test scenario DonutChart - vertical alignment - top."
+    },
+    "DonutChart.b76ec6b4ed456ff4d1357b89c0c3a5ef": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
+    },
+    "DonutChart.bd8002429e8d05d6da9500fd1b8f7aaf": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
     },
     "DonutChart.be5fcd27d89d56d43b6fb8843b511c7b": {
         "comment": "Auto-generated insight for test scenario DonutChart - 200x200 - without data labels."
     },
+    "DonutChart.bf9801aea9e065a9825256173c5df0e5": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
     "DonutChart.bfe3b94202490a926f469b00317f747e": {
         "comment": "Auto-generated insight for test scenario DonutChart - assign color to attributes."
+    },
+    "DonutChart.c13450fa296308552cad6d53178ed6ee": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x154 - Force position RIGHT - legend on right."
     },
     "DonutChart.c2e298e83d344791bd93a842241abb72": {
         "comment": "Auto-generated insight for test scenario DonutChart - single measure.",
         "scenarioName": "single measure",
         "visName": "DonutChart"
     },
+    "DonutChart.c40713dd37107ef03fc6025e0c21fffa": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "DonutChart.c436c9363d0b6220cd14b4d73d1ba374": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - two measures - legend on right."
+    },
+    "DonutChart.c48d11adaa077056199f32769b0c28c6": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x154 - Force position RIGHT - auto legend."
+    },
+    "DonutChart.c5ebc2804404dd9ee769cacd3bebe4a3": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x154 - Force position RIGHT - legend on top."
+    },
+    "DonutChart.d10b0d28672162f4dbccf7c3ff8d660b": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x154 - Force position RIGHT - legend on left."
+    },
+    "DonutChart.d11ed3ad54c59ed2c6049850ff772521": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
     },
     "DonutChart.db48fbe7b669d54d9a3c1935ff209839": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - single measure and viewBy - legend on left."
@@ -1753,8 +1951,20 @@
     "DonutChart.dbb34d43f1e9104be536a13959dc08a7": {
         "comment": "Auto-generated insight for test scenario DonutChart - vertical alignment - middle."
     },
+    "DonutChart.ddbda8865c4d9c48c1e69fbe1a1a086e": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "DonutChart.ddcb69531c73a3f1d92efd54c3b04c0a": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
+    "DonutChart.e208db00287ca98de827d8edd9bb1cd1": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
     "DonutChart.ec22a82cf1d285839cd56258968ad25c": {
         "comment": "Auto-generated insight for test scenario DonutChart - legend position - two measures - legend at bottom."
+    },
+    "DonutChart.f7aea0c0f284696af4846249255ac262": {
+        "comment": "Auto-generated insight for test scenario DonutChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
     },
     "FunnelChart.724f3a1a7c032a0ab486b2bfc5411fa6": {
         "comment": "Auto-generated insight for test scenario FunnelChart - two measures.",
@@ -2278,10 +2488,19 @@
     "PieChart.020d8df3a62b27299a0c5acad12f4fd1": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - legend at bottom."
     },
+    "PieChart.0dc922ad2b5acfaa30d5b9d32530968f": {
+        "comment": "Auto-generated insight for test scenario PieChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
     "PieChart.0e05315a5e594147314fe04efd07082b": {
         "comment": "Auto-generated insight for test scenario PieChart - single measure with viewBy.",
         "scenarioName": "single measure with viewBy",
         "visName": "PieChart"
+    },
+    "PieChart.0fcfcfc177a89e2a3d7bcd3333d587a9": {
+        "comment": "Auto-generated insight for test scenario PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
+    "PieChart.12e1b261d2f4b6fe16b46303a19d4276": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
     },
     "PieChart.13afab93168dfc43ae67e5c51d71d15a": {
         "comment": "Auto-generated insight for test scenario PieChart - 200x200 - without data labels."
@@ -2291,11 +2510,26 @@
         "scenarioName": "two measures",
         "visName": "PieChart"
     },
+    "PieChart.15e6abebcb66d4ad35a7a393f727705f": {
+        "comment": "Auto-generated insight for test scenario PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "PieChart.19badb0f4ee35831575089c785faa748": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x154 - Force position RIGHT - auto legend."
+    },
     "PieChart.1c2aee0b6cb676bae5e7670d4e6862b3": {
         "comment": "Auto-generated insight for test scenario PieChart - vertical alignment - bottom."
     },
+    "PieChart.21a289e79d5f878463f17a1c54562714": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
+    },
+    "PieChart.21c07e5d2c597fc25fd081d2f2822627": {
+        "comment": "Auto-generated insight for test scenario PieChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
     "PieChart.29cb934cc2d64679623859facf49cdca": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - legend on left."
+    },
+    "PieChart.337cb166d566b284f31bf2fee4948093": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
     },
     "PieChart.33a7aaf1d1725ef2852054d595cc4dd3": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - disabled."
@@ -2303,11 +2537,29 @@
     "PieChart.3da5d268d303a3efb55d1a8fb7921820": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - two measures - legend on right."
     },
+    "PieChart.4143a02c5789a3cd6469ab4550dcd800": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x154 - Force position RIGHT - legend on right."
+    },
+    "PieChart.458f8b814d50d84820e9a3bf8d8d439e": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
+    "PieChart.45c473696e334ecc9647d602265a4122": {
+        "comment": "Auto-generated insight for test scenario PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "PieChart.55986e8357e99a19166e2119f0990b30": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "PieChart.5616cf6141b9160fcd514d5044fb957c": {
+        "comment": "Auto-generated insight for test scenario PieChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
     "PieChart.56f1b87f784b2408d2b3b0cfea0c2974": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - two measures - auto legend."
     },
     "PieChart.59de9baf5d5a0fcfd8511d50030b647e": {
         "comment": "Auto-generated insight for test scenario PieChart - 300x250 - auto data labels."
+    },
+    "PieChart.5e5f9942dc2bf3d2130e707f4b67831d": {
+        "comment": "Auto-generated insight for test scenario PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
     },
     "PieChart.62052b8f52e302892772eeb2e6635b2b": {
         "comment": "Auto-generated insight for test scenario PieChart - vertical alignment - top."
@@ -2317,6 +2569,9 @@
     },
     "PieChart.654fbce275b2ed4e58bc79a3faed62f5": {
         "comment": "Auto-generated insight for test scenario PieChart - data labels - auto visibility."
+    },
+    "PieChart.65f9889c797f702aa9f0e0ec27708f40": {
+        "comment": "Auto-generated insight for test scenario PieChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
     },
     "PieChart.66a6bfdd3328e9053c4abb2698795408": {
         "comment": "Auto-generated insight for test scenario PieChart - vertical alignment - default."
@@ -2332,8 +2587,20 @@
     "PieChart.6d5b1a9ea3c8220947f5bd68ca8038cf": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - two measures - disabled."
     },
+    "PieChart.6ea1a96fc73f1c647eeaf2caaa127c05": {
+        "comment": "Auto-generated insight for test scenario PieChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "PieChart.700ce7a764b4ef8dc7197be355f43f45": {
+        "comment": "Auto-generated insight for test scenario PieChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
     "PieChart.7892c8e26d8d45c4f72658f6a5ba9a3d": {
         "comment": "Auto-generated insight for test scenario PieChart - assign color to measures."
+    },
+    "PieChart.7a3440d4ffc9f45b5f35806a1f9b4877": {
+        "comment": "Auto-generated insight for test scenario PieChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "PieChart.7a699850b566c34751848aace2808db1": {
+        "comment": "Auto-generated insight for test scenario PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "PieChart.7bde6782844c2599a29b35c562257068": {
         "comment": "Auto-generated insight for test scenario PieChart - data labels - forced visible."
@@ -2346,11 +2613,32 @@
         "scenarioName": "single measure",
         "visName": "PieChart"
     },
+    "PieChart.86ca9e91d2dd4605e49400c240d85f57": {
+        "comment": "Auto-generated insight for test scenario PieChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
+    "PieChart.8e3e7db5f642e7d5fdd3b8e92749fc19": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
+    "PieChart.a542a352006b5e7f1ecfd6c8e94ec7cf": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x154 - Force position RIGHT - legend on left."
+    },
+    "PieChart.a5f7d391fd35dfa5464978f29f87bda9": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "PieChart.a93ad507c81f59f8ff52214653943334": {
+        "comment": "Auto-generated insight for test scenario PieChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
     "PieChart.acc5453d369d45484be24e1e4d2304bc": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - two measures - legend at bottom."
     },
     "PieChart.aeb98117a8f35a2ac36c9d271e769f4a": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - legend on top."
+    },
+    "PieChart.b2383569cffe430723b0f7e02773ef8c": {
+        "comment": "Auto-generated insight for test scenario PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
+    },
+    "PieChart.b4f9279a88a1662041de2d5ced22abe9": {
+        "comment": "Auto-generated insight for test scenario PieChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
     },
     "PieChart.b909ccdaafcb53af132ebfc23cefc661": {
         "comment": "Auto-generated insight for test scenario PieChart - arithmetic measures.",
@@ -2363,8 +2651,20 @@
     "PieChart.c98766a8341c11485fc0a7d8774acb46": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - legend on right."
     },
+    "PieChart.d26da7ddb0a73dd3b417e5fc8af3c2a1": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
+    },
+    "PieChart.d9a1e6862e7ec6fd05ec7aa2e07b2bef": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x154 - Force position RIGHT - legend at bottom."
+    },
     "PieChart.e05cfd36efaeb6bf6e3ec08d5b9f595d": {
         "comment": "Auto-generated insight for test scenario PieChart - data labels - forced visible and german separators."
+    },
+    "PieChart.e4e93dc42ae0a71bedd9d827a2ef2dae": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x154 - Force position RIGHT - legend on top."
+    },
+    "PieChart.e53134f80d92adf56a933cc26a5ff895": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
     },
     "PieChart.e76711dec7f0c103632dc74aa3e5e2c0": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - single measure and viewBy - auto legend."
@@ -2372,8 +2672,23 @@
     "PieChart.e794d80acb72830f67ad6bf93f0c57e5": {
         "comment": "Auto-generated insight for test scenario PieChart - legend position - two measures - legend on top."
     },
+    "PieChart.e804e346324ed9fc818ad8d535ba56f3": {
+        "comment": "Auto-generated insight for test scenario PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
     "PieChart.e9f407aa6b0ba6814af2d66339e01caf": {
         "comment": "Auto-generated insight for test scenario PieChart - assign color to attributes."
+    },
+    "PieChart.ed990db762123645149f71d74a8c573b": {
+        "comment": "Auto-generated insight for test scenario PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "PieChart.eeeac1f81dc9347aaefeac4615e7c300": {
+        "comment": "Auto-generated insight for test scenario PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
+    },
+    "PieChart.f121883660657e5d1b2fb3a10ca23af6": {
+        "comment": "Auto-generated insight for test scenario PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
+    "PieChart.f2ed18b21a088f04f33d42cdc1b366f1": {
+        "comment": "Auto-generated insight for test scenario PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "PieChart.f665868dc6c649d4c7da666f101dd926": {
         "comment": "Auto-generated insight for test scenario PieChart - coloring - custom palette."
@@ -2723,6 +3038,12 @@
         "scenarioName": "x and y axis measures and attribute",
         "visName": "ScatterPlot"
     },
+    "Treemap.0141da8eb8cee96234c77d154344a788": {
+        "comment": "Auto-generated insight for test scenario Treemap - 440x154 - Force position TOP, max 1 row, Gradient legend normal - auto legend."
+    },
+    "Treemap.0311116c2e32c8567a887c9fa85a8824": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x154 - Force position RIGHT - auto legend."
+    },
     "Treemap.042d603619b6518846d7d1d10d84a9a2": {
         "comment": "Auto-generated insight for test scenario Treemap - two measures and viewBy.",
         "scenarioName": "two measures and viewBy",
@@ -2733,11 +3054,32 @@
         "scenarioName": "themed",
         "visName": "Treemap"
     },
+    "Treemap.0cd231acc5748173a4bf7e3e7eb1fb67": {
+        "comment": "Auto-generated insight for test scenario Treemap - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
+    },
+    "Treemap.1edb03118ad7abd82451c5996a9e90ea": {
+        "comment": "Auto-generated insight for test scenario Treemap - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "Treemap.2a058520af2a109a030d0ec59ace9463": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x154 - Force position RIGHT - legend at bottom."
+    },
+    "Treemap.30edf7fa223a63d0448d7b7db81c1745": {
+        "comment": "Auto-generated insight for test scenario Treemap - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
+    "Treemap.374ada6f370f81d597f092b0b286a1af": {
+        "comment": "Auto-generated insight for test scenario Treemap - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "Treemap.3a9842f85bdccd25ac36ec80cfecfae7": {
         "comment": "Auto-generated insight for test scenario Treemap - assign color to attributes."
     },
+    "Treemap.3defd8ccadcbea8c621784dde8583aea": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on top."
+    },
     "Treemap.42c4abf4958e1bb28d75dbc732671b13": {
         "comment": "Auto-generated insight for test scenario Treemap - data labels - forced visible and german separators."
+    },
+    "Treemap.44cd3a9cbb912384bd916dfb744fe3d8": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right."
     },
     "Treemap.47dba40c8f932bd0091c9fd195d742c2": {
         "comment": "Auto-generated insight for test scenario Treemap - arithmetic measures and segment.",
@@ -2754,39 +3096,99 @@
         "scenarioName": "single measure and segment",
         "visName": "Treemap"
     },
+    "Treemap.523a8d4e2480d41f6962eb7b51b4a93c": {
+        "comment": "Auto-generated insight for test scenario Treemap - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top."
+    },
+    "Treemap.571cdfad3971fb9657ae6cc7e171fc95": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top."
+    },
     "Treemap.5aa1e78435296176336b5308d5f933b1": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - auto legend."
+    },
+    "Treemap.5c8bf75462b7ab0192303d567d7a785b": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x154 - Force position RIGHT - legend on left."
     },
     "Treemap.5fd144c60c84522194ab79c809e49873": {
         "comment": "Auto-generated insight for test scenario Treemap - data labels - forced visible."
     },
+    "Treemap.6235918413df6810cb44ada7c0874763": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x154 - Force position RIGHT - legend on right."
+    },
     "Treemap.723a71d76e414a88c2c7d1706e978e1c": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - legend on left."
+    },
+    "Treemap.7b666cf0548e9635eb5cd9e85ce05240": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom."
     },
     "Treemap.7d11b7599f52936b33c02c498ac3c645": {
         "comment": "Auto-generated insight for test scenario Treemap - data labels - default."
     },
+    "Treemap.7e67549917ded5bdaa63ef608c511209": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on left."
+    },
     "Treemap.807e6e1c48d9b36669dc0ecbc23eb799": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - legend on top."
+    },
+    "Treemap.8c2dbc234324d79fed0028573eb9febe": {
+        "comment": "Auto-generated insight for test scenario Treemap - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left."
     },
     "Treemap.8e4da4261df14642fe37bbeb5f651eec": {
         "comment": "Auto-generated insight for test scenario Treemap - coloring - custom palette."
     },
+    "Treemap.9398946dc7e9b6e0899d3974234b3af8": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend."
+    },
+    "Treemap.93caab859c53279ec58b92226834ea56": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x154 - Force position RIGHT - legend on top."
+    },
     "Treemap.96481a55db7e8a624c3e70ec038a999e": {
         "comment": "Auto-generated insight for test scenario Treemap - data labels - auto visibility."
+    },
+    "Treemap.989696bd483b84d041988c7b91a481d4": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right."
     },
     "Treemap.a4b3fe5274381f1bccef0a263c76ed73": {
         "comment": "Auto-generated insight for test scenario Treemap - single measure and viewBy.",
         "scenarioName": "single measure and viewBy",
         "visName": "Treemap"
     },
+    "Treemap.a8f3ef966a5fb579427c966cf4c2a232": {
+        "comment": "Auto-generated insight for test scenario Treemap - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right."
+    },
+    "Treemap.ab6e99050d4848d4c59f6ace28c8007e": {
+        "comment": "Auto-generated insight for test scenario Treemap - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend at bottom."
+    },
+    "Treemap.adb3db853425109923ee817e1d459b64": {
+        "comment": "Auto-generated insight for test scenario Treemap - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right."
+    },
     "Treemap.b082670e3da2ef759e24c7fc464d6330": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - disabled."
+    },
+    "Treemap.b11d9bf59adb35f3495358dbb2ebe9a9": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "Treemap.b3cccef35549bb27b1c6e258839e7f04": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend."
+    },
+    "Treemap.b52b60257941a97b5aff0aef0692a8d2": {
+        "comment": "Auto-generated insight for test scenario Treemap - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on right."
+    },
+    "Treemap.be492212bfed1198a9ea55dab1317133": {
+        "comment": "Auto-generated insight for test scenario Treemap - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "Treemap.c4c5567fa1d96e1fed234214281bf6a4": {
+        "comment": "Auto-generated insight for test scenario Treemap - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left."
     },
     "Treemap.c6ed6c7634de5031d49fef78fe53e725": {
         "comment": "Auto-generated insight for test scenario Treemap - two measures and segmentBy.",
         "scenarioName": "two measures and segmentBy",
         "visName": "Treemap"
+    },
+    "Treemap.ca04ae9da578c24397ad24d44e128d53": {
+        "comment": "Auto-generated insight for test scenario Treemap - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - auto legend."
+    },
+    "Treemap.ccc95ddf9b4e77349944a2cc06e70a06": {
+        "comment": "Auto-generated insight for test scenario Treemap - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left."
     },
     "Treemap.cd127341fbc22937918b9d4bccc164ff": {
         "comment": "Auto-generated insight for test scenario Treemap - data labels - forced hidden."
@@ -2796,6 +3198,12 @@
         "scenarioName": "two measures",
         "visName": "Treemap"
     },
+    "Treemap.d0a33ff36fe3009a3b171ef84afe228b": {
+        "comment": "Auto-generated insight for test scenario Treemap - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom."
+    },
+    "Treemap.ddcd7728c84d2ba4f19ecda25b3cdf87": {
+        "comment": "Auto-generated insight for test scenario Treemap - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left."
+    },
     "Treemap.e22929d80f9738bd61f8c3029c2dbe40": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - legend at bottom."
     },
@@ -2804,13 +3212,25 @@
         "scenarioName": "single measure",
         "visName": "Treemap"
     },
+    "Treemap.ec38c7cbd881537b4008e39258c0a530": {
+        "comment": "Auto-generated insight for test scenario Treemap - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom."
+    },
+    "Treemap.ed2a979f8bb02d9d8dab06b8464c0c29": {
+        "comment": "Auto-generated insight for test scenario Treemap - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on top."
+    },
     "Treemap.f92fe7048e24a76694640e2707aea183": {
         "comment": "Auto-generated insight for test scenario Treemap - single measure and viewBy filtered to one element.",
         "scenarioName": "single measure and viewBy filtered to one element",
         "visName": "Treemap"
     },
+    "Treemap.f9d0fe254f0cf5a8c3486ee7e13ba371": {
+        "comment": "Auto-generated insight for test scenario Treemap - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top."
+    },
     "Treemap.f9d30ca2da6044849becb6641771d6b0": {
         "comment": "Auto-generated insight for test scenario Treemap - legend position - legend on right."
+    },
+    "Treemap.feee56882501919c10d216c52d47c1a8": {
+        "comment": "Auto-generated insight for test scenario Treemap - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend."
     },
     "Xirr.2dd4cca9665e247c85d40e207b212db7": {
         "comment": "Auto-generated insight for test scenario Xirr - correct config.",

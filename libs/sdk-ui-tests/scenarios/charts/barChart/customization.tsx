@@ -3,10 +3,7 @@ import { BarChart, IBarChartProps } from "@gooddata/sdk-ui-charts";
 import { scenariosFor } from "../../../src";
 import { dataLabelCustomizer } from "../_infra/dataLabelVariants";
 import { legendCustomizer } from "../_infra/legendVariants";
-import {
-    BarChartWithTwoMeasuresAndViewBy,
-    BarChartWithSingleMeasureAndViewByAndStackMultipleItems,
-} from "./base";
+import { BarChartWithTwoMeasuresAndViewBy, BarChartWithLargeLegend } from "./base";
 import { ScenarioGroupNames } from "../_infra/groupNames";
 import { responsiveScenarios } from "../_infra/responsiveScenarios";
 import { legendResponsiveVariants, legendResponsiveSizeVariants } from "../_infra/legendResponsiveVariants";
@@ -27,7 +24,7 @@ const legendResponziveScenarios = responsiveScenarios(
     "BarChart",
     ScenarioGroupNames.LegendResponsive,
     BarChart,
-    BarChartWithSingleMeasureAndViewByAndStackMultipleItems,
+    BarChartWithLargeLegend,
     legendResponsiveVariants,
     legendResponsiveSizeVariants,
 );
