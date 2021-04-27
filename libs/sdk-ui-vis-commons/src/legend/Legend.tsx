@@ -19,7 +19,7 @@ import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
 export interface ILegendProps {
     legendLabel?: string;
     maximumRows?: number;
-    responsive?: boolean | "popup";
+    responsive?: boolean | "autoPositionWithPopup";
     legendItemsEnabled?: any[];
     height?: number;
     position: string;
@@ -152,7 +152,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
             return this.renderHeatmapLegend(contentDimensions);
         }
 
-        if (responsive === "popup" && maximumRows) {
+        if (responsive === "autoPositionWithPopup" && maximumRows) {
             return this.renderPopUpLegend();
         }
 
@@ -171,7 +171,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
         const isFluidResponsive = Boolean(responsive === true && showFluidLegend);
         const isPopupResponsive =
             (position === TOP || position === BOTTOM) &&
-            responsive === "popup" &&
+            responsive === "autoPositionWithPopup" &&
             contentDimensions.width &&
             contentDimensions.width < 460;
 

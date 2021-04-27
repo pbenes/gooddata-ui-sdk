@@ -318,7 +318,7 @@ export class HighChartsRenderer extends React.PureComponent<
         chartOptions: any,
         showFluidLegend: boolean,
     ): ILegendDetails {
-        if (legendOptions.responsive !== "popup") {
+        if (legendOptions.responsive !== "autoPositionWithPopup") {
             return this.getLegendDetailsForStandard(legendOptions, chartOptions, showFluidLegend);
         }
 

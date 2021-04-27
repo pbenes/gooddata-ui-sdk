@@ -19,11 +19,11 @@ export const legendResponsiveSizeVariants: Array<IResponsiveSize> = [
 ];
 
 const legendVariants: Array<[string, ILegendConfig]> = [
-    ["legend on top", { position: "top", responsive: "popup" }],
-    ["legend at bottom", { position: "bottom", responsive: "popup" }],
-    ["legend on left", { position: "left", responsive: "popup" }],
-    ["legend on right", { position: "right", responsive: "popup" }],
-    ["auto legend", { position: "auto", responsive: "popup" }],
+    ["legend on top", { position: "top", responsive: "autoPositionWithPopup" }],
+    ["legend at bottom", { position: "bottom", responsive: "autoPositionWithPopup" }],
+    ["legend on left", { position: "left", responsive: "autoPositionWithPopup" }],
+    ["legend on right", { position: "right", responsive: "autoPositionWithPopup" }],
+    ["auto legend", { position: "auto", responsive: "autoPositionWithPopup" }],
 ];
 
 export function legendResponsiveVariants<T extends IBucketChartProps>(

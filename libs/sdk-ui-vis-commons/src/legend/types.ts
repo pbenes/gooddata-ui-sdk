@@ -25,7 +25,7 @@ export interface ILegendOptions {
     position: PositionType;
     format: string;
     items: LegendOptionsItemType[];
-    responsive?: boolean | "popup";
+    responsive?: boolean | "autoPositionWithPopup";
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     seriesMapper?: (visibleSeries: any) => any;
 }

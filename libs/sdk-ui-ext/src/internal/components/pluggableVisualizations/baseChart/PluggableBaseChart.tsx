@@ -408,7 +408,9 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         // Set legend position by bucket items and environment
         set(supportedControls, "legend.position", legendPosition);
         if (this.environment === DASHBOARDS_ENVIRONMENT) {
-            const legendResponsiveness = this.featureFlags["enableKDWidgetCustomHeight"] ? "popup" : true;
+            const legendResponsiveness = this.featureFlags["enableKDWidgetCustomHeight"]
+                ? "autoPositionWithPopup"
+                : true;
             set(supportedControls, "legend.responsive", legendResponsiveness);
         }
 

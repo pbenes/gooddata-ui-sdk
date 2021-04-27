@@ -271,7 +271,7 @@ export interface ILegendOptions {
     // (undocumented)
     position: PositionType;
     // (undocumented)
-    responsive?: boolean | "popup";
+    responsive?: boolean | "autoPositionWithPopup";
     // (undocumented)
     seriesMapper?: (visibleSeries: any) => any;
     // (undocumented)
@@ -306,7 +306,7 @@ export interface ILegendProps {
     // (undocumented)
     position: string;
     // (undocumented)
-    responsive?: boolean | "popup";
+    responsive?: boolean | "autoPositionWithPopup";
     // (undocumented)
     series: any;
     // (undocumented)
