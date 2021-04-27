@@ -211,8 +211,16 @@ $dialog-background: $is-focused-background;
                 margin-left: 15px;
                 width: 118px;
             }
+
             .paging {
                 justify-content: center;
+            }
+
+            &.no-width {
+                .series-item {
+                    margin-left: 15px;
+                    width: 100%;
+                }
             }
         }
 

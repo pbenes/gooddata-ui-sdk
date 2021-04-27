@@ -99,9 +99,14 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
         const heightOfAvailableSpace = (visibleItemsCount / columnNum) * ITEM_HEIGHT;
         const heightOfVisibleItems = Math.min(visibleItemsCount / columnNum, seriesCount) * ITEM_HEIGHT;
         const seriesHeight = shouldFillAvailableSpace ? heightOfAvailableSpace : heightOfVisibleItems;
+        const visibleItemsFitOneColumn = shouldItemsFitOneColumn(
+            visibleItemsCount,
+            columnNum,
+            pagedSeries.length,
+        );
 
         return (
-            <div className={classNames}>
+            <div className={`${classNames} ${visibleItemsFitOneColumn}`}>
                 <div className="series" style={{ height: seriesHeight }}>
                     <LegendList
                         enableBorderRadius={enableBorderRadius}
@@ -114,3 +119,6 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
         );
     }
 }
+
+const shouldItemsFitOneColumn = (visibleItemsCount: number, columnNum: number, pagedSeriesLength: number) =>
+    visibleItemsCount / columnNum >= pagedSeriesLength && "no-width";
