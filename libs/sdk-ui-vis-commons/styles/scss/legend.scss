@@ -181,8 +181,8 @@ $dialog-background: $is-focused-background;
                 justify-content: flex-start;
                 width: auto;
                 overflow: hidden;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
                 min-width: 0; // hack for FF
                 max-width: 100%; // hack for IE
             }
