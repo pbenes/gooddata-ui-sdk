@@ -270,16 +270,15 @@ export class HighChartsRenderer extends React.PureComponent<
         const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
 
         // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
-        // TODO: clean numbers after padding/border subtracted
-        if (width < 460 - 20) {
+        if (width < 610) {
             return { ...name, position: TOP, renderPopUp: true, maxRows: 1 };
         } else {
             const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
-            if (height < 240 - 86) {
+            if (height < 194) {
                 return { ...name, position: RIGHT, renderPopUp: false };
             } else {
-                const maxRowsForTopBottom = height < 320 - 86 ? 1 : 2;
+                const maxRowsForTopBottom = height < 274 ? 1 : 2;
                 return {
                     ...name,
                     position: legendOptions.position,
