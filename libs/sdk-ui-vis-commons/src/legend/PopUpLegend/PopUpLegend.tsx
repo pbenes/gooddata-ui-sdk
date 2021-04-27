@@ -15,16 +15,24 @@ import { LegendList } from "../LegendList";
 const LEGEND_ROW_HEIGHT = 20;
 const LEGEND_TOP_BOTTOM_PADDING = 10;
 
-const useCheckOverflow = (): [boolean, (element: HTMLDivElement | null) => void] => {
+const useCheckOverflow = (): [boolean, number, (element: HTMLDivElement | null) => void] => {
     const [isOverflow, setOverFlow] = useState(false);
+    const [numOfUsedRow, setNumOfUsedRow] = useState(1);
+
+    const getNumberOfRows = (clientHeight: number) => {
+        return (clientHeight - LEGEND_TOP_BOTTOM_PADDING) / LEGEND_ROW_HEIGHT;
+    };
 
     const checkOverFlow = (element: HTMLDivElement | null) => {
         if (!element) return;
         const { clientHeight, scrollHeight } = element;
         setOverFlow(scrollHeight > clientHeight);
+
+        const numberOfRows = getNumberOfRows(clientHeight);
+        setNumOfUsedRow(numberOfRows);
     };
 
-    return [isOverflow, checkOverFlow];
+    return [isOverflow, numOfUsedRow, checkOverFlow];
 };
 
 const useRandomComponentId = (idPrefix: string) => {
@@ -91,15 +99,20 @@ export const RowLegend: React.FC<IRowLegendProps> = (props) => {
         onDialogIconClick,
         onLegendItemClick,
     } = props;
-    const [isOverflow, checkOverFlow] = useCheckOverflow();
+    const [isOverflow, numOfUsedRow, checkOverFlow] = useCheckOverflow();
 
     const LEGEND_HEIGHT = maxRowsCount * LEGEND_ROW_HEIGHT + LEGEND_TOP_BOTTOM_PADDING;
 
+    const itemsAlign = numOfUsedRow === 1 ? "flex-end" : "flex-start";
+
     return (
-        <div className="legend-popup-row" style={{ height: LEGEND_HEIGHT }}>
+        <div className="legend-popup-row" style={{ maxHeight: LEGEND_HEIGHT }}>
             <div className="viz-legend static position-row">
                 <div
                     className="series"
+                    style={{
+                        justifyContent: itemsAlign,
+                    }}
                     ref={(element) => {
                         checkOverFlow(element);
                     }}
@@ -140,7 +153,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             <RowLegend
                 legendLabel={name}
                 maxRowsCount={maxRows}
-                series={series}
+                series={[...series]}
                 onDialogIconClick={() => {
                     setDialogOpen(true);
                 }}
@@ -156,7 +169,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
             >
                 <StaticLegend
                     containerHeight={300}
-                    series={series}
+                    series={[...series]}
                     position={"dialog"}
                     onItemClick={onLegendItemClick}
                     shouldFillAvailableSpace={false}
