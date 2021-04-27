@@ -1,7 +1,6 @@
 // (C) 2007-2021 GoodData Corporation
 import React, { useRef, useState } from "react";
 import { useIntl } from "react-intl";
-import cx from "classnames";
 import { v4 } from "uuid";
 
 import { Icon } from "@gooddata/sdk-ui-kit";

@@ -470,14 +470,14 @@ $dialog-background: $is-focused-background;
         padding-left: 10px;
         .legend-header-title {
             font-family: $gd-font-primary;
-            color: $default-gd-color-text;
+            color: $gd-color-state-blank;
             font-size: 14px;
             line-height: 45px;
             height: 45px;
         }
     }
     .legend-content {
-        background: white;
+        background-color: var(--gd-chart-backgroundColor, var(--gd-palette-complementary-0));
         padding: 10px;
     }
 }
@@ -515,55 +515,12 @@ $dialog-background: $is-focused-background;
         width: 288px;
     }
 
-    .action-close {
+    .legend-close[class*="icon-"] {
         position: absolute;
-        top: 15px;
-        right: 19px;
+        top: 7px;
+        right: 8px;
         color: $gd-color-label;
         cursor: pointer;
-    }
-
-    .buttons {
-        margin-top: 10px;
-
-        .gd-button {
-            width: 100%;
-            margin: 10px 0 0;
-            text-align: center;
-        }
-
-        .delete-link {
-            width: auto;
-            padding-left: 0;
-            text-align: left;
-        }
-
-        @media #{$xsmall-only}, #{$small-only} {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 5px -5px 0;
-
-            .gd-button {
-                flex: 0 0 auto;
-                width: auto;
-                margin: 10px 5px 0;
-            }
-
-            .delete-link {
-                order: 1;
-                margin-right: 7px;
-            }
-
-            .cancel-button {
-                flex: 1 0 auto;
-                order: 2;
-            }
-
-            .save-button {
-                flex: 2 0 auto;
-                order: 3;
-            }
-        }
     }
 }
 
