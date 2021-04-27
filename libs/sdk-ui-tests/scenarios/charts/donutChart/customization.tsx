@@ -37,8 +37,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     DonutChart,
     DonutChartWithSingleMeasureAndViewBy,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 export default [legendScenarios, dataLabelScenarios, chartAlignmentScenarios, ...legendResponziveScenarios];

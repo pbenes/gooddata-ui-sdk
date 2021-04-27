@@ -19,8 +19,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     Heatmap,
     HeatmapWithMeasureRowsAndColumns,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 const dataLabelScenarios = scenariosFor<IHeatmapProps>("Heatmap", Heatmap)

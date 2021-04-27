@@ -25,8 +25,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     BubbleChart,
     BubbleChartWithAllMeasuresAndAttribute,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 export default [legendScenarios, dataLabelScenarios, ...legendResponziveScenarios];

@@ -28,8 +28,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     ColumnChart,
     ColumnChartWithSingleMeasureAndViewByAndStackMultipleItems,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 export default [legendScenarios, ...legendResponziveScenarios, dataLabelScenarios];

@@ -25,8 +25,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     BarChart,
     BarChartWithLargeLegend,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 export default [legendScenarios, dataLabelScenarios, ...legendResponziveScenarios];

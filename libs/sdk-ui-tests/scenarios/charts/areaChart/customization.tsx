@@ -39,8 +39,8 @@ const legendResponziveScenarios = responsiveScenarios(
     ScenarioGroupNames.LegendResponsive,
     AreaChart,
     AreaChartWithLotArithmeticMeasuresAndViewBy,
-    legendResponsiveVariants,
     legendResponsiveSizeVariants,
+    legendResponsiveVariants,
 );
 
 export default [legendScenarios, dataLabelScenarios, dataPointScenarios, ...legendResponziveScenarios];
