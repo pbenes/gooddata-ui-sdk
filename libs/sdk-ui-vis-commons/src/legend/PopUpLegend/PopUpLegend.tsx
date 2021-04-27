@@ -155,7 +155,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                 onCloseDialog={onCloseDialog}
             >
                 <StaticLegend
-                    containerHeight={260}
+                    containerHeight={300}
                     series={series}
                     position={"dialog"}
                     onItemClick={onLegendItemClick}
