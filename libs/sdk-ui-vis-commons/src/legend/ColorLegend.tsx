@@ -86,7 +86,7 @@ function LegendWithTitle(props: { title: string; position: string; children: any
     const classes = cx("heatmap-legend-with-title", { horizontal: isHorizontal });
     return (
         <div className={classes}>
-            <div className="heatmap-legend-title">{title}</div>
+            <div className="heatmap-legend-title">{`${title}:`}</div>
             <div className="heatmap-legend-boxes">{props.children}</div>
         </div>
     );

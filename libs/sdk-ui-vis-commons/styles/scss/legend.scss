@@ -421,9 +421,12 @@ $dialog-background: $is-focused-background;
     .heatmap-legend-title {
         font-size: 12px;
         max-height: 20px;
+        line-height: 20px;
+        display: flex;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        color: var(--gd-chart-legendValueColor, $gd-color-link);
 
         max-width: 210px;
         margin-left: 20px;
