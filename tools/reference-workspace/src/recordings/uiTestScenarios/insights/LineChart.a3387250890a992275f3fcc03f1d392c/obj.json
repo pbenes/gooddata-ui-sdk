@@ -98,7 +98,9 @@
         ],
         "filters": [],
         "identifier": "LineChart.a3387250890a992275f3fcc03f1d392c",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "LineChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom",
         "uri": "LineChart.a3387250890a992275f3fcc03f1d392c",

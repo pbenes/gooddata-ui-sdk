@@ -108,7 +108,9 @@
         ],
         "filters": [],
         "identifier": "AreaChart.9f7469d784ef888b85281c88d7aee946",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "AreaChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend at bottom",
         "uri": "AreaChart.9f7469d784ef888b85281c88d7aee946",

@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "DonutChart.c13450fa296308552cad6d53178ed6ee",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "DonutChart - 610x154 - Force position RIGHT - legend on right",
         "uri": "DonutChart.c13450fa296308552cad6d53178ed6ee",

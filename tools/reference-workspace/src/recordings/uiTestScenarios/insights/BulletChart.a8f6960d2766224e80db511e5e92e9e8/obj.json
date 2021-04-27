@@ -62,7 +62,9 @@
         ],
         "filters": [],
         "identifier": "BulletChart.a8f6960d2766224e80db511e5e92e9e8",
-        "properties": { "controls": { "legend": { "position": "auto", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "auto", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BulletChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - auto legend",
         "uri": "BulletChart.a8f6960d2766224e80db511e5e92e9e8",

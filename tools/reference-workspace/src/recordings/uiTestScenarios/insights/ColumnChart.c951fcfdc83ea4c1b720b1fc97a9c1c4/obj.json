@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "ColumnChart.c951fcfdc83ea4c1b720b1fc97a9c1c4",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ColumnChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on right",
         "uri": "ColumnChart.c951fcfdc83ea4c1b720b1fc97a9c1c4",

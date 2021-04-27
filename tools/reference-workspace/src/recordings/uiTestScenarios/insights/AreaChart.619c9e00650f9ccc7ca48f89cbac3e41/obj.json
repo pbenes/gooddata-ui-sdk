@@ -108,7 +108,9 @@
         ],
         "filters": [],
         "identifier": "AreaChart.619c9e00650f9ccc7ca48f89cbac3e41",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "AreaChart - 610x154 - Force position RIGHT - legend on left",
         "uri": "AreaChart.619c9e00650f9ccc7ca48f89cbac3e41",

@@ -84,7 +84,9 @@
             }
         ],
         "identifier": "BarChart.704f7bc26452493cc2cd42df7f3d23b4",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BarChart - 610x154 - Force position RIGHT - legend on left",
         "uri": "BarChart.704f7bc26452493cc2cd42df7f3d23b4",

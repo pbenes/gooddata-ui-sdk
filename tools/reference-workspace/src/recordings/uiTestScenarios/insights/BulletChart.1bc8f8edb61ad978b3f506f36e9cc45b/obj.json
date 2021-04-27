@@ -62,7 +62,9 @@
         ],
         "filters": [],
         "identifier": "BulletChart.1bc8f8edb61ad978b3f506f36e9cc45b",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BulletChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top",
         "uri": "BulletChart.1bc8f8edb61ad978b3f506f36e9cc45b",

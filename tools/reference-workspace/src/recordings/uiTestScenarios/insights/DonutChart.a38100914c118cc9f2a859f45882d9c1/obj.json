@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "DonutChart.a38100914c118cc9f2a859f45882d9c1",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "DonutChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on top",
         "uri": "DonutChart.a38100914c118cc9f2a859f45882d9c1",

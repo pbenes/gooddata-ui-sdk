@@ -98,7 +98,9 @@
         ],
         "filters": [],
         "identifier": "LineChart.8c54d81cc7f45f24bc1be0d13637fa17",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "LineChart - 610x154 - Force position RIGHT - legend at bottom",
         "uri": "LineChart.8c54d81cc7f45f24bc1be0d13637fa17",

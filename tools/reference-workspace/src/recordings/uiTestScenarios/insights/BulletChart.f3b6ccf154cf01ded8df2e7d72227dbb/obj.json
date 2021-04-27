@@ -62,7 +62,9 @@
         ],
         "filters": [],
         "identifier": "BulletChart.f3b6ccf154cf01ded8df2e7d72227dbb",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BulletChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left",
         "uri": "BulletChart.f3b6ccf154cf01ded8df2e7d72227dbb",

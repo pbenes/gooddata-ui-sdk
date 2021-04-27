@@ -62,7 +62,9 @@
         ],
         "filters": [],
         "identifier": "BulletChart.8cf8137f9a14ddb38eb1e28b04917b95",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BulletChart - 610x154 - Force position RIGHT - legend on right",
         "uri": "BulletChart.8cf8137f9a14ddb38eb1e28b04917b95",

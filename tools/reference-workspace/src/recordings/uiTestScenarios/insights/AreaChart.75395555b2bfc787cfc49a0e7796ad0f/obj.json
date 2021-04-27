@@ -108,7 +108,9 @@
         ],
         "filters": [],
         "identifier": "AreaChart.75395555b2bfc787cfc49a0e7796ad0f",
-        "properties": { "controls": { "legend": { "position": "auto", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "auto", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "AreaChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend",
         "uri": "AreaChart.75395555b2bfc787cfc49a0e7796ad0f",

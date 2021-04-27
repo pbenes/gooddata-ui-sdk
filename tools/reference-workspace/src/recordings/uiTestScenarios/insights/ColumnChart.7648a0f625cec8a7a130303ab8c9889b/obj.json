@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "ColumnChart.7648a0f625cec8a7a130303ab8c9889b",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ColumnChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right",
         "uri": "ColumnChart.7648a0f625cec8a7a130303ab8c9889b",

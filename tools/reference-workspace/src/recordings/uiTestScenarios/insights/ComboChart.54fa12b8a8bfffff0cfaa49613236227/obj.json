@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.54fa12b8a8bfffff0cfaa49613236227",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend at bottom",
         "uri": "ComboChart.54fa12b8a8bfffff0cfaa49613236227",

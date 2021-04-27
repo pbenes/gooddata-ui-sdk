@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "PieChart.458f8b814d50d84820e9a3bf8d8d439e",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "PieChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on top",
         "uri": "PieChart.458f8b814d50d84820e9a3bf8d8d439e",

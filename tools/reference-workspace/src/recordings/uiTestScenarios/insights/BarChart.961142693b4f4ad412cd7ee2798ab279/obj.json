@@ -84,7 +84,9 @@
             }
         ],
         "identifier": "BarChart.961142693b4f4ad412cd7ee2798ab279",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BarChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right",
         "uri": "BarChart.961142693b4f4ad412cd7ee2798ab279",

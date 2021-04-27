@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "PieChart.a542a352006b5e7f1ecfd6c8e94ec7cf",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "PieChart - 610x154 - Force position RIGHT - legend on left",
         "uri": "PieChart.a542a352006b5e7f1ecfd6c8e94ec7cf",

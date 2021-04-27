@@ -60,7 +60,9 @@
         ],
         "filters": [],
         "identifier": "BubbleChart.c311918a483e536f1c13867b4ce64b43",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BubbleChart - 610x154 - Force position RIGHT - legend on left",
         "uri": "BubbleChart.c311918a483e536f1c13867b4ce64b43",

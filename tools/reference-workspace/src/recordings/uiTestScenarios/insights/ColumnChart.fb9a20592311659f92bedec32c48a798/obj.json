@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "ColumnChart.fb9a20592311659f92bedec32c48a798",
-        "properties": { "controls": { "legend": { "position": "auto", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "auto", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ColumnChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - auto legend",
         "uri": "ColumnChart.fb9a20592311659f92bedec32c48a798",

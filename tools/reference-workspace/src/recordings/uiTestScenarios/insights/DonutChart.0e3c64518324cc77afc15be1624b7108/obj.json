@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "DonutChart.0e3c64518324cc77afc15be1624b7108",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "DonutChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom",
         "uri": "DonutChart.0e3c64518324cc77afc15be1624b7108",

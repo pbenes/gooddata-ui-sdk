@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "DonutChart.234fe2c5c31e9f2df3f1a831ca21c18c",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "DonutChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on right",
         "uri": "DonutChart.234fe2c5c31e9f2df3f1a831ca21c18c",

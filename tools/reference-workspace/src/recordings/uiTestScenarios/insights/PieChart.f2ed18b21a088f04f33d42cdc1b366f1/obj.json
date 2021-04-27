@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "PieChart.f2ed18b21a088f04f33d42cdc1b366f1",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "PieChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on left",
         "uri": "PieChart.f2ed18b21a088f04f33d42cdc1b366f1",

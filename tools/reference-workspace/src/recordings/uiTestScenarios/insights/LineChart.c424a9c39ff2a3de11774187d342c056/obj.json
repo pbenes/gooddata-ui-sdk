@@ -98,7 +98,9 @@
         ],
         "filters": [],
         "identifier": "LineChart.c424a9c39ff2a3de11774187d342c056",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "LineChart - 610x274 - Position respects configuration, max 2 row for TOP/BOTTOM - legend on right",
         "uri": "LineChart.c424a9c39ff2a3de11774187d342c056",

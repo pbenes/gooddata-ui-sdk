@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "ColumnChart.43280dc648476209c055156a88fbc89f",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ColumnChart - 610x154 - Force position RIGHT - legend on top",
         "uri": "ColumnChart.43280dc648476209c055156a88fbc89f",

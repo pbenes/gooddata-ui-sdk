@@ -60,7 +60,9 @@
         ],
         "filters": [],
         "identifier": "BubbleChart.aa7975bfd9f5d7a210d8e6f2fc8157cc",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BubbleChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom",
         "uri": "BubbleChart.aa7975bfd9f5d7a210d8e6f2fc8157cc",

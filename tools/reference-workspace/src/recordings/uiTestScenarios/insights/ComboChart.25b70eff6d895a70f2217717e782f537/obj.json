@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.25b70eff6d895a70f2217717e782f537",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 610x154 - Force position RIGHT - legend on top",
         "uri": "ComboChart.25b70eff6d895a70f2217717e782f537",

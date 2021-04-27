@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.c013dbcb21421c10f52e4ce9d37e262d",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend at bottom",
         "uri": "ComboChart.c013dbcb21421c10f52e4ce9d37e262d",

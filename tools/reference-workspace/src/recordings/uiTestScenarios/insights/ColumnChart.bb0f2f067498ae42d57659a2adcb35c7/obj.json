@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "ColumnChart.bb0f2f067498ae42d57659a2adcb35c7",
-        "properties": { "controls": { "legend": { "position": "auto", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "auto", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ColumnChart - 610x154 - Force position RIGHT - auto legend",
         "uri": "ColumnChart.bb0f2f067498ae42d57659a2adcb35c7",

@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.ff84681fe4d08edbd8c318c881e6c555",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 610x194 - Position respects configuration, max 1 row for TOP/BOTTOM - legend on left",
         "uri": "ComboChart.ff84681fe4d08edbd8c318c881e6c555",

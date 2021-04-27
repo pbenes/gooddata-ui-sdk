@@ -30,7 +30,9 @@
         ],
         "filters": [],
         "identifier": "PieChart.e804e346324ed9fc818ad8d535ba56f3",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "PieChart - 180x154 - Force position TOP, max 1 row, Gradient legend minimized - legend at bottom",
         "uri": "PieChart.e804e346324ed9fc818ad8d535ba56f3",

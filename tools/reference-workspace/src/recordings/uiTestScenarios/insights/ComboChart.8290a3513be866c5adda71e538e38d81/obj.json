@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.8290a3513be866c5adda71e538e38d81",
-        "properties": { "controls": { "legend": { "position": "top", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "top", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on top",
         "uri": "ComboChart.8290a3513be866c5adda71e538e38d81",

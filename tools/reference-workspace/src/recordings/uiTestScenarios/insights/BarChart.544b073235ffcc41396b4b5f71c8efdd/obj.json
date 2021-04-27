@@ -84,7 +84,9 @@
             }
         ],
         "identifier": "BarChart.544b073235ffcc41396b4b5f71c8efdd",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BarChart - 260x154 - Force position TOP, max 1 row, Gradient legend minimized - legend on left",
         "uri": "BarChart.544b073235ffcc41396b4b5f71c8efdd",

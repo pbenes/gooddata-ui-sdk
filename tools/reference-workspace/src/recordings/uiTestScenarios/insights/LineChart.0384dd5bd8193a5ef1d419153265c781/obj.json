@@ -98,7 +98,9 @@
         ],
         "filters": [],
         "identifier": "LineChart.0384dd5bd8193a5ef1d419153265c781",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "LineChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left",
         "uri": "LineChart.0384dd5bd8193a5ef1d419153265c781",

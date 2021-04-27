@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "Treemap.ab6e99050d4848d4c59f6ace28c8007e",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [
             { "attributeSortItem": { "attributeIdentifier": "a_label.product.id.name", "direction": "asc" } },
             {

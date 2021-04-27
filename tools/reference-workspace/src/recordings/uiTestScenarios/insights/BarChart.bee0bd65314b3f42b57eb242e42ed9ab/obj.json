@@ -84,7 +84,9 @@
             }
         ],
         "identifier": "BarChart.bee0bd65314b3f42b57eb242e42ed9ab",
-        "properties": { "controls": { "legend": { "position": "auto", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "auto", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BarChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - auto legend",
         "uri": "BarChart.bee0bd65314b3f42b57eb242e42ed9ab",

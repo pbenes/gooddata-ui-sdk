@@ -41,7 +41,9 @@
         ],
         "filters": [],
         "identifier": "Heatmap.fd17f7cbf408029974f69ac1ee6051ab",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [
             { "attributeSortItem": { "attributeIdentifier": "a_label.product.id.name", "direction": "desc" } }
         ],

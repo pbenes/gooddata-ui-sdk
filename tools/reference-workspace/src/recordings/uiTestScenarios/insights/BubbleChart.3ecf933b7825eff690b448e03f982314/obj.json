@@ -60,7 +60,9 @@
         ],
         "filters": [],
         "identifier": "BubbleChart.3ecf933b7825eff690b448e03f982314",
-        "properties": { "controls": { "legend": { "position": "right", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "right", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "BubbleChart - 650x354 - Position respects configuration, map legend fits into 1 row for TOP/BOTTOM - legend on right",
         "uri": "BubbleChart.3ecf933b7825eff690b448e03f982314",

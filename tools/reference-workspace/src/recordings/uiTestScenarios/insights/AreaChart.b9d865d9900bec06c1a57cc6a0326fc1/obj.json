@@ -108,7 +108,9 @@
         ],
         "filters": [],
         "identifier": "AreaChart.b9d865d9900bec06c1a57cc6a0326fc1",
-        "properties": { "controls": { "legend": { "position": "left", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "left", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "AreaChart - 440x154 - Force position TOP, max 1 row, Gradient legend normal - legend on left",
         "uri": "AreaChart.b9d865d9900bec06c1a57cc6a0326fc1",

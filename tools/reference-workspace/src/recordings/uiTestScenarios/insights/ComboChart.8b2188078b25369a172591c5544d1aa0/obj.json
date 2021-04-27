@@ -102,7 +102,9 @@
         ],
         "filters": [],
         "identifier": "ComboChart.8b2188078b25369a172591c5544d1aa0",
-        "properties": { "controls": { "legend": { "position": "bottom", "responsive": "popup" } } },
+        "properties": {
+            "controls": { "legend": { "position": "bottom", "responsive": "autoPositionWithPopup" } }
+        },
         "sorts": [],
         "title": "ComboChart - 610x154 - Force position RIGHT - legend at bottom",
         "uri": "ComboChart.8b2188078b25369a172591c5544d1aa0",
