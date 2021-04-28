@@ -10,6 +10,7 @@ $paging-button-small-size: 22px;
 $responsive-legend: "only screen and (max-width: 767px)";
 $dialog-border: $default-bubble-light-border-base;
 $dialog-background: $is-focused-background;
+$legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-complementary-0, white));
 
 @media #{$responsive-legend} {
     .viz-line-family-chart-wrap {
@@ -477,7 +478,7 @@ $dialog-background: $is-focused-background;
         }
     }
     .legend-content {
-        background-color: var(--gd-chart-backgroundColor, var(--gd-palette-complementary-0));
+        background-color: $legend-content-background;
         padding: 10px;
     }
 }
