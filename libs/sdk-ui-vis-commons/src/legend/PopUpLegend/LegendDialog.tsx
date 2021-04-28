@@ -43,14 +43,13 @@ export const LegendDialog: React.FC<ILegendDialogProps> = (props) => {
     if (!isOpen) {
         return null;
     }
-    const alignToSelector = `.${alignTo}`;
 
     return (
         <LegendDialogWrapper>
             {(isMobile) => {
                 return (
                     <Overlay
-                        alignTo={alignToSelector}
+                        alignTo={alignTo}
                         alignPoints={isMobile ? legendMobileDialogAlignPoints : legendDialogAlignPoints}
                         closeOnOutsideClick={!isMobile}
                         onClose={onCloseDialog}

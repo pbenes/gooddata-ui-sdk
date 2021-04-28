@@ -100,7 +100,7 @@ export class HighChartsRenderer extends React.PureComponent<
 
     private highchartsRendererRef = React.createRef<HTMLDivElement>(); // whole component = legend + chart
     private chartRef: IChartHTMLElement;
-    private componentId: string = `visualization-${v4()}`;
+    private containerId: string = `visualization-${v4()}`;
 
     constructor(props: IHighChartsRendererProps) {
         super(props);
@@ -330,7 +330,7 @@ export class HighChartsRenderer extends React.PureComponent<
     public renderLegend(
         legendDetails: ILegendDetails,
         contentRect: ContentRect,
-        componentId: string,
+        containerId: string,
     ): React.ReactNode {
         const { chartOptions, legend, height, legendRenderer, locale } = this.props;
         const { items, format } = legend;
@@ -362,7 +362,7 @@ export class HighChartsRenderer extends React.PureComponent<
             showFluidLegend,
             validateOverHeight: () => {},
             contentDimensions: contentRect?.client,
-            componentId,
+            containerId,
         };
 
         return legendRenderer(legendProps);
@@ -434,7 +434,7 @@ export class HighChartsRenderer extends React.PureComponent<
                 [`flex-direction-${this.getFlexDirection(legendDetails.position)}`]: true,
                 "legend-position-bottom": legendDetails.position === BOTTOM,
             },
-            this.componentId,
+            this.containerId,
         );
 
         let legendPosition = legendDetails.position;
@@ -444,10 +444,10 @@ export class HighChartsRenderer extends React.PureComponent<
             <div className={classes}>
                 <div className={classes} ref={this.highchartsRendererRef}>
                     {this.renderZoomOutButton()}
-                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.componentId)}
+                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.containerId)}
                     {this.renderHighcharts()}
                     {!isLegendRenderedFirst &&
-                        this.renderLegend(legendDetails, contentRect, this.componentId)}
+                        this.renderLegend(legendDetails, contentRect, this.containerId)}
                 </div>
             </div>
         );
