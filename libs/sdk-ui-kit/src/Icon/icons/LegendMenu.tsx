@@ -15,7 +15,7 @@ export const LegendMenu: React.FC<IIconProps> = ({ color, className, width, heig
             viewBox="0 0 13 10"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g id="Legend" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Legend" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g
                     id="LegendIcoContent"
                     transform="translate(-1697.000000, -375.000000)"
