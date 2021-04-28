@@ -180,8 +180,8 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
                 flex-flow: row wrap;
                 box-sizing: border-box;
                 justify-content: flex-start;
-                width: auto;
                 overflow: hidden;
+                width: auto;
                 margin-top: 5px;
                 margin-bottom: 5px;
                 min-width: 0; // hack for FF
@@ -189,7 +189,7 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
             }
 
             .series-axis-indicator {
-                margin-right: 0px;
+                margin-right: 0;
             }
 
             .series-item {
@@ -201,13 +201,13 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
             margin-left: 0;
 
             .series {
+                box-sizing: border-box;
                 display: flex;
+                justify-content: flex-start;
                 flex-wrap: wrap;
                 flex-direction: column;
-                box-sizing: border-box;
-                justify-content: flex-start;
-                width: auto;
                 overflow: hidden;
+                width: auto;
                 min-width: 0; // hack for FF
                 max-width: 100%; // hack for IE
             }
@@ -223,6 +223,7 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
             }
 
             &.no-width {
+                // stylelint-disable-next-line max-nesting-depth
                 .series-item {
                     margin-left: 15px;
                     width: 100%;
@@ -306,7 +307,9 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
                 }
             }
 
+            // stylelint-disable-next-line max-nesting-depth
             &.medium {
+                // stylelint-disable-next-line max-nesting-depth
                 .boxes {
                     // refactor?
                     // stylelint-disable-next-line max-nesting-depth
@@ -322,7 +325,9 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
                 }
             }
 
+            // stylelint-disable-next-line max-nesting-depth
             &.small {
+                // stylelint-disable-next-line max-nesting-depth
                 .boxes {
                     // refactor?
                     // stylelint-disable-next-line max-nesting-depth
@@ -394,16 +399,16 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
 
 .legend-popup-button {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-width: 30px;
     height: 30px;
 }
 
 .legend-popup-icon {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-width: 22px;
     height: 22px;
     border-radius: 50%;
@@ -413,6 +418,7 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
     &:hover {
         background-color: $gd-color-state-blank;
 
+        // stylelint-disable-next-line selector-max-id
         #LegendIcoContent {
             fill: $gd-color-white;
         }
@@ -420,20 +426,21 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
 }
 
 .heatmap-legend-with-title {
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
-    display: flex;
+    flex-direction: column;
 
     .heatmap-legend-title {
         font-size: 12px;
         max-height: 20px;
-        line-height: 20px;
         display: flex;
+        overflow: hidden;
+        line-height: 20px;
         white-space: nowrap;
         text-overflow: ellipsis;
-        overflow: hidden;
         color: var(--gd-chart-legendValueColor, $gd-color-link);
-
         max-width: 210px;
         margin-left: 20px;
         margin-bottom: 10px;
@@ -443,9 +450,6 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
         display: flex;
         flex-direction: row;
     }
-
-    justify-content: flex-start;
-    flex-direction: column;
 
     &.horizontal {
         justify-content: flex-end;
@@ -472,10 +476,10 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
         margin: 0 15px;
         .legend-header-title {
             font-family: $gd-font-primary;
+            height: 40px;
+            line-height: 45px;
             color: $gd-color-state-blank;
             font-size: 14px;
-            line-height: 45px;
-            height: 40px;
         }
     }
     .legend-content {
