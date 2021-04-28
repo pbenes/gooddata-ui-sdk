@@ -12,6 +12,7 @@ import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } fr
 import { IHeatmapLegendSize, IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
 import { PopUpLegend } from "./PopUpLegend/PopUpLegend";
 import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
+import { ButtonsOrientationType } from "./Paging";
 
 /**
  * @internal
@@ -112,9 +113,12 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderStatic = (): React.ReactNode => {
-        const { position, height, enableBorderRadius } = this.props;
+        const { position, height, enableBorderRadius, responsive, legendLabel: label } = this.props;
 
         const classNames = cx("viz-static-legend-wrap", `position-${position}`);
+
+        const buttonOrientation: ButtonsOrientationType =
+            responsive === "autoPositionWithPopup" ? "leftRight" : "upDown";
 
         const props: IStaticLegendProps = {
             containerHeight: 0,
@@ -122,6 +126,8 @@ export class Legend extends React.PureComponent<ILegendProps> {
             onItemClick: this.onItemClick,
             position,
             enableBorderRadius,
+            buttonOrientation,
+            label,
         };
 
         return (

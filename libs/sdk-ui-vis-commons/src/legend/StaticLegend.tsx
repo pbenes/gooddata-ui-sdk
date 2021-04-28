@@ -7,6 +7,7 @@ import { ButtonsOrientationType, Paging } from "./Paging";
 import { BOTTOM, TOP } from "./PositionTypes";
 import { calculateStaticLegend, ITEM_HEIGHT } from "./helpers";
 import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
+import { LegendLabelItem } from "./LegendLabelItem";
 
 /**
  * @internal
@@ -17,6 +18,8 @@ export interface IStaticLegendProps {
     series: IPushpinCategoryLegendItem[];
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     shouldFillAvailableSpace?: boolean;
+    label?: string;
+    buttonOrientation?: ButtonsOrientationType;
     onItemClick?(item: IPushpinCategoryLegendItem): void;
 }
 
@@ -24,6 +27,10 @@ export interface IStaticLegendProps {
  * @internal
  */
 export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
+    public static defaultProps: Partial<IStaticLegendProps> = {
+        buttonOrientation: "upDown",
+    };
+
     public state = {
         page: 1,
     };
@@ -38,10 +45,9 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 
     public renderPaging = (visibleItemsCount: number): React.ReactNode => {
         const { page } = this.state;
-        const { position } = this.props;
+        const { buttonOrientation } = this.props;
 
         const pagesCount = Math.ceil(this.props.series.length / visibleItemsCount);
-        const buttonOrientation: ButtonsOrientationType = position === "dialog" ? "leftRight" : "upDown";
 
         return (
             <Paging
@@ -62,6 +68,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
             position,
             series,
             shouldFillAvailableSpace = true,
+            label,
         } = this.props;
         const { page } = this.state;
 
@@ -84,12 +91,11 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 
         const columnNum = position === "dialog" ? 2 : 1;
 
+        const labelComponent = label ? <LegendLabelItem label={label} /> : null;
+        const contentHeight = label ? containerHeight - ITEM_HEIGHT : containerHeight;
+
         const seriesCount = series.length;
-        const { hasPaging, visibleItemsCount } = calculateStaticLegend(
-            seriesCount,
-            containerHeight,
-            columnNum,
-        );
+        const { hasPaging, visibleItemsCount } = calculateStaticLegend(seriesCount, contentHeight, columnNum);
 
         const start = (page - 1) * visibleItemsCount;
         const end = Math.min(visibleItemsCount * page, series.length);
@@ -108,6 +114,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
         return (
             <div className={`${classNames} ${visibleItemsFitOneColumn}`}>
                 <div className="series" style={{ height: seriesHeight }}>
+                    {labelComponent}
                     <LegendList
                         enableBorderRadius={enableBorderRadius}
                         series={pagedSeries}

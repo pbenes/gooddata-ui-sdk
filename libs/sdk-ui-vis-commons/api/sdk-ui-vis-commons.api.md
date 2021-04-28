@@ -361,9 +361,13 @@ export function isCustomPalette(palette: IColorPalette): boolean;
 // @internal (undocumented)
 export interface IStaticLegendProps {
     // (undocumented)
+    buttonOrientation?: ButtonsOrientationType;
+    // (undocumented)
     containerHeight: number;
     // (undocumented)
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
+    // (undocumented)
+    label?: string;
     // (undocumented)
     onItemClick?(item: IPushpinCategoryLegendItem): void;
     // (undocumented)
@@ -440,6 +444,8 @@ export function shouldShowFluid(documentObj: Document): boolean;
 
 // @internal (undocumented)
 export class StaticLegend extends React_2.PureComponent<IStaticLegendProps> {
+    // (undocumented)
+    static defaultProps: Partial<IStaticLegendProps>;
     // (undocumented)
     render(): React_2.ReactNode;
     // (undocumented)
