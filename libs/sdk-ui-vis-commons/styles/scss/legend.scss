@@ -187,8 +187,12 @@ $dialog-background: $is-focused-background;
                 max-width: 100%; // hack for IE
             }
 
+            .series-axis-indicator {
+                margin-right: 0px;
+            }
+
             .series-item {
-                margin-left: 15px;
+                margin-left: 10px;
             }
         }
 
