@@ -135,10 +135,11 @@ export interface IPopUpLegendProps {
     name: string;
     maxRows: number;
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
+    componentId: string;
 }
 
 export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
-    const { name, maxRows, enableBorderRadius, series, onLegendItemClick } = props;
+    const { name, maxRows, enableBorderRadius, series, onLegendItemClick, componentId } = props;
     const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
     const dialogId = useRandomComponentId("s-legend-anchor-");
@@ -162,7 +163,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
 
             <LegendDialog
                 name={dialogTitle}
-                alignTo={dialogId}
+                alignTo={`${componentId}`}
                 isOpen={isDialogOpen}
                 onCloseDialog={onCloseDialog}
             >

@@ -281,6 +281,8 @@ export interface ILegendOptions {
 // @internal (undocumented)
 export interface ILegendProps {
     // (undocumented)
+    componentId?: string;
+    // (undocumented)
     contentDimensions: {
         width: number;
         height: number;

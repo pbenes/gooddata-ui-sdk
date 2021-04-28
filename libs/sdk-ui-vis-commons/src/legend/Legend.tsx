@@ -33,6 +33,7 @@ export interface ILegendProps {
     onItemClick(item: any): void;
     validateOverHeight(legendClient: Rect): void;
     contentDimensions: { width: number; height: number };
+    componentId?: string;
 }
 
 /**
@@ -71,10 +72,11 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderPopUpLegend = (): React.ReactNode => {
-        const { legendLabel, maximumRows, enableBorderRadius } = this.props;
+        const { legendLabel, maximumRows, enableBorderRadius, componentId } = this.props;
 
         return (
             <PopUpLegend
+                componentId={componentId}
                 series={this.getSeries()}
                 maxRows={maximumRows}
                 name={legendLabel}

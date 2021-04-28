@@ -2,6 +2,7 @@
 import React from "react";
 import Measure, { MeasuredComponentProps, ContentRect } from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
+import { v4 } from "uuid";
 import get from "lodash/get";
 import set from "lodash/set";
 import isEqual from "lodash/isEqual";
@@ -99,6 +100,7 @@ export class HighChartsRenderer extends React.PureComponent<
 
     private highchartsRendererRef = React.createRef<HTMLDivElement>(); // whole component = legend + chart
     private chartRef: IChartHTMLElement;
+    private componentId: string = `visualization-${v4()}`;
 
     constructor(props: IHighChartsRendererProps) {
         super(props);
@@ -325,7 +327,11 @@ export class HighChartsRenderer extends React.PureComponent<
         return this.getLegendDetailsForAutoResponsive(contentRect, legendOptions, chartOptions);
     }
 
-    public renderLegend(legendDetails: ILegendDetails, contentRect: ContentRect): React.ReactNode {
+    public renderLegend(
+        legendDetails: ILegendDetails,
+        contentRect: ContentRect,
+        componentId: string,
+    ): React.ReactNode {
         const { chartOptions, legend, height, legendRenderer, locale } = this.props;
         const { items, format } = legend;
         const { showFluidLegend } = this.state;
@@ -356,6 +362,7 @@ export class HighChartsRenderer extends React.PureComponent<
             showFluidLegend,
             validateOverHeight: () => {},
             contentDimensions: contentRect?.client,
+            componentId,
         };
 
         return legendRenderer(legendProps);
@@ -427,6 +434,7 @@ export class HighChartsRenderer extends React.PureComponent<
                 [`flex-direction-${this.getFlexDirection(legendDetails.position)}`]: true,
                 "legend-position-bottom": legendDetails.position === BOTTOM,
             },
+            this.componentId,
         );
 
         let legendPosition = legendDetails.position;
@@ -436,9 +444,10 @@ export class HighChartsRenderer extends React.PureComponent<
             <div className={classes}>
                 <div className={classes} ref={this.highchartsRendererRef}>
                     {this.renderZoomOutButton()}
-                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect)}
+                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.componentId)}
                     {this.renderHighcharts()}
-                    {!isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect)}
+                    {!isLegendRenderedFirst &&
+                        this.renderLegend(legendDetails, contentRect, this.componentId)}
                 </div>
             </div>
         );
