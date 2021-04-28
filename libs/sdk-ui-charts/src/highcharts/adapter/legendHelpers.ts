@@ -2,11 +2,14 @@
 import get from "lodash/get";
 import head from "lodash/head";
 import isEmpty from "lodash/isEmpty";
+import { ContentRect } from "react-measure";
+import { ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
 
-import { isAreaChart, isOneOfTypes, isTreemap } from "../chartTypes/_util/common";
+import { isHeatmap, isAreaChart, isOneOfTypes, isTreemap } from "../chartTypes/_util/common";
 import { VisualizationTypes } from "@gooddata/sdk-ui";
 import { supportedDualAxesChartTypes } from "../chartTypes/_chartOptions/chartCapabilities";
 import { ISeriesItem, IChartOptions } from "../typings/unsafe";
+import { BOTTOM, RIGHT, TOP } from "../typings/mess";
 
 export const RESPONSIVE_ITEM_MIN_WIDTH = 200;
 export const RESPONSIVE_VISIBLE_ROWS = 2;
@@ -415,4 +418,80 @@ export function isStackedChart(chartOptions: IChartOptions): boolean {
     const hasMoreThanOneSeries = seriesLength > 1;
     const isAreaChartWithOneSerie = isAreaChart(type) && !hasMoreThanOneSeries && !hasStackByAttribute;
     return !isAreaChartWithOneSerie && !isTreemap(type) && Boolean(stacking);
+}
+
+function getLegendDetailsForAutoResponsive(
+    contentRect: ContentRect,
+    legendOptions: ILegendOptions,
+    chartOptions: any,
+): ILegendDetails {
+    const { width, height } = contentRect?.client;
+
+    if (!width || !height) {
+        return null;
+    }
+
+    const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
+
+    // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
+    if (width < 610) {
+        return { ...name, position: TOP, renderPopUp: true, maxRows: 1 };
+    } else {
+        const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
+
+        if (height < 194) {
+            return { ...name, position: RIGHT, renderPopUp: false };
+        } else {
+            const maxRowsForTopBottom = height < 274 ? 1 : 2;
+            return {
+                ...name,
+                position: legendOptions.position,
+                renderPopUp: isLegendTopBottom,
+                maxRows: isLegendTopBottom ? maxRowsForTopBottom : undefined,
+            };
+        }
+    }
+}
+
+export interface ILegendDetails {
+    name?: string;
+    position: any;
+    maxRows?: number;
+    renderPopUp?: boolean;
+}
+
+function getLegendDetailsForStandard(
+    legendOptions: ILegendOptions,
+    chartOptions: any,
+    showFluidLegend: boolean,
+): ILegendDetails {
+    const { type } = chartOptions;
+    let pos = legendOptions.position;
+    if (isHeatmap(type)) {
+        const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
+        if (isSmall) {
+            pos = legendOptions.position === TOP ? TOP : BOTTOM;
+        } else {
+            pos = legendOptions.position || RIGHT;
+        }
+    }
+
+    return {
+        position: pos,
+        renderPopUp: false,
+        name: null,
+    };
+}
+
+export function getLegendDetails(
+    contentRect: ContentRect,
+    legendOptions: ILegendOptions,
+    chartOptions: any,
+    showFluidLegend: boolean,
+): ILegendDetails {
+    if (legendOptions.responsive !== "autoPositionWithPopup") {
+        return getLegendDetailsForStandard(legendOptions, chartOptions, showFluidLegend);
+    }
+
+    return getLegendDetailsForAutoResponsive(contentRect, legendOptions, chartOptions);
 }

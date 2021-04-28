@@ -22,6 +22,7 @@ import { Bubble, BubbleHoverTrigger, Icon } from "@gooddata/sdk-ui-kit";
 import { BOTTOM, LEFT, RIGHT, TOP } from "../typings/mess";
 import { ITheme } from "@gooddata/sdk-backend-spi";
 import { IChartOptions } from "../typings/unsafe";
+import { getLegendDetails } from "./legendHelpers";
 
 /**
  * @internal
@@ -258,75 +259,6 @@ export class HighChartsRenderer extends React.PureComponent<
         return config;
     }
 
-    private getLegendDetailsForAutoResponsive(
-        contentRect: ContentRect,
-        legendOptions: ILegendOptions,
-        chartOptions: any,
-    ): ILegendDetails {
-        const { width, height } = contentRect?.client;
-
-        if (!width || !height) {
-            return null;
-        }
-
-        const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
-
-        // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
-        if (width < 610) {
-            return { ...name, position: TOP, renderPopUp: true, maxRows: 1 };
-        } else {
-            const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
-
-            if (height < 194) {
-                return { ...name, position: RIGHT, renderPopUp: false };
-            } else {
-                const maxRowsForTopBottom = height < 274 ? 1 : 2;
-                return {
-                    ...name,
-                    position: legendOptions.position,
-                    renderPopUp: isLegendTopBottom,
-                    maxRows: isLegendTopBottom ? maxRowsForTopBottom : undefined,
-                };
-            }
-        }
-    }
-
-    private getLegendDetailsForStandard(
-        legendOptions: ILegendOptions,
-        chartOptions: any,
-        showFluidLegend: boolean,
-    ): ILegendDetails {
-        const { type } = chartOptions;
-        let pos = legendOptions.position;
-        if (isHeatmap(type)) {
-            const isSmall = Boolean(legendOptions.responsive && showFluidLegend);
-            if (isSmall) {
-                pos = legendOptions.position === TOP ? TOP : BOTTOM;
-            } else {
-                pos = legendOptions.position || RIGHT;
-            }
-        }
-
-        return {
-            position: pos,
-            renderPopUp: false,
-            name: null,
-        };
-    }
-
-    public getLegendDetails(
-        contentRect: ContentRect,
-        legendOptions: ILegendOptions,
-        chartOptions: any,
-        showFluidLegend: boolean,
-    ): ILegendDetails {
-        if (legendOptions.responsive !== "autoPositionWithPopup") {
-            return this.getLegendDetailsForStandard(legendOptions, chartOptions, showFluidLegend);
-        }
-
-        return this.getLegendDetailsForAutoResponsive(contentRect, legendOptions, chartOptions);
-    }
-
     public renderLegend(
         legendDetails: ILegendDetails,
         contentRect: ContentRect,
@@ -416,12 +348,7 @@ export class HighChartsRenderer extends React.PureComponent<
 
     private renderVisualization(contentRect: ContentRect) {
         const { legend, chartOptions } = this.props;
-        const legendDetails = this.getLegendDetails(
-            contentRect,
-            legend,
-            chartOptions,
-            this.state.showFluidLegend,
-        );
+        const legendDetails = getLegendDetails(contentRect, legend, chartOptions, this.state.showFluidLegend);
         if (!legendDetails) {
             return null;
         }
