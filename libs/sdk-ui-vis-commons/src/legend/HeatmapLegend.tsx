@@ -2,7 +2,6 @@
 import React from "react";
 import { IHeatmapLegendSize, IHeatmapLegendItem, IColorLegendItem } from "./types";
 import { ColorLegend } from "./ColorLegend";
-import { TOP, BOTTOM } from "./PositionTypes";
 
 /**
  * @internal

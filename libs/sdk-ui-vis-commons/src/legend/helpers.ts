@@ -7,7 +7,7 @@ import inRange from "lodash/inRange";
 import isEqual from "lodash/isEqual";
 import { numberFormat } from "@gooddata/numberjs";
 import { IColorLegendItem, IHeatmapLegendSize } from "./types";
-import { LEFT, RIGHT, TOP, BOTTOM } from "./PositionTypes";
+import { LEFT, RIGHT } from "./PositionTypes";
 import { ITheme } from "@gooddata/sdk-backend-spi";
 import { parseRGBString } from "../coloring/color";
 

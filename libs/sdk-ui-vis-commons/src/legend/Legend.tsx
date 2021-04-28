@@ -11,7 +11,7 @@ import { HeatmapLegend } from "./HeatmapLegend";
 import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } from "@gooddata/sdk-ui";
 import { IHeatmapLegendSize, IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
 import { PopUpLegend } from "./PopUpLegend/PopUpLegend";
-import { RIGHT, TOP, BOTTOM } from "./PositionTypes";
+import { TOP, BOTTOM } from "./PositionTypes";
 import { ButtonsOrientationType } from "./Paging";
 
 /**

@@ -87,7 +87,7 @@ function LegendWithTitle(props: { title: string; position: string; children: any
     return (
         <div className={classes}>
             <div className="heatmap-legend-title">{`${title}:`}</div>
-            <div className="heatmap-legend-boxes">{props.children}</div>
+            <div className="heatmap-legend-boxes">{children}</div>
         </div>
     );
 }
@@ -111,7 +111,7 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
     );
     const classes = cx(...config.classes);
     const renderLabelsFirst = config.position === TOP;
-    let { boxes, labels } = config;
+    const { boxes, labels } = config;
 
     const renderedBoxes = renderLegendBoxes(renderLabelsFirst, boxes, labels);
     return (
