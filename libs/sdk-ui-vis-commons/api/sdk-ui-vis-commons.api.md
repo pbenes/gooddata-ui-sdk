@@ -371,6 +371,8 @@ export interface IStaticLegendProps {
     // (undocumented)
     onItemClick?(item: IPushpinCategoryLegendItem): void;
     // (undocumented)
+    paginationHeight?: number;
+    // (undocumented)
     position: string;
     // (undocumented)
     series: IPushpinCategoryLegendItem[];

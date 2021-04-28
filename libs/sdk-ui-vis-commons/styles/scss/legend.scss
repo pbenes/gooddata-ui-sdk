@@ -219,6 +219,7 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
 
             .paging {
                 justify-content: center;
+                margin-top: 10px;
             }
 
             &.no-width {
@@ -468,18 +469,18 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
 
 .legend-popup-dialog {
     .legend-header {
-        padding-left: 10px;
+        margin: 0 15px;
         .legend-header-title {
             font-family: $gd-font-primary;
             color: $gd-color-state-blank;
             font-size: 14px;
             line-height: 45px;
-            height: 45px;
+            height: 40px;
         }
     }
     .legend-content {
         background-color: $legend-content-background;
-        padding: 10px;
+        padding: 15px;
     }
 }
 
@@ -513,7 +514,7 @@ $legend-content-background: var(--gd-chart-backgroundColor, var(--gd-palette-com
     }
 
     @media #{$medium-up} {
-        width: 288px;
+        width: 308px;
     }
 
     .legend-close[class*="icon-"] {

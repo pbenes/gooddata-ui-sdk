@@ -5,7 +5,7 @@ import noop from "lodash/noop";
 import { LegendList } from "./LegendList";
 import { ButtonsOrientationType, Paging } from "./Paging";
 import { BOTTOM, TOP } from "./PositionTypes";
-import { calculateStaticLegend, ITEM_HEIGHT } from "./helpers";
+import { calculateStaticLegend, ITEM_HEIGHT, STATIC_PAGING_HEIGHT } from "./helpers";
 import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "./types";
 import { LegendLabelItem } from "./LegendLabelItem";
 
@@ -21,6 +21,7 @@ export interface IStaticLegendProps {
     label?: string;
     buttonOrientation?: ButtonsOrientationType;
     onItemClick?(item: IPushpinCategoryLegendItem): void;
+    paginationHeight?: number;
 }
 
 /**
@@ -29,6 +30,7 @@ export interface IStaticLegendProps {
 export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
     public static defaultProps: Partial<IStaticLegendProps> = {
         buttonOrientation: "upDown",
+        paginationHeight: STATIC_PAGING_HEIGHT,
     };
 
     public state = {
@@ -69,6 +71,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
             series,
             shouldFillAvailableSpace = true,
             label,
+            paginationHeight,
         } = this.props;
         const { page } = this.state;
 
@@ -95,8 +98,12 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
         const contentHeight = label ? containerHeight - ITEM_HEIGHT : containerHeight;
 
         const seriesCount = series.length;
-        const { hasPaging, visibleItemsCount } = calculateStaticLegend(seriesCount, contentHeight, columnNum);
-
+        const { hasPaging, visibleItemsCount } = calculateStaticLegend(
+            seriesCount,
+            contentHeight,
+            columnNum,
+            paginationHeight,
+        );
         const start = (page - 1) * visibleItemsCount;
         const end = Math.min(visibleItemsCount * page, series.length);
 

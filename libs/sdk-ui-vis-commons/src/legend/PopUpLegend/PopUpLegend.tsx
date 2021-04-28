@@ -9,6 +9,8 @@ import { IPushpinCategoryLegendItem, ItemBorderRadiusPredicate } from "../types"
 import { LegendDialog } from "./LegendDialog";
 import { RowLegend } from "./RowLegend";
 
+const PAGINATION_HEIGHT = 34;
+
 const useRandomComponentId = (idPrefix: string) => {
     const val = useRef("");
     if (!val.current) {
@@ -57,13 +59,14 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                 onCloseDialog={onCloseDialog}
             >
                 <StaticLegend
-                    containerHeight={300}
+                    containerHeight={260}
                     series={[...series]}
                     position={"dialog"}
                     buttonOrientation={"leftRight"}
                     onItemClick={onLegendItemClick}
                     shouldFillAvailableSpace={false}
                     enableBorderRadius={enableBorderRadius}
+                    paginationHeight={PAGINATION_HEIGHT}
                 />
             </LegendDialog>
         </div>

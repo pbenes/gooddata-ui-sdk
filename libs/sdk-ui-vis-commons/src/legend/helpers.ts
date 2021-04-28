@@ -18,7 +18,7 @@ export const LEGEND_PADDING = 12;
 export const ITEM_HEIGHT = 20;
 export const SKIPPED_LABEL_TEXT = "...";
 export const UTF_NON_BREAKING_SPACE = "\u00A0";
-const STATIC_PAGING_HEIGHT = 44;
+export const STATIC_PAGING_HEIGHT = 44;
 
 export interface IColorLegendBox {
     class: string | null;
@@ -430,8 +430,9 @@ function getStaticVisibleItemsCount(
     containerHeight: number,
     columnsNumber: number,
     withPaging: boolean = false,
+    paginationHeight: number,
 ) {
-    const pagingHeight = withPaging ? STATIC_PAGING_HEIGHT : 0;
+    const pagingHeight = withPaging ? paginationHeight : 0;
     const height = containerHeight - pagingHeight;
     return Math.floor(height / ITEM_HEIGHT) * columnsNumber;
 }
@@ -440,6 +441,7 @@ export function calculateStaticLegend(
     seriesCount: number,
     containerHeight: number,
     columnsNumber: number = 1,
+    paginationHeight: number = STATIC_PAGING_HEIGHT,
 ): {
     hasPaging: boolean;
     visibleItemsCount: number;
@@ -451,7 +453,12 @@ export function calculateStaticLegend(
         };
     }
 
-    const visibleItemsCount = getStaticVisibleItemsCount(containerHeight, columnsNumber);
+    const visibleItemsCount = getStaticVisibleItemsCount(
+        containerHeight,
+        columnsNumber,
+        false,
+        paginationHeight,
+    );
     if (visibleItemsCount >= seriesCount) {
         return {
             hasPaging: false,
@@ -460,7 +467,7 @@ export function calculateStaticLegend(
     }
     return {
         hasPaging: true,
-        visibleItemsCount: getStaticVisibleItemsCount(containerHeight, columnsNumber, true),
+        visibleItemsCount: getStaticVisibleItemsCount(containerHeight, columnsNumber, true, paginationHeight),
     };
 }
 
