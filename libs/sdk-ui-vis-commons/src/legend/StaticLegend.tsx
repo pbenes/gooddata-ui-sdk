@@ -94,8 +94,9 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 
         const columnNum = position === "dialog" ? 2 : 1;
 
+        const labelHeight = label ? ITEM_HEIGHT : 0;
         const labelComponent = label ? <LegendLabelItem label={label} /> : null;
-        const contentHeight = label ? containerHeight - ITEM_HEIGHT : containerHeight;
+        const contentHeight = containerHeight - labelHeight;
 
         const seriesCount = series.length;
         const { hasPaging, visibleItemsCount } = calculateStaticLegend(
@@ -111,7 +112,8 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 
         const heightOfAvailableSpace = (visibleItemsCount / columnNum) * ITEM_HEIGHT;
         const heightOfVisibleItems = Math.min(visibleItemsCount / columnNum, seriesCount) * ITEM_HEIGHT;
-        const seriesHeight = shouldFillAvailableSpace ? heightOfAvailableSpace : heightOfVisibleItems;
+        const seriesHeight =
+            (shouldFillAvailableSpace ? heightOfAvailableSpace : heightOfVisibleItems) + labelHeight;
         const visibleItemsFitOneColumn = shouldItemsFitOneColumn(
             visibleItemsCount,
             columnNum,
