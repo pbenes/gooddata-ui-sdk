@@ -232,7 +232,8 @@ function getLegendDetailsForAutoResponsive(
 
     // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
     if (width < 610) {
-        return { ...name, position: TOP, renderPopUp: true, maxRows: 1 };
+        const maxRowsForTop = height < 274 ? 1 : 2;
+        return { ...name, position: TOP, renderPopUp: true, maxRows: maxRowsForTop };
     } else {
         const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
