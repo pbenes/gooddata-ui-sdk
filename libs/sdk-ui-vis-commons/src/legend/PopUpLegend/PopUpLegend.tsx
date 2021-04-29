@@ -33,7 +33,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
     const { name, maxRows, enableBorderRadius, series, onLegendItemClick, containerId } = props;
     const intl = useIntl();
     const [isDialogOpen, setDialogOpen] = useState(false);
-    const dialogId = useRandomComponentId("s-legend-anchor-");
+    const dialogId = useRandomComponentId("gd-legend-anchor-");
 
     const dialogTitle = name || intl.formatMessage({ id: "properties.legend.title" });
 
