@@ -4,7 +4,7 @@ import { Overlay, useMediaQuery } from "@gooddata/sdk-ui-kit";
 import { legendDialogAlignPoints, legendMobileDialogAlignPoints } from "./alignPoints";
 
 const LegendDialogWrapper: React.FC<{ children: (isMobile: boolean) => JSX.Element }> = ({ children }) => {
-    const isMobile = useMediaQuery("mobileDevice");
+    const isMobile = useMediaQuery("<sm");
     return children(isMobile);
 };
 

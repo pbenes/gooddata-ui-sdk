@@ -51,21 +51,7 @@ export const legendMobileDialogAlignPoints: IAlignPoint[] = [
         align: "bc tc",
         offset: {
             x: 0,
-            y: 18,
-        },
-    },
-    {
-        align: "bl tl",
-        offset: {
-            x: 0,
-            y: 18,
-        },
-    },
-    {
-        align: "br tr",
-        offset: {
-            x: 0,
-            y: 18,
+            y: -40,
         },
     },
     {
@@ -73,41 +59,6 @@ export const legendMobileDialogAlignPoints: IAlignPoint[] = [
         offset: {
             x: 0,
             y: -18,
-        },
-    },
-    {
-        align: "tl bl",
-        offset: {
-            x: 0,
-            y: -18,
-        },
-    },
-    {
-        align: "tr br",
-        offset: {
-            x: 0,
-            y: -18,
-        },
-    },
-    {
-        align: "cc tc",
-        offset: {
-            x: 0,
-            y: 0,
-        },
-    },
-    {
-        align: "cl tl",
-        offset: {
-            x: 0,
-            y: 0,
-        },
-    },
-    {
-        align: "cr tr",
-        offset: {
-            x: 0,
-            y: 0,
         },
     },
 ];

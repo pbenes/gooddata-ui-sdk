@@ -1738,6 +1738,7 @@ export interface IMeasureNumberFormatOwnProps {
 export interface IMediaQueries {
     "!mobileDevice": string;
     "<desktop": string;
+    "<sm": string;
     ">=lg": string;
     ">=md": string;
     ">=sm": string;
