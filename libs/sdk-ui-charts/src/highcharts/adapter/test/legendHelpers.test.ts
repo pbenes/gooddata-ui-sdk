@@ -10,10 +10,11 @@ import {
     LEGEND_SEPARATOR,
     groupSeriesItemsByType,
     getLegendDetails,
+    ILegendDetails,
 } from "../legendHelpers";
 import { ContentRect } from "react-measure";
 import { VisualizationTypes } from "@gooddata/sdk-ui";
-import { ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
+import { ILegendOptions, PositionType } from "@gooddata/sdk-ui-vis-commons";
 import { ISeriesItem } from "../../typings/unsafe";
 
 describe("helpers", () => {
@@ -158,7 +159,14 @@ describe("helpers", () => {
     describe("getLegendDetails", () => {
         const showFluidLegend = false;
 
-        const TEST_DATA: Array<any> = [
+        const TEST_DATA: [
+            number,
+            number,
+            boolean | "autoPositionWithPopup",
+            string,
+            PositionType,
+            ILegendDetails,
+        ][] = [
             [null, null, "autoPositionWithPopup", "legendLabel", "bottom", null],
             [
                 100,
