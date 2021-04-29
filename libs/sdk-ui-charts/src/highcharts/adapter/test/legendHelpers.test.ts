@@ -9,8 +9,11 @@ import {
     LEGEND_AXIS_INDICATOR,
     LEGEND_SEPARATOR,
     groupSeriesItemsByType,
+    getLegendDetails,
 } from "../legendHelpers";
+import { ContentRect } from "react-measure";
 import { VisualizationTypes } from "@gooddata/sdk-ui";
+import { ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
 import { ISeriesItem } from "../../typings/unsafe";
 
 describe("helpers", () => {
@@ -150,5 +153,135 @@ describe("helpers", () => {
                 series[1],
             ]);
         });
+    });
+
+    describe("getLegendDetails", () => {
+        const showFluidLegend = false;
+
+        const TEST_DATA: Array<any> = [
+            [null, null, "autoPositionWithPopup", "legendLabel", "bottom", null],
+            [
+                100,
+                100,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "bottom",
+                {
+                    maxRows: 1,
+                    name: "legendLabel",
+                    position: "top",
+                    renderPopUp: true,
+                },
+            ],
+            [
+                100,
+                400,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "bottom",
+                {
+                    maxRows: 2,
+                    name: "legendLabel",
+                    position: "top",
+                    renderPopUp: true,
+                },
+            ],
+            [
+                700,
+                100,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "bottom",
+                {
+                    name: "legendLabel",
+                    position: "right",
+                    renderPopUp: false,
+                },
+            ],
+            [
+                700,
+                200,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "bottom",
+                {
+                    maxRows: 1,
+                    name: "legendLabel",
+                    position: "bottom",
+                    renderPopUp: true,
+                },
+            ],
+            [
+                700,
+                200,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "left",
+                {
+                    name: "legendLabel",
+                    position: "left",
+                    renderPopUp: false,
+                },
+            ],
+            [
+                700,
+                300,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "bottom",
+                {
+                    maxRows: 2,
+                    name: "legendLabel",
+                    position: "bottom",
+                    renderPopUp: true,
+                },
+            ],
+            [
+                700,
+                300,
+                "autoPositionWithPopup",
+                "legendLabel",
+                "left",
+                {
+                    name: "legendLabel",
+                    position: "left",
+                    renderPopUp: false,
+                },
+            ],
+        ];
+
+        it.each(TEST_DATA)(
+            "should return config for given dimensions %s, %s, responsive: %s, label: %s, user position: %s",
+            (width, height, responsive, legendLabel, position, expected) => {
+                const contentRect: ContentRect = {
+                    client: {
+                        top: 0,
+                        left: 0,
+                        width,
+                        height,
+                    },
+                };
+                const chartOptions = {
+                    legendLabel,
+                };
+
+                const legendOptions: ILegendOptions = {
+                    responsive,
+                    position,
+                    enabled: true,
+                    format: null,
+                    items: null,
+                    toggleEnabled: null,
+                };
+
+                const legendDetails = getLegendDetails(
+                    contentRect,
+                    legendOptions,
+                    chartOptions,
+                    showFluidLegend,
+                );
+                expect(legendDetails).toEqual(expected);
+            },
+        );
     });
 });
