@@ -7,6 +7,7 @@ import { IResponsiveSize } from "./responsiveScenarios";
 export const legendResponsiveSizeVariants: Array<IResponsiveSize> = [
     { label: "Force position TOP, max 1 row, Gradient legend minimized", width: 180, height: 154 },
     { label: "Force position TOP, max 1 row, Gradient legend minimized", width: 260, height: 154 },
+    { label: "Force position TOP, max 2 rows, Gradient legend minimized", width: 180, height: 300 },
     { label: "Force position TOP, max 1 row, Gradient legend normal", width: 440, height: 154 },
     { label: "Force position RIGHT", width: 610, height: 154 },
     { label: "Position respects configuration, max 1 row for TOP/BOTTOM", width: 610, height: 194 },
