@@ -220,7 +220,7 @@ export function isStackedChart(chartOptions: IChartOptions): boolean {
 function getLegendDetailsForAutoResponsive(
     contentRect: ContentRect,
     legendOptions: ILegendOptions,
-    chartOptions: any,
+    chartOptions: IChartOptions,
 ): ILegendDetails {
     const { width, height } = contentRect?.client;
 
@@ -260,7 +260,7 @@ export interface ILegendDetails {
 
 function getLegendDetailsForStandard(
     legendOptions: ILegendOptions,
-    chartOptions: any,
+    chartOptions: IChartOptions,
     showFluidLegend: boolean,
 ): ILegendDetails {
     const { type } = chartOptions;
@@ -284,7 +284,7 @@ function getLegendDetailsForStandard(
 export function getLegendDetails(
     contentRect: ContentRect,
     legendOptions: ILegendOptions,
-    chartOptions: any,
+    chartOptions: IChartOptions,
     showFluidLegend: boolean,
 ): ILegendDetails {
     if (legendOptions.responsive !== "autoPositionWithPopup") {
