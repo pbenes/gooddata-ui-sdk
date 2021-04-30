@@ -3,7 +3,7 @@ import get from "lodash/get";
 import head from "lodash/head";
 import isEmpty from "lodash/isEmpty";
 import { ContentRect } from "react-measure";
-import { ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
+import { PositionType, ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
 
 import { isHeatmap, isAreaChart, isOneOfTypes, isTreemap } from "../chartTypes/_util/common";
 import { VisualizationTypes } from "@gooddata/sdk-ui";
@@ -253,7 +253,7 @@ function getLegendDetailsForAutoResponsive(
 
 export interface ILegendDetails {
     name?: string;
-    position: any;
+    position: PositionType;
     maxRows?: number;
     renderPopUp?: boolean;
 }

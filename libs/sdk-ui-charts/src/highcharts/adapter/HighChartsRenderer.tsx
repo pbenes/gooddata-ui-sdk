@@ -17,7 +17,7 @@ import { isPieOrDonutChart, isOneOfTypes, isHeatmap } from "../chartTypes/_util/
 import { VisualizationTypes } from "@gooddata/sdk-ui";
 import Highcharts, { HighchartsOptions } from "../lib";
 import { alignChart } from "../chartTypes/_chartCreators/helpers";
-import { ILegendProps, Legend, ILegendOptions } from "@gooddata/sdk-ui-vis-commons";
+import { ILegendProps, Legend, ILegendOptions, PositionType } from "@gooddata/sdk-ui-vis-commons";
 import { Bubble, BubbleHoverTrigger, Icon } from "@gooddata/sdk-ui-kit";
 import { BOTTOM, LEFT, RIGHT, TOP } from "../typings/mess";
 import { ITheme } from "@gooddata/sdk-backend-spi";
@@ -60,7 +60,7 @@ export interface IHighChartsRendererState {
 
 export interface ILegendDetails {
     name?: string;
-    position: any;
+    position: PositionType;
     maxRows?: number;
     renderPopUp?: boolean;
 }
