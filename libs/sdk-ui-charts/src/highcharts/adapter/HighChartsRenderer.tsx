@@ -1,6 +1,6 @@
 // (C) 2007-2018 GoodData Corporation
 import React from "react";
-import Measure, { MeasuredComponentProps, ContentRect } from "react-measure";
+import { ContentRect } from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
 import { v4 } from "uuid";
 import get from "lodash/get";
@@ -51,6 +51,7 @@ export interface IHighChartsRendererProps {
     chartRenderer(chartProps: IChartProps): any;
     afterRender(): void;
     resetZoomButtonTooltip?: string;
+    contentRect?: ContentRect;
 }
 
 export interface IHighChartsRendererState {
@@ -381,21 +382,7 @@ export class HighChartsRenderer extends React.PureComponent<
     }
 
     public render(): React.ReactNode {
-        return (
-            <Measure client={true}>
-                {({ measureRef, contentRect }: MeasuredComponentProps) => {
-                    return (
-                        <div
-                            className="visualization-container-measure-wrap"
-                            style={{ width: "100%", height: "100%" }}
-                            ref={measureRef}
-                        >
-                            {this.renderVisualization(contentRect)}
-                        </div>
-                    );
-                }}
-            </Measure>
-        );
+        return this.renderVisualization(this.props.contentRect);
     }
 
     private realignPieOrDonutChart() {

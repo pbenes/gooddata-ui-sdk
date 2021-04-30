@@ -222,7 +222,8 @@ function getLegendDetailsForAutoResponsive(
     legendOptions: ILegendOptions,
     chartOptions: IChartOptions,
 ): ILegendDetails {
-    const { width, height } = contentRect?.client;
+    const width = contentRect?.client?.width;
+    const height = contentRect?.client?.height;
 
     if (!width || !height) {
         return null;
