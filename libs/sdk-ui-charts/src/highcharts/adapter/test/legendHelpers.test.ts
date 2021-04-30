@@ -157,23 +157,25 @@ describe("helpers", () => {
     });
 
     describe("getLegendDetails", () => {
-        const showFluidLegend = false;
-
         const TEST_DATA: [
             number,
             number,
             boolean | "autoPositionWithPopup",
             string,
             PositionType,
+            string,
+            boolean,
             ILegendDetails,
         ][] = [
-            [null, null, "autoPositionWithPopup", "legendLabel", "bottom", null],
+            [null, null, "autoPositionWithPopup", "legendLabel", "bottom", "line", false, null],
             [
                 100,
                 100,
                 "autoPositionWithPopup",
                 "legendLabel",
                 "bottom",
+                "line",
+                false,
                 {
                     maxRows: 1,
                     name: "legendLabel",
@@ -187,6 +189,8 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "bottom",
+                "line",
+                false,
                 {
                     maxRows: 2,
                     name: "legendLabel",
@@ -200,6 +204,8 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "bottom",
+                "line",
+                false,
                 {
                     name: "legendLabel",
                     position: "right",
@@ -212,6 +218,8 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "bottom",
+                "line",
+                false,
                 {
                     maxRows: 1,
                     name: "legendLabel",
@@ -225,6 +233,8 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "left",
+                "line",
+                false,
                 {
                     name: "legendLabel",
                     position: "left",
@@ -237,6 +247,8 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "bottom",
+                "line",
+                false,
                 {
                     maxRows: 2,
                     name: "legendLabel",
@@ -250,17 +262,89 @@ describe("helpers", () => {
                 "autoPositionWithPopup",
                 "legendLabel",
                 "left",
+                "line",
+                false,
                 {
                     name: "legendLabel",
                     position: "left",
                     renderPopUp: false,
                 },
             ],
+            [
+                400,
+                200,
+                true,
+                "legendLabel",
+                "left",
+                "line",
+                false,
+                {
+                    position: "left",
+                    renderPopUp: false,
+                    name: null,
+                },
+            ],
+            [
+                400,
+                200,
+                true,
+                "legendLabel",
+                "top",
+                "heatmap",
+                false,
+                {
+                    position: "top",
+                    renderPopUp: false,
+                    name: null,
+                },
+            ],
+            [
+                400,
+                200,
+                true,
+                "legendLabel",
+                null,
+                "heatmap",
+                false,
+                {
+                    position: "right",
+                    renderPopUp: false,
+                    name: null,
+                },
+            ],
+            [
+                400,
+                200,
+                true,
+                "legendLabel",
+                "left",
+                "heatmap",
+                true,
+                {
+                    position: "bottom",
+                    renderPopUp: false,
+                    name: null,
+                },
+            ],
+            [
+                400,
+                200,
+                true,
+                "legendLabel",
+                "top",
+                "heatmap",
+                true,
+                {
+                    position: "top",
+                    renderPopUp: false,
+                    name: null,
+                },
+            ],
         ];
 
         it.each(TEST_DATA)(
-            "should return config for given dimensions %s, %s, responsive: %s, label: %s, user position: %s",
-            (width, height, responsive, legendLabel, position, expected) => {
+            "should return config for given dimensions %s, %s, responsive: %s, label: %s, user position: %s, chartType: %s, showFluidLegend: %s",
+            (width, height, responsive, legendLabel, position, chartType, showFluidLegend, expected) => {
                 const contentRect: ContentRect = {
                     client: {
                         top: 0,
@@ -271,6 +355,7 @@ describe("helpers", () => {
                 };
                 const chartOptions = {
                     legendLabel,
+                    type: chartType,
                 };
 
                 const legendOptions: ILegendOptions = {
