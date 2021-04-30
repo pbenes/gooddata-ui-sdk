@@ -80,7 +80,7 @@ function renderLegendBoxes(
     );
 }
 
-function LegendWithTitle(props: { title: string; position: string; children: any }): JSX.Element {
+function LegendWithTitle(props: { title: string; position: string; children: React.ReactNode }): JSX.Element {
     const { title, position, children } = props;
     const isHorizontal = position === TOP || position === BOTTOM;
     const classes = cx("heatmap-legend-with-title", { horizontal: isHorizontal });
