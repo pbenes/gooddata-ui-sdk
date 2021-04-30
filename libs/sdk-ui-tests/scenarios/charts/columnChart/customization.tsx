@@ -29,6 +29,7 @@ const legendResponziveScenarios = responsiveScenarios(
     ColumnChart,
     ColumnChartWithSingleMeasureAndViewByAndStackMultipleItems,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

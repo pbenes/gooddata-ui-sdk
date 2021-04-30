@@ -26,6 +26,7 @@ const legendResponziveScenarios = responsiveScenarios(
     BulletChart,
     BulletChartWithAllMeasuresAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

@@ -40,6 +40,7 @@ const legendResponziveScenarios = responsiveScenarios(
     AreaChart,
     AreaChartWithLotArithmeticMeasuresAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

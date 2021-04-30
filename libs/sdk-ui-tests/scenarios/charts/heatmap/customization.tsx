@@ -20,6 +20,7 @@ const legendResponziveScenarios = responsiveScenarios(
     Heatmap,
     HeatmapWithMeasureRowsAndColumns,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

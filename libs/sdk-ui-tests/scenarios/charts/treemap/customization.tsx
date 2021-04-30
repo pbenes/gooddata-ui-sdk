@@ -26,6 +26,7 @@ const legendResponziveScenarios = responsiveScenarios(
     Treemap,
     TreemapWithMeasureViewByAndSegmentBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

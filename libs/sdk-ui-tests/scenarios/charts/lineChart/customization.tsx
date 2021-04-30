@@ -39,6 +39,7 @@ const legendResponziveScenarios = responsiveScenarios(
     LineChart,
     LineChartWithLotArithmeticMeasuresAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

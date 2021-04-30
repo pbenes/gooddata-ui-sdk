@@ -26,6 +26,7 @@ const legendResponziveScenarios = responsiveScenarios(
     BubbleChart,
     BubbleChartWithAllMeasuresAndAttribute,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

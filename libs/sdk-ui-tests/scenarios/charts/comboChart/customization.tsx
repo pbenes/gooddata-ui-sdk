@@ -64,6 +64,7 @@ const legendResponziveScenarios = responsiveScenarios(
     ComboChart,
     ComboChartWithManyPrimaryAndSecondaryMeasuresAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

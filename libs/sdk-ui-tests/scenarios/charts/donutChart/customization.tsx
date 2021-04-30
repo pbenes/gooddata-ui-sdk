@@ -38,6 +38,7 @@ const legendResponziveScenarios = responsiveScenarios(
     DonutChart,
     DonutChartWithSingleMeasureAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

@@ -26,6 +26,7 @@ const legendResponziveScenarios = responsiveScenarios(
     BarChart,
     BarChartWithLargeLegend,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 

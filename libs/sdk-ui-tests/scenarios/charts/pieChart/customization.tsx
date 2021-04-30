@@ -38,6 +38,7 @@ const legendResponziveScenarios = responsiveScenarios(
     PieChart,
     PieChartWithSingleMeasureAndViewBy,
     legendResponsiveSizeVariants,
+    false,
     legendResponsiveVariants,
 );
 
