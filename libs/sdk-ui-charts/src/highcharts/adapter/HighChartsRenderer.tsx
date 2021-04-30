@@ -347,8 +347,8 @@ export class HighChartsRenderer extends React.PureComponent<
         return null;
     }
 
-    private renderVisualization(contentRect: ContentRect) {
-        const { legend, chartOptions } = this.props;
+    private renderVisualization() {
+        const { legend, chartOptions, contentRect } = this.props;
         const legendDetails = getLegendDetails(contentRect, legend, chartOptions, this.state.showFluidLegend);
         if (!legendDetails) {
             return null;
@@ -382,7 +382,7 @@ export class HighChartsRenderer extends React.PureComponent<
     }
 
     public render(): React.ReactNode {
-        return this.renderVisualization(this.props.contentRect);
+        return this.renderVisualization();
     }
 
     private realignPieOrDonutChart() {
