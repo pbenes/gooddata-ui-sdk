@@ -40,9 +40,14 @@ export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
         return null;
     }
 
+    const handleOnClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onIconClick();
+    };
+
     return (
         <div className="legend-popup-button">
-            <div onClick={onIconClick} className="legend-popup-icon">
+            <div onClick={handleOnClick} className="legend-popup-icon">
                 <Icon.LegendMenu />
             </div>
         </div>

@@ -52,7 +52,13 @@ function renderPagingButton(
         `icon-chevron-${getbuttonIcoStyle(type, buttonsOrientation)}`,
         "paging-button",
     );
-    return <button className={classes} onClick={handler} disabled={disabled} />;
+
+    const onClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        handler();
+    };
+
+    return <button className={classes} onClick={onClick} disabled={disabled} />;
 }
 
 /**
