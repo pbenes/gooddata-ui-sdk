@@ -46,7 +46,7 @@ export const PopUpLegend: React.FC<IPopUpLegendProps> = (props) => {
                 maxRowsCount={maxRows}
                 series={[...series]}
                 onDialogIconClick={() => {
-                    setDialogOpen(true);
+                    setDialogOpen((prevState) => !prevState);
                 }}
                 onLegendItemClick={onLegendItemClick}
                 enableBorderRadius={enableBorderRadius}
