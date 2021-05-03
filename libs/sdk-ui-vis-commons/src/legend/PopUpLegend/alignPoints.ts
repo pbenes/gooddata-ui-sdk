@@ -61,4 +61,11 @@ export const legendMobileDialogAlignPoints: IAlignPoint[] = [
             y: -18,
         },
     },
+    {
+        align: "cc tc",
+        offset: {
+            x: 0,
+            y: 0,
+        },
+    },
 ];
