@@ -124,8 +124,11 @@ export class HighChartsRenderer extends React.PureComponent<
     private throttledOnWindowResize = throttle(this.onWindowResize, 100);
 
     public shouldShowFluid(): boolean {
-        const { documentObj } = this.props;
-        return documentObj.documentElement.clientWidth < FLUID_LEGEND_THRESHOLD;
+        const { documentObj, legend } = this.props;
+        return (
+            documentObj.documentElement.clientWidth < FLUID_LEGEND_THRESHOLD &&
+            legend?.responsive !== "autoPositionWithPopup"
+        );
     }
 
     public UNSAFE_componentWillMount(): void {
@@ -366,17 +369,15 @@ export class HighChartsRenderer extends React.PureComponent<
         );
 
         let legendPosition = legendDetails.position;
-        const isLegendRenderedFirst: boolean = legendPosition === TOP || legendPosition === LEFT;
+        const isLegendRenderedFirst: boolean =
+            legendPosition === TOP || legendPosition === LEFT || this.state.showFluidLegend;
 
         return (
-            <div className={classes}>
-                <div className={classes} ref={this.highchartsRendererRef}>
-                    {this.renderZoomOutButton()}
-                    {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.containerId)}
-                    {this.renderHighcharts()}
-                    {!isLegendRenderedFirst &&
-                        this.renderLegend(legendDetails, contentRect, this.containerId)}
-                </div>
+            <div className={classes} ref={this.highchartsRendererRef}>
+                {this.renderZoomOutButton()}
+                {isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.containerId)}
+                {this.renderHighcharts()}
+                {!isLegendRenderedFirst && this.renderLegend(legendDetails, contentRect, this.containerId)}
             </div>
         );
     }
