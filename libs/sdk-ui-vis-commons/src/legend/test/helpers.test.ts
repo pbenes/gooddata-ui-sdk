@@ -228,7 +228,7 @@ describe("helpers", () => {
             expect(result).toEqual(expectedResult);
         });
 
-        it.only("should prepare small legend config with shortening", () => {
+        it("should prepare small legend config with shortening", () => {
             const expectedLabels = [
                 { key: "label-0", label: "99999", style: { textAlign: "left", width: 35 } },
                 { key: "dots-1", label: "...", style: { textAlign: "center", width: 10 } },
