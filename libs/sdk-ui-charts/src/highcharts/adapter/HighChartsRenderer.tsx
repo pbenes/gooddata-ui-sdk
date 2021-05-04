@@ -3,7 +3,6 @@ import React from "react";
 import { ContentRect } from "react-measure";
 import cloneDeep from "lodash/cloneDeep";
 import { v4 } from "uuid";
-import get from "lodash/get";
 import set from "lodash/set";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
