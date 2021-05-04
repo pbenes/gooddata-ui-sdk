@@ -16,7 +16,7 @@ export function responsiveScenarios<T extends VisProps>(
     generateInsight: boolean = false,
     customizer?: ScenarioCustomizer<T>,
 ) {
-    const tags = generateInsight ? [] : ["mock-no-insight"];
+    const tags = generateInsight ? [] : ["no-plug-viz-tests"];
 
     return sizes.map((size) => {
         const groupLabel = size.label ? size.label : `${size.width}x${size.height}`;

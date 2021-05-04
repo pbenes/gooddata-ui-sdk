@@ -270,6 +270,11 @@ ScenarioGroupsByVis.forEach((groups) => {
         const visualOnly: ScenarioGroup<any> = group.forTestTypes("visual");
 
         visualOnly.scenarioList.forEach((scenario) => {
+            if (scenario.tags.indexOf("no-plug-viz-tests") !== -1) {
+                // this scenario is forced to skip via tag
+                return;
+            }
+
             const insight = InsightById[scenario.insightId];
 
             if (!insight) {
