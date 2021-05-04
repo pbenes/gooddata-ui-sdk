@@ -10,7 +10,7 @@ import {
     buildColorLabelsConfig,
     heatmapLegendConfigMatrix,
     heatmapMediumLegendConfigMatrix,
-    // heatmapSmallLegendConfigMatrix, // TODO write tests for this
+    heatmapSmallLegendConfigMatrix,
     verticalHeatmapConfig,
 } from "../helpers";
 
@@ -348,6 +348,20 @@ describe("helpers", () => {
                 }, 0);
 
                 expect(width).toEqual(276);
+            });
+        });
+
+        it("should sum widths to 126 in small legend", () => {
+            const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
+
+            heatmapSmallLegendConfigMatrix.forEach((config: any) => {
+                const elementsConfig = buildColorLabelsConfig(labels, config);
+
+                const width = elementsConfig.reduce((sum: number, item: any) => {
+                    return sum + item.style.width;
+                }, 0);
+
+                expect(width).toEqual(126);
             });
         });
 
