@@ -9,7 +9,8 @@ import {
     getColorLegendConfiguration,
     buildColorLabelsConfig,
     heatmapLegendConfigMatrix,
-    heatmapSmallLegendConfigMatrix,
+    heatmapMediumLegendConfigMatrix,
+    // heatmapSmallLegendConfigMatrix, // TODO write tests for this
     verticalHeatmapConfig,
 } from "../helpers";
 
@@ -116,7 +117,7 @@ describe("helpers", () => {
             { key: "label-11", label: "60", style: { textAlign: "center", width: 40 } },
             { key: "label-12", label: "70", style: { textAlign: "right", width: 30 } },
         ];
-        const labelsSmall = [
+        const labelsMedium = [
             { key: "label-0", label: "0", style: { textAlign: "left", width: 20 } },
             { key: "label-1", label: "10", style: { textAlign: "center", width: 40 } },
             { key: "label-2", label: "20", style: { textAlign: "center", width: 40 } },
@@ -165,20 +166,20 @@ describe("helpers", () => {
                 { key: "label-7", label: "70", style: { textAlign: "left", height: 15, lineHeight: "20px" } },
             ];
             const expectedResult = {
-                classes: ["viz-legend", "color-legend", "position-right"],
+                classes: ["viz-legend", "color-legend", "position-right", "medium"],
                 labels: expectedLabels,
                 boxes,
                 position: "right",
             };
-            const result = getColorLegendConfiguration(series, format, numericSymbols, "medium", null);
+            const result = getColorLegendConfiguration(series, format, numericSymbols, "medium", "right");
 
             expect(result).toEqual(expectedResult);
         });
 
-        it("should prepare small legend config without shortening when everything fits", () => {
+        it("should prepare medium legend config without shortening when everything fits", () => {
             const expectedResult = {
                 classes: ["viz-legend", "color-legend", "position-top", "medium"],
-                labels: labelsSmall,
+                labels: labelsMedium,
                 boxes,
                 position: "top",
             };
@@ -187,14 +188,14 @@ describe("helpers", () => {
             expect(result).toEqual(expectedResult);
         });
 
-        it("should prepare small legend config with bottom position, without shortening when everything fits", () => {
+        it("should prepare medium legend config with bottom position, without shortening when everything fits", () => {
             const expectedResult = {
                 classes: ["viz-legend", "color-legend", "position-bottom", "medium"],
-                labels: labelsSmall,
+                labels: labelsMedium,
                 boxes,
                 position: "bottom",
             };
-            const result = getColorLegendConfiguration(series, format, numericSymbols, "medium", "right");
+            const result = getColorLegendConfiguration(series, format, numericSymbols, "medium", "bottom");
 
             expect(result).toEqual(expectedResult);
         });
@@ -228,7 +229,7 @@ describe("helpers", () => {
             expect(result).toEqual(expectedResult);
         });
 
-        it("should prepare small legend config with shortening", () => {
+        it("should prepare medium legend config with shortening", () => {
             const expectedLabels = [
                 { key: "label-0", label: "99999", style: { textAlign: "left", width: 35 } },
                 { key: "dots-1", label: "...", style: { textAlign: "center", width: 10 } },
@@ -271,10 +272,10 @@ describe("helpers", () => {
             });
         });
 
-        it("should sum widths to 276 in small legend", () => {
+        it("should sum widths to 276 in medium legend", () => {
             const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
 
-            heatmapSmallLegendConfigMatrix.forEach((config: any) => {
+            heatmapMediumLegendConfigMatrix.forEach((config: any) => {
                 const elementsConfig = buildColorLabelsConfig(labels, config);
 
                 const width = elementsConfig.reduce((sum: number, item: any) => {
