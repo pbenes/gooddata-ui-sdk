@@ -218,6 +218,41 @@ describe("helpers", () => {
             expect(result).toEqual(expectedResult);
         });
 
+        it("should prepare small legend config without shortening when shortening is needed", () => {
+            const expectedBoxes = [
+                {
+                    class: null,
+                    key: "item-0",
+                    style: { backgroundColor: "rgb(255,255,255)", border: "1px solid #ccc" },
+                },
+                { class: null, key: "item-1", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+                { class: null, key: "item-2", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+                { class: "middle", key: "item-3", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+                { class: null, key: "item-4", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+                { class: null, key: "item-5", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+                { class: null, key: "item-6", style: { backgroundColor: "rgb(0,0,0)", border: "none" } },
+            ];
+            const expectedLabels = [
+                { label: "99999", style: { width: 63, textAlign: "left" }, key: "label-0" },
+                { label: "100007", style: { width: 63, textAlign: "right" }, key: "label-1" },
+            ];
+            const expectedResult = {
+                classes: ["viz-legend", "color-legend", "position-top", "small"],
+                labels: expectedLabels,
+                boxes: expectedBoxes,
+                position: "top",
+            };
+            const result = getColorLegendConfiguration(
+                seriesForShortening,
+                format,
+                numericSymbols,
+                "small",
+                "top",
+            );
+
+            expect(result).toEqual(expectedResult);
+        });
+
         it("should prepare medium legend config with bottom position, without shortening when everything fits", () => {
             const expectedResult = {
                 classes: ["viz-legend", "color-legend", "position-bottom", "medium"],
