@@ -152,7 +152,7 @@ describe("helpers", () => {
 
             expect(result).toEqual(expectedResult);
         });
-        /* TODO FIX this test
+
         it("should prepare legend config with position on right, without shortening when everything fits", () => {
             const expectedLabels = [
                 { key: "label-0", label: "0", style: { textAlign: "left", height: 15, lineHeight: "11px" } },
@@ -174,7 +174,6 @@ describe("helpers", () => {
 
             expect(result).toEqual(expectedResult);
         });
-*/
 
         it("should prepare small legend config without shortening when everything fits", () => {
             const expectedResult = {
@@ -188,19 +187,17 @@ describe("helpers", () => {
             expect(result).toEqual(expectedResult);
         });
 
-        /* TODO FIX this test
         it("should prepare small legend config with bottom position, without shortening when everything fits", () => {
             const expectedResult = {
-                classes: ["viz-legend", "color-legend", "position-bottom", "small"],
+                classes: ["viz-legend", "color-legend", "position-bottom", "medium"],
                 labels: labelsSmall,
                 boxes,
                 position: "bottom",
             };
-            const result = getColorLegendConfiguration(series, format, numericSymbols, true, "right");
+            const result = getColorLegendConfiguration(series, format, numericSymbols, "medium", "right");
 
             expect(result).toEqual(expectedResult);
         });
-        */
 
         it("should prepare legend config with shortening", () => {
             const expectedLabels = [
