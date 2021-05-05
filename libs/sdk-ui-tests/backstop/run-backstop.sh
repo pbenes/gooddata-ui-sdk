@@ -59,8 +59,6 @@ docker network create "${BACKSTOP_NET}" || { echo "Network creation failed" && e
 
     echo "Cleaning up the backstop output directory."
 
-    rm -rf "${BACKSTOP_DIR}/output"
-
     echo "Starting BackstopJS in dir ${BACKSTOP_DIR} with params: $@"
 
     {
