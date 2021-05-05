@@ -369,7 +369,7 @@ export class HighChartsRenderer extends React.PureComponent<
             this.containerId,
         );
 
-        let legendPosition = legendDetails.position;
+        const legendPosition = legendDetails.position;
         const isLegendRenderedFirst: boolean =
             legendPosition === TOP || legendPosition === LEFT || this.state.showFluidLegend;
 
