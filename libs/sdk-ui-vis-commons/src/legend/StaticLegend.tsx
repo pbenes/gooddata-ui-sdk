@@ -125,7 +125,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
         });
 
         return (
-            <div className={`${fullClassNames} ${visibleItemsFitOneColumn}`}>
+            <div className={fullClassNames}>
                 <div className="series" style={{ height: seriesHeight }}>
                     {labelComponent}
                     <LegendList
