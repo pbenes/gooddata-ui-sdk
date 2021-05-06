@@ -29,11 +29,13 @@ describe("HeatmapLegend", () => {
         },
     ];
 
-    it.each([
+    const legendSizes: [IHeatmapLegendSize, IHeatmapLegendItem[], string[], string][] = [
         ["small", defaultSeries, defaultNumericSymbols, "top"],
         ["medium", defaultSeries, defaultNumericSymbols, "top"],
         ["large", defaultSeries, defaultNumericSymbols, "top"],
-    ])(
+    ];
+
+    it.each(legendSizes)(
         "should render legend when size is %s",
         (
             size: IHeatmapLegendSize,
