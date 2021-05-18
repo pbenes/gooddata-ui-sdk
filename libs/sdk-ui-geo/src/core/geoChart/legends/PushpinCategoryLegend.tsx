@@ -1,5 +1,5 @@
 // (C) 2020 GoodData Corporation
-import React from "react";
+import React, { useState } from "react";
 import noop from "lodash/noop";
 import { ContentRect } from "react-measure";
 import {
@@ -24,6 +24,7 @@ export interface IPushpinCategoryLegendProps {
     position?: PositionType;
     responsive?: boolean | "autoPositionWithPopup";
     customComponent?: JSX.Element | null;
+    sizeLegendName?: string;
     maxRows?: number;
     name?: string;
     renderPopUp?: boolean;
@@ -35,7 +36,7 @@ export default function PushpinCategoryLegend(props: IPushpinCategoryLegendProps
     const { contentRect, hasSizeLegend, isFluidLegend, renderPopUp } = props;
 
     if (renderPopUp) {
-        return <React.Fragment>{renderPopUpLegend(props)}</React.Fragment>;
+        return <GeoPopUpLegend {...props} />;
     }
 
     return (
@@ -96,17 +97,29 @@ function renderStaticCategoryLegend(
     return <StaticLegend {...legendProps} containerHeight={usedHeight} />;
 }
 
-function renderPopUpLegend(props: IPushpinCategoryLegendProps): React.ReactNode {
-    const { containerId, categoryItems = [], onItemClick = noop, name, maxRows, customComponent } = props;
+function GeoPopUpLegend(props: IPushpinCategoryLegendProps): JSX.Element {
+    const {
+        containerId,
+        categoryItems = [],
+        onItemClick = noop,
+        name,
+        maxRows,
+        customComponent,
+        sizeLegendName,
+    } = props;
+
+    const [page, setPage] = useState(1);
+    const legendName = page === 1 && customComponent ? sizeLegendName : name;
 
     return (
         <PopUpLegend
             series={categoryItems}
             onLegendItemClick={onItemClick}
             maxRows={maxRows}
-            name={name}
+            name={legendName}
             containerId={containerId}
             customComponent={customComponent}
+            onPageChanged={setPage}
         />
     );
 }

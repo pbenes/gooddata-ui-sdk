@@ -376,6 +376,8 @@ export interface IPopUpLegendProps {
     // (undocumented)
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
     // (undocumented)
+    onPageChanged?: (page: number) => void;
+    // (undocumented)
     series: IPushpinCategoryLegendItem[];
 }
 
@@ -418,6 +420,8 @@ export interface IStaticLegendProps {
     label?: string;
     // (undocumented)
     onItemClick?(item: IPushpinCategoryLegendItem): void;
+    // (undocumented)
+    onPageChanged?: (page: number) => void;
     // (undocumented)
     paginationHeight?: number;
     // (undocumented)
