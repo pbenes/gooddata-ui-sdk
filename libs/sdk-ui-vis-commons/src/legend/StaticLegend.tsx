@@ -34,7 +34,7 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
     public static defaultProps: Partial<IStaticLegendProps> = {
         buttonOrientation: "upDown",
         paginationHeight: STATIC_PAGING_HEIGHT,
-        onPageChanged: (_page: number) => {},
+        onPageChanged: () => {},
     };
 
     public state = {
