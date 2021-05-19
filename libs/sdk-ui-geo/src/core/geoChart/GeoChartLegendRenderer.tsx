@@ -274,7 +274,7 @@ function renderPushpinLegend(
             hasSizeLegend={hasSizeLegend}
             containerId={containerId}
             customComponent={renderPushpinSizeLegend(props, hasSizeLegend, true, true)}
-            sizeLegendName={props.geoData?.size?.name}
+            customComponentName={props.geoData?.size?.name}
         />
     );
 }

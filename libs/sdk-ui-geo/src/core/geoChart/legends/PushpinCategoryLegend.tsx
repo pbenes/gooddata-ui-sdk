@@ -1,5 +1,5 @@
 // (C) 2020 GoodData Corporation
-import React, { useState } from "react";
+import React from "react";
 import noop from "lodash/noop";
 import { ContentRect } from "react-measure";
 import {
@@ -24,6 +24,7 @@ export interface IPushpinCategoryLegendProps {
     position?: PositionType;
     responsive?: boolean | "autoPositionWithPopup";
     customComponent?: JSX.Element | null;
+    customComponentName?: string;
     sizeLegendName?: string;
     maxRows?: number;
     name?: string;
@@ -105,21 +106,18 @@ function GeoPopUpLegend(props: IPushpinCategoryLegendProps): JSX.Element {
         name,
         maxRows,
         customComponent,
-        sizeLegendName,
+        customComponentName,
     } = props;
-
-    const [page, setPage] = useState(1);
-    const legendName = page === 1 && customComponent ? sizeLegendName : name;
 
     return (
         <PopUpLegend
             series={categoryItems}
             onLegendItemClick={onItemClick}
             maxRows={maxRows}
-            name={legendName}
+            name={name}
             containerId={containerId}
             customComponent={customComponent}
-            onPageChanged={setPage}
+            customComponentName={customComponentName}
         />
     );
 }

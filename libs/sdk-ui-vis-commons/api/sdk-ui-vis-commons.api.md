@@ -368,6 +368,8 @@ export interface IPopUpLegendProps {
     // (undocumented)
     customComponent?: JSX.Element | null;
     // (undocumented)
+    customComponentName?: string;
+    // (undocumented)
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     // (undocumented)
     maxRows?: number;
@@ -375,8 +377,6 @@ export interface IPopUpLegendProps {
     name?: string;
     // (undocumented)
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
-    // (undocumented)
-    onPageChanged?: (page: number) => void;
     // (undocumented)
     series: IPushpinCategoryLegendItem[];
 }
