@@ -2,6 +2,7 @@
 import invariant, { InvariantError } from "ts-invariant";
 import omit from "lodash/omit";
 import omitBy from "lodash/omitBy";
+import chunk from "lodash/chunk";
 import { isMeasureColumn } from "../base/agUtils";
 import {
     DEFAULT_HEADER_FONT,
@@ -870,19 +871,29 @@ function getTableFonts(containerRef: HTMLDivElement): {
 /**
  * Ag-Grid API set desired column sizes (it *mutates* pivot table columns data).
  */
-export function autoresizeAllColumns(columnApi: ColumnApi | null, autoResizedColumns: IResizedColumns): void {
+export async function autoresizeAllColumns(columnApi: ColumnApi | null, autoResizedColumns: IResizedColumns) {
     if (columnApi) {
         const columns = columnApi.getPrimaryColumns();
 
-        columns.forEach((column: Column) => {
-            const columnDef = column.getColDef();
-            const colId = agColId(columnDef);
-            const autoResizedColumn = autoResizedColumns[colId];
+        const chunks = chunk(columns, 50);
+        await Promise.all(
+            chunks.map((chunk) => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        chunk.forEach((column: Column) => {
+                            const columnDef = column.getColDef();
+                            const colId = agColId(columnDef);
+                            const autoResizedColumn = autoResizedColumns[colId];
 
-            if (colId && autoResizedColumn && autoResizedColumn.width) {
-                columnApi.setColumnWidth(colId, autoResizedColumn.width);
-            }
-        });
+                            if (colId && autoResizedColumn && autoResizedColumn.width) {
+                                columnApi.setColumnWidth(colId, autoResizedColumn.width);
+                            }
+                        });
+                        resolve();
+                    });
+                });
+            }),
+        );
     }
 }
 
