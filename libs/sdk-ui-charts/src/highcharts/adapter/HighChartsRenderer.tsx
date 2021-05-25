@@ -233,6 +233,73 @@ export class HighChartsRenderer extends React.PureComponent<
         }
     };
 
+    private generateConfigPlain(chartConfig: any, legendItemsEnabled: any[]): any {
+        const config = chartConfig;
+        const series = chartConfig.series;
+
+        const selectionEvent = chartConfig.chart.zoomType
+            ? {
+                  selection: this.onChartSelection,
+              }
+            : {};
+
+        const firstSeriesTypes = [
+            VisualizationTypes.PIE,
+            VisualizationTypes.DONUT,
+            VisualizationTypes.TREEMAP,
+        ];
+        const multipleSeries = isOneOfTypes(config.chart.type, firstSeriesTypes); // ?
+        //            "series[0].data" : "series";
+
+        const items: any[] = isOneOfTypes(config.chart.type, firstSeriesTypes)
+            ? config.series?.[0]?.data
+            : config.series;
+        const updatedItems = items.map((item: any, itemIndex: any) => {
+            const visible =
+                legendItemsEnabled[itemIndex] !== undefined ? legendItemsEnabled[itemIndex] : true;
+            return {
+                ...item,
+                visible: isNil(item.visible) ? visible : item.visible,
+            };
+        });
+
+        let updatedSeries;
+        if (multipleSeries) {
+            updatedSeries = [
+                {
+                    ...series?.[0],
+                    data: updatedItems,
+                },
+                config.series.slice(1),
+            ];
+        } else {
+            updatedSeries = updatedItems;
+        }
+
+        return {
+            ...chartConfig,
+            chart: {
+                ...chartConfig?.chart,
+                events: {
+                    ...chartConfig?.chart?.events,
+                    ...selectionEvent,
+                },
+            },
+            series: updatedSeries,
+            yAxis: config.yAxis.map((ax: any) => ({
+                ...ax,
+                title: {
+                    ...ax?.title,
+                    style: {
+                        ...ax?.title?.style,
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                    },
+                },
+            })),
+        };
+    }
+
     public createChartConfig(chartConfig: IChartConfig, legendItemsEnabled: any[]): IChartConfig {
         const config: any = cloneDeep(chartConfig);
         const { yAxis } = config;
@@ -315,10 +382,11 @@ export class HighChartsRenderer extends React.PureComponent<
     public renderHighcharts(): React.ReactNode {
         // shrink chart to give space to legend items
         const style = { flex: "1 1 auto", position: "relative", overflow: "hidden" };
+        const config = this.generateConfigPlain(this.props.hcOptions, this.state.legendItemsEnabled);
         const chartProps = {
             domProps: { className: "viz-react-highchart-wrap gd-viz-highchart-wrap", style },
             ref: this.setChartRef,
-            config: this.createChartConfig(this.props.hcOptions, this.state.legendItemsEnabled),
+            config,
             callback: this.props.afterRender,
         };
         return this.props.chartRenderer(chartProps);
