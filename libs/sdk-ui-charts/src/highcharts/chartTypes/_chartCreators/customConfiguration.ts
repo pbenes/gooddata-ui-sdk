@@ -848,7 +848,7 @@ function getHeatMapHoverColor(config: any) {
     return getLighterColor(resultColor, 0.2);
 }
 
-function getHoverStyles({ type }: any, config: any) {
+export function getHoverStyles({ type }: any, config: any) {
     let seriesMapFn = noop;
 
     switch (type) {
@@ -1267,16 +1267,28 @@ export function getCustomizedConfiguration(
         getDataPointsConfiguration,
         // should be after 'getDataConfiguration' to modify 'series'
         // and should be after 'getStackingConfiguration' to get stackLabels config
+
         getOptionalStackingConfiguration,
         getZeroAlignConfiguration,
+
         getAxisNameConfiguration,
         getAxisLabelConfigurationForDualBarChart,
         getTargetCursorConfigurationForBulletChart,
         getZoomingAndPanningConfiguration,
     ];
+    let start;
     const commonData = configurators.reduce((config: HighchartsOptions, configurator: any) => {
-        return merge(config, configurator(chartOptions, config, chartConfig, drillConfig, intl, theme));
+        const c = configurator(chartOptions, config, chartConfig, drillConfig, intl, theme);
+        start = new Date().getTime();
+        const r = merge(config, c);
+        console.log("zz merge: temp", new Date().getTime() - start, configurator);
+        return r;
     }, {});
 
     return merge({}, commonData);
+    //    const commonData = configurators.reduce((config: HighchartsOptions, configurator: any) => {
+    //        return merge(config, configurator(chartOptions, config, chartConfig, drillConfig, intl, theme));
+    //    }, {});
+
+    //return merge({}, commonData);
 }
