@@ -725,7 +725,35 @@ function getStackingConfiguration(
 }
 
 function getSeries(series: any) {
-    return series.map((seriesItem: any) => {
+    const start1 = new Date().getTime();
+    const test1 = series.map((seriesItem: any) => {
+        const item = { ...seriesItem };
+        // Escaping is handled by highcharts so we don't want to provide escaped input.
+        // With one exception, though. Highcharts supports defining styles via
+        // for example <b>...</b> and parses that from series name.
+        // So to avoid this parsing, escape only < and > to &lt; and &gt;
+        // which is understood by highcharts correctly
+        item.name = item.name && escapeAngleBrackets(item.name);
+
+        // Escape data items for pie chart
+        item.data = item.data.map((dataItem: any) => {
+            if (!dataItem) {
+                return dataItem;
+            }
+
+            return {
+                ...dataItem,
+                name: escapeAngleBrackets(dataItem.name),
+            };
+        });
+
+        return item;
+    });
+
+    console.log("zz spread", new Date().getTime() - start1);
+    console.log(test1);
+    const start2 = new Date().getTime();
+    const test2 = series.map((seriesItem: any) => {
         const item = cloneDeep(seriesItem);
         // Escaping is handled by highcharts so we don't want to provide escaped input.
         // With one exception, though. Highcharts supports defining styles via
@@ -748,6 +776,9 @@ function getSeries(series: any) {
 
         return item;
     });
+
+    console.log("zz cloneDeep", new Date().getTime() - start2);
+    return test2;
 }
 
 function getHeatmapDataConfiguration(chartOptions: IChartOptions): HighchartsOptions {
