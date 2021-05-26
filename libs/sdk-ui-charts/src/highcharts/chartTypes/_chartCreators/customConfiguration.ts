@@ -482,7 +482,7 @@ function stackLabelFormatter(config?: IChartConfig) {
     return showStackLabel ? formatLabel(this.total, this.axis?.userOptions?.defaultFormat, config) : null;
 }
 
-function getTooltipConfiguration(
+export function getTooltipConfiguration(
     chartOptions: IChartOptions,
     _config?: any,
     _chartConfig?: IChartConfig,
@@ -726,7 +726,7 @@ function getStackingConfiguration(
 
 function getSeries(series: any) {
     return series.map((seriesItem: any) => {
-        const item = cloneDeep(seriesItem);
+        const item = { ...seriesItem };
         // Escaping is handled by highcharts so we don't want to provide escaped input.
         // With one exception, though. Highcharts supports defining styles via
         // for example <b>...</b> and parses that from series name.
@@ -848,7 +848,7 @@ function getHeatMapHoverColor(config: any) {
     return getLighterColor(resultColor, 0.2);
 }
 
-function getHoverStyles({ type }: any, config: any) {
+export function getHoverStyles({ type }: any, config: any) {
     let seriesMapFn = noop;
 
     switch (type) {
@@ -1260,8 +1260,8 @@ export function getCustomizedConfiguration(
         hideOverlappedLabels,
         getShowInPercentConfiguration,
         getDataConfiguration,
-        getTooltipConfiguration,
-        getHoverStyles,
+        // getTooltipConfiguration,
+        // getHoverStyles,
         getGridConfiguration,
         getLabelsConfiguration,
         getDataPointsConfiguration,
