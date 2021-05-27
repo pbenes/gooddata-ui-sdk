@@ -576,9 +576,9 @@ function getTreemapLabelsConfiguration(
 function getLabelsConfiguration(chartOptions: IChartOptions, _config: any, chartConfig?: IChartConfig) {
     const { stacking, yAxes = [], type } = chartOptions;
 
-    const labelsVisible = chartConfig?.dataLabels?.visible;
+    let labelsVisible = chartConfig?.dataLabels?.visible;
 
-    const labelsConfig = getLabelsVisibilityConfig(labelsVisible);
+    let labelsConfig = getLabelsVisibilityConfig(labelsVisible);
 
     const style = getLabelStyle(type, stacking);
 
@@ -587,6 +587,15 @@ function getLabelsConfiguration(chartOptions: IChartOptions, _config: any, chart
     }));
 
     const series: ISeriesItem[] = chartOptions.data?.series ?? [];
+
+    const SERIES_LABEL_LIMIT = 100;
+    if (series?.length > SERIES_LABEL_LIMIT || series?.[0]?.data?.length > SERIES_LABEL_LIMIT) {
+        labelsConfig = {
+            enabled: false,
+        };
+        labelsVisible = false;
+    }
+
     const canStackInPercent = canComboChartBeStackedInPercent(series);
     const { stackMeasuresToPercent = false } = chartConfig || {};
 
