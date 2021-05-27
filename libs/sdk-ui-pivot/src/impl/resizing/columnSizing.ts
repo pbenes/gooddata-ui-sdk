@@ -876,24 +876,22 @@ export async function autoresizeAllColumns(columnApi: ColumnApi | null, autoResi
         const columns = columnApi.getPrimaryColumns();
 
         const chunks = chunk(columns, 50);
-        await Promise.all(
-            chunks.map((chunk) => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        chunk.forEach((column: Column) => {
-                            const columnDef = column.getColDef();
-                            const colId = agColId(columnDef);
-                            const autoResizedColumn = autoResizedColumns[colId];
+        for (const ch of chunks) {
+            await new Promise((resolve) => {
+                setTimeout(() => {
+                    ch.forEach((column: Column) => {
+                        const columnDef = column.getColDef();
+                        const colId = agColId(columnDef);
+                        const autoResizedColumn = autoResizedColumns[colId];
 
-                            if (colId && autoResizedColumn && autoResizedColumn.width) {
-                                columnApi.setColumnWidth(colId, autoResizedColumn.width);
-                            }
-                        });
-                        resolve();
+                        if (colId && autoResizedColumn && autoResizedColumn.width) {
+                            columnApi.setColumnWidth(colId, autoResizedColumn.width);
+                        }
                     });
+                    resolve();
                 });
-            }),
-        );
+            });
+        }
     }
 }
 
