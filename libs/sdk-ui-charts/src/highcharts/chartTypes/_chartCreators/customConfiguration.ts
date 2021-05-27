@@ -482,13 +482,30 @@ function stackLabelFormatter(config?: IChartConfig) {
     return showStackLabel ? formatLabel(this.total, this.axis?.userOptions?.defaultFormat, config) : null;
 }
 
-export function getTooltipConfiguration(
+function getTooltipConfiguration(
     chartOptions: IChartOptions,
     _config?: any,
     _chartConfig?: IChartConfig,
     _drillConfig?: IDrillConfig,
     intl?: IntlShape,
 ): HighchartsOptions {
+    if (true) {
+        return {
+            tooltip: {
+                enabled: false,
+            },
+            plotOptions: {
+                series: {
+                    states: {
+                        hover: {
+                            enabled: false,
+                        },
+                    },
+                },
+            },
+        };
+    }
+
     const tooltipAction = chartOptions.actions?.tooltip;
     const chartType = chartOptions.type;
     const { stacking } = chartOptions;
@@ -1269,7 +1286,7 @@ export function getCustomizedConfiguration(
         hideOverlappedLabels,
         getShowInPercentConfiguration,
         getDataConfiguration,
-        // getTooltipConfiguration,
+        getTooltipConfiguration,
         // getHoverStyles,
         getGridConfiguration,
         getLabelsConfiguration,
