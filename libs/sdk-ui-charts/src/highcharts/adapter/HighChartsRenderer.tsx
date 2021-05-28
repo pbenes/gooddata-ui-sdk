@@ -227,7 +227,7 @@ export class HighChartsRenderer extends React.PureComponent<
     };
 
     private createChartConfig(chartConfig: HighchartsOptions, legendItemsEnabled: any[]): HighchartsOptions {
-        const { series, chart, yAxis } = chartConfig;
+        const { series, chart, xAxis, yAxis } = chartConfig;
 
         const selectionEvent = chart.zoomType
             ? {
@@ -273,19 +273,22 @@ export class HighChartsRenderer extends React.PureComponent<
                 },
             },
             series: updatedSeries,
-            yAxis: Array.isArray(yAxis)
-                ? yAxis.map((ax: YAxisOptions) => ({
-                      ...ax,
-                      title: {
-                          ...ax?.title,
-                          style: {
-                              ...ax?.title?.style,
-                              textOverflow: "ellipsis",
-                              overflow: "hidden",
-                          },
-                      },
-                  }))
-                : yAxis,
+            yAxis: (yAxis as any).map((ax: YAxisOptions) => ({
+                ...ax,
+                title: {
+                    ...ax?.title,
+                    style: {
+                        ...ax?.title?.style,
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                    },
+                },
+            })),
+            // perform a shallow copy of axis
+            // (otherwise there's a highcharts internal error on smallest responsive charts)
+            xAxis: (xAxis as any).map((ax: any) => ({
+                ...ax,
+            })),
         };
     }
 
