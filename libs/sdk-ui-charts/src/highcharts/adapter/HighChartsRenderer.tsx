@@ -259,7 +259,7 @@ export class HighChartsRenderer extends React.PureComponent<
                     ...series?.[0],
                     data: updatedItems,
                 },
-                series.slice(1),
+                ...series.slice(1),
             ];
         }
 
