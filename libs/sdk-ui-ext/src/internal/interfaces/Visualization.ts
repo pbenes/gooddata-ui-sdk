@@ -3,8 +3,10 @@ import { ISeparators } from "@gooddata/numberjs";
 import isEmpty from "lodash/isEmpty";
 import { IAnalyticalBackend, IExecutionFactory, ISettings, ITheme } from "@gooddata/sdk-backend-spi";
 import {
+    IBucket,
     IColorPalette,
     Identifier,
+    IFilter,
     IInsight,
     IInsightDefinition,
     ITotal,
@@ -289,6 +291,19 @@ export interface IVisualizationProperties {
     // This can be anything depending on a visualization type
     // perhaps consider adding: sortItems?: AFM.SortItem[]
     [property: string]: any;
+}
+
+export interface ISDKReferencePoint {
+    buckets: IBucket[];
+    filters: IFilter;
+    properties?: IVisualizationProperties;
+}
+
+export interface IExtendedSDKReferencePoint {
+    buckets: IBucket[];
+    filters: IFilter;
+    properties?: IVisualizationProperties;
+    uiConfig: IUiConfig;
 }
 
 export interface IReferencePoint {
