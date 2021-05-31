@@ -1,4 +1,4 @@
-// (C) 2019-2020 GoodData Corporation
+// (C) 2019-2021 GoodData Corporation
 import { IUiConfig } from "../interfaces/Visualization";
 
 import { METRIC, FACT, ATTRIBUTE, DATE, GEO_ATTRIBUTE } from "./bucket";
@@ -202,6 +202,28 @@ export const COLUMN_BAR_CHART_UICONFIG: IUiConfig = {
     optionalStacking: {
         supported: true,
         stackMeasures: false,
+    },
+};
+
+export const COLUMN_BAR_CHART_UICONFIG_WITH_MUTIPLE_DATES: IUiConfig = {
+    ...COLUMN_BAR_CHART_UICONFIG,
+    buckets: {
+        ...COLUMN_BAR_CHART_UICONFIG.buckets,
+        view: {
+            ...COLUMN_BAR_CHART_UICONFIG.buckets.view,
+            itemsLimitByType: {
+                date: 2,
+            },
+            allowsDuplicateDates: true,
+        },
+
+        stack: {
+            ...COLUMN_BAR_CHART_UICONFIG.buckets.stack,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
+        },
     },
 };
 
