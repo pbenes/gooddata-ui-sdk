@@ -90,7 +90,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             uiConfig,
         };
 
-        this.configureSdkBuckets(newReferencePoint);
+        this.configureBuckets(newReferencePoint);
 
         newReferencePoint = configurePercent(newReferencePoint, false);
         newReferencePoint = configureOverTimeComparison(
@@ -108,6 +108,10 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         );
         newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type);
         newReferencePoint = removeSort(newReferencePoint);
+        newReferencePoint = sanitizeFilters(newReferencePoint);
+
+        // reset the list to retrieve full 'referencePoint.properties.controls'
+        this.supportedPropertiesList = this.getSupportedPropertiesList();
 
         let newExt = setSecondaryMeasures(newReferencePoint, this.secondaryAxis);
 
@@ -122,7 +126,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         newExt = getReferencePointWithSupportedProperties(newExt, this.supportedPropertiesList);
         newExt = setColumnBarChartUiConfig(newExt, this.intl);
 
-        return Promise.resolve(sanitizeFilters(newExt));
+        return Promise.resolve(newExt);
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
@@ -182,7 +186,6 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
-        console.log("should not call!");
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
         const dateItems = getDateItems(buckets);
@@ -234,53 +237,53 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
      * TODO: just copied method
      * TODO: refactor the whole method
      */
-    private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
-        const buckets = extendedReferencePoint?.buckets ?? [];
-        const measures = getFilteredMeasuresForStackedCharts(buckets);
-        const dateItems = getDateItems(buckets);
-        const mainDateItem = getMainDateItem(dateItems);
-        const categoriesCount =
-            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
-        const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
-        const allAttributesWithoutStacksWithDatesHandled = removeDivergentDateItems(
-            allAttributesWithoutStacks,
-            mainDateItem,
-        );
-        let views = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount);
-        const hasDateItemInViewByBucket = views.some(isDateBucketItem);
-        let stackItemIndex = categoriesCount;
-        let stacks = getStackItems(buckets);
-
-        if (dateItems.length && !hasDateItemInViewByBucket) {
-            const extraViewItems = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount - 1);
-            views = [mainDateItem, ...extraViewItems];
-            stackItemIndex = categoriesCount - 1;
-        }
-
-        const hasSomeRemainingAttributes = allAttributesWithoutStacksWithDatesHandled.length > stackItemIndex;
-
-        if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
-            stacks = allAttributesWithoutStacksWithDatesHandled
-                .slice(stackItemIndex, allAttributesWithoutStacksWithDatesHandled.length)
-                .filter(isNotDateBucketItem)
-                .slice(0, MAX_STACKS_COUNT);
-        }
-
-        set(extendedReferencePoint, BUCKETS, [
-            {
-                localIdentifier: BucketNames.MEASURES,
-                items: measures,
-            },
-            {
-                localIdentifier: BucketNames.VIEW,
-                items: views,
-            },
-            {
-                localIdentifier: BucketNames.STACK,
-                items: stacks,
-            },
-        ]);
-    }
+    // private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
+    //     const buckets = extendedReferencePoint?.buckets ?? [];
+    //     const measures = getFilteredMeasuresForStackedCharts(buckets);
+    //     const dateItems = getDateItems(buckets);
+    //     const mainDateItem = getMainDateItem(dateItems);
+    //     const categoriesCount =
+    //         extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
+    //     const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
+    //     const allAttributesWithoutStacksWithDatesHandled = removeDivergentDateItems(
+    //         allAttributesWithoutStacks,
+    //         mainDateItem,
+    //     );
+    //     let views = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount);
+    //     const hasDateItemInViewByBucket = views.some(isDateBucketItem);
+    //     let stackItemIndex = categoriesCount;
+    //     let stacks = getStackItems(buckets);
+    //
+    //     if (dateItems.length && !hasDateItemInViewByBucket) {
+    //         const extraViewItems = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount - 1);
+    //         views = [mainDateItem, ...extraViewItems];
+    //         stackItemIndex = categoriesCount - 1;
+    //     }
+    //
+    //     const hasSomeRemainingAttributes = allAttributesWithoutStacksWithDatesHandled.length > stackItemIndex;
+    //
+    //     if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
+    //         stacks = allAttributesWithoutStacksWithDatesHandled
+    //             .slice(stackItemIndex, allAttributesWithoutStacksWithDatesHandled.length)
+    //             .filter(isNotDateBucketItem)
+    //             .slice(0, MAX_STACKS_COUNT);
+    //     }
+    //
+    //     set(extendedReferencePoint, BUCKETS, [
+    //         {
+    //             localIdentifier: BucketNames.MEASURES,
+    //             items: measures,
+    //         },
+    //         {
+    //             localIdentifier: BucketNames.VIEW,
+    //             items: views,
+    //         },
+    //         {
+    //             localIdentifier: BucketNames.STACK,
+    //             items: stacks,
+    //         },
+    //     ]);
+    // }
 }
 
 function haveManyViewItems(insight: IInsightDefinition): boolean {

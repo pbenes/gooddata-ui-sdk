@@ -216,7 +216,6 @@ export const COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES: IUiConfig = {
             },
             allowsDuplicateDates: true,
         },
-
         stack: {
             ...COLUMN_BAR_CHART_UICONFIG.buckets.stack,
             itemsLimitByType: {
