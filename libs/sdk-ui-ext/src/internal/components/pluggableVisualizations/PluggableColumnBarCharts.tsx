@@ -1,5 +1,6 @@
 // (C) 2019 GoodData Corporation
 import set from "lodash/set";
+import cloneDeep from "lodash/cloneDeep";
 import {
     bucketIsEmpty,
     bucketsItems,
@@ -17,13 +18,19 @@ import {
 } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
 import { BUCKETS } from "../../constants/bucket";
-import { MAX_CATEGORIES_COUNT, MAX_STACKS_COUNT } from "../../constants/uiConfig";
+import {
+    COLUMN_BAR_CHART_UICONFIG,
+    COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES,
+    MAX_CATEGORIES_COUNT,
+    MAX_STACKS_COUNT,
+} from "../../constants/uiConfig";
 import { drillDownFromAttributeLocalId } from "../../utils/ImplicitDrillDownHelper";
 import {
     IDrillDownContext,
     IExtendedReferencePoint,
     IImplicitDrillDown,
     IReferencePoint,
+    IUiConfig,
     IVisConstruct,
 } from "../../interfaces/Visualization";
 import {
@@ -54,6 +61,16 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         // and will be updated in getExtendedReferencePoint
         this.axis = AXIS.DUAL;
         this.supportedPropertiesList = this.getSupportedPropertiesList();
+    }
+
+    public getUiConfig(): IUiConfig {
+        //TODO add real ff
+        // const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
+        const multipleDateFF = true;
+        const config = multipleDateFF
+            ? COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES
+            : COLUMN_BAR_CHART_UICONFIG;
+        return cloneDeep(config);
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {

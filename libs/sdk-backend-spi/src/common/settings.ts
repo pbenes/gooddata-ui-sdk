@@ -130,6 +130,11 @@ export interface ISettings {
      */
     enableKPIDashboardDrillToURL?: boolean;
 
+    /**
+     * Enable multiple date dimensions (ONE-5043) - development feature flag
+     */
+    enableMultipleDatesDEV?: boolean;
+
     [key: string]: number | boolean | string | object | undefined;
 }
 

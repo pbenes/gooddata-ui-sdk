@@ -205,7 +205,7 @@ export const COLUMN_BAR_CHART_UICONFIG: IUiConfig = {
     },
 };
 
-export const COLUMN_BAR_CHART_UICONFIG_WITH_MUTIPLE_DATES: IUiConfig = {
+export const COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES: IUiConfig = {
     ...COLUMN_BAR_CHART_UICONFIG,
     buckets: {
         ...COLUMN_BAR_CHART_UICONFIG.buckets,

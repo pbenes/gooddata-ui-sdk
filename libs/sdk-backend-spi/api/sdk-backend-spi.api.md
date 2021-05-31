@@ -1226,6 +1226,7 @@ export interface ISettings {
     enableKPIDashboardSchedule?: boolean;
     enableKPIDashboardScheduleRecipients?: boolean;
     enableMultipleDates?: boolean;
+    enableMultipleDatesDEV?: boolean;
     enablePushpinGeoChart?: boolean;
     enableSectionHeaders?: boolean;
     enableTableColumnsAutoResizing?: boolean;
