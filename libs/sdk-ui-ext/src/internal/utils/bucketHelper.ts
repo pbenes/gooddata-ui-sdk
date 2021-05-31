@@ -969,6 +969,36 @@ export const removeDivergentDateItems = (
     );
 };
 
+export const unifyDivergentDateItems = (
+    viewItems: IBucketItem[],
+    mainDateItem: IBucketItem,
+): IBucketItem[] => {
+    if (viewItems.length > 1) {
+        const dateItems = viewItems.filter((item: IBucketItem) => isDateBucketItem(item));
+        const itemsWithoutDates = viewItems.filter((item: IBucketItem) => !isDateBucketItem(item));
+        const divergentDateItem = dateItems.find(
+            (item: IBucketItem) => !hasSameDateDimension(item, mainDateItem),
+        );
+
+        const unifiedDateItems = dateItems.reduce((acc: IBucketItem[], cur: IBucketItem) => {
+            if (divergentDateItem) {
+                return [
+                    ...acc,
+                    {
+                        ...cur,
+                        dateDatasetRef: divergentDateItem.dateDatasetRef,
+                    },
+                ];
+            }
+
+            return [...acc, cur];
+        }, []);
+
+        return [...itemsWithoutDates, ...unifiedDateItems];
+    }
+    return [...viewItems];
+};
+
 const getDateFilterRef = (filters: IFilters): ObjRef | undefined => {
     const dateFilter = filters?.items?.find(isFiltersBucketItem);
     if (!dateFilter) {
