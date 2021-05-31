@@ -84,6 +84,15 @@ export abstract class AbstractPluggableVisualization implements IVisualization {
         referencePoint: IReferencePoint,
     ): Promise<IExtendedReferencePoint>;
 
+    /**
+     * TODO: JS DOC
+     * TODO: consider protected?
+     * @param referencePoint
+     */
+    public getSdkExtendedReferencePoint(referencePoint: IReferencePoint) {
+        return Promise.resolve(this.getExtendedReferencePoint(referencePoint));
+    }
+
     //
     // Templated implementation of update contract
     //

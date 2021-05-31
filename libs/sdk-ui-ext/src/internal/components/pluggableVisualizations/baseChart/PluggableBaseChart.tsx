@@ -116,6 +116,10 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         return cloneDeep(DEFAULT_BASE_CHART_UICONFIG);
     }
 
+    public getSdkExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
+        return super.getSdkExtendedReferencePoint(referencePoint);
+    }
+
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
         const clonedReferencePoint = cloneDeep(referencePoint);
         const uiConfig = this.getUiConfig();

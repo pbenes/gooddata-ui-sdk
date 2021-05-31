@@ -42,6 +42,7 @@ import {
     removeDivergentDateItems,
     isDateBucketItem,
     isNotDateBucketItem,
+    sanitizeFilters,
 } from "../../utils/bucketHelper";
 import {
     getReferencePointWithSupportedProperties,
@@ -53,6 +54,12 @@ import {
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
 import { addIntersectionFiltersToInsight, modifyBucketsAttributesForDrillDown } from "./drillDownUtil";
+import { configureOverTimeComparison, configurePercent } from "../../utils/bucketConfig";
+import {
+    setBaseChartUiConfig,
+    setBaseChartUiConfigRecommendations,
+} from "../../utils/uiConfigHelpers/baseChartUiConfigHelper";
+import { removeSort } from "../../utils/sort";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -64,13 +71,60 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     public getUiConfig(): IUiConfig {
-        //TODO add real ff
-        // const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
+        // TODO add real ff
+        // TODO const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
         const multipleDateFF = true;
         const config = multipleDateFF
             ? COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES
             : COLUMN_BAR_CHART_UICONFIG;
         return cloneDeep(config);
+    }
+
+    /**
+     * TODO: just copied and merged together
+     * TODO: refactor the whole method
+     */
+    public getSdkExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
+        const clonedReferencePoint = cloneDeep(referencePoint);
+        const uiConfig = this.getUiConfig();
+        let newReferencePoint: IExtendedReferencePoint = {
+            ...clonedReferencePoint,
+            uiConfig,
+        };
+
+        this.configureSdkBuckets(newReferencePoint);
+
+        newReferencePoint = configurePercent(newReferencePoint, false);
+        newReferencePoint = configureOverTimeComparison(
+            newReferencePoint,
+            !!this.featureFlags["enableWeekFilters"],
+        );
+        newReferencePoint = setBaseChartUiConfigRecommendations(
+            newReferencePoint,
+            this.type,
+            !!this.featureFlags["enableWeekFilters"],
+        );
+        newReferencePoint = getReferencePointWithSupportedProperties(
+            newReferencePoint,
+            this.supportedPropertiesList,
+        );
+        newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type);
+        newReferencePoint = removeSort(newReferencePoint);
+
+        let newExt = setSecondaryMeasures(newReferencePoint, this.secondaryAxis);
+
+        this.axis = newExt?.uiConfig?.axis ?? AXIS.PRIMARY;
+
+        // filter out unnecessary stacking props for some specific cases such as one measure or empty stackBy
+        this.supportedPropertiesList = removeImmutableOptionalStackingProperties(
+            newExt,
+            this.getSupportedPropertiesList(),
+        );
+
+        newExt = getReferencePointWithSupportedProperties(newExt, this.supportedPropertiesList);
+        newExt = setColumnBarChartUiConfig(newExt, this.intl);
+
+        return Promise.resolve(sanitizeFilters(newExt));
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
@@ -130,6 +184,59 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
+        console.log("should not call!");
+        const buckets = extendedReferencePoint?.buckets ?? [];
+        const measures = getFilteredMeasuresForStackedCharts(buckets);
+        const dateItems = getDateItems(buckets);
+        const mainDateItem = getMainDateItem(dateItems);
+        const categoriesCount =
+            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
+        const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
+        const allAttributesWithoutStacksWithDatesHandled = removeDivergentDateItems(
+            allAttributesWithoutStacks,
+            mainDateItem,
+        );
+        let views = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount);
+        const hasDateItemInViewByBucket = views.some(isDateBucketItem);
+        let stackItemIndex = categoriesCount;
+        let stacks = getStackItems(buckets);
+
+        if (dateItems.length && !hasDateItemInViewByBucket) {
+            const extraViewItems = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount - 1);
+            views = [mainDateItem, ...extraViewItems];
+            stackItemIndex = categoriesCount - 1;
+        }
+
+        const hasSomeRemainingAttributes = allAttributesWithoutStacksWithDatesHandled.length > stackItemIndex;
+
+        if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
+            stacks = allAttributesWithoutStacksWithDatesHandled
+                .slice(stackItemIndex, allAttributesWithoutStacksWithDatesHandled.length)
+                .filter(isNotDateBucketItem)
+                .slice(0, MAX_STACKS_COUNT);
+        }
+
+        set(extendedReferencePoint, BUCKETS, [
+            {
+                localIdentifier: BucketNames.MEASURES,
+                items: measures,
+            },
+            {
+                localIdentifier: BucketNames.VIEW,
+                items: views,
+            },
+            {
+                localIdentifier: BucketNames.STACK,
+                items: stacks,
+            },
+        ]);
+    }
+
+    /**
+     * TODO: just copied method
+     * TODO: refactor the whole method
+     */
+    private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
         const dateItems = getDateItems(buckets);

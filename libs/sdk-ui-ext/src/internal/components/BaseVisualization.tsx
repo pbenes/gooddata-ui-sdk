@@ -255,9 +255,21 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         const { referencePoint: newReferencePoint, onExtendedReferencePointChanged } = newProps;
 
         if (this.visualization && newReferencePoint && onExtendedReferencePointChanged) {
-            this.visualization
-                .getExtendedReferencePoint(newReferencePoint, currentProps && currentProps.referencePoint)
-                .then(onExtendedReferencePointChanged);
+            // TODO: replace with correct FF
+            const enableMultipleDatesDEV = true;
+
+            if (enableMultipleDatesDEV) {
+                this.visualization
+                    .getSdkExtendedReferencePoint(
+                        newReferencePoint,
+                        currentProps && currentProps.referencePoint,
+                    )
+                    .then(onExtendedReferencePointChanged);
+            } else {
+                this.visualization
+                    .getExtendedReferencePoint(newReferencePoint, currentProps && currentProps.referencePoint)
+                    .then(onExtendedReferencePointChanged);
+            }
         }
     }
 
