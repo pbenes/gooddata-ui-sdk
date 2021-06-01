@@ -17,7 +17,7 @@ import {
     IDrillEventIntersectionElement,
 } from "@gooddata/sdk-ui";
 import { AXIS } from "../../constants/axis";
-import { BUCKETS } from "../../constants/bucket";
+import { ATTRIBUTE, BUCKETS, DATE } from "../../constants/bucket";
 import {
     COLUMN_BAR_CHART_UICONFIG,
     COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES,
@@ -43,7 +43,7 @@ import {
     isDateBucketItem,
     isNotDateBucketItem,
     sanitizeFilters,
-    unifyDivergentDateItems,
+    // unifyDivergentDateItems,
 } from "../../utils/bucketHelper";
 import {
     getReferencePointWithSupportedProperties,
@@ -107,7 +107,12 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             newReferencePoint,
             this.supportedPropertiesList,
         );
-        newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type);
+
+        // todo move predicate to the new function
+        const buckets = newReferencePoint?.buckets ?? [];
+        const hasNoStacks = () => getStackItems(buckets, [ATTRIBUTE, DATE]).length === 0;
+
+        newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type, hasNoStacks);
         newReferencePoint = removeSort(newReferencePoint);
         newReferencePoint = sanitizeFilters(newReferencePoint);
 
@@ -235,8 +240,8 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     /**
-     * TODO: just copied method
-     * TODO: refactor the whole method
+     * TODO: originally copied from configureBuckets
+     * TODO: consider refactoring of the whole method
      */
     private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
@@ -244,7 +249,6 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         const measures = getFilteredMeasuresForStackedCharts(buckets);
 
         const dateItems = getDateItems(buckets);
-
         const mainDateItem = getMainDateItem(dateItems);
 
         const categoriesCount =
@@ -252,31 +256,24 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
         const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
 
-        const allAttributesWithoutStacksWithDatesHandled = unifyDivergentDateItems(
-            allAttributesWithoutStacks,
-            mainDateItem,
-        );
-
-        let views = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount);
-
+        let views = allAttributesWithoutStacks.slice(0, categoriesCount);
+        let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
         const hasDateItemInViewByBucket = views.some(isDateBucketItem);
+        const countOfStackDateItems = stacks.filter(isDateBucketItem).length;
 
         let stackItemIndex = categoriesCount;
 
-        let stacks = getStackItems(buckets);
-
-        if (dateItems.length && !hasDateItemInViewByBucket) {
-            const extraViewItems = allAttributesWithoutStacksWithDatesHandled.slice(0, categoriesCount - 1);
+        if (dateItems.length && !hasDateItemInViewByBucket && countOfStackDateItems < 1) {
+            const extraViewItems = allAttributesWithoutStacks.slice(0, categoriesCount - 1);
             views = [mainDateItem, ...extraViewItems];
             stackItemIndex = categoriesCount - 1;
         }
 
-        const hasSomeRemainingAttributes = allAttributesWithoutStacksWithDatesHandled.length > stackItemIndex;
+        const hasSomeRemainingAttributes = allAttributesWithoutStacks.length > stackItemIndex;
 
         if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
-            stacks = allAttributesWithoutStacksWithDatesHandled
-                .slice(stackItemIndex, allAttributesWithoutStacksWithDatesHandled.length)
-                .filter(isNotDateBucketItem)
+            stacks = allAttributesWithoutStacks
+                .slice(stackItemIndex, allAttributesWithoutStacks.length)
                 .slice(0, MAX_STACKS_COUNT);
         }
 

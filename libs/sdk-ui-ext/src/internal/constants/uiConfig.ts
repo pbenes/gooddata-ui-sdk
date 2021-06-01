@@ -57,6 +57,11 @@ const stackBase = {
     isShowInPercentEnabled: false,
 };
 
+const stackBaseWithDate = {
+    ...stackBase,
+    accepts: [ATTRIBUTE, DATE],
+};
+
 export const defaultFilters = {
     filters: {
         accepts: [ATTRIBUTE, DATE],
@@ -217,7 +222,7 @@ export const COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES: IUiConfig = {
             allowsDuplicateDates: true,
         },
         stack: {
-            ...COLUMN_BAR_CHART_UICONFIG.buckets.stack,
+            ...stackBaseWithDate,
             itemsLimitByType: {
                 date: 1,
             },

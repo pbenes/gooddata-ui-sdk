@@ -1,4 +1,4 @@
-// (C) 2019-2020 GoodData Corporation
+// (C) 2019-2021 GoodData Corporation
 import cloneDeep from "lodash/cloneDeep";
 import set from "lodash/set";
 import forEach from "lodash/forEach";
@@ -70,11 +70,14 @@ export function setBaseChartUiConfig(
     referencePoint: IExtendedReferencePoint,
     intl: IntlShape,
     visualizationType: string,
+    // todo is this good?
+    measuresCanAddItemPredicate: () => boolean = () => true,
 ): IExtendedReferencePoint {
     const referencePointConfigured = cloneDeep(referencePoint);
     const buckets = referencePointConfigured?.buckets ?? [];
 
-    const measuresCanAddItems = hasNoMeasures(buckets) || hasNoStacks(buckets);
+    const measuresCanAddItems =
+        (hasNoMeasures(buckets) || hasNoStacks(buckets)) && measuresCanAddItemPredicate();
     const stackCanAddItems = !hasMoreThanOneMasterMeasure(buckets, BucketNames.MEASURES);
 
     set(referencePointConfigured, [UICONFIG], setBucketTitles(referencePoint, visualizationType, intl));
