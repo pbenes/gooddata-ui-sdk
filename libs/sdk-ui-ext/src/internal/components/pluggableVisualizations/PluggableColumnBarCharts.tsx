@@ -43,6 +43,7 @@ import {
     isDateBucketItem,
     isNotDateBucketItem,
     sanitizeFilters,
+    hasSameDateDimension,
     // unifyDivergentDateItems,
 } from "../../utils/bucketHelper";
 import {
@@ -245,37 +246,64 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
      */
     private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
-
         const measures = getFilteredMeasuresForStackedCharts(buckets);
 
-        const dateItems = getDateItems(buckets);
-        const mainDateItem = getMainDateItem(dateItems);
+        // const dateItems = getDateItems(buckets);
+        // const mainDateItem = getMainDateItem(dateItems);
+        // const categoriesCount =
+        //     extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
 
-        const categoriesCount =
-            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
-
-        const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
-
-        let views = allAttributesWithoutStacks.slice(0, categoriesCount);
+        let allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
-        const hasDateItemInViewByBucket = views.some(isDateBucketItem);
-        const countOfStackDateItems = stacks.filter(isDateBucketItem).length;
 
-        let stackItemIndex = categoriesCount;
+        const firstAttribute = allAttributesWithoutStacks[0];
+        const isFirstAttributeDate = firstAttribute.type === DATE;
 
-        if (dateItems.length && !hasDateItemInViewByBucket && countOfStackDateItems < 1) {
-            const extraViewItems = allAttributesWithoutStacks.slice(0, categoriesCount - 1);
-            views = [mainDateItem, ...extraViewItems];
-            stackItemIndex = categoriesCount - 1;
+        allAttributesWithoutStacks.splice(0, 1);
+
+        let views = [firstAttribute];
+
+        for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
+            const isCurrentAttributeDate = allAttributesWithoutStacks[i].type === DATE;
+
+            if (isFirstAttributeDate && isCurrentAttributeDate) {
+                const sameDateDimension = hasSameDateDimension(firstAttribute, allAttributesWithoutStacks[i]);
+                if (sameDateDimension) {
+                    views.push(allAttributesWithoutStacks[i]);
+
+                    allAttributesWithoutStacks.splice(i, 1);
+                }
+            }
         }
 
-        const hasSomeRemainingAttributes = allAttributesWithoutStacks.length > stackItemIndex;
-
-        if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
-            stacks = allAttributesWithoutStacks
-                .slice(stackItemIndex, allAttributesWithoutStacks.length)
-                .slice(0, MAX_STACKS_COUNT);
+        if (!stacks.length) {
+            stacks = allAttributesWithoutStacks.slice(0, MAX_STACKS_COUNT);
         }
+
+        // console.log("allAttributesWithoutStacks", allAttributesWithoutStacks);
+        // let views = allAttributesWithoutStacks.slice(0, categoriesCount);
+        // const hasDateItemInViewByBucket = views.some(isDateBucketItem);
+        // const countOfStackDateItems = stacks.filter(isDateBucketItem).length;
+        //
+        // console.log("views", views);
+        // console.log("stacks", stacks);
+        // console.log("dateItems", dateItems);
+        //
+        // let stackItemIndex = categoriesCount;
+        //
+        // if (dateItems.length && !hasDateItemInViewByBucket && countOfStackDateItems < 1) {
+        //     const extraViewItems = allAttributesWithoutStacks.slice(0, categoriesCount - 1);
+        //     views = [mainDateItem, ...extraViewItems];
+        //     stackItemIndex = categoriesCount - 1;
+        // }
+        //
+        // const hasSomeRemainingAttributes = allAttributesWithoutStacks.length > stackItemIndex;
+        //
+        // if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
+        //     stacks = allAttributesWithoutStacks
+        //         .slice(stackItemIndex, allAttributesWithoutStacks.length)
+        //         .slice(0, MAX_STACKS_COUNT);
+        // }
 
         set(extendedReferencePoint, BUCKETS, [
             {
