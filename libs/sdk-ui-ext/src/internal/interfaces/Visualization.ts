@@ -235,6 +235,7 @@ export interface IBucketUiConfig {
     allowShowOnSecondaryAxis?: boolean;
     allowSelectChartType?: boolean;
     allowOptionalStacking?: boolean;
+    preferSynchronizedDates?: boolean;
 }
 
 export interface IBucketsUiConfig {
