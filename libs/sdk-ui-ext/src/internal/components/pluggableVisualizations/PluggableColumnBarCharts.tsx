@@ -44,7 +44,6 @@ import {
     isNotDateBucketItem,
     sanitizeFilters,
     hasSameDateDimension,
-    // unifyDivergentDateItems,
 } from "../../utils/bucketHelper";
 import {
     getReferencePointWithSupportedProperties,
@@ -257,11 +256,11 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
 
         const firstAttribute = allAttributesWithoutStacks[0];
-        const isFirstAttributeDate = firstAttribute.type === DATE;
+        const isFirstAttributeDate = firstAttribute && firstAttribute.type === DATE;
 
         allAttributesWithoutStacks.splice(0, 1);
 
-        let views = [firstAttribute];
+        let views = firstAttribute ? [firstAttribute] : [];
 
         for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
             const isCurrentAttributeDate = allAttributesWithoutStacks[i].type === DATE;
