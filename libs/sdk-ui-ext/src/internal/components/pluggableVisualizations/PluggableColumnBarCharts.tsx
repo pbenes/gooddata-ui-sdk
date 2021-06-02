@@ -249,11 +249,8 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
-
-        // const dateItems = getDateItems(buckets);
-        // const mainDateItem = getMainDateItem(dateItems);
-        // const categoriesCount =
-        //     extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
+        const categoriesCount =
+            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
 
         let allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
@@ -265,7 +262,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
         let views = firstAttribute ? [firstAttribute] : [];
 
-        for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
+        for (let i = 0; i < allAttributesWithoutStacks.length && i <= categoriesCount; i++) {
             const isCurrentAttributeDate = allAttributesWithoutStacks[i].type === DATE;
 
             if (isFirstAttributeDate && isCurrentAttributeDate) {
@@ -275,6 +272,9 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
                     allAttributesWithoutStacks.splice(i, 1);
                 }
+            } else {
+                views.push(allAttributesWithoutStacks[i]);
+                allAttributesWithoutStacks.splice(i, 1);
             }
         }
 
