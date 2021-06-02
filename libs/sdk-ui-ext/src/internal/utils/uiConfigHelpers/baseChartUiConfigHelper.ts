@@ -77,7 +77,7 @@ export function setBaseChartUiConfig(
     const buckets = referencePointConfigured?.buckets ?? [];
 
     const measuresCanAddItems =
-        (hasNoMeasures(buckets) || hasNoStacks(buckets)) && measuresCanAddItemPredicate();
+        measuresCanAddItemPredicate() && (hasNoMeasures(buckets) || hasNoStacks(buckets));
     const stackCanAddItems = !hasMoreThanOneMasterMeasure(buckets, BucketNames.MEASURES);
 
     set(referencePointConfigured, [UICONFIG], setBucketTitles(referencePoint, visualizationType, intl));

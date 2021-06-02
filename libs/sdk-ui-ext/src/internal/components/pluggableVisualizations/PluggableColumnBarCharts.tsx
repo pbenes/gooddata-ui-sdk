@@ -44,6 +44,7 @@ import {
     isNotDateBucketItem,
     sanitizeFilters,
     hasSameDateDimension,
+    getItemsCount,
 } from "../../utils/bucketHelper";
 import {
     getReferencePointWithSupportedProperties,
@@ -110,7 +111,9 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
         // todo move predicate to the new function
         const buckets = newReferencePoint?.buckets ?? [];
-        const hasNoStacks = () => getStackItems(buckets, [ATTRIBUTE, DATE]).length === 0;
+        const hasNoStacks = () =>
+            getItemsCount(buckets, BucketNames.MEASURES) === 0 ||
+            getStackItems(buckets, [ATTRIBUTE, DATE]).length === 0;
 
         newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type, hasNoStacks);
         newReferencePoint = removeSort(newReferencePoint);
