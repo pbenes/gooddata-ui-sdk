@@ -26,6 +26,7 @@ import {
 } from "../../constants/uiConfig";
 import { drillDownFromAttributeLocalId } from "../../utils/ImplicitDrillDownHelper";
 import {
+    IBucketItem,
     IDrillDownContext,
     IExtendedReferencePoint,
     IImplicitDrillDown,
@@ -242,15 +243,36 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         ]);
     }
 
-    /**
-     * TODO: originally copied from configureBuckets
-     * TODO: consider refactoring of the whole method
-     */
     private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
-        const categoriesCount =
-            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
+        const [views, stacks] = this.getAttributes(extendedReferencePoint);
+
+        set(extendedReferencePoint, BUCKETS, [
+            {
+                localIdentifier: BucketNames.MEASURES,
+                items: measures,
+            },
+            {
+                localIdentifier: BucketNames.VIEW,
+                items: views,
+            },
+            {
+                localIdentifier: BucketNames.STACK,
+                items: stacks,
+            },
+        ]);
+    }
+
+    private getCategoriesCount(extendedReferencePoint: IExtendedReferencePoint): number {
+        return (
+            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT
+        );
+    }
+
+    private getAttributes(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
+        const buckets = extendedReferencePoint?.buckets ?? [];
+        const categoriesCount = this.getCategoriesCount(extendedReferencePoint);
 
         let allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
@@ -282,45 +304,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             stacks = allAttributesWithoutStacks.slice(0, MAX_STACKS_COUNT);
         }
 
-        // console.log("allAttributesWithoutStacks", allAttributesWithoutStacks);
-        // let views = allAttributesWithoutStacks.slice(0, categoriesCount);
-        // const hasDateItemInViewByBucket = views.some(isDateBucketItem);
-        // const countOfStackDateItems = stacks.filter(isDateBucketItem).length;
-        //
-        // console.log("views", views);
-        // console.log("stacks", stacks);
-        // console.log("dateItems", dateItems);
-        //
-        // let stackItemIndex = categoriesCount;
-        //
-        // if (dateItems.length && !hasDateItemInViewByBucket && countOfStackDateItems < 1) {
-        //     const extraViewItems = allAttributesWithoutStacks.slice(0, categoriesCount - 1);
-        //     views = [mainDateItem, ...extraViewItems];
-        //     stackItemIndex = categoriesCount - 1;
-        // }
-        //
-        // const hasSomeRemainingAttributes = allAttributesWithoutStacks.length > stackItemIndex;
-        //
-        // if (!stacks.length && measures.length <= 1 && hasSomeRemainingAttributes) {
-        //     stacks = allAttributesWithoutStacks
-        //         .slice(stackItemIndex, allAttributesWithoutStacks.length)
-        //         .slice(0, MAX_STACKS_COUNT);
-        // }
-
-        set(extendedReferencePoint, BUCKETS, [
-            {
-                localIdentifier: BucketNames.MEASURES,
-                items: measures,
-            },
-            {
-                localIdentifier: BucketNames.VIEW,
-                items: views,
-            },
-            {
-                localIdentifier: BucketNames.STACK,
-                items: stacks,
-            },
-        ]);
+        return [views, stacks];
     }
 }
 
