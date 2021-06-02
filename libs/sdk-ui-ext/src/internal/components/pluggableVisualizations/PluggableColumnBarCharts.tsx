@@ -71,9 +71,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     public getUiConfig(): IUiConfig {
-        // TODO add real ff
-        // TODO const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
-        const multipleDateFF = true;
+        const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
         const config = multipleDateFF
             ? COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES
             : COLUMN_BAR_CHART_UICONFIG;

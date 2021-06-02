@@ -255,8 +255,7 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         const { referencePoint: newReferencePoint, onExtendedReferencePointChanged } = newProps;
 
         if (this.visualization && newReferencePoint && onExtendedReferencePointChanged) {
-            // TODO: replace with correct FF
-            const enableMultipleDatesDEV = true;
+            const enableMultipleDatesDEV = !!currentProps?.featureFlags?.enableMultipleDatesDEV;
 
             if (enableMultipleDatesDEV) {
                 this.visualization
