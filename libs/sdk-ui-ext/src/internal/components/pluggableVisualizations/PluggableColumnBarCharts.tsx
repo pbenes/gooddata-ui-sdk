@@ -299,7 +299,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             }
 
             if (views.length >= viewByMaxItemCount) {
-                possibleStacks.push(...remainingAttributes.slice(i)); // put the rest as possible stacks
+                possibleStacks.push(...remainingAttributes.slice(i + 1)); // put the rest as possible stacks
                 break;
             }
         }
