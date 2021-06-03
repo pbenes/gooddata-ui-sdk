@@ -273,9 +273,9 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     private getViewByAndStackByBucketItems(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
-        let allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
+        const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         let stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
-        let views: IBucketItem[] = [];
+        const views: IBucketItem[] = [];
 
         const firstAttribute = allAttributesWithoutStacks[0];
         const isFirstAttributeDate = firstAttribute && isDateBucketItem(firstAttribute);
@@ -306,10 +306,10 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             }
         }
 
-        allAttributesWithoutStacks = allAttributesWithoutStacks.filter(Boolean);
+        const restAttributes = allAttributesWithoutStacks.filter(Boolean);
 
         if (!stacks.length) {
-            stacks = allAttributesWithoutStacks.slice(0, MAX_STACKS_COUNT);
+            stacks = restAttributes.slice(0, MAX_STACKS_COUNT);
         }
 
         return [views, stacks];
