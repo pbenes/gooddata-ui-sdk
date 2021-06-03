@@ -282,7 +282,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         const stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
 
         const [firstAttribute, ...remainingAttributes] = allAttributesWithoutStacks;
-        const isFirstAttributeDate = firstAttribute && isDateBucketItem(firstAttribute);
+        const isFirstAttributeDate = isDateBucketItem(firstAttribute);
 
         const views: IBucketItem[] = firstAttribute ? [firstAttribute] : [];
         const possibleStacks: IBucketItem[] = [];
