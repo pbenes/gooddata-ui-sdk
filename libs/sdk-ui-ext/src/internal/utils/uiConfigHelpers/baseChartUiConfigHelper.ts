@@ -13,11 +13,11 @@ import { BUCKETS } from "../../constants/bucket";
 import {
     comparisonAndTrendingRecommendationEnabled,
     overTimeComparisonRecommendationEnabled,
-    hasNoStacks,
     hasNoMeasures,
     hasMoreThanOneMasterMeasure,
     percentRecommendationEnabled,
     previousPeriodRecommendationEnabled,
+    hasNoStacksWithDate,
 } from "./../bucketRules";
 
 import { setBucketTitles } from "./../bucketHelper";
@@ -70,14 +70,10 @@ export function setBaseChartUiConfig(
     referencePoint: IExtendedReferencePoint,
     intl: IntlShape,
     visualizationType: string,
-    // todo is this good?
-    measuresCanAddItemPredicate: () => boolean = () => true,
 ): IExtendedReferencePoint {
     const referencePointConfigured = cloneDeep(referencePoint);
     const buckets = referencePointConfigured?.buckets ?? [];
-
-    const measuresCanAddItems =
-        measuresCanAddItemPredicate() && (hasNoMeasures(buckets) || hasNoStacks(buckets));
+    const measuresCanAddItems = hasNoMeasures(buckets) || hasNoStacksWithDate(buckets);
     const stackCanAddItems = !hasMoreThanOneMasterMeasure(buckets, BucketNames.MEASURES);
 
     set(referencePointConfigured, [UICONFIG], setBucketTitles(referencePoint, visualizationType, intl));

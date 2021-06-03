@@ -255,20 +255,9 @@ export class BaseVisualization extends React.PureComponent<IBaseVisualizationPro
         const { referencePoint: newReferencePoint, onExtendedReferencePointChanged } = newProps;
 
         if (this.visualization && newReferencePoint && onExtendedReferencePointChanged) {
-            const enableMultipleDatesDEV = !!this.props?.featureFlags?.enableMultipleDatesDEV;
-
-            if (enableMultipleDatesDEV) {
-                this.visualization
-                    .getSdkExtendedReferencePoint(
-                        newReferencePoint,
-                        currentProps && currentProps.referencePoint,
-                    )
-                    .then(onExtendedReferencePointChanged);
-            } else {
-                this.visualization
-                    .getExtendedReferencePoint(newReferencePoint, currentProps && currentProps.referencePoint)
-                    .then(onExtendedReferencePointChanged);
-            }
+            this.visualization
+                .getExtendedReferencePoint(newReferencePoint, currentProps && currentProps.referencePoint)
+                .then(onExtendedReferencePointChanged);
         }
     }
 

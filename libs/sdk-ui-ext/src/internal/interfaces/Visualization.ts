@@ -362,20 +362,6 @@ export interface IVisualization {
     ): Promise<IExtendedReferencePoint>;
 
     /**
-     * TODO: Correct jsdoc - here should be info about new sdk reference point and conversion functions
-     *
-     * @param referencePoint The new value of the reference point.
-     * @param previousReferencePoint The previous value of the reference point.
-     * This value is only provided if the visualization class was not changed
-     * (i. e. both points are related to the same visualization class).
-     * @returns Promise of the new ExtendedReferencePoint.
-     */
-    getSdkExtendedReferencePoint(
-        referencePoint: IReferencePoint,
-        previousReferencePoint?: IReferencePoint,
-    ): Promise<IExtendedReferencePoint>;
-
-    /**
      * Called when the Drill Down is performed, used to get the Drill Down target {@link IInsight} instance.
      *
      * The exact contract depends on individual {@link IInsight} type, but generally it should replace

@@ -43,9 +43,7 @@ import {
     removeDivergentDateItems,
     isDateBucketItem,
     isNotDateBucketItem,
-    sanitizeFilters,
     hasSameDateDimension,
-    getItemsCount,
 } from "../../utils/bucketHelper";
 import {
     getReferencePointWithSupportedProperties,
@@ -57,12 +55,6 @@ import {
 import { setColumnBarChartUiConfig } from "../../utils/uiConfigHelpers/columnBarChartUiConfigHelper";
 import { PluggableBaseChart } from "./baseChart/PluggableBaseChart";
 import { addIntersectionFiltersToInsight, modifyBucketsAttributesForDrillDown } from "./drillDownUtil";
-import { configureOverTimeComparison, configurePercent } from "../../utils/bucketConfig";
-import {
-    setBaseChartUiConfig,
-    setBaseChartUiConfigRecommendations,
-} from "../../utils/uiConfigHelpers/baseChartUiConfigHelper";
-import { removeSort } from "../../utils/sort";
 
 export class PluggableColumnBarCharts extends PluggableBaseChart {
     constructor(props: IVisConstruct) {
@@ -74,69 +66,10 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     public getUiConfig(): IUiConfig {
-        const multipleDateFF = !!this.featureFlags.enableMultipleDatesDEV;
-        const config = multipleDateFF
+        const config = this.isMultipleDatesEnabled()
             ? COLUMN_BAR_CHART_UICONFIG_WITH_MULTIPLE_DATES
             : COLUMN_BAR_CHART_UICONFIG;
         return cloneDeep(config);
-    }
-
-    /**
-     * TODO: just copied and merged together
-     * TODO: refactor the whole method
-     */
-    public getSdkExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
-        const clonedReferencePoint = cloneDeep(referencePoint);
-        const uiConfig = this.getUiConfig();
-        let newReferencePoint: IExtendedReferencePoint = {
-            ...clonedReferencePoint,
-            uiConfig,
-        };
-
-        this.configureSdkBuckets(newReferencePoint);
-
-        newReferencePoint = configurePercent(newReferencePoint, false);
-        newReferencePoint = configureOverTimeComparison(
-            newReferencePoint,
-            !!this.featureFlags["enableWeekFilters"],
-        );
-        newReferencePoint = setBaseChartUiConfigRecommendations(
-            newReferencePoint,
-            this.type,
-            !!this.featureFlags["enableWeekFilters"],
-        );
-        newReferencePoint = getReferencePointWithSupportedProperties(
-            newReferencePoint,
-            this.supportedPropertiesList,
-        );
-
-        // todo move predicate to the new function
-        const buckets = newReferencePoint?.buckets ?? [];
-        const hasNoStacks = () =>
-            getItemsCount(buckets, BucketNames.MEASURES) === 0 ||
-            getStackItems(buckets, [ATTRIBUTE, DATE]).length === 0;
-
-        newReferencePoint = setBaseChartUiConfig(newReferencePoint, this.intl, this.type, hasNoStacks);
-        newReferencePoint = removeSort(newReferencePoint);
-        newReferencePoint = sanitizeFilters(newReferencePoint);
-
-        // reset the list to retrieve full 'referencePoint.properties.controls'
-        this.supportedPropertiesList = this.getSupportedPropertiesList();
-
-        let newExt = setSecondaryMeasures(newReferencePoint, this.secondaryAxis);
-
-        this.axis = newExt?.uiConfig?.axis ?? AXIS.PRIMARY;
-
-        // filter out unnecessary stacking props for some specific cases such as one measure or empty stackBy
-        this.supportedPropertiesList = removeImmutableOptionalStackingProperties(
-            newExt,
-            this.getSupportedPropertiesList(),
-        );
-
-        newExt = getReferencePointWithSupportedProperties(newExt, this.supportedPropertiesList);
-        newExt = setColumnBarChartUiConfig(newExt, this.intl);
-
-        return Promise.resolve(newExt);
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
@@ -196,6 +129,11 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     }
 
     protected configureBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
+        if (this.isMultipleDatesEnabled()) {
+            this.configureBucketsWithMultipleDates(extendedReferencePoint);
+            return;
+        }
+
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
         const dateItems = getDateItems(buckets);
@@ -243,7 +181,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         ]);
     }
 
-    private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
+    private configureBucketsWithMultipleDates(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
         const [views, stacks] = this.getViewByAndStackByBucketItems(extendedReferencePoint);
@@ -262,16 +200,6 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
                 items: stacks,
             },
         ]);
-    }
-
-    private getViewByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
-        return (
-            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT
-        );
-    }
-
-    private getStackByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
-        return extendedReferencePoint.uiConfig?.buckets?.[BucketNames.STACK]?.itemsLimit ?? MAX_STACKS_COUNT;
     }
 
     private canPutAttributeToViewBy(
@@ -319,6 +247,20 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
         const finalStacks = [...stacks, ...possibleStacks].slice(0, stackByMaxItemCount);
         return [views, finalStacks];
+    }
+
+    private getViewByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
+        return (
+            extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT
+        );
+    }
+
+    private getStackByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
+        return extendedReferencePoint.uiConfig?.buckets?.[BucketNames.STACK]?.itemsLimit ?? MAX_STACKS_COUNT;
+    }
+
+    private isMultipleDatesEnabled(): boolean {
+        return !!this.featureFlags.enableMultipleDatesDEV;
     }
 }
 
