@@ -274,6 +274,22 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         return extendedReferencePoint.uiConfig?.buckets?.[BucketNames.STACK]?.itemsLimit ?? MAX_STACKS_COUNT;
     }
 
+    private canPutAttributeToViewBy(
+        currentAttribute: IBucketItem,
+        firstAttribute: IBucketItem,
+        viewByCount: number,
+        viewByMaxItemCount: number,
+    ) {
+        const isFirstAttributeDate = isDateBucketItem(firstAttribute);
+        const isCurrentAttributeDate = isDateBucketItem(currentAttribute);
+        const sameDateDimension = hasSameDateDimension(firstAttribute, currentAttribute);
+
+        return (
+            (!isFirstAttributeDate || !isCurrentAttributeDate || sameDateDimension) &&
+            viewByCount < viewByMaxItemCount
+        );
+    }
+
     private getViewByAndStackByBucketItems(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
@@ -282,18 +298,18 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         const stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
 
         const [firstAttribute, ...remainingAttributes] = allAttributesWithoutStacks;
-        const isFirstAttributeDate = isDateBucketItem(firstAttribute);
 
         const views: IBucketItem[] = firstAttribute ? [firstAttribute] : [];
         const possibleStacks: IBucketItem[] = [];
 
         for (let i = 0; i < remainingAttributes.length; i++) {
             const currentAttribute = remainingAttributes[i];
-            const isCurrentAttributeDate = isDateBucketItem(currentAttribute);
-            const sameDateDimension = hasSameDateDimension(firstAttribute, currentAttribute);
-            const canPutToViewBy =
-                (!isFirstAttributeDate || !isCurrentAttributeDate || sameDateDimension) &&
-                views.length < viewByMaxItemCount;
+            const canPutToViewBy = this.canPutAttributeToViewBy(
+                currentAttribute,
+                firstAttribute,
+                views.length,
+                viewByMaxItemCount,
+            );
 
             if (canPutToViewBy) {
                 views.push(currentAttribute);
