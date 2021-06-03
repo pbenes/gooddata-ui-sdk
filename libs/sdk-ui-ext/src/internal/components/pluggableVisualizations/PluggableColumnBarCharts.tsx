@@ -275,18 +275,15 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
         const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         let stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
-        const views: IBucketItem[] = [];
 
-        const firstAttribute = allAttributesWithoutStacks[0];
+        const [firstAttribute, ...remainingAttributes] = allAttributesWithoutStacks;
         const isFirstAttributeDate = firstAttribute && isDateBucketItem(firstAttribute);
 
-        if (firstAttribute) {
-            allAttributesWithoutStacks.splice(0, 1);
-            views.push(firstAttribute);
-        }
+        const views: IBucketItem[] = firstAttribute ? [firstAttribute] : [];
+        const possibleStacks: IBucketItem[] = [];
 
-        for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
-            const currentAttribute = allAttributesWithoutStacks[i];
+        for (let i = 0; i < remainingAttributes.length; i++) {
+            const currentAttribute = remainingAttributes[i];
             const isCurrentAttributeDate = isDateBucketItem(currentAttribute);
 
             if (isFirstAttributeDate && isCurrentAttributeDate) {
@@ -294,25 +291,21 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
 
                 if (sameDateDimension) {
                     views.push(currentAttribute);
-                    allAttributesWithoutStacks[i] = null;
+                } else {
+                    possibleStacks.push(currentAttribute);
                 }
             } else {
-                views.push(allAttributesWithoutStacks[i]);
-                allAttributesWithoutStacks[i] = null;
+                views.push(currentAttribute);
             }
 
             if (views.length >= viewByMaxItemCount) {
+                possibleStacks.push(...remainingAttributes.slice(i)); // put the rest as possible stacks
                 break;
             }
         }
 
-        const restAttributes = allAttributesWithoutStacks.filter(Boolean);
-
-        if (!stacks.length) {
-            stacks = restAttributes.slice(0, MAX_STACKS_COUNT);
-        }
-
-        return [views, stacks];
+        const finalStacks = [...stacks, ...possibleStacks].slice(0, MAX_STACKS_COUNT);
+        return [views, finalStacks];
     }
 }
 
