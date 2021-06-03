@@ -302,8 +302,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         const views: IBucketItem[] = firstAttribute ? [firstAttribute] : [];
         const possibleStacks: IBucketItem[] = [];
 
-        for (let i = 0; i < remainingAttributes.length; i++) {
-            const currentAttribute = remainingAttributes[i];
+        for (const currentAttribute of remainingAttributes) {
             const canPutToViewBy = this.canPutAttributeToViewBy(
                 currentAttribute,
                 firstAttribute,
