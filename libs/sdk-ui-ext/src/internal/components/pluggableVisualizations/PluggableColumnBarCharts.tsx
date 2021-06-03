@@ -270,9 +270,14 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         );
     }
 
+    private getStackByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
+        return extendedReferencePoint.uiConfig?.buckets?.[BucketNames.STACK]?.itemsLimit ?? MAX_STACKS_COUNT;
+    }
+
     private getViewByAndStackByBucketItems(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
+        const stackByMaxItemCount = this.getStackByMaxItemCount(extendedReferencePoint);
         const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
         const stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
 
@@ -297,7 +302,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
             }
         }
 
-        const finalStacks = [...stacks, ...possibleStacks].slice(0, MAX_STACKS_COUNT);
+        const finalStacks = [...stacks, ...possibleStacks].slice(0, stackByMaxItemCount);
         return [views, finalStacks];
     }
 }
