@@ -285,22 +285,15 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         for (let i = 0; i < remainingAttributes.length; i++) {
             const currentAttribute = remainingAttributes[i];
             const isCurrentAttributeDate = isDateBucketItem(currentAttribute);
+            const sameDateDimension = hasSameDateDimension(firstAttribute, currentAttribute);
+            const canPutToViewBy =
+                (!isFirstAttributeDate || !isCurrentAttributeDate || sameDateDimension) &&
+                views.length < viewByMaxItemCount;
 
-            if (isFirstAttributeDate && isCurrentAttributeDate) {
-                const sameDateDimension = hasSameDateDimension(firstAttribute, currentAttribute);
-
-                if (sameDateDimension) {
-                    views.push(currentAttribute);
-                } else {
-                    possibleStacks.push(currentAttribute);
-                }
-            } else {
+            if (canPutToViewBy) {
                 views.push(currentAttribute);
-            }
-
-            if (views.length >= viewByMaxItemCount) {
-                possibleStacks.push(...remainingAttributes.slice(i + 1)); // put the rest as possible stacks
-                break;
+            } else {
+                possibleStacks.push(currentAttribute);
             }
         }
 
