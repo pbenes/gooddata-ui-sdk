@@ -278,7 +278,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         let views: IBucketItem[] = [];
 
         const firstAttribute = allAttributesWithoutStacks[0];
-        const isFirstAttributeDate = firstAttribute && firstAttribute.type === DATE;
+        const isFirstAttributeDate = firstAttribute && isDateBucketItem(firstAttribute);
 
         if (firstAttribute) {
             allAttributesWithoutStacks.splice(0, 1);
@@ -286,13 +286,14 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         }
 
         for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
-            const isCurrentAttributeDate = allAttributesWithoutStacks[i].type === DATE;
+            const currentAttribute = allAttributesWithoutStacks[i];
+            const isCurrentAttributeDate = isDateBucketItem(currentAttribute);
 
             if (isFirstAttributeDate && isCurrentAttributeDate) {
-                const sameDateDimension = hasSameDateDimension(firstAttribute, allAttributesWithoutStacks[i]);
+                const sameDateDimension = hasSameDateDimension(firstAttribute, currentAttribute);
 
                 if (sameDateDimension) {
-                    views.push(allAttributesWithoutStacks[i]);
+                    views.push(currentAttribute);
                     allAttributesWithoutStacks[i] = null;
                 }
             } else {
