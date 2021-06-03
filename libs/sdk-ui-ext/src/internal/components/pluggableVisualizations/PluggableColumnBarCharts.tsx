@@ -246,7 +246,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
     private configureSdkBuckets(extendedReferencePoint: IExtendedReferencePoint): void {
         const buckets = extendedReferencePoint?.buckets ?? [];
         const measures = getFilteredMeasuresForStackedCharts(buckets);
-        const [views, stacks] = this.getAttributes(extendedReferencePoint);
+        const [views, stacks] = this.getViewByAndStackByBucketItems(extendedReferencePoint);
 
         set(extendedReferencePoint, BUCKETS, [
             {
@@ -264,41 +264,48 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         ]);
     }
 
-    private getCategoriesCount(extendedReferencePoint: IExtendedReferencePoint): number {
+    private getViewByMaxItemCount(extendedReferencePoint: IExtendedReferencePoint): number {
         return (
             extendedReferencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT
         );
     }
 
-    private getAttributes(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
+    private getViewByAndStackByBucketItems(extendedReferencePoint: IExtendedReferencePoint): IBucketItem[][] {
         const buckets = extendedReferencePoint?.buckets ?? [];
-        const categoriesCount = this.getCategoriesCount(extendedReferencePoint);
-
+        const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
         let allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);
-        let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
+        let stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
+        let views: IBucketItem[] = [];
 
         const firstAttribute = allAttributesWithoutStacks[0];
         const isFirstAttributeDate = firstAttribute && firstAttribute.type === DATE;
 
-        allAttributesWithoutStacks.splice(0, 1);
+        if (firstAttribute) {
+            allAttributesWithoutStacks.splice(0, 1);
+            views.push(firstAttribute);
+        }
 
-        let views = firstAttribute ? [firstAttribute] : [];
-
-        for (let i = 0; i < allAttributesWithoutStacks.length && i <= categoriesCount; i++) {
+        for (let i = 0; i < allAttributesWithoutStacks.length; i++) {
             const isCurrentAttributeDate = allAttributesWithoutStacks[i].type === DATE;
 
             if (isFirstAttributeDate && isCurrentAttributeDate) {
                 const sameDateDimension = hasSameDateDimension(firstAttribute, allAttributesWithoutStacks[i]);
+
                 if (sameDateDimension) {
                     views.push(allAttributesWithoutStacks[i]);
-
-                    allAttributesWithoutStacks.splice(i, 1);
+                    allAttributesWithoutStacks[i] = null;
                 }
             } else {
                 views.push(allAttributesWithoutStacks[i]);
-                allAttributesWithoutStacks.splice(i, 1);
+                allAttributesWithoutStacks[i] = null;
+            }
+
+            if (views.length >= viewByMaxItemCount) {
+                break;
             }
         }
+
+        allAttributesWithoutStacks = allAttributesWithoutStacks.filter(Boolean);
 
         if (!stacks.length) {
             stacks = allAttributesWithoutStacks.slice(0, MAX_STACKS_COUNT);
