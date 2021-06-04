@@ -351,6 +351,25 @@ describe("PluggableColumnBarCharts", () => {
     });
 
     describe("handling date items", () => {
+        describe("with multiple dates", () => {
+            const inputs = [
+                ["from table to column chart: date in rows only", {}, {}],
+                ["from table to column chart: date in rows and columns", {}, {}],
+            ];
+            it.each(inputs)(
+                "should return correct extended reference (%s)",
+                (_description, inputReferencePoint, expectedReferencePoint) => {
+                    const columnChart = createComponent({
+                        ...defaultProps,
+                        enableMultipleDatesDEV: true,
+                    });
+
+                    const referencePoint = columnChart.getExtendedReferencePoint(inputReferencePoint);
+                    expect(referencePoint).toEqual(expectedReferencePoint);
+                },
+            );
+        });
+
         it("should keep only one date attribute in view by bucket when comming from stacked chart", async () => {
             const columnChart = createComponent(defaultProps);
             const mockRefPoint = referencePointMocks.dateAttributeOnViewAndStackReferencePoint;
