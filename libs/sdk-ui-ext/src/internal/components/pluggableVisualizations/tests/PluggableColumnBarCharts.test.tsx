@@ -2,7 +2,14 @@
 import noop from "lodash/noop";
 import cloneDeep from "lodash/cloneDeep";
 import * as referencePointMocks from "../../../tests/mocks/referencePointMocks";
-import { IBucketOfFun, IFilters, IVisProps, IVisConstruct } from "../../../interfaces/Visualization";
+import {
+    IBucketOfFun,
+    IFilters,
+    IVisProps,
+    IVisConstruct,
+    IExtendedReferencePoint,
+    IReferencePoint,
+} from "../../../interfaces/Visualization";
 import { MAX_VIEW_COUNT } from "../../../constants/uiConfig";
 import * as uiConfigMocks from "../../../tests/mocks/uiConfigMocks";
 import * as testMocks from "../../../tests/mocks/testMocks";
@@ -352,20 +359,104 @@ describe("PluggableColumnBarCharts", () => {
 
     describe("handling date items", () => {
         describe("with multiple dates", () => {
-            const inputs = [
-                ["from table to column chart: date in rows only", {}, {}],
-                ["from table to column chart: date in rows and columns", {}, {}],
+            const inputs: [string, IReferencePoint, Partial<IExtendedReferencePoint>][] = [
+                [
+                    "from table to column chart: date in rows only",
+                    referencePointMocks.dateAsFirstCategoryReferencePoint,
+                    {
+                        buckets: [
+                            referencePointMocks.dateAsFirstCategoryReferencePoint.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: referencePointMocks.dateAsFirstCategoryReferencePoint.buckets[1].items,
+                            },
+                            {
+                                localIdentifier: "stack",
+                                items: [],
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from table to column chart: three different dates",
+                    referencePointMocks.threeDifferentDatesReferencePoint,
+                    {
+                        buckets: [
+                            referencePointMocks.threeDifferentDatesReferencePoint.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: referencePointMocks.threeDifferentDatesReferencePoint.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                            {
+                                localIdentifier: "stack",
+                                items: referencePointMocks.threeDifferentDatesReferencePoint.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from table to column chart: two identical dates in rows",
+                    referencePointMocks.twoIdenticalDatesInRows,
+                    {
+                        buckets: [
+                            referencePointMocks.twoIdenticalDatesInRows.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: referencePointMocks.twoIdenticalDatesInRows.buckets[1].items,
+                            },
+                            {
+                                localIdentifier: "stack",
+                                items: referencePointMocks.twoIdenticalDatesInRows.buckets[2].items,
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from table to column chart: multiple dates in rows",
+                    referencePointMocks.multipleDatesInRowsOnly,
+                    {
+                        buckets: [
+                            referencePointMocks.multipleDatesInRowsOnly.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: referencePointMocks.multipleDatesInRowsOnly.buckets[1].items.slice(
+                                    0,
+                                    2,
+                                ),
+                            },
+                            {
+                                localIdentifier: "stack",
+                                items: referencePointMocks.multipleDatesInRowsOnly.buckets[1].items.slice(
+                                    2,
+                                    3,
+                                ),
+                            },
+                        ],
+                    },
+                ],
             ];
             it.each(inputs)(
                 "should return correct extended reference (%s)",
-                (_description, inputReferencePoint, expectedReferencePoint) => {
+                async (
+                    _description,
+                    inputReferencePoint: IReferencePoint,
+                    expectedReferencePoint: Partial<IExtendedReferencePoint>,
+                ) => {
                     const columnChart = createComponent({
                         ...defaultProps,
-                        enableMultipleDatesDEV: true,
+                        featureFlags: {
+                            enableMultipleDatesDEV: true,
+                        },
                     });
 
-                    const referencePoint = columnChart.getExtendedReferencePoint(inputReferencePoint);
-                    expect(referencePoint).toEqual(expectedReferencePoint);
+                    const referencePoint = await columnChart.getExtendedReferencePoint(inputReferencePoint);
+                    expect(referencePoint).toMatchObject(expectedReferencePoint);
                 },
             );
         });
