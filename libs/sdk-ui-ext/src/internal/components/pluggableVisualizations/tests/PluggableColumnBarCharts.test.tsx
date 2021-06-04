@@ -440,6 +440,28 @@ describe("PluggableColumnBarCharts", () => {
                         ],
                     },
                 ],
+                [
+                    "from chart to column chart: multiple dates in rows but not first",
+                    referencePointMocks.multipleDatesNotAsFirstReferencePoint,
+                    {
+                        buckets: [
+                            referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[1].items.slice(
+                                    0,
+                                    2,
+                                ),
+                            },
+                            {
+                                localIdentifier: "stack",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[1].items.slice(
+                                    2,
+                                ),
+                            },
+                        ],
+                    },
+                ],
             ];
             it.each(inputs)(
                 "should return correct extended reference (%s)",

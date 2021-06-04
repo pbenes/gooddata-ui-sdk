@@ -1176,6 +1176,27 @@ export const threeDatesSameDimensionRowsReferencePoint: IReferencePoint = {
     },
 };
 
+export const multipleDatesNotAsFirstReferencePoint: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems,
+        },
+        {
+            localIdentifier: "rows",
+            items: [attributeItems[0], dateItem, dateItem2],
+        },
+        {
+            localIdentifier: "columns",
+            items: [],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
 export const dateAsSecondCategoryReferencePoint: IReferencePoint = {
     buckets: [
         {
