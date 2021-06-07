@@ -377,6 +377,10 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
         };
     }
 
+    protected isMultipleDatesEnabled(): boolean {
+        return !!this.featureFlags.enableMultipleDatesDEV;
+    }
+
     private getOpenAsReportConfig(properties: IVisualizationProperties) {
         const hasMapping = hasColorMapping(properties);
         const isSupported = this.isOpenAsReportSupported();
