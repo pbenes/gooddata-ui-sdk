@@ -74,8 +74,10 @@ export class PluggableLineChart extends PluggableBaseChart {
             BucketNames.LOCATION,
             BucketNames.TREND,
             BucketNames.VIEW,
+            BucketNames.ATTRIBUTES,
             BucketNames.SEGMENT,
             BucketNames.STACK,
+            BucketNames.COLUMNS,
         ]);
 
         const firstDate = getFistDateItem(buckets);
@@ -83,6 +85,7 @@ export class PluggableLineChart extends PluggableBaseChart {
         if (firstDate) {
             attributes = [firstDate];
             const [nextAttribute] = allAttributes.filter((attr) => attr !== firstDate);
+
             if (masterMeasures.length <= 1 && nextAttribute) {
                 stacks = [nextAttribute];
             }
