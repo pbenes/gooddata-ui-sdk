@@ -631,6 +631,90 @@ describe("PluggableLineChart", () => {
                         ],
                     },
                 ],
+                [
+                    "from column to line chart: two dates",
+                    referencePointMocks.twoDatesInColumnChart,
+                    {
+                        buckets: [
+                            referencePointMocks.twoDatesInColumnChart.buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.twoDatesInColumnChart.buckets[1].items.slice(0, 1),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.twoDatesInColumnChart.buckets[2].items.slice(0, 1),
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from column to line chart: three dates",
+                    referencePointMocks.threeDatesInColumnChart,
+                    {
+                        buckets: [
+                            referencePointMocks.threeDatesInColumnChart.buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.threeDatesInColumnChart.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.threeDatesInColumnChart.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from column to line chart: three dates and more than one measure",
+                    referencePointMocks.threeDifferentDatesReferencePointChart,
+                    {
+                        buckets: [
+                            referencePointMocks.threeDifferentDatesReferencePointChart.buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.threeDifferentDatesReferencePointChart.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: [],
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from column to line chart: first attribute is not date (date should get preference)",
+                    referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasureColumn,
+                    {
+                        buckets: [
+                            referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasureColumn
+                                .buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasureColumn.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasureColumn.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                        ],
+                    },
+                ],
             ];
             it.each(inputs)(
                 "should return correct extended reference (%s)",

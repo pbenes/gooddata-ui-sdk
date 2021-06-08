@@ -1155,6 +1155,48 @@ export const twoIdenticalDatesInRowsWithSingleMeasure: IReferencePoint = {
     },
 };
 
+export const twoDatesInColumnChart: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems.slice(0, 1),
+        },
+        {
+            localIdentifier: "view",
+            items: [dateItem],
+        },
+        {
+            localIdentifier: "stack",
+            items: [dateItem2],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
+export const threeDatesInColumnChart: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems.slice(0, 1),
+        },
+        {
+            localIdentifier: "view",
+            items: [dateItem, dateItem2],
+        },
+        {
+            localIdentifier: "stack",
+            items: [dateItem3],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
 export const multipleDatesInRowsOnly: IReferencePoint = {
     buckets: [
         {
@@ -1231,6 +1273,27 @@ export const multipleDatesNotAsFirstReferencePointWithSingleMeasure: IReferenceP
         {
             localIdentifier: "columns",
             items: [],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
+export const multipleDatesNotAsFirstReferencePointWithSingleMeasureColumn: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems.slice(0, 1),
+        },
+        {
+            localIdentifier: "view",
+            items: [attributeItems[0], dateItem],
+        },
+        {
+            localIdentifier: "stack",
+            items: [dateItem2],
         },
     ],
     filters: {
