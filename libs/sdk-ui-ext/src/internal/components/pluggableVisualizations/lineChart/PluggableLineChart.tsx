@@ -24,6 +24,7 @@ import {
     getAttributeItemsWithoutStacks,
     getDateItems,
     getFilteredMeasuresForStackedCharts,
+    getFistDateItem,
     getMeasureItems,
     getStackItems,
     isDateBucketItem,
@@ -66,9 +67,9 @@ export class PluggableLineChart extends PluggableBaseChart {
         const buckets = newReferencePoint?.buckets ?? [];
         const measures = getMeasureItems(buckets);
         const masterMeasures = filterOutDerivedMeasures(measures);
+
         let attributes: IBucketItem[] = [];
         let stacks: IBucketItem[] = getStackItems(buckets);
-        const dateItems = getDateItems(buckets);
         const allAttributes = getAllAttributeItemsWithPreference(buckets, [
             BucketNames.LOCATION,
             BucketNames.TREND,
@@ -77,7 +78,8 @@ export class PluggableLineChart extends PluggableBaseChart {
             BucketNames.STACK,
         ]);
 
-        const [firstDate] = dateItems;
+        const firstDate = getFistDateItem(buckets);
+
         if (firstDate) {
             attributes = [firstDate];
             const [nextAttribute] = allAttributes.filter((attr) => attr !== firstDate);
