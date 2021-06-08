@@ -564,6 +564,67 @@ describe("PluggableLineChart", () => {
                         ],
                     },
                 ],
+                //                [
+                //                    "TODO: from table to line chart: two identical dates in rows",
+                //                    referencePointMocks.twoIdenticalDatesInRowsWithSingleMeasure,
+                //                    {
+                //                        buckets: [
+                //                            referencePointMocks.twoIdenticalDatesInRowsWithSingleMeasure.buckets[0],
+                //                            {
+                //                                localIdentifier: "trend",
+                //                                items: referencePointMocks.twoIdenticalDatesInRowsWithSingleMeasure.buckets[1].items.slice(0, 1),
+                //                            },
+                //                            {
+                //                                localIdentifier: "segment",
+                //                                items: referencePointMocks.twoIdenticalDatesInRowsWithSingleMeasure.buckets[1].items.slice(1, 2),
+                //                            },
+                //                        ],
+                //                    },
+                //                ],
+                [
+                    "from table to line chart: multiple dates in rows but not first (date should get preference)",
+                    referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasure,
+                    {
+                        buckets: [
+                            referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasure
+                                .buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePointWithSingleMeasure.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                        ],
+                    },
+                ],
+                [
+                    "from table to line chart: multiple dates in rows but not first, more measures",
+                    referencePointMocks.multipleDatesNotAsFirstReferencePoint,
+                    {
+                        buckets: [
+                            referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.multipleDatesNotAsFirstReferencePoint.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: [],
+                            },
+                        ],
+                    },
+                ],
             ];
             it.each(inputs)(
                 "should return correct extended reference (%s)",
