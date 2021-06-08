@@ -1,6 +1,12 @@
 // (C) 2019 GoodData Corporation
 import noop from "lodash/noop";
-import { IBucketOfFun, IFilters } from "../../../../interfaces/Visualization";
+import {
+    IBucketOfFun,
+    IFilters,
+    IExtendedReferencePoint,
+    IReferencePoint,
+    IVisConstruct,
+} from "../../../../interfaces/Visualization";
 import { PluggableLineChart } from "../PluggableLineChart";
 import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks";
 import * as uiConfigMocks from "../../../../tests/mocks/uiConfigMocks";
@@ -35,7 +41,7 @@ jest.mock("react-dom", () => {
 });
 
 describe("PluggableLineChart", () => {
-    const defaultProps = {
+    const defaultProps: IVisConstruct = {
         projectId: "PROJECTID",
         element: "body",
         configPanelElement: null as string,
@@ -528,6 +534,54 @@ describe("PluggableLineChart", () => {
             // TODO avoid testing protected property
             expect((chart as any).supportedPropertiesList).toEqual(
                 LINE_CHART_SUPPORTED_PROPERTIES[AXIS.DUAL],
+            );
+        });
+    });
+
+    describe("handling date items", () => {
+        describe("with multiple dates", () => {
+            const inputs: [string, IReferencePoint, Partial<IExtendedReferencePoint>][] = [
+                [
+                    "from table to line chart: date in rows only",
+                    referencePointMocks.dateAsFirstCategoryReferencePoint,
+                    {
+                        buckets: [
+                            referencePointMocks.dateAsFirstCategoryReferencePoint.buckets[0],
+                            {
+                                localIdentifier: "trend",
+                                items: referencePointMocks.dateAsFirstCategoryReferencePoint.buckets[1].items.slice(
+                                    0,
+                                    1,
+                                ),
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.dateAsFirstCategoryReferencePoint.buckets[1].items.slice(
+                                    1,
+                                    2,
+                                ),
+                            },
+                        ],
+                    },
+                ],
+            ];
+            it.each(inputs)(
+                "should return correct extended reference (%s)",
+                async (
+                    _description,
+                    inputReferencePoint: IReferencePoint,
+                    expectedReferencePoint: Partial<IExtendedReferencePoint>,
+                ) => {
+                    const lineChart = createComponent({
+                        ...defaultProps,
+                        featureFlags: {
+                            enableMultipleDatesDEV: true,
+                        },
+                    });
+
+                    const referencePoint = await lineChart.getExtendedReferencePoint(inputReferencePoint);
+                    expect(referencePoint).toMatchObject(expectedReferencePoint);
+                },
             );
         });
     });
