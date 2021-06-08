@@ -1134,6 +1134,27 @@ export const twoIdenticalDatesInRows: IReferencePoint = {
     },
 };
 
+export const twoIdenticalDatesInRowsWithSingleMeasure: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems.slice(0, 1),
+        },
+        {
+            localIdentifier: "rows",
+            items: [dateItem, dateItem],
+        },
+        {
+            localIdentifier: "columns",
+            items: [dateItem2],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
 export const multipleDatesInRowsOnly: IReferencePoint = {
     buckets: [
         {
@@ -1181,6 +1202,27 @@ export const multipleDatesNotAsFirstReferencePoint: IReferencePoint = {
         {
             localIdentifier: "measures",
             items: masterMeasureItems,
+        },
+        {
+            localIdentifier: "rows",
+            items: [attributeItems[0], dateItem, dateItem2],
+        },
+        {
+            localIdentifier: "columns",
+            items: [],
+        },
+    ],
+    filters: {
+        localIdentifier: "filters",
+        items: [],
+    },
+};
+
+export const multipleDatesNotAsFirstReferencePointWithSingleMeasure: IReferencePoint = {
+    buckets: [
+        {
+            localIdentifier: "measures",
+            items: masterMeasureItems.slice(0, 1),
         },
         {
             localIdentifier: "rows",
