@@ -1078,7 +1078,7 @@ export const threeDifferentDatesReferencePoint: IReferencePoint = {
             items: masterMeasureItems,
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [dateItem, dateItem2],
         },
         {
@@ -1120,7 +1120,7 @@ export const twoIdenticalDatesInRows: IReferencePoint = {
             items: masterMeasureItems,
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [dateItem, dateItem],
         },
         {
@@ -1141,8 +1141,8 @@ export const twoIdenticalDatesInRowsWithSingleMeasure: IReferencePoint = {
             items: masterMeasureItems.slice(0, 1),
         },
         {
-            localIdentifier: "rows",
-            items: [dateItem, dateItem],
+            localIdentifier: "attributes",
+            items: [{ ...dateItem }, { ...dateItem }],
         },
         {
             localIdentifier: "columns",
@@ -1162,7 +1162,7 @@ export const multipleDatesInRowsOnly: IReferencePoint = {
             items: masterMeasureItems,
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [dateItem, dateItem, dateItem2, dateItem3],
         },
         {
@@ -1183,7 +1183,7 @@ export const threeDatesSameDimensionRowsReferencePoint: IReferencePoint = {
             items: masterMeasureItems,
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [dateItem, dateItem],
         },
         {
@@ -1204,7 +1204,7 @@ export const multipleDatesNotAsFirstReferencePoint: IReferencePoint = {
             items: masterMeasureItems,
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [attributeItems[0], dateItem, dateItem2],
         },
         {
@@ -1225,7 +1225,7 @@ export const multipleDatesNotAsFirstReferencePointWithSingleMeasure: IReferenceP
             items: masterMeasureItems.slice(0, 1),
         },
         {
-            localIdentifier: "rows",
+            localIdentifier: "attributes",
             items: [attributeItems[0], dateItem, dateItem2],
         },
         {
