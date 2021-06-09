@@ -1,9 +1,10 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 import { BucketNames, DataViewFacade } from "@gooddata/sdk-ui";
 import { IMeasureGroupDescriptor } from "@gooddata/sdk-backend-spi";
 import { IColorStrategy } from "@gooddata/sdk-ui-vis-commons";
 import { parseValue, unwrap } from "../_util/common";
 import last from "lodash/last";
+import { ISeriesItemConfig } from "../../typings/unsafe";
 
 function getCountOfEmptyBuckets(bucketEmptyFlags: boolean[] = []) {
     return bucketEmptyFlags.filter((bucketEmpyFlag) => bucketEmpyFlag).length;
@@ -15,15 +16,17 @@ export function getBubbleChartSeries(
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     stackByAttribute: any,
     colorStrategy: IColorStrategy,
-): any[] {
+): ISeriesItemConfig[] {
     const primaryMeasuresBucketEmpty = dv.def().isBucketEmpty(BucketNames.MEASURES);
     const secondaryMeasuresBucketEmpty = dv.def().isBucketEmpty(BucketNames.SECONDARY_MEASURES);
     let legendIndex = 0;
+    let dataIndex = 0;
     return dv
         .rawData()
         .twoDimData()
         .map((resData: any, index: number) => {
             if (resData[0] === null || resData[1] === null || resData[2] === null) {
+                dataIndex++;
                 return null;
             }
             let data: any = [];
@@ -45,6 +48,7 @@ export function getBubbleChartSeries(
                 color: colorStrategy.getColorByIndex(legendIndex),
                 legendIndex: legendIndex++,
                 data,
+                dataIndex: dataIndex++,
             };
         })
         .filter((serie) => serie !== null);

@@ -116,6 +116,7 @@ function getDefaultSeries(
                 color: colorStrategy.getColorByIndex(seriesIndex),
                 legendIndex: seriesIndex,
                 data: seriesItemData,
+                dataIndex: seriesIndex,
             };
 
             if (stackByAttribute) {

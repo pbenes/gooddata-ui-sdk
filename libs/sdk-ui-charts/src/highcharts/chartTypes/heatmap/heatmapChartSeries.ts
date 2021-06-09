@@ -1,5 +1,5 @@
 // (C) 2020-2021 GoodData Corporation
-import { IPatternObject, IPointData } from "../../typings/unsafe";
+import { IPatternObject, IPointData, ISeriesItemConfig } from "../../typings/unsafe";
 import { GRAY, TRANSPARENT, WHITE } from "../_util/color";
 import { DataViewFacade } from "@gooddata/sdk-ui";
 import { DataValue, IMeasureGroupDescriptor, ITheme } from "@gooddata/sdk-backend-spi";
@@ -24,7 +24,7 @@ export function getHeatmapSeries(
     dv: DataViewFacade,
     measureGroup: IMeasureGroupDescriptor["measureGroupHeader"],
     theme?: ITheme,
-) {
+): ISeriesItemConfig[] {
     const nullColor = getNullColor(theme);
     const data: IPointData[] = [];
     dv.rawData()
@@ -58,6 +58,7 @@ export function getHeatmapSeries(
     return [
         {
             name: measureGroup.items[0].measureHeaderItem.name,
+            dataIndex: 0,
             data,
             turboThreshold: 0,
             yAxis: 0,

@@ -1,4 +1,4 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 import { BucketNames, DataViewFacade } from "@gooddata/sdk-ui";
 import { IColorStrategy } from "@gooddata/sdk-ui-vis-commons";
 import { ISeriesDataItem } from "../../typings/unsafe";
@@ -34,6 +34,7 @@ export function getScatterPlotSeries(
             color: colorStrategy.getColorByIndex(0),
             legendIndex: 0,
             data,
+            dataIndex: 0,
         },
     ];
 }

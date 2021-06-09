@@ -249,6 +249,7 @@ export interface ICategory {
 export interface ISeriesItemConfig {
     color: string;
     legendIndex: number;
+    dataIndex: number;
     data?: any;
     name?: string;
     yAxis?: number;
