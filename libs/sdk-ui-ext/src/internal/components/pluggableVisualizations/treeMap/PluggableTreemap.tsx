@@ -13,7 +13,9 @@ import {
     DEFAULT_TREEMAP_UICONFIG,
     TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES,
     TREEMAP_UICONFIG_WITH_ONE_MEASURE,
-    UICONFIG,
+    TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES,
+    TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES,
+    DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES,
 } from "../../../constants/uiConfig";
 import {
     IDrillDownContext,
@@ -55,36 +57,52 @@ export class PluggableTreemap extends PluggableBaseChart {
         this.initializeProperties(props.visualizationProperties);
     }
 
-    public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
-        const clonedReferencePoint = cloneDeep(referencePoint);
-        let newReferencePoint: IExtendedReferencePoint = {
-            ...clonedReferencePoint,
-            uiConfig: cloneDeep(DEFAULT_TREEMAP_UICONFIG),
-        };
-
-        newReferencePoint = removeAllArithmeticMeasuresFromDerived(newReferencePoint);
-        newReferencePoint = removeAllDerivedMeasures(newReferencePoint);
-
-        const buckets = clonedReferencePoint?.buckets ?? [];
-
+    private getBucketItemsWithMultipleDates(newReferencePoint: IReferencePoint): any {
+        // TODO: unify
+        const buckets = newReferencePoint?.buckets ?? [];
         let measures = getMeasureItems(buckets);
-
         let stacks = getStackItems(buckets);
         const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
         const view = nonStackAttributes.slice(0, 1);
 
         if (nonStackAttributes.length > 0) {
-            set(newReferencePoint, UICONFIG, cloneDeep(TREEMAP_UICONFIG_WITH_ONE_MEASURE));
             measures = getMeasureItems(limitNumberOfMeasuresInBuckets(buckets, 1));
-        } else if (measures.length > 1) {
-            set(newReferencePoint, UICONFIG, cloneDeep(TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES));
         }
+
+        if (nonStackAttributes.length > 1 && isEmpty(stacks)) {
+            // first attribute is taken, find next available
+            const attributesWithoutFirst = tail(nonStackAttributes);
+            stacks = attributesWithoutFirst.slice(0, 1);
+        }
+
+        return { measures, view, stacks };
+    }
+
+    private getBucketItems(newReferencePoint: IReferencePoint) {
+        const buckets = newReferencePoint?.buckets ?? [];
+        let measures = getMeasureItems(buckets);
+        let stacks = getStackItems(buckets);
+        const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
+        const view = nonStackAttributes.slice(0, 1);
+
+        if (nonStackAttributes.length > 0) {
+            measures = getMeasureItems(limitNumberOfMeasuresInBuckets(buckets, 1));
+        }
+
         if (nonStackAttributes.length > 1 && isEmpty(stacks)) {
             // first attribute is taken, find next available non-date attribute
             const attributesWithoutFirst = tail(nonStackAttributes);
             const nonDate = attributesWithoutFirst.filter((attribute) => !isDateBucketItem(attribute));
             stacks = nonDate.slice(0, 1);
         }
+
+        return { measures, view, stacks };
+    }
+
+    protected configureBuckets(newReferencePoint: IExtendedReferencePoint): void {
+        const { measures, view, stacks } = this.isMultipleDatesEnabled()
+            ? this.getBucketItemsWithMultipleDates(newReferencePoint)
+            : this.getBucketItems(newReferencePoint);
 
         set(newReferencePoint, BUCKETS, [
             {
@@ -100,6 +118,38 @@ export class PluggableTreemap extends PluggableBaseChart {
                 items: stacks,
             },
         ]);
+    }
+
+    private getTreemapUIConfig(referencePoint: IReferencePoint) {
+        const buckets = referencePoint?.buckets;
+        const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
+        let measures = getMeasureItems(buckets);
+        if (nonStackAttributes.length > 0) {
+            return this.isMultipleDatesEnabled()
+                ? TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES
+                : TREEMAP_UICONFIG_WITH_ONE_MEASURE;
+        } else if (measures.length > 1) {
+            return this.isMultipleDatesEnabled()
+                ? TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES
+                : TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES;
+        } else {
+            return this.isMultipleDatesEnabled()
+                ? DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES
+                : DEFAULT_TREEMAP_UICONFIG;
+        }
+    }
+
+    public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
+        const clonedReferencePoint = cloneDeep(referencePoint);
+        let newReferencePoint: IExtendedReferencePoint = {
+            ...clonedReferencePoint,
+            uiConfig: cloneDeep(this.getTreemapUIConfig(referencePoint)),
+        };
+
+        newReferencePoint = removeAllArithmeticMeasuresFromDerived(newReferencePoint);
+        newReferencePoint = removeAllDerivedMeasures(newReferencePoint);
+
+        this.configureBuckets(newReferencePoint);
 
         newReferencePoint = setTreemapUiConfig(newReferencePoint, this.intl, this.type);
         newReferencePoint = configurePercent(newReferencePoint, false);
