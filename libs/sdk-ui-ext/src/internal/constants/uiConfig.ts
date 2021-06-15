@@ -396,6 +396,26 @@ export const DEFAULT_TREEMAP_UICONFIG: IUiConfig = {
     ...defaultRootUiConfigProperties,
 };
 
+export const DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES: IUiConfig = {
+    buckets: {
+        measures: {
+            ...measuresBase,
+        },
+        view: {
+            ...viewBase,
+        },
+        segment: {
+            ...stackBaseWithDate,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
+        },
+        ...defaultFilters,
+    },
+    ...defaultRootUiConfigProperties,
+};
+
 export const TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES: IUiConfig = {
     buckets: {
         measures: {
@@ -427,6 +447,59 @@ export const TREEMAP_UICONFIG_WITH_ONE_MEASURE: IUiConfig = {
         },
         segment: {
             ...stackBase,
+        },
+        ...defaultFilters,
+    },
+    ...defaultRootUiConfigProperties,
+};
+
+export const TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES: IUiConfig = {
+    buckets: {
+        measures: {
+            ...measuresBase,
+        },
+        view: {
+            ...viewBase,
+            itemsLimit: 0,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
+        },
+        segment: {
+            ...stackBaseWithDate,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
+        },
+        ...defaultFilters,
+    },
+    ...defaultRootUiConfigProperties,
+};
+
+export const TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES: IUiConfig = {
+    buckets: {
+        measures: {
+            ...measuresBase,
+            itemsLimit: DEFAULT_TREEMAP_MEASURES_COUNT,
+            allowsReordering: false,
+            canAddItems: false,
+            isShowInPercentEnabled: true,
+        },
+        view: {
+            ...viewBase,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
+        },
+        segment: {
+            ...stackBaseWithDate,
+            itemsLimitByType: {
+                date: 1,
+            },
+            allowsDuplicateDates: true,
         },
         ...defaultFilters,
     },
