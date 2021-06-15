@@ -54,6 +54,6 @@ export default scenariosFor<ITreemapProps>("Treemap", Treemap)
     })
     .addScenario("arithmetic measures and segment", TreemapWithArithmeticMeasuresAndSegment)
     .addScenario(
-        "with single measure and view by date and segment by date",
+        "with one measure and view by date and segment by date",
         TreemapWithViewByDateAndStackByDate,
     );
