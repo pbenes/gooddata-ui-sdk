@@ -490,9 +490,9 @@ describe("PluggableTreemap", () => {
                             },
                             {
                                 localIdentifier: "segment",
-                                items: referencePointMocks.threeDatesInColumnChart.buckets[1].items.slice(
+                                items: referencePointMocks.threeDatesInColumnChart.buckets[2].items.slice(
+                                    0,
                                     1,
-                                    2,
                                 ),
                             },
                         ],

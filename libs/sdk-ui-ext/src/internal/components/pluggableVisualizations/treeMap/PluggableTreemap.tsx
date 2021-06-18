@@ -6,7 +6,7 @@ import set from "lodash/set";
 import tail from "lodash/tail";
 import { BucketNames, IDrillEvent, VisualizationTypes } from "@gooddata/sdk-ui";
 import { render } from "react-dom";
-import { BUCKETS } from "../../../constants/bucket";
+import { BUCKETS, DATE, ATTRIBUTE } from "../../../constants/bucket";
 import { TREEMAP_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 
 import {
@@ -58,10 +58,9 @@ export class PluggableTreemap extends PluggableBaseChart {
     }
 
     private getBucketItemsWithMultipleDates(newReferencePoint: IReferencePoint): any {
-        // TODO: unify
         const buckets = newReferencePoint?.buckets ?? [];
         let measures = getMeasureItems(buckets);
-        let stacks = getStackItems(buckets);
+        let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
         const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
         const view = nonStackAttributes.slice(0, 1);
 
@@ -70,7 +69,7 @@ export class PluggableTreemap extends PluggableBaseChart {
         }
 
         if (nonStackAttributes.length > 1 && isEmpty(stacks)) {
-            // first attribute is taken, find next available
+            // first attribute is taken, find next available and put to stacks
             const attributesWithoutFirst = tail(nonStackAttributes);
             stacks = attributesWithoutFirst.slice(0, 1);
         }
