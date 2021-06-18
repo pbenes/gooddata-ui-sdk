@@ -393,115 +393,60 @@ export const DEFAULT_TREEMAP_UICONFIG: IUiConfig = {
     ...defaultRootUiConfigProperties,
 };
 
-export const DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES: IUiConfig = {
-    buckets: {
-        measures: {
-            ...measuresBase,
-        },
-        view: {
-            ...viewBase,
-        },
-        segment: {
-            ...stackBaseWithDate,
-            itemsLimitByType: {
-                date: 1,
-            },
-            allowsDuplicateDates: true,
-        },
-        ...defaultFilters,
-    },
-    ...defaultRootUiConfigProperties,
-};
+export function getTreemapUiConfig({
+    hasNonStackAttributes,
+    hasMultipleMeasures,
+    allowsMultipleDates,
+}: {
+    hasNonStackAttributes: boolean;
+    hasMultipleMeasures: boolean;
+    allowsMultipleDates: boolean;
+}): IUiConfig {
+    const measuresConfig = hasNonStackAttributes
+        ? {
+              itemsLimit: DEFAULT_TREEMAP_MEASURES_COUNT,
+              allowsReordering: false,
+              canAddItems: false,
+              isShowInPercentEnabled: true,
+          }
+        : {};
 
-export const TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES: IUiConfig = {
-    buckets: {
-        measures: {
-            ...measuresBase,
-        },
-        view: {
-            ...viewBase,
-            itemsLimit: 0,
-        },
-        segment: {
-            ...stackBase,
-        },
-        ...defaultFilters,
-    },
-    ...defaultRootUiConfigProperties,
-};
+    const viewsConfig =
+        !hasNonStackAttributes && hasMultipleMeasures
+            ? {
+                  itemsLimit: 0,
+              }
+            : {};
 
-export const TREEMAP_UICONFIG_WITH_ONE_MEASURE: IUiConfig = {
-    buckets: {
-        measures: {
-            ...measuresBase,
-            itemsLimit: DEFAULT_TREEMAP_MEASURES_COUNT,
-            allowsReordering: false,
-            canAddItems: false,
-            isShowInPercentEnabled: true,
-        },
-        view: {
-            ...viewBase,
-        },
-        segment: {
-            ...stackBase,
-        },
-        ...defaultFilters,
-    },
-    ...defaultRootUiConfigProperties,
-};
+    const multipleDatesConfig = allowsMultipleDates
+        ? {
+              itemsLimitByType: {
+                  date: 1,
+              },
+              allowsDuplicateDates: true,
+          }
+        : {};
 
-export const TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES: IUiConfig = {
-    buckets: {
-        measures: {
-            ...measuresBase,
-        },
-        view: {
-            ...viewBase,
-            itemsLimit: 0,
-            itemsLimitByType: {
-                date: 1,
+    return {
+        buckets: {
+            measures: {
+                ...measuresBase,
+                ...measuresConfig,
             },
-            allowsDuplicateDates: true,
-        },
-        segment: {
-            ...stackBaseWithDate,
-            itemsLimitByType: {
-                date: 1,
+            view: {
+                ...viewBase,
+                ...viewsConfig,
+                ...multipleDatesConfig,
             },
-            allowsDuplicateDates: true,
-        },
-        ...defaultFilters,
-    },
-    ...defaultRootUiConfigProperties,
-};
-
-export const TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES: IUiConfig = {
-    buckets: {
-        measures: {
-            ...measuresBase,
-            itemsLimit: DEFAULT_TREEMAP_MEASURES_COUNT,
-            allowsReordering: false,
-            canAddItems: false,
-            isShowInPercentEnabled: true,
-        },
-        view: {
-            ...viewBase,
-            itemsLimitByType: {
-                date: 1,
+            segment: {
+                ...stackBase,
+                ...multipleDatesConfig,
             },
-            allowsDuplicateDates: true,
+            ...defaultFilters,
         },
-        segment: {
-            ...stackBaseWithDate,
-            itemsLimitByType: {
-                date: 1,
-            },
-            allowsDuplicateDates: true,
-        },
-        ...defaultFilters,
-    },
-    ...defaultRootUiConfigProperties,
-};
+        ...defaultRootUiConfigProperties,
+    };
+}
 
 export const DEFAULT_TABLE_UICONFIG: IUiConfig = {
     buckets: {

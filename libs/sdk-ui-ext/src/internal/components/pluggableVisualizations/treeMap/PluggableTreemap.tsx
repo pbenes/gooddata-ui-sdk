@@ -9,14 +9,7 @@ import { render } from "react-dom";
 import { BUCKETS, DATE, ATTRIBUTE } from "../../../constants/bucket";
 import { TREEMAP_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties";
 
-import {
-    DEFAULT_TREEMAP_UICONFIG,
-    TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES,
-    TREEMAP_UICONFIG_WITH_ONE_MEASURE,
-    TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES,
-    TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES,
-    DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES,
-} from "../../../constants/uiConfig";
+import { getTreemapUiConfig } from "../../../constants/uiConfig";
 import {
     IDrillDownContext,
     IExtendedReferencePoint,
@@ -122,27 +115,19 @@ export class PluggableTreemap extends PluggableBaseChart {
     private getTreemapUIConfig(referencePoint: IReferencePoint) {
         const buckets = referencePoint?.buckets;
         const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
-        let measures = getMeasureItems(buckets);
-        if (nonStackAttributes.length > 0) {
-            return this.isMultipleDatesEnabled()
-                ? TREEMAP_UICONFIG_WITH_ONE_MEASURE_MULTIPLE_DATES
-                : TREEMAP_UICONFIG_WITH_ONE_MEASURE;
-        } else if (measures.length > 1) {
-            return this.isMultipleDatesEnabled()
-                ? TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES_MULTIPLE_DATES
-                : TREEMAP_UICONFIG_WITH_MULTIPLE_MEASURES;
-        } else {
-            return this.isMultipleDatesEnabled()
-                ? DEFAULT_TREEMAP_UICONFIG_MULTIPLE_DATES
-                : DEFAULT_TREEMAP_UICONFIG;
-        }
+        const measures = getMeasureItems(buckets);
+        return getTreemapUiConfig({
+            hasNonStackAttributes: nonStackAttributes.length > 0,
+            hasMultipleMeasures: measures.length > 1,
+            allowsMultipleDates: this.isMultipleDatesEnabled(),
+        });
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
         const clonedReferencePoint = cloneDeep(referencePoint);
         let newReferencePoint: IExtendedReferencePoint = {
             ...clonedReferencePoint,
-            uiConfig: cloneDeep(this.getTreemapUIConfig(referencePoint)),
+            uiConfig: this.getTreemapUIConfig(referencePoint),
         };
 
         newReferencePoint = removeAllArithmeticMeasuresFromDerived(newReferencePoint);
