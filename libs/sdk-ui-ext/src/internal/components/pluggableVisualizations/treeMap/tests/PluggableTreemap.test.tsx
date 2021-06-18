@@ -498,6 +498,23 @@ describe("PluggableTreemap", () => {
                         ],
                     },
                 ],
+                [
+                    "from column to treemap chart: only stacks",
+                    referencePointMocks.onlyStackColumnChart,
+                    {
+                        buckets: [
+                            referencePointMocks.onlyStackColumnChart.buckets[0],
+                            {
+                                localIdentifier: "view",
+                                items: [],
+                            },
+                            {
+                                localIdentifier: "segment",
+                                items: referencePointMocks.onlyStackColumnChart.buckets[2].items.slice(0, 1),
+                            },
+                        ],
+                    },
+                ],
             ];
             it.each(inputs)(
                 "should return correct extended reference (%s)",
