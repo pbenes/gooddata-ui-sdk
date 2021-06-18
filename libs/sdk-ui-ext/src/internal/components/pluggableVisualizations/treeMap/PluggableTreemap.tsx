@@ -115,16 +115,12 @@ export class PluggableTreemap extends PluggableBaseChart {
     private getTreemapUIConfig(referencePoint: IReferencePoint) {
         const buckets = referencePoint?.buckets;
         const allowsMultipleDates = this.isMultipleDatesEnabled();
-        const nonStackAttributes = allowsMultipleDates ?
+        const nonStackAttributes = allowsMultipleDates
             ? getAttributeItemsWithoutStacks(buckets, [ATTRIBUTE, DATE])
             : getAttributeItemsWithoutStacks(buckets);
         const measures = getMeasureItems(buckets);
 
-        return getTreemapUiConfig(
-            allowsMultipleDates,
-            nonStackAttributes.length > 0,
-            measures.length > 1,
-        );
+        return getTreemapUiConfig(allowsMultipleDates, nonStackAttributes.length > 0, measures.length > 1);
     }
 
     public getExtendedReferencePoint(referencePoint: IReferencePoint): Promise<IExtendedReferencePoint> {
