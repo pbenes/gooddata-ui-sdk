@@ -4,3 +4,7 @@ sonar.sources=examples,libs,skel,tools
 # for example "Unexpected empty object pattern." bugs, are not bugs in this context
 # as we do not modify the code manually and therefore it is not confusing
 sonar.exclusions=**/generated/**
+
+gdc.sonar.prebuild=node ./common/scripts/install-run-rush.js install
+gdc.sonar.prebuild_img=12.20.0
+gdc.sonar.prebuild_docker_params=-e USERID=$(id -u $USER) -e NPM_AUTH_TOKEN
