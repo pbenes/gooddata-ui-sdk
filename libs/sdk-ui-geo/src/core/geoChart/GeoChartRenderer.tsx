@@ -55,7 +55,7 @@ export interface IGeoChartRendererProps extends WrappedComponentProps {
     onZoomChanged(zoom: number): void;
 }
 
-class GeoChartRenderer extends React.Component<IGeoChartRendererProps> {
+class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
     public static defaultProps: Pick<
         IGeoChartRendererProps,
         "config" | "afterRender" | "onZoomChanged" | "onCenterPositionChanged"
@@ -80,6 +80,9 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps> {
         mapboxgl.accessToken = props.config.mapboxToken;
         this.navigationControlButton = null;
         this.chartRef = null;
+        this.state = {
+            zoomNotification: false,
+        };
     }
 
     public componentDidUpdate(prevProps: IGeoChartRendererProps): void {
@@ -147,7 +150,29 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps> {
             interactive: !isViewportFrozen,
             preserveDrawingBuffer: isExportMode,
         });
+
+        this.chart.scrollZoom.disable();
     };
+
+    public renderZoomNotification() {
+        if (this.state.zoomNotification) {
+            return (
+                <div
+                    style={{
+                        top: "50%",
+                        left: 0,
+                        width: "100%",
+                        height: "20px",
+                        position: "absolute",
+                        background: "rgba(255,255,255,0.5)",
+                    }}
+                >
+                    Use ctrl to zoom map
+                </div>
+            );
+        }
+        return null;
+    }
 
     public render(): React.ReactNode {
         const {
@@ -158,7 +183,12 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps> {
             "s-isExportMode": isExportMode,
         });
 
-        return <div className={classNames} ref={this.setChartRef} />;
+        return (
+            <div className={classNames} style={{ height: "100%" }}>
+                <div style={{ width: "100%", height: "100%" }} ref={this.setChartRef} />;
+                {this.renderZoomNotification()}
+            </div>
+        );
     }
 
     private updateMapWithConfig = (prevConfig: IGeoConfig, prevColorStrategy: IColorStrategy): void => {
@@ -301,6 +331,27 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps> {
         chart.on("mouseleave", DEFAULT_LAYER_NAME, this.handlePushpinMouseLeave);
         chart.on("moveend", this.handlePushpinMoveEnd);
         chart.on("zoomend", this.handlePushpinZoomEnd);
+
+        chart.on("wheel", (event) => {
+            if (event.originalEvent.ctrlKey) {
+                // Check if CTRL key is pressed
+                event.originalEvent.preventDefault(); // Prevent chrome/firefox default behavior
+                if (!(chart.scrollZoom as any)._enabled) chart.scrollZoom.enable(); // Enable zoom only if it's disabled
+            } else {
+                if ((chart.scrollZoom as any)._enabled) {
+                    chart.scrollZoom.disable(); // Disable zoom only if it's enabled
+                } else {
+                    this.setState({
+                        zoomNotification: true,
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            zoomNotification: false,
+                        });
+                    }, 2000);
+                }
+            }
+        });
     };
 
     /*
