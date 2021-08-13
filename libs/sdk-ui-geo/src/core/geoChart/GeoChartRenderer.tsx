@@ -81,6 +81,7 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
         this.navigationControlButton = null;
         this.chartRef = null;
         this.state = {
+            panModeActivated: false,
             zoomNotification: false,
         };
     }
@@ -151,6 +152,12 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
             preserveDrawingBuffer: isExportMode,
         });
 
+        // TODO: disable dragpan on mobile
+        if (true) {
+            this.chart.dragPan.disable();
+            this.chart.doubleClickZoom.disable(); // double click activates panning
+        }
+
         this.chart.scrollZoom.disable();
     };
 
@@ -174,6 +181,38 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
         return null;
     }
 
+    public renderPanNotification() {
+        if (this.state.panModeActivated) {
+            return (
+                <div
+                    style={{
+                        bottom: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "30px",
+                        position: "absolute",
+                        background: "yellow",
+                    }}
+                    onClick={() => {
+                        this.setState(
+                            {
+                                panModeActivated: false,
+                            },
+                            () => {
+                                debugger;
+                                this.chart?.dragPan.disable();
+                                this.chart?.doubleClickZoom.disable();
+                            },
+                        );
+                    }}
+                >
+                    Exit pan mode
+                </div>
+            );
+        }
+        return null;
+    }
+
     public render(): React.ReactNode {
         const {
             config: { isExportMode = false },
@@ -187,6 +226,7 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
             <div className={classNames} style={{ height: "100%" }}>
                 <div style={{ width: "100%", height: "100%" }} ref={this.setChartRef} />;
                 {this.renderZoomNotification()}
+                {this.renderPanNotification()}
             </div>
         );
     }
@@ -331,6 +371,21 @@ class GeoChartRenderer extends React.Component<IGeoChartRendererProps, any> {
         chart.on("mouseleave", DEFAULT_LAYER_NAME, this.handlePushpinMouseLeave);
         chart.on("moveend", this.handlePushpinMoveEnd);
         chart.on("zoomend", this.handlePushpinZoomEnd);
+        chart.on("dblclick", (e) => {
+            if (true) {
+                // TODO: if on mobile only, activate map pan by doubleclick
+                e.originalEvent.preventDefault();
+                e.originalEvent.stopPropagation();
+                e.preventDefault();
+                chart.dragPan.enable();
+                setTimeout(() => {
+                    // why this does not work? tried to put in settimeout, but does not
+                    // now we are activated, we can allow dblclick zoom probably
+                    chart.doubleClickZoom.enable();
+                }, 100);
+                this.setState({ panModeActivated: true });
+            }
+        });
 
         chart.on("wheel", (event) => {
             if (event.originalEvent.ctrlKey) {
