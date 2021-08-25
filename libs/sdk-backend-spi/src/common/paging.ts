@@ -1,4 +1,4 @@
-// (C) 2019-2020 GoodData Corporation
+// (C) 2019-2021 GoodData Corporation
 
 /**
  * Interface to interact with paged asynchronous resources
@@ -17,4 +17,11 @@ export interface IPagedResource<TItem> {
      * @returns promise of a paged resource with the results of next page
      */
     next(): Promise<IPagedResource<TItem>>;
+
+    /**
+     * Request specific page of the resource
+     *
+     * @returns promise of a paged resource with the results of selected page
+     */
+    skip?(pageIndex: number): Promise<IPagedResource<TItem>>;
 }

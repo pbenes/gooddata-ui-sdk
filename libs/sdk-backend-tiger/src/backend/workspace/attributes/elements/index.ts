@@ -22,6 +22,7 @@ import {
 } from "@gooddata/sdk-model";
 import invariant from "ts-invariant";
 import { TigerAuthenticatedCallGuard } from "../../../../types";
+import { getRelativeDateFilterShiftedValyes } from "./date";
 
 export class TigerWorkspaceElements implements IElementsQueryFactory {
     constructor(private readonly authCall: TigerAuthenticatedCallGuard, public readonly workspace: string) {}
@@ -59,6 +60,10 @@ class TigerWorkspaceElementsQuery implements IElementsQuery {
     }
 
     public withAttributeFilters(): IElementsQuery {
+        throw new NotSupported("not supported");
+    }
+
+    public withDateFilters(): IElementsQuery {
         throw new NotSupported("not supported");
     }
 
@@ -177,7 +182,8 @@ class TigerWorkspaceFilterElementsQuery implements IFilterElementsQuery {
     }
 
     private async queryDateFilterElements(): Promise<IElementsQueryResult> {
-        // TODO INE replace by real implementation
+        const relativeDateFilters = getRelativeDateFilterShiftedValyes(this.filter as any);
+
         const emptyResult: IElementsQueryResult = {
             items: [],
             limit: 0,
@@ -186,12 +192,11 @@ class TigerWorkspaceFilterElementsQuery implements IFilterElementsQuery {
             next: () => Promise.resolve(emptyResult),
         };
 
-        return Promise.resolve({
-            items: [],
-            limit: 0,
-            offset: 0,
-            totalCount: 0,
-            next: () => Promise.resolve(emptyResult),
-        });
+        const items: IAttributeElement[] = relativeDateFilters.map((relativeDateFilter: string) => ({
+            title: relativeDateFilter,
+            uri: relativeDateFilter,
+        }));
+
+        return Promise.resolve(new InMemoryPaging<IAttributeElement>(items, this.limit, this.offset));
     }
 }

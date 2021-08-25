@@ -20,6 +20,7 @@ import {
     isAttributeElementsByRef,
     IAttributeElementsByValue,
     IAttributeElementsByRef,
+    isRelativeDateFilter,
 } from "@gooddata/sdk-model";
 import invariant from "ts-invariant";
 
@@ -36,8 +37,16 @@ export class BearWorkspaceElements implements IElementsQueryFactory {
         return new BearWorkspaceElementsQuery(this.authCall, ref, this.workspace);
     }
 
-    public forFilter(filter: IAttributeFilter | IRelativeDateFilter): IFilterElementsQuery {
-        return new BearWorkspaceFilterElementsQuery(this.authCall, filter, this.workspace);
+    public forFilter(
+        filter: IAttributeFilter | IRelativeDateFilter,
+        dateFilterDisplayForm: ObjRef,
+    ): IFilterElementsQuery {
+        return new BearWorkspaceFilterElementsQuery(
+            this.authCall,
+            filter,
+            dateFilterDisplayForm,
+            this.workspace,
+        );
     }
 }
 
@@ -46,6 +55,7 @@ class BearWorkspaceElementsQuery implements IElementsQuery {
     private offset: number = 0;
     private options: IElementsQueryOptions | undefined;
     private attributeFilters: IElementsQueryAttributeFilter[] | undefined;
+    private dateFilters: IRelativeDateFilter[] | undefined;
     private measures: IMeasure[] | undefined;
     // cached AFM used to apply attributeRef and attributeFilters to the element queries
     private limitingAfm: GdcExecuteAFM.IAfm | undefined;
@@ -77,6 +87,11 @@ class BearWorkspaceElementsQuery implements IElementsQuery {
         return this;
     }
 
+    public withDateFilters(filters: IRelativeDateFilter[]): IElementsQuery {
+        this.dateFilters = filters;
+        return this;
+    }
+
     public withMeasures(measures: IMeasure[]): IElementsQuery {
         this.measures = measures.length > 0 ? measures : undefined;
         return this;
@@ -89,8 +104,11 @@ class BearWorkspaceElementsQuery implements IElementsQuery {
 
     public async query(): Promise<IElementsQueryResult> {
         const limitingAfmFactory = new LimitingAfmFactory(this.authCall, this.displayFormRef, this.workspace);
-
-        this.limitingAfm = await limitingAfmFactory.getAfm(this.attributeFilters, this.measures);
+        this.limitingAfm = await limitingAfmFactory.getAfm(
+            this.attributeFilters,
+            this.measures,
+            this.dateFilters,
+        );
 
         return this.queryWorker(this.offset, this.limit, this.options);
     }
@@ -138,6 +156,7 @@ class BearWorkspaceElementsQuery implements IElementsQuery {
             next: hasNextPage
                 ? () => this.queryWorker(offset + count, limit, options)
                 : () => Promise.resolve(emptyResult),
+            skip: (pageIndex) => this.queryWorker(pageIndex * count, limit, options),
         };
     }
 }
@@ -150,9 +169,15 @@ class BearWorkspaceFilterElementsQuery implements IFilterElementsQuery {
     constructor(
         private readonly authCall: BearAuthenticatedCallGuard,
         private filter: FilterWithResolvableElements,
+        dateDf: ObjRef | undefined,
         private readonly workspace: string,
     ) {
-        const ref = filterObjRef(filter);
+        
+        let ref = filterObjRef(filter);
+        if (isRelativeDateFilter(filter)) {
+            invariant(dateDf, "Date filter's display form needs to be defined");
+            ref = dateDf;
+        }
         this.elementsQuery = new BearWorkspaceElementsQuery(this.authCall, ref, this.workspace);
     }
 
@@ -176,10 +201,9 @@ class BearWorkspaceFilterElementsQuery implements IFilterElementsQuery {
             }
             return this.resultForElementsByValue(selectedElements);
         } else {
-            console.log("relativeDateFilter"); // eslint-disable-line no-console
             return (
-                this.elementsQuery
-                    // TODO add date filter into the request via new elementsQuery method
+                this.elementsQuery.
+                withDateFilters([this.filter])
                     .query()
             );
         }

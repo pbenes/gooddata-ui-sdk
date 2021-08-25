@@ -708,6 +708,7 @@ export interface IDrillToLegacyDashboard extends IDrill {
 export interface IElementsQuery {
     query(): Promise<IElementsQueryResult>;
     withAttributeFilters(filters: IElementsQueryAttributeFilter[]): IElementsQuery;
+    withDateFilters(filters: IRelativeDateFilter[]): IElementsQuery;
     withLimit(limit: number): IElementsQuery;
     withMeasures(measures: IMeasure[]): IElementsQuery;
     withOffset(offset: number): IElementsQuery;
@@ -725,7 +726,7 @@ export interface IElementsQueryAttributeFilter {
 // @public
 export interface IElementsQueryFactory {
     forDisplayForm(ref: ObjRef): IElementsQuery;
-    forFilter(filter: FilterWithResolvableElements): IFilterElementsQuery;
+    forFilter(filter: FilterWithResolvableElements, dateFilterDisplayForm?: ObjRef): IFilterElementsQuery;
 }
 
 // @public
@@ -1036,6 +1037,7 @@ export interface IPagedResource<TItem> {
     next(): Promise<IPagedResource<TItem>>;
     // (undocumented)
     readonly offset: number;
+    skip?(pageIndex: number): Promise<IPagedResource<TItem>>;
     // (undocumented)
     readonly totalCount: number;
 }
@@ -1259,6 +1261,7 @@ export interface ISettings {
     enableDataSampling?: boolean;
     enableDrilledInsightExport?: boolean;
     enableEmbedButtonInKD?: boolean;
+    enableFilterValuesResolution?: boolean;
     enableHidingOfDataPoints?: boolean;
     enableKDWidgetCustomHeight?: boolean;
     enableKDZooming?: boolean;

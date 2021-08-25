@@ -595,6 +595,8 @@ export class InMemoryPaging<T> implements IPagedResource<T> {
     // (undocumented)
     readonly offset: number;
     // (undocumented)
+    skip(pageIndex: number): Promise<IPagedResource<T>>;
+    // (undocumented)
     readonly totalCount: number;
 }
 

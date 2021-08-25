@@ -142,6 +142,12 @@ export interface ISettings {
     enableKPIDashboardDrillToURL?: boolean;
 
     /**
+     * TODO: for development purposes, once feature is done remove.
+     * Indicates whether the drill to URL has filter context transfer enabled.
+     */
+    enableFilterValuesResolution?: boolean;
+
+    /**
      * Indicates whether the drilled insight can be exported.
      */
     enableDrilledInsightExport?: boolean;
