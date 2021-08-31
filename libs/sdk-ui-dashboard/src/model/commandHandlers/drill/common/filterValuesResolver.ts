@@ -96,11 +96,14 @@ async function resolveRelativeDateFilterValues(
             .catalog()
             .forDataset(filter.relativeDateFilter.dataSet)
             .load();
-        const dateDataSetAttributes = dataSet.dateDatasets()[0].dateAttributes;
-        const foundDayAttribute = dateDataSetAttributes.find(
-            (dateDataSetAttr) => dateDataSetAttr.granularity === "GDC.time.date",
-        );
-        foundDayDisplayForm = foundDayAttribute && foundDayAttribute.defaultDisplayForm;
+
+        if (dataSet.dateDatasets) {
+            const dateDataSetAttributes = dataSet.dateDatasets()[0].dateAttributes;
+            const foundDayAttribute = dateDataSetAttributes.find(
+                (dateDataSetAttr) => dateDataSetAttr.granularity === "GDC.time.date",
+            );
+            foundDayDisplayForm = foundDayAttribute && foundDayAttribute.defaultDisplayForm;
+        }
     }
 
     const attributesService = backend.workspace(workspace).attributes();

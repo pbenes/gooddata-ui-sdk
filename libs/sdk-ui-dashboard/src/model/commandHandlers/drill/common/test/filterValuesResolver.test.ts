@@ -3,13 +3,20 @@ import { ReferenceLdm, ReferenceRecordings } from "@gooddata/reference-workspace
 import {
     attributeDisplayFormRef,
     IAbsoluteDateFilter,
+    IRelativeDateFilter,
     IPositiveAttributeFilter,
     newAbsoluteDateFilter,
     newPositiveAttributeFilter,
     uriRef,
 } from "@gooddata/sdk-model";
-import { recordedBackend } from "@gooddata/sdk-backend-mockingbird";
+import { recordedBackend, dummyBackend } from "@gooddata/sdk-backend-mockingbird";
 import { resolveFilterValues } from "../filterValuesResolver";
+import { decoratedBackend } from "@gooddata/sdk-backend-base";
+import {
+    IAnalyticalBackend,
+    IWorkspaceAttributesService,
+    IElementsQueryFactory,
+} from "@gooddata/sdk-backend-spi";
 
 describe("resolveFilterValues", () => {
     it("should return resolved absolute date limits", async () => {
@@ -58,6 +65,48 @@ describe("resolveFilterValues", () => {
         });
 
         const result = await resolveFilterValues([attributeFilter1, attributeFilter2], backend, workspace);
+        expect(result).toMatchSnapshot();
+    });
+
+    it("should resolve relative date filter", async () => {
+        const workspace = "referenceworkspace";
+        const dummy: IAnalyticalBackend = dummyBackend();
+        const elementsQueryFactory = {
+            forFilter: () => ({
+                query: () => ({
+                    limit: 50,
+                    offset: 0,
+                    totalCount: 4,
+                    items: [
+                        { title: "2021-08-01" },
+                        { title: "2021-08-02" },
+                        { title: "2021-08-03" },
+                        { title: "2021-08-04" },
+                    ],
+                }),
+            }),
+        } as unknown as IElementsQueryFactory;
+
+        const attributesDecorator = {
+            elements: () => elementsQueryFactory,
+        } as IWorkspaceAttributesService;
+
+        const dateFilter: IRelativeDateFilter = {
+            relativeDateFilter: {
+                dataSet: {
+                    identifier: "date.created",
+                },
+                granularity: "GDC.time.date",
+                from: -5,
+                to: -1,
+            },
+        };
+
+        const backend = decoratedBackend(dummy, {
+            attributes: () => attributesDecorator,
+        });
+
+        const result = await resolveFilterValues([dateFilter], backend, workspace);
         expect(result).toMatchSnapshot();
     });
 });
