@@ -13,8 +13,7 @@ import {
     newPositiveAttributeFilter,
     ObjRef,
 } from "@gooddata/sdk-model";
-import { NoData } from "@gooddata/sdk-ui-kit";
-import Dropdown from "@gooddata/goodstrap/lib/Dropdown/Dropdown";
+import { NoData, Dropdown } from "@gooddata/sdk-ui-kit";
 import {
     AttributeDropdownBody,
     IAttributeDropdownBodyExtendedProps,
@@ -305,7 +304,6 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         });
     }, [currentFilter]);
 
-    const dropdownRef = useRef<Dropdown>(null);
     const resolvedParentFilters = useResolveValueWithPlaceholders(props.parentFilters);
 
     // this cancelable promise loads missing page of data if needed and in the onSuccess callback
@@ -605,7 +603,7 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         }));
     };
 
-    const onApply = () => {
+    const onApply = (closeDropdown: () => void) => {
         backupIsInverted();
         const filter = createFilter(currentFilter);
 
@@ -637,23 +635,9 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         }
     };
 
-    const onCloseButtonClicked = () => {
-        closeDropdown();
-    };
-
-    const onApplyButtonClicked = () => {
-        onApply();
-    };
-
     /**
      * utilities
      */
-    const closeDropdown = () => {
-        if (dropdownRef.current) {
-            dropdownRef.current.closeDropdown();
-        }
-    };
-
     const onDropdownClosed = () => {
         setState((s) => {
             return {
@@ -691,14 +675,16 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         !isElementsLoading() &&
         originalTotalCount === 0;
 
-    function renderDefaultBody(bodyProps: IAttributeDropdownBodyExtendedProps) {
+    function renderDefaultBody(bodyProps: IAttributeDropdownBodyExtendedProps, closeDropdown: () => void) {
         return isAllFiltered ? (
             <MediaQuery query={MediaQueries.IS_MOBILE_DEVICE}>
                 {(isMobile) => (
                     <AttributeDropdownAllFilteredOutBody
                         parentFilterTitles={parentFilterTitles}
-                        onApplyButtonClick={onApplyButtonClicked}
-                        onCancelButtonClick={onCloseButtonClicked}
+                        onApplyButtonClick={() => {
+                            onApply(closeDropdown);
+                        }}
+                        onCancelButtonClick={closeDropdown}
                         isMobile={isMobile}
                     />
                 )}
@@ -714,8 +700,6 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         const bodyProps: IAttributeDropdownBodyProps = {
             items: state.validOptions?.items ?? [],
             totalCount: totalCount ?? LIMIT,
-            onApplyButtonClicked,
-            onCloseButtonClicked,
             onSelect,
             onRangeChange,
             onSearch,
@@ -746,7 +730,7 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                     { align: "tr tl", offset: { x: 0, y: -100 } },
                     { align: "tr tl", offset: { x: 0, y: -50 } },
                 ]}
-                button={
+                renderButton={() => (
                     <MediaQuery query={MediaQueries.IS_MOBILE_DEVICE}>
                         {(isMobile) => (
                             <DropdownButton
@@ -763,10 +747,9 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                             />
                         )}
                     </MediaQuery>
-                }
-                ref={dropdownRef}
+                )}
                 onOpenStateChanged={onDropdownOpenStateChanged}
-                body={
+                renderBody={({ closeDropdown }) =>
                     props.renderBody
                         ? props.renderBody({
                               ...bodyProps,
@@ -775,7 +758,7 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                               onConfigurationChange: () => {},
                               attributeFilterRef: null,
                           })
-                        : renderDefaultBody(bodyProps)
+                        : renderDefaultBody(bodyProps, closeDropdown)
                 }
             />
         );

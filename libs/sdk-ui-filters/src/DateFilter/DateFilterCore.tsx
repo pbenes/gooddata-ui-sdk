@@ -2,7 +2,7 @@
 import React, { useMemo } from "react";
 import flow from "lodash/flow";
 import { DateFilterGranularity } from "@gooddata/sdk-backend-spi";
-import Dropdown from "@gooddata/goodstrap/lib/Dropdown/Dropdown";
+import { Dropdown } from "@gooddata/sdk-ui-kit";
 import MediaQuery from "react-responsive";
 import { IExtendedDateFilterErrors, IDateFilterOptionsByType, DateFilterOption } from "./interfaces";
 import { IntlWrapper } from "@gooddata/sdk-ui";
@@ -94,6 +94,7 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                 {(isMobile) => {
                     const dateFilterButton = (
                         <DateFilterButtonLocalized
+                            disabled={disabled}
                             isMobile={isMobile}
                             dateFilterOption={applyExcludeCurrentPeriod(
                                 originalSelectedFilterOption,
@@ -117,15 +118,15 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                                 { align: "tr tl", offset: { x: 0, y: -50 } },
                             ]}
                             onOpenStateChanged={onDropdownOpenChanged}
-                            disabled={disabled}
                             // Dropdown component passes "isOpen" prop automatically to the component in "button" prop
                             // In Mobile case this is also rendered in the open dropdown
-                            button={dateFilterButton}
-                            ignoreClicksOn={[
-                                ".s-do-not-close-dropdown-on-click",
-                                ".DayPicker-Day", // absolute range picker calendar items
-                            ]}
-                            body={
+                            renderButton={() => dateFilterButton}
+                            // TODO: what is this?
+                            //                            ignoreClicksOn={[
+                            //                                ".s-do-not-close-dropdown-on-click",
+                            //                                ".DayPicker-Day", // absolute range picker calendar items
+                            //                            ]}
+                            renderBody={() => (
                                 // Dropdown component uses React.Children.map and adds special props to this component
                                 // https://stackoverflow.com/questions/32370994/how-to-pass-props-to-this-props-children
                                 <DropdownBody>
@@ -140,7 +141,7 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                                         />
                                     )}
                                 </DropdownBody>
-                            }
+                            )}
                         />
                     );
                 }}
