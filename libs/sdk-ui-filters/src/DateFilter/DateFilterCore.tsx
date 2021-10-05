@@ -47,16 +47,16 @@ export interface IDateFilterCoreProps {
     errors?: IExtendedDateFilterErrors;
 }
 
-const DropdownBody: React.FC<{
-    isMobile?: boolean;
-    closeDropdown?: () => void;
-    children: (props: { isMobile: boolean; closeDropdown: () => void }) => React.ReactElement<any>;
-}> = (props) => {
-    return props.children({
-        isMobile: props.isMobile,
-        closeDropdown: props.closeDropdown,
-    });
-};
+//const DropdownBody: React.FC<{
+//    isMobile?: boolean;
+//    closeDropdown?: () => void;
+//    children: (props: { isMobile: boolean; closeDropdown: () => void }) => React.ReactElement<any>;
+//}> = (props) => {
+//    return props.children({
+//        isMobile: props.isMobile,
+//        closeDropdown: props.closeDropdown,
+//    });
+//};
 
 export const verifyDateFormat = (dateFormat: string): string => {
     try {
@@ -120,27 +120,25 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                             onOpenStateChanged={onDropdownOpenChanged}
                             // Dropdown component passes "isOpen" prop automatically to the component in "button" prop
                             // In Mobile case this is also rendered in the open dropdown
-                            renderButton={() => dateFilterButton}
+                            renderButton={({ toggleDropdown }) => (
+                                <span onClick={toggleDropdown}>{dateFilterButton}</span>
+                            )}
                             // TODO: what is this?
                             //                            ignoreClicksOn={[
                             //                                ".s-do-not-close-dropdown-on-click",
                             //                                ".DayPicker-Day", // absolute range picker calendar items
                             //                            ]}
-                            renderBody={() => (
+                            renderBody={({ closeDropdown }) => (
                                 // Dropdown component uses React.Children.map and adds special props to this component
                                 // https://stackoverflow.com/questions/32370994/how-to-pass-props-to-this-props-children
-                                <DropdownBody>
-                                    {({ closeDropdown }) => (
-                                        <DateFilterBody
-                                            {...dropdownBodyProps}
-                                            filterOptions={filteredFilterOptions}
-                                            isMobile={isMobile}
-                                            closeDropdown={closeDropdown}
-                                            dateFilterButton={dateFilterButton}
-                                            dateFormat={verifiedDateFormat}
-                                        />
-                                    )}
-                                </DropdownBody>
+                                <DateFilterBody
+                                    {...dropdownBodyProps}
+                                    filterOptions={filteredFilterOptions}
+                                    isMobile={isMobile}
+                                    closeDropdown={closeDropdown}
+                                    dateFilterButton={dateFilterButton}
+                                    dateFormat={verifiedDateFormat}
+                                />
                             )}
                         />
                     );

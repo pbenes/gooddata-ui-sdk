@@ -730,21 +730,23 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                     { align: "tr tl", offset: { x: 0, y: -100 } },
                     { align: "tr tl", offset: { x: 0, y: -50 } },
                 ]}
-                renderButton={() => (
+                renderButton={({ toggleDropdown }) => (
                     <MediaQuery query={MediaQueries.IS_MOBILE_DEVICE}>
                         {(isMobile) => (
-                            <DropdownButton
-                                isOpen={state.isDropdownOpen}
-                                isMobile={isMobile}
-                                title={
-                                    props.title ||
-                                    (attributeStatus !== "loading" && attributeStatus !== "pending")
-                                        ? attribute.title
-                                        : getLoadingTitleIntl(props.intl)
-                                }
-                                subtitleText={getSubtitle()}
-                                subtitleItemCount={state.selectedFilterOptions.length}
-                            />
+                            <span onClick={toggleDropdown}>
+                                <DropdownButton
+                                    isOpen={state.isDropdownOpen}
+                                    isMobile={isMobile}
+                                    title={
+                                        props.title ||
+                                        (attributeStatus !== "loading" && attributeStatus !== "pending")
+                                            ? attribute.title
+                                            : getLoadingTitleIntl(props.intl)
+                                    }
+                                    subtitleText={getSubtitle()}
+                                    subtitleItemCount={state.selectedFilterOptions.length}
+                                />
+                            </span>
                         )}
                     </MediaQuery>
                 )}
@@ -753,6 +755,12 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                     props.renderBody
                         ? props.renderBody({
                               ...bodyProps,
+                              onApplyButtonClicked: () => {
+                                  onApply(closeDropdown);
+                              },
+                              onCloseButtonClicked: () => {
+                                  closeDropdown();
+                              },
                               isElementsLoading: !state.validOptions?.items && isElementsLoading(),
                               isLoaded: !isOriginalTotalCountLoading(),
                               onConfigurationChange: () => {},
