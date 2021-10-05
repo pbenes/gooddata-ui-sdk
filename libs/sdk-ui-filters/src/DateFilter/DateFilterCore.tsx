@@ -92,10 +92,11 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
         <IntlWrapper locale={locale || "en-US"}>
             <MediaQuery query={MediaQueries.IS_MOBILE_DEVICE}>
                 {(isMobile) => {
-                    const dateFilterButton = (
+                    const dateFilterButton = (isOpen: boolean = false) => (
                         <DateFilterButtonLocalized
                             disabled={disabled}
                             isMobile={isMobile}
+                            isOpen={isOpen}
                             dateFilterOption={applyExcludeCurrentPeriod(
                                 originalSelectedFilterOption,
                                 originalExcludeCurrentPeriod,
@@ -118,10 +119,10 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                                 { align: "tr tl", offset: { x: 0, y: -50 } },
                             ]}
                             onOpenStateChanged={onDropdownOpenChanged}
-                            // Dropdown component passes "isOpen" prop automatically to the component in "button" prop
-                            // In Mobile case this is also rendered in the open dropdown
-                            renderButton={({ toggleDropdown }) => (
-                                <span onClick={disabled ? () => {} : toggleDropdown}>{dateFilterButton}</span>
+                            renderButton={({ isOpen, toggleDropdown }) => (
+                                <span onClick={disabled ? () => {} : toggleDropdown}>
+                                    {dateFilterButton(isOpen)}
+                                </span>
                             )}
                             // TODO: what is this?
                             //                            ignoreClicksOn={[
@@ -136,7 +137,7 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                                     filterOptions={filteredFilterOptions}
                                     isMobile={isMobile}
                                     closeDropdown={closeDropdown}
-                                    dateFilterButton={dateFilterButton}
+                                    dateFilterButton={dateFilterButton()}
                                     dateFormat={verifiedDateFormat}
                                 />
                             )}
