@@ -121,7 +121,7 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                             // Dropdown component passes "isOpen" prop automatically to the component in "button" prop
                             // In Mobile case this is also rendered in the open dropdown
                             renderButton={({ toggleDropdown }) => (
-                                <span onClick={toggleDropdown}>{dateFilterButton}</span>
+                                <span onClick={disabled ? () => {} : toggleDropdown}>{dateFilterButton}</span>
                             )}
                             // TODO: what is this?
                             //                            ignoreClicksOn={[
