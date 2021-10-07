@@ -970,6 +970,8 @@ export interface IDropdownListProps<T> extends IListProps<T> {
     // (undocumented)
     renderNoData?: (props: IDropdownListNoDataRenderProps) => React_2.ReactNode;
     // (undocumented)
+    scrollToSelected?: boolean;
+    // (undocumented)
     searchFieldSize?: "small" | "normal";
     // (undocumented)
     searchPlaceholder?: string;
@@ -1770,7 +1772,15 @@ export interface IListProps<T> {
     // (undocumented)
     renderItem: (props: IRenderItemProps<T>) => React_2.ReactNode;
     // (undocumented)
+    scrollToSelected?: boolean;
+    // (undocumented)
     width?: number;
+}
+
+// @internal (undocumented)
+export interface IListStateProps {
+    // (undocumented)
+    selected: number;
 }
 
 // @internal (undocumented)
@@ -2677,12 +2687,18 @@ export class LegacySingleSelectListItem extends Component<ILegacySingleSelectLis
 }
 
 // @internal (undocumented)
-export class List<T> extends Component<IListProps<T>> {
+export class List<T> extends Component<IListProps<T>, IListStateProps> {
+    constructor(props: ListProps<T>);
+    // (undocumented)
+    componentDidMount(): void;
     // (undocumented)
     componentWillUnmount(): void;
     // (undocumented)
     render(): JSX.Element;
 }
+
+// @internal (undocumented)
+export type ListProps<T> = IListProps<T> & IListStateProps;
 
 // @internal (undocumented)
 export const LOADING_HEIGHT = 100;
