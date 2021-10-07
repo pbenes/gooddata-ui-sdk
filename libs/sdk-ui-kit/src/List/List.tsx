@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Table, Column, Cell } from "fixed-data-table-2";
 import cx from "classnames";
+import memoize from "lodash/memoize";
 
 const preventDefault = (e: Event) => e.preventDefault();
 
@@ -23,13 +24,6 @@ export interface IRenderItemProps<T> {
  * @internal
  */
 export type ScrollCallback = (visibleRowsStartIndex: number, visibleRowsEndIndex: number) => void;
-
-/**
- * @internal
- */
-export interface IListStateProps {
-    selected: number;
-}
 
 /**
  * @internal
@@ -63,39 +57,16 @@ const HALF_ROW = 0.5;
 /**
  * @internal
  */
-export type ListProps<T> = IListProps<T> & IListStateProps;
 
 /**
  * @internal
  */
-export class List<T> extends Component<IListProps<T>, IListStateProps> {
-    constructor(props: ListProps<T>) {
-        super(props);
-
-        this.state = {
-            selected: null,
-        };
-    }
-
+export class List<T> extends Component<IListProps<T>> {
     public componentWillUnmount(): void {
         this.enablePageScrolling();
     }
 
-    public componentDidMount() {
-        const { scrollToSelected, items } = this.props;
-
-        if (scrollToSelected) {
-            items.forEach((item: any, index) => {
-                if (item && item.selected) {
-                    this.setState({ selected: index + 1 });
-                }
-            });
-        }
-    }
-
     public render(): JSX.Element {
-        const { selected } = this.state;
-
         const {
             className = "",
 
@@ -133,6 +104,12 @@ export class List<T> extends Component<IListProps<T>, IListStateProps> {
             return [rowIndex, rowIndex + visibleRange];
         };
 
+        const getItemIndex = memoize((items) => {
+            const rowIndex = items.findIndex((item: any) => item && item.selected);
+
+            return rowIndex + 1;
+        });
+
         return (
             <div
                 className={classNames}
@@ -160,7 +137,7 @@ export class List<T> extends Component<IListProps<T>, IListStateProps> {
                         }
                     }}
                     touchScrollEnabled={isTouchDevice()}
-                    scrollToRow={selected}
+                    scrollToRow={getItemIndex}
                 >
                     <Column
                         flexGrow={1}
