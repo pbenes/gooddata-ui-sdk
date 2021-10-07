@@ -84,6 +84,8 @@ export class List<T> extends Component<IListProps<T>> {
 
             onScrollStart,
             onScrollEnd,
+
+            scrollToSelected,
         } = this.props;
 
         const currentItemsCount =
@@ -137,7 +139,7 @@ export class List<T> extends Component<IListProps<T>> {
                         }
                     }}
                     touchScrollEnabled={isTouchDevice()}
-                    scrollToRow={getItemIndex}
+                    scrollToRow={scrollToSelected && getItemIndex(items)}
                 >
                     <Column
                         flexGrow={1}
