@@ -57,10 +57,6 @@ const HALF_ROW = 0.5;
 /**
  * @internal
  */
-
-/**
- * @internal
- */
 export class List<T> extends Component<IListProps<T>> {
     public componentWillUnmount(): void {
         this.enablePageScrolling();

@@ -675,7 +675,7 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
         !isElementsLoading() &&
         originalTotalCount === 0;
 
-    function renderDefaultBody(bodyProps: IAttributeDropdownBodyExtendedProps, closeDropdown: () => void) {
+    function renderDefaultBody(bodyProps: IAttributeDropdownBodyProps, closeDropdown: () => void) {
         return isAllFiltered ? (
             <MediaQuery query={MediaQueries.IS_MOBILE_DEVICE}>
                 {(isMobile) => (
@@ -697,7 +697,13 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
     }
 
     const renderAttributeDropdown = () => {
-        const bodyProps: IAttributeDropdownBodyProps = {
+        const getDropdownBodyProps: (
+            onApplyButtonClicked: () => void,
+            onCloseButtonClicked: () => void,
+        ) => IAttributeDropdownBodyProps = (
+            onApplyButtonClicked: () => void,
+            onCloseButtonClicked: () => void,
+        ) => ({
             items: state.validOptions?.items ?? [],
             totalCount: totalCount ?? LIMIT,
             onSelect,
@@ -715,7 +721,9 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
             applyDisabled: getNumberOfSelectedItems() === 0,
             showItemsFilteredMessage: showItemsFilteredMessage(isElementsLoading(), resolvedParentFilters),
             parentFilterTitles,
-        };
+            onApplyButtonClicked,
+            onCloseButtonClicked,
+        });
 
         return (
             <Dropdown
@@ -754,19 +762,30 @@ export const AttributeFilterButtonCore: React.FC<IAttributeFilterButtonProps> = 
                 renderBody={({ closeDropdown }) =>
                     props.renderBody
                         ? props.renderBody({
-                              ...bodyProps,
-                              onApplyButtonClicked: () => {
-                                  onApply(closeDropdown);
-                              },
-                              onCloseButtonClicked: () => {
-                                  closeDropdown();
-                              },
+                              ...getDropdownBodyProps(
+                                  () => {
+                                      onApply(closeDropdown);
+                                  },
+                                  () => {
+                                      closeDropdown();
+                                  },
+                              ),
                               isElementsLoading: !state.validOptions?.items && isElementsLoading(),
                               isLoaded: !isOriginalTotalCountLoading(),
                               onConfigurationChange: () => {},
                               attributeFilterRef: null,
                           })
-                        : renderDefaultBody(bodyProps, closeDropdown)
+                        : renderDefaultBody(
+                              getDropdownBodyProps(
+                                  () => {
+                                      onApply(closeDropdown);
+                                  },
+                                  () => {
+                                      closeDropdown();
+                                  },
+                              ),
+                              closeDropdown,
+                          )
                 }
             />
         );
