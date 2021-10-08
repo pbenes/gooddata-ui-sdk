@@ -61,8 +61,6 @@ class ColoredItemsList extends React.PureComponent<IColoredItemsListProps, IColo
                     items={items}
                     className="gd-colored-items-list"
                     maxVisibleItemsCount={VISIBLE_ITEMS_COUNT}
-                    // TODO: Do we need to update DropdownList with disabled property?
-                    // disabled={this.props.disabled}
                     isLoading={this.props.isLoading}
                     renderItem={({ item }) => (
                         <ColoredItem
