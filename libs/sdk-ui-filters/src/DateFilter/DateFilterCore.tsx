@@ -124,11 +124,10 @@ export const DateFilterCore: React.FC<IDateFilterCoreProps> = ({
                                     {dateFilterButton(isOpen)}
                                 </span>
                             )}
-                            // TODO: what is this?
-                            //                            ignoreClicksOn={[
-                            //                                ".s-do-not-close-dropdown-on-click",
-                            //                                ".DayPicker-Day", // absolute range picker calendar items
-                            //                            ]}
+                            ignoreClicksOnByClass={[
+                                ".s-do-not-close-dropdown-on-click",
+                                ".DayPicker-Day", // absolute range picker calendar items
+                            ]}
                             renderBody={({ closeDropdown }) => (
                                 // Dropdown component uses React.Children.map and adds special props to this component
                                 // https://stackoverflow.com/questions/32370994/how-to-pass-props-to-this-props-children
