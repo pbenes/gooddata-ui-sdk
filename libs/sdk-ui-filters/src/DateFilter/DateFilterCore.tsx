@@ -47,17 +47,6 @@ export interface IDateFilterCoreProps {
     errors?: IExtendedDateFilterErrors;
 }
 
-//const DropdownBody: React.FC<{
-//    isMobile?: boolean;
-//    closeDropdown?: () => void;
-//    children: (props: { isMobile: boolean; closeDropdown: () => void }) => React.ReactElement<any>;
-//}> = (props) => {
-//    return props.children({
-//        isMobile: props.isMobile,
-//        closeDropdown: props.closeDropdown,
-//    });
-//};
-
 export const verifyDateFormat = (dateFormat: string): string => {
     try {
         // Try to format the current date to verify if dateFormat is a valid format.
