@@ -186,6 +186,7 @@ export function getYAxisConfiguration(
         yAxis = [yAxis];
     }
     const { stackMeasuresToPercent = false } = chartConfig;
+    console.log("stl", "baf");
 
     // only support column char
     // bar chart disables stack labels by default
@@ -199,13 +200,14 @@ export function getYAxisConfiguration(
     // enable by default or follow dataLabels.visible config
     const stackLabelConfig = isNil(dataLabelEnabled) || dataLabelEnabled;
 
+    console.log("stl", stackLabelConfig);
     const yAxisWithStackLabel = yAxis.map((axis: IHighChartAxis, index: number) => {
         // disable stack labels for primary Y axis when there is 'Stack to 100%' on
         const stackLabelEnabled = (index !== 0 || !stackMeasuresToPercent) && stackLabelConfig;
         return {
             ...axis,
             stackLabels: {
-                enabled: stackLabelEnabled,
+                enabled: false && stackLabelEnabled,
             },
         };
     });

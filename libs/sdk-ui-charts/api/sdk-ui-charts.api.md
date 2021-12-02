@@ -207,6 +207,7 @@ export interface IChartConfig {
     stackMeasuresToPercent?: boolean;
     // @internal (undocumented)
     tooltip?: ITooltipConfig;
+    totalLabels?: IDataLabelsConfig;
     // @internal (undocumented)
     type?: VisType;
     xaxis?: IAxisConfig;

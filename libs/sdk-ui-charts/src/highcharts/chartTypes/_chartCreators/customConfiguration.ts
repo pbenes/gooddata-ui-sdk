@@ -690,8 +690,9 @@ function getStackingConfiguration(
     let labelsConfig = {};
 
     if (isColumnChart(type)) {
-        const labelsVisible = chartConfig?.dataLabels?.visible;
-        labelsConfig = getLabelsVisibilityConfig(labelsVisible);
+        const totalLabelsVisible =
+            chartConfig?.totalLabels?.visible !== undefined ? chartConfig?.totalLabels?.visible : "auto";
+        labelsConfig = getLabelsVisibilityConfig(totalLabelsVisible);
     }
 
     const yAxis = yAxes.map(() => ({
@@ -701,6 +702,8 @@ function getStackingConfiguration(
         },
     }));
 
+    console.log("axis", yAxis);
+    debugger;
     let connectNulls = {};
     if (stacking && isAreaChart(type)) {
         connectNulls = {
@@ -1311,5 +1314,6 @@ export function getCustomizedConfiguration(
         return merge(config, configurator(chartOptions, config, chartConfig, drillConfig, intl, theme));
     }, {});
 
+    console.log("cdc", commonData);
     return merge({}, commonData);
 }
