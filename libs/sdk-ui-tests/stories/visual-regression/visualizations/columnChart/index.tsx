@@ -37,6 +37,9 @@ const ColumnChartWithHierarchicalLabelsTest = (config: Partial<IColumnChartProps
                     responsive: "autoPositionWithPopup",
                 },
                 enableCompactSize: true,
+                totalLabels: {
+                    visible: false,
+                },
             }}
             {...config}
         />

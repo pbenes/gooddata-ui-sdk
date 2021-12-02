@@ -106,6 +106,11 @@ export interface IChartConfig {
     dataLabels?: IDataLabelsConfig;
 
     /**
+     * Customize visibility of the total data labels on certain chart types (column)
+     */
+    totalLabels?: IDataLabelsConfig;
+
+    /**
      * Customize visibility of the data points. Data points mark non-extrapolated data in "continuous" charts like line chart, area chart and combo chart made up of these two.
      * and
      */

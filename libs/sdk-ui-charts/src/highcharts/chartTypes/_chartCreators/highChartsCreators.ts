@@ -58,6 +58,7 @@ export function getHighchartsOptions(
         getConfigurationByType,
         `visualisation type ${chartOptions.type} is invalid (valid types: ${stringifyChartTypes()}).`,
     );
+    debugger;
     return merge(
         {},
         getCommonConfiguration(chartOptions, drillConfig, theme),

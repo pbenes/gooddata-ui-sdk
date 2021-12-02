@@ -36,7 +36,7 @@ export default scenariosFor<IColumnChartProps>("ColumnChart", ColumnChart)
             },
         },
     })
-    .addScenario("Stack measures to 100% with and axis min/max", {
+    .addScenario("xxyyzzaa Stack measures to 100% with and axis min/max", {
         ...ColumnChartWithTwoMeasuresAndTwoViewBy,
         config: {
             stackMeasuresToPercent: true,
