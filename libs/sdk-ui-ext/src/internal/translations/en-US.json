@@ -521,6 +521,11 @@
         "comment": "",
         "limit": 0
     },
+    "properties.canvas.totalLabels": {
+        "value": "Total Labels",
+        "comment": "",
+        "limit": 0
+    },
     "properties.canvas.dataLabels": {
         "value": "Data Labels",
         "comment": "",

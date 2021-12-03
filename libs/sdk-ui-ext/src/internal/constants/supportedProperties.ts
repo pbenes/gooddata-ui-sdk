@@ -64,17 +64,23 @@ export const AREA_CHART_SUPPORTED_PROPERTIES = [
 ];
 
 export const COLUMN_CHART_SUPPORTED_PROPERTIES = {
-    [AXIS.PRIMARY]: [...BASE_CHART_SUPPORTED_PROPERTIES, ...OPTIONAL_STACKING_PROPERTIES],
+    [AXIS.PRIMARY]: [
+        ...BASE_CHART_SUPPORTED_PROPERTIES,
+        ...OPTIONAL_STACKING_PROPERTIES,
+        "totalLabels.visible",
+    ],
     [AXIS.SECONDARY]: [
         ...BASE_PROPERTIES,
         ...BASE_X_AXIS_PROPERTIES,
         ...BASE_SECONDARY_AXIS_PROPERTIES,
         ...OPTIONAL_STACKING_PROPERTIES,
+        "totalLabels.visible",
     ],
     [AXIS.DUAL]: [
         ...BASE_CHART_SUPPORTED_PROPERTIES,
         ...BASE_SECONDARY_AXIS_PROPERTIES,
         ...OPTIONAL_STACKING_PROPERTIES,
+        "totalLabels.visible",
     ],
 };
 

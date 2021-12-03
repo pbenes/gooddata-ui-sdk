@@ -300,6 +300,7 @@ export class PluggableBaseChart extends AbstractPluggableVisualization {
                     isLoading={this.isLoading}
                     featureFlags={this.featureFlags}
                     axis={this.axis}
+                    isTotalLabelsAllowed={true /* TODO: decide based on chart config*/}
                 />,
                 document.querySelector(this.configPanelElement),
             );

@@ -44,6 +44,7 @@ export default class BaseChartConfigurationPanel<
                     pushData={pushData}
                     properties={properties}
                     isDisabled={controlsDisabled}
+                    showTotals={isTotalLabelsAllowed}
                 />
                 <CheckboxControl
                     valuePath="grid.enabled"

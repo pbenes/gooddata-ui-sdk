@@ -17,6 +17,7 @@ export class PluggableColumnChart extends PluggableColumnBarCharts {
     }
 
     public getSupportedPropertiesList(): string[] {
+        // TODO: maybe here the properties totalLabels.visible should be always
         return COLUMN_CHART_SUPPORTED_PROPERTIES[this.axis || AXIS.DUAL] || [];
     }
 }
