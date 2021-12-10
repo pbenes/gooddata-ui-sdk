@@ -39,6 +39,11 @@
         "comment": "Export whole KPI dashboard to PDF",
         "limit": 0
     },
+    "options.menu.switch_render_mode": {
+        "value": "Switch render mode",
+        "comment": "Switch between edit and view mode",
+        "limit": 0
+    },
     "options.menu.schedule.email": {
         "value": "Schedule emailing",
         "comment": "Translate as imperative. Schedule emailing whole KPI dashboard",

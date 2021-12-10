@@ -9,6 +9,7 @@ import {
     newCustomWidget,
     newDashboardItem,
     newDashboardSection,
+    DefaultMenuButton,
 } from "@gooddata/sdk-ui-dashboard";
 import { idRef } from "@gooddata/sdk-model";
 import { useDashboardLoader } from "@gooddata/sdk-ui-loaders";
@@ -74,10 +75,7 @@ const DashboardComponentWithPlugin: React.FC = () => {
     const { DashboardComponent, props: dashboardProps } = result!;
     return (
         <div>
-            <DashboardComponent
-                {...dashboardProps}
-                // TODO: ButtonBarCustomization
-            />
+            <DashboardComponent {...dashboardProps} MenuButtonComponent={DefaultMenuButton} />
         </div>
     );
 };
