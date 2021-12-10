@@ -215,13 +215,6 @@ export const DashboardHeader = (): JSX.Element => {
                 itemName: intl.formatMessage({ id: "options.menu.schedule.email" }),
                 onClick: defaultOnScheduleEmailing,
             },
-            {
-                type: "button",
-                itemId: "switch-render-mode", // careful, this is also used as a selector in tests, do not change
-                itemName: intl.formatMessage({ id: "options.menu.switch_render_mode" }),
-                // TODO
-                // onClick:,
-            },
         ];
     }, [defaultOnScheduleEmailing, defaultOnExportToPdf, dashboardRef, isReadOnly]);
 
