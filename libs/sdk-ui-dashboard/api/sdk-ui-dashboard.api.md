@@ -2084,8 +2084,7 @@ export interface IDashboardCustomComponentProps {
     ShareDialogComponent?: CustomShareDialogComponent;
     // @alpha
     TitleComponent?: CustomTitleComponent;
-    // @alpha
-    TopBarComponent?: CustomTopBarComponent;
+    TopBarComponentProvider?: OptionalTopBarComponentProvider;
     WidgetComponentProvider?: OptionalWidgetComponentProvider;
 }
 
@@ -3216,6 +3215,9 @@ export type OptionalKpiComponentProvider = OptionalProvider<KpiComponentProvider
 export type OptionalProvider<T> = T extends (...args: infer TArgs) => infer TRes ? (...args: TArgs) => TRes | undefined : never;
 
 // @public (undocumented)
+export type OptionalTopBarComponentProvider = OptionalProvider<TopBarComponentProvider>;
+
+// @public (undocumented)
 export type OptionalWidgetComponentProvider = OptionalProvider<WidgetComponentProvider>;
 
 // @alpha (undocumented)
@@ -3945,6 +3947,9 @@ export const Title: (props: ITitleProps) => JSX.Element;
 
 // @internal (undocumented)
 export const TopBar: (props: ITopBarProps) => JSX.Element;
+
+// @public (undocumented)
+export type TopBarComponentProvider = (renderMode: IRenderMode) => CustomTopBarComponent;
 
 // @internal (undocumented)
 export const translations: {

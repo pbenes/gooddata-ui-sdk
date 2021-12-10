@@ -14,7 +14,7 @@ export const DashboardKpi = (props: IDashboardKpiProps): JSX.Element => {
     const { kpiWidget } = props;
     const KpiComponent = useMemo(
         () => KpiComponentProvider(kpiWidget.kpi, kpiWidget, renderMode),
-        [KpiComponentProvider, kpiWidget],
+        [KpiComponentProvider, kpiWidget, renderMode],
     );
 
     return <KpiComponent {...props} />;

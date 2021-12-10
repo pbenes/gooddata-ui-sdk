@@ -59,10 +59,10 @@ interface IDashboardComponentsContext {
         widget: IKpiWidget,
         renderMode: IRenderMode,
     ) => CustomDashboardKpiComponent;
+    TopBarComponentProvider: (renderMode: IRenderMode) => CustomTopBarComponent;
     ButtonBarComponent: CustomButtonBarComponent;
     MenuButtonComponent: CustomMenuButtonComponent;
     TitleComponent: CustomTitleComponent;
-    TopBarComponent: CustomTopBarComponent;
     ScheduledEmailDialogComponent: CustomScheduledEmailDialogComponent;
     ShareDialogComponent: CustomShareDialogComponent;
     SaveAsDialogComponent: CustomSaveAsDialogComponent;
@@ -95,7 +95,7 @@ const DashboardComponentsContext = createContext<IDashboardComponentsContext>({
     ButtonBarComponent: ThrowMissingComponentError("ButtonBarComponent"),
     MenuButtonComponent: ThrowMissingComponentError("MenuButtonComponent"),
     TitleComponent: ThrowMissingComponentError("TitleComponent"),
-    TopBarComponent: ThrowMissingComponentError("TopBarComponent"),
+    TopBarComponentProvider: ThrowMissingComponentError("TopBarComponent"),
     ScheduledEmailDialogComponent: ThrowMissingComponentError("ScheduledEmailDialogComponent"),
     ShareDialogComponent: ThrowMissingComponentError("ShareDialogComponent"),
     SaveAsDialogComponent: ThrowMissingComponentError("SaveAsDialogComponent"),

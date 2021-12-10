@@ -125,6 +125,16 @@ export type KpiComponentProvider = (
 export type OptionalKpiComponentProvider = OptionalProvider<KpiComponentProvider>;
 
 /**
+ * @public
+ */
+export type TopBarComponentProvider = (renderMode: IRenderMode) => CustomTopBarComponent;
+
+/**
+ * @public
+ */
+export type OptionalTopBarComponentProvider = OptionalProvider<TopBarComponentProvider>;
+
+/**
  * @alpha
  */
 export type AttributeFilterComponentProvider = (
@@ -280,14 +290,14 @@ export interface IDashboardCustomComponentProps {
     MenuButtonComponent?: CustomMenuButtonComponent;
 
     /**
-     * Optionally specify component to use for rendering the top bar.
+     * Optionally specify function to obtain custom component to use for rendering the top bar.
      *
-     * Note that if you override this component, the ButtonBarComponent, MenuButtonComponent and TitleComponent
-     * props might get ignored depending on your implementation.
+     * -  If not provided, the default implementation {@link DefaultTopBar} will be used.
+     * -  If factory function is provided and it returns undefined, then the default implementation {@link DefaultTopBar}.
      *
-     * @alpha
+     * @public
      */
-    TopBarComponent?: CustomTopBarComponent;
+    TopBarComponentProvider?: OptionalTopBarComponentProvider;
 
     /**
      * Optionally specify component to use for rendering the title.

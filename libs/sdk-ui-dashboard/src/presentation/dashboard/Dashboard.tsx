@@ -55,7 +55,13 @@ import {
     IRenderMode,
 } from "../../model";
 import { DefaultScheduledEmailDialog } from "../scheduledEmail";
-import { DefaultButtonBar, DefaultMenuButton, DefaultTitle, DefaultTopBar } from "../topBar";
+import {
+    DefaultButtonBar,
+    DefaultMenuButton,
+    DefaultTitle,
+    DefaultTopBar,
+    CustomTopBarComponent,
+} from "../topBar";
 
 import { defaultDashboardThemeModifier } from "./defaultDashboardThemeModifier";
 import { IDashboardProps } from "./types";
@@ -192,6 +198,14 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
         [props.InsightMenuComponentProvider],
     );
 
+    const topBarProvider = useCallback(
+        (renderMode: IRenderMode): CustomTopBarComponent => {
+            const userSpecified = props.TopBarComponentProvider?.(renderMode);
+            return userSpecified ?? DefaultTopBar;
+        },
+        [props.TopBarComponentProvider],
+    );
+
     const kpiProvider = useCallback(
         (kpi: ILegacyKpi, widget: IKpiWidget, renderMode: IRenderMode): CustomDashboardKpiComponent => {
             const userSpecified = props.KpiComponentProvider?.(kpi, widget, renderMode);
@@ -237,7 +251,7 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
                                     WidgetComponentProvider={widgetProvider}
                                     ButtonBarComponent={props.ButtonBarComponent ?? DefaultButtonBar}
                                     MenuButtonComponent={props.MenuButtonComponent ?? DefaultMenuButton}
-                                    TopBarComponent={props.TopBarComponent ?? DefaultTopBar}
+                                    TopBarComponentProvider={topBarProvider}
                                     TitleComponent={props.TitleComponent ?? DefaultTitle}
                                     ScheduledEmailDialogComponent={
                                         props.ScheduledEmailDialogComponent ?? DefaultScheduledEmailDialog

@@ -15,7 +15,7 @@ export const DashboardInsightMenu = (props: IDashboardInsightMenuProps): JSX.Ele
     const renderMode = useDashboardSelector(selectDashboardRenderMode);
     const InsightMenuComponent = useMemo(
         () => InsightMenuComponentProvider(insight, widget, renderMode),
-        [InsightMenuComponentProvider, insight, widget],
+        [InsightMenuComponentProvider, insight, widget, renderMode],
     );
 
     return <InsightMenuComponent {...props} />;
