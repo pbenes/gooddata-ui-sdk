@@ -12,6 +12,7 @@ import {
     newDashboardSection,
     DefaultMenuButton,
     changeDashboardRenderMode,
+    useDashboardDispatch,
 } from "@gooddata/sdk-ui-dashboard";
 import { idRef } from "@gooddata/sdk-model";
 import { useDashboardLoader } from "@gooddata/sdk-ui-loaders";
@@ -61,6 +62,7 @@ const LocalExtraPlugin = {
 export const CustomTopBar = (props: any) => {
     const { DefaultTopBar } = props;
     const [mode, setMode] = useState("view");
+    const dispatch = useDashboardDispatch();
 
     return (
         <>
@@ -70,8 +72,8 @@ export const CustomTopBar = (props: any) => {
                     const nextMode = mode === "view" ? "edit" : "view";
                     setMode(nextMode);
 
-                    // TODO: dispatch somehow?
-                    /*const action =*/ changeDashboardRenderMode({ mode: nextMode });
+                    const action = changeDashboardRenderMode({ mode: nextMode });
+                    dispatch(action);
                 }}
             >
                 {mode === "view" ? "switch to edit" : "switch to view"}
