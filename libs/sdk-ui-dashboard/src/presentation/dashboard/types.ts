@@ -20,6 +20,7 @@ import {
     DashboardModelCustomizationFns,
     DashboardState,
     ExtendedDashboardWidget,
+    IRenderMode,
 } from "../../model";
 import {
     CustomDashboardAttributeFilterComponent,
@@ -57,7 +58,10 @@ export type OptionalProvider<T> = T extends (...args: infer TArgs) => infer TRes
 /**
  * @public
  */
-export type WidgetComponentProvider = (widget: ExtendedDashboardWidget) => CustomDashboardWidgetComponent;
+export type WidgetComponentProvider = (
+    widget: ExtendedDashboardWidget,
+    renderMode: IRenderMode,
+) => CustomDashboardWidgetComponent;
 
 /**
  * @public
@@ -70,6 +74,7 @@ export type OptionalWidgetComponentProvider = OptionalProvider<WidgetComponentPr
 export type InsightComponentProvider = (
     insight: IInsight,
     widget: IInsightWidget,
+    renderMode: IRenderMode,
 ) => CustomDashboardInsightComponent;
 
 /**
@@ -83,6 +88,7 @@ export type OptionalInsightComponentProvider = OptionalProvider<InsightComponent
 export type InsightMenuButtonComponentProvider = (
     insight: IInsight,
     widget: IInsightWidget,
+    renderMode: IRenderMode,
 ) => CustomDashboardInsightMenuButtonComponent | undefined;
 
 /**
@@ -91,6 +97,7 @@ export type InsightMenuButtonComponentProvider = (
 export type InsightMenuComponentProvider = (
     insight: IInsight,
     widget: IInsightWidget,
+    renderMode: IRenderMode,
 ) => CustomDashboardInsightMenuComponent | undefined;
 
 /**
@@ -106,7 +113,11 @@ export type InsightMenuItemsProvider = (
 /**
  * @public
  */
-export type KpiComponentProvider = (kpi: ILegacyKpi, widget: IKpiWidget) => CustomDashboardKpiComponent;
+export type KpiComponentProvider = (
+    kpi: ILegacyKpi,
+    widget: IKpiWidget,
+    renderMode: IRenderMode,
+) => CustomDashboardKpiComponent;
 
 /**
  * @public
@@ -118,6 +129,7 @@ export type OptionalKpiComponentProvider = OptionalProvider<KpiComponentProvider
  */
 export type AttributeFilterComponentProvider = (
     filter: IDashboardAttributeFilter,
+    renderMode: IRenderMode,
 ) => CustomDashboardAttributeFilterComponent | undefined;
 
 /**

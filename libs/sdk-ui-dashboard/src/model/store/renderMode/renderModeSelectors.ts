@@ -4,7 +4,7 @@ import { DashboardState } from "../types";
 
 const selectSelf = createSelector(
     (state: DashboardState) => state,
-    (state) => state.renderMode,
+    (state) => state.renderMode.renderMode,
 );
 
 export const selectDashboardRenderMode = selectSelf;

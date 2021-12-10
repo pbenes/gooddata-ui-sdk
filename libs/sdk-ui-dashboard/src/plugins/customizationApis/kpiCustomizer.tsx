@@ -29,11 +29,11 @@ class DefaultKpiCustomizerState implements IKpiCustomizerState {
     /*
      * Core provider encapsulates resolution using the chain of core providers.
      */
-    private readonly coreProvider: KpiComponentProvider = (kpi, widget) => {
+    private readonly coreProvider: KpiComponentProvider = (kpi, widget, renderMode) => {
         const providerStack = [...this.coreProviderChain].reverse();
 
         for (const provider of providerStack) {
-            const Component = provider(kpi, widget);
+            const Component = provider(kpi, widget, renderMode);
 
             if (Component) {
                 return Component;
@@ -142,14 +142,14 @@ export class DefaultKpiCustomizer implements IDashboardKpiCustomizer {
         const decoratorProvider = providerFactory(rootSnapshot);
         // construct new root provider; this will be using user's provider with a fallback to root provider
         // in case user's code does not return anything
-        const newRootProvider: KpiComponentProvider = (kpi, widget) => {
-            const Component = decoratorProvider(kpi, widget);
+        const newRootProvider: KpiComponentProvider = (kpi, widget, renderMode) => {
+            const Component = decoratorProvider(kpi, widget, renderMode);
 
             if (Component) {
                 return Component;
             }
 
-            return rootSnapshot(kpi, widget);
+            return rootSnapshot(kpi, widget, renderMode);
         };
 
         // finally modify the root provider; next time someone registers decorator, it will be on top of

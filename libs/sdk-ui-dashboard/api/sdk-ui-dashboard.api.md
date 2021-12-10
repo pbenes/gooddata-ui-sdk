@@ -205,7 +205,7 @@ export function anyDashboardEventHandler(handler: DashboardEventHandler["handler
 export function anyEventHandler(handler: DashboardEventHandler["handler"]): DashboardEventHandler;
 
 // @alpha (undocumented)
-export type AttributeFilterComponentProvider = (filter: IDashboardAttributeFilter) => CustomDashboardAttributeFilterComponent | undefined;
+export type AttributeFilterComponentProvider = (filter: IDashboardAttributeFilter, renderMode: IRenderMode) => CustomDashboardAttributeFilterComponent | undefined;
 
 // @alpha (undocumented)
 export interface AttributeFilterSelection {
@@ -2574,7 +2574,7 @@ export type InsightAttributesMeta = {
 };
 
 // @public (undocumented)
-export type InsightComponentProvider = (insight: IInsight, widget: IInsightWidget) => CustomDashboardInsightComponent;
+export type InsightComponentProvider = (insight: IInsight, widget: IInsightWidget, renderMode: IRenderMode) => CustomDashboardInsightComponent;
 
 // @alpha
 export type InsightDateDatasets = {
@@ -2589,10 +2589,10 @@ export type InsightDateDatasets = {
 };
 
 // @alpha (undocumented)
-export type InsightMenuButtonComponentProvider = (insight: IInsight, widget: IInsightWidget) => CustomDashboardInsightMenuButtonComponent | undefined;
+export type InsightMenuButtonComponentProvider = (insight: IInsight, widget: IInsightWidget, renderMode: IRenderMode) => CustomDashboardInsightMenuButtonComponent | undefined;
 
 // @alpha (undocumented)
-export type InsightMenuComponentProvider = (insight: IInsight, widget: IInsightWidget) => CustomDashboardInsightMenuComponent | undefined;
+export type InsightMenuComponentProvider = (insight: IInsight, widget: IInsightWidget, renderMode: IRenderMode) => CustomDashboardInsightMenuComponent | undefined;
 
 // @alpha (undocumented)
 export type InsightMenuItemsProvider = (insight: IInsight, widget: IInsightWidget, defaultItems: IInsightMenuItem[], closeMenu: () => void) => IInsightMenuItem[];
@@ -2986,7 +2986,7 @@ export type KpiAlertDialogOpenedPayload = UserInteractionPayloadWithDataBase<"kp
 }>;
 
 // @public (undocumented)
-export type KpiComponentProvider = (kpi: ILegacyKpi, widget: IKpiWidget) => CustomDashboardKpiComponent;
+export type KpiComponentProvider = (kpi: ILegacyKpi, widget: IKpiWidget, renderMode: IRenderMode) => CustomDashboardKpiComponent;
 
 // @alpha (undocumented)
 export type KpiPlaceholderWidget = ICustomWidgetBase & {
@@ -4580,7 +4580,7 @@ export const useWidgetFilters: (widget: IWidget | undefined, filters?: IFilter[]
 };
 
 // @public (undocumented)
-export type WidgetComponentProvider = (widget: ExtendedDashboardWidget) => CustomDashboardWidgetComponent;
+export type WidgetComponentProvider = (widget: ExtendedDashboardWidget, renderMode: IRenderMode) => CustomDashboardWidgetComponent;
 
 // @alpha
 export type WidgetFilterOperation = FilterOpEnableDateFilter | FilterOpDisableDateFilter | FilterOpReplaceAttributeIgnores | FilterOpIgnoreAttributeFilter | FilterOpUnignoreAttributeFilter | FilterOpReplaceAll;

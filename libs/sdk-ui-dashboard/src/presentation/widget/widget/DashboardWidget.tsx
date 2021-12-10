@@ -1,10 +1,11 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 import React, { useMemo } from "react";
 import { useDashboardComponentsContext } from "../../dashboardContexts";
-import { extendedWidgetDebugStr } from "../../../model";
+import { extendedWidgetDebugStr, useDashboardSelector } from "../../../model";
 import { DefaultDashboardWidget } from "./DefaultDashboardWidget";
 import { isDashboardWidget } from "@gooddata/sdk-backend-spi";
 import { IDashboardWidgetProps } from "./types";
+import { selectDashboardRenderMode } from "../../../model/store/renderMode/renderModeSelectors";
 
 const BadWidgetType: React.FC = () => {
     return <div>Missing renderer</div>;
@@ -19,6 +20,7 @@ const MissingWidget: React.FC = () => {
  */
 export const DashboardWidget = (props: IDashboardWidgetProps): JSX.Element => {
     const { WidgetComponentProvider } = useDashboardComponentsContext();
+    const renderMode = useDashboardSelector(selectDashboardRenderMode);
     const { widget } = props;
     const WidgetComponent = useMemo((): React.ComponentType<IDashboardWidgetProps> => {
         // TODO: we need to get rid of this; the widget being optional at this point is the problem; the parent
@@ -28,7 +30,7 @@ export const DashboardWidget = (props: IDashboardWidgetProps): JSX.Element => {
             return MissingWidget;
         }
 
-        const Component = WidgetComponentProvider(widget);
+        const Component = WidgetComponentProvider(widget, renderMode);
 
         if (Component) {
             return Component;

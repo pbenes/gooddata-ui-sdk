@@ -52,6 +52,7 @@ import {
     selectLocale,
     useDashboardSelector,
     useDispatchDashboardCommand,
+    IRenderMode,
 } from "../../model";
 import { DefaultScheduledEmailDialog } from "../scheduledEmail";
 import { DefaultButtonBar, DefaultMenuButton, DefaultTitle, DefaultTopBar } from "../topBar";
@@ -129,32 +130,43 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
     const workspace = useWorkspaceStrict(props.workspace);
 
     const attributeFilterProvider = useCallback(
-        (filter: IDashboardAttributeFilter): CustomDashboardAttributeFilterComponent => {
-            const userSpecified = props.DashboardAttributeFilterComponentProvider?.(filter);
+        (
+            filter: IDashboardAttributeFilter,
+            renderMode: IRenderMode,
+        ): CustomDashboardAttributeFilterComponent => {
+            const userSpecified = props.DashboardAttributeFilterComponentProvider?.(filter, renderMode);
             return userSpecified ?? DefaultDashboardAttributeFilter;
         },
         [props.DashboardAttributeFilterComponentProvider],
     );
 
     const widgetProvider = useCallback(
-        (widget: ExtendedDashboardWidget): CustomDashboardWidgetComponent => {
-            const userSpecified = props.WidgetComponentProvider?.(widget);
+        (widget: ExtendedDashboardWidget, renderMode: IRenderMode): CustomDashboardWidgetComponent => {
+            const userSpecified = props.WidgetComponentProvider?.(widget, renderMode);
             return userSpecified ?? DefaultDashboardWidget;
         },
         [props.WidgetComponentProvider],
     );
 
     const insightProvider = useCallback(
-        (insight: IInsight, widget: IInsightWidget): CustomDashboardInsightComponent => {
-            const userSpecified = props.InsightComponentProvider?.(insight, widget);
+        (
+            insight: IInsight,
+            widget: IInsightWidget,
+            renderMode: IRenderMode,
+        ): CustomDashboardInsightComponent => {
+            const userSpecified = props.InsightComponentProvider?.(insight, widget, renderMode);
             return userSpecified ?? DefaultDashboardInsight;
         },
         [props.InsightComponentProvider],
     );
 
     const insightMenuButtonProvider = useCallback(
-        (insight: IInsight, widget: IInsightWidget): CustomDashboardInsightMenuButtonComponent => {
-            const userSpecified = props.InsightMenuButtonComponentProvider?.(insight, widget);
+        (
+            insight: IInsight,
+            widget: IInsightWidget,
+            renderMode: IRenderMode,
+        ): CustomDashboardInsightMenuButtonComponent => {
+            const userSpecified = props.InsightMenuButtonComponentProvider?.(insight, widget, renderMode);
             // if user customizes the items, always use the "new" default menu button
             const FallbackDashboardInsightMenuButtonInner = props.insightMenuItemsProvider
                 ? DefaultDashboardInsightMenuButton
@@ -165,8 +177,12 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
     );
 
     const insightMenuProvider = useCallback(
-        (insight: IInsight, widget: IInsightWidget): CustomDashboardInsightMenuComponent => {
-            const userSpecified = props.InsightMenuComponentProvider?.(insight, widget);
+        (
+            insight: IInsight,
+            widget: IInsightWidget,
+            renderMode: IRenderMode,
+        ): CustomDashboardInsightMenuComponent => {
+            const userSpecified = props.InsightMenuComponentProvider?.(insight, widget, renderMode);
             // if user customizes the items, always use the "new" default menu
             const FallbackDashboardInsightMenuInner = props.insightMenuItemsProvider
                 ? DefaultDashboardInsightMenu
@@ -177,8 +193,8 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
     );
 
     const kpiProvider = useCallback(
-        (kpi: ILegacyKpi, widget: IKpiWidget): CustomDashboardKpiComponent => {
-            const userSpecified = props.KpiComponentProvider?.(kpi, widget);
+        (kpi: ILegacyKpi, widget: IKpiWidget, renderMode: IRenderMode): CustomDashboardKpiComponent => {
+            const userSpecified = props.KpiComponentProvider?.(kpi, widget, renderMode);
             return userSpecified ?? DefaultDashboardKpi;
         },
         [props.KpiComponentProvider],

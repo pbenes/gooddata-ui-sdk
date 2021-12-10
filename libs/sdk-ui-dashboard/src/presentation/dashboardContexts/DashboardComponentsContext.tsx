@@ -1,4 +1,4 @@
-// (C) 2019 GoodData Corporation
+// (C) 2019-2021 GoodData Corporation
 import React, { createContext, useContext } from "react";
 import { IErrorProps, ILoadingProps, UnexpectedSdkError } from "@gooddata/sdk-ui";
 
@@ -25,7 +25,7 @@ import {
 import { IDashboardAttributeFilter, IInsightWidget, IKpiWidget, ILegacyKpi } from "@gooddata/sdk-backend-spi";
 import { CustomSaveAsDialogComponent } from "../saveAs/types";
 import { IInsight } from "@gooddata/sdk-model";
-import { ExtendedDashboardWidget } from "../../model";
+import { ExtendedDashboardWidget, IRenderMode } from "../../model";
 import { CustomShareDialogComponent } from "../shareDialog/types";
 
 /**
@@ -35,17 +35,30 @@ interface IDashboardComponentsContext {
     ErrorComponent: React.ComponentType<IErrorProps>;
     LoadingComponent: React.ComponentType<ILoadingProps>;
     LayoutComponent: CustomDashboardLayoutComponent;
-    WidgetComponentProvider: (widget: ExtendedDashboardWidget) => CustomDashboardWidgetComponent;
-    InsightComponentProvider: (insight: IInsight, widget: IInsightWidget) => CustomDashboardInsightComponent;
+    WidgetComponentProvider: (
+        widget: ExtendedDashboardWidget,
+        renderMode: IRenderMode,
+    ) => CustomDashboardWidgetComponent;
+    InsightComponentProvider: (
+        insight: IInsight,
+        widget: IInsightWidget,
+        renderMode: IRenderMode,
+    ) => CustomDashboardInsightComponent;
     InsightMenuButtonComponentProvider: (
         insight: IInsight,
         widget: IInsightWidget,
+        renderMode: IRenderMode,
     ) => CustomDashboardInsightMenuButtonComponent;
     InsightMenuComponentProvider: (
         insight: IInsight,
         widget: IInsightWidget,
+        renderMode: IRenderMode,
     ) => CustomDashboardInsightMenuComponent;
-    KpiComponentProvider: (kpi: ILegacyKpi, widget: IKpiWidget) => CustomDashboardKpiComponent;
+    KpiComponentProvider: (
+        kpi: ILegacyKpi,
+        widget: IKpiWidget,
+        renderMode: IRenderMode,
+    ) => CustomDashboardKpiComponent;
     ButtonBarComponent: CustomButtonBarComponent;
     MenuButtonComponent: CustomMenuButtonComponent;
     TitleComponent: CustomTitleComponent;
@@ -55,6 +68,7 @@ interface IDashboardComponentsContext {
     SaveAsDialogComponent: CustomSaveAsDialogComponent;
     DashboardAttributeFilterComponentProvider: (
         filter: IDashboardAttributeFilter,
+        renderMode: IRenderMode,
     ) => CustomDashboardAttributeFilterComponent;
     DashboardDateFilterComponent: CustomDashboardDateFilterComponent;
     FilterBarComponent: CustomFilterBarComponent;

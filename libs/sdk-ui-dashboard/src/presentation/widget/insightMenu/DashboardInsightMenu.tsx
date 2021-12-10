@@ -1,8 +1,10 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 import React, { useMemo } from "react";
 
 import { useDashboardComponentsContext } from "../../dashboardContexts";
 import { IDashboardInsightMenuProps } from "./types";
+import { useDashboardSelector } from "../../../model";
+import { selectDashboardRenderMode } from "../../../model/store/renderMode/renderModeSelectors";
 
 /**
  * @internal
@@ -10,8 +12,9 @@ import { IDashboardInsightMenuProps } from "./types";
 export const DashboardInsightMenu = (props: IDashboardInsightMenuProps): JSX.Element => {
     const { insight, widget } = props;
     const { InsightMenuComponentProvider } = useDashboardComponentsContext();
+    const renderMode = useDashboardSelector(selectDashboardRenderMode);
     const InsightMenuComponent = useMemo(
-        () => InsightMenuComponentProvider(insight, widget),
+        () => InsightMenuComponentProvider(insight, widget, renderMode),
         [InsightMenuComponentProvider, insight, widget],
     );
 

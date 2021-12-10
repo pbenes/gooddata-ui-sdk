@@ -1,4 +1,4 @@
-// (C) 2020 GoodData Corporation
+// (C) 2020-2021 GoodData Corporation
 import React, { useMemo } from "react";
 import cx from "classnames";
 import { injectIntl, WrappedComponentProps } from "react-intl";
@@ -18,6 +18,7 @@ import { DashboardInsight } from "../insight/DashboardInsight";
 import { useInsightExport } from "../common/useInsightExport";
 import { useDashboardComponentsContext } from "../../dashboardContexts";
 import { useInsightMenu } from "./useInsightMenu";
+import { selectDashboardRenderMode } from "../../../model/store/renderMode/renderModeSelectors";
 
 interface IDefaultDashboardInsightWidgetProps {
     widget: IInsightWidget;
@@ -35,6 +36,7 @@ const DefaultDashboardInsightWidgetCore: React.FC<
     IDefaultDashboardInsightWidgetProps & WrappedComponentProps
 > = ({ widget, screen, onError, onExportReady, onLoadingChanged, intl }) => {
     const insights = useDashboardSelector(selectInsightsMap);
+    const renderMode = useDashboardSelector(selectDashboardRenderMode);
 
     const insight = insights.get(widget.insight)!;
     const visType = insightVisualizationUrl(insight).split(":")[1] as VisType;
@@ -58,13 +60,13 @@ const DefaultDashboardInsightWidgetCore: React.FC<
         useDashboardComponentsContext();
 
     const InsightMenuButtonComponent = useMemo(
-        () => InsightMenuButtonComponentProvider(insight, widget),
-        [InsightMenuButtonComponentProvider, insight, widget],
+        () => InsightMenuButtonComponentProvider(insight, widget, renderMode),
+        [InsightMenuButtonComponentProvider, insight, widget, renderMode],
     );
 
     const InsightMenuComponent = useMemo(
-        () => InsightMenuComponentProvider(insight, widget),
-        [InsightMenuComponentProvider, insight, widget],
+        () => InsightMenuComponentProvider(insight, widget, renderMode),
+        [InsightMenuComponentProvider, insight, widget, renderMode],
     );
 
     return (

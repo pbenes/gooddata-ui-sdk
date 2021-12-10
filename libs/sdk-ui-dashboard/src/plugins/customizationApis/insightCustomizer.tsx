@@ -44,11 +44,11 @@ class DefaultInsightCustomizerState implements IInsightCustomizerState {
     /*
      * Core provider encapsulates resolution using the chain of core providers.
      */
-    private readonly coreProvider: InsightComponentProvider = (insight, widget) => {
+    private readonly coreProvider: InsightComponentProvider = (insight, widget, renderMode) => {
         const providerStack = [...this.coreProviderChain].reverse();
 
         for (const provider of providerStack) {
-            const Component = provider(insight, widget);
+            const Component = provider(insight, widget, renderMode);
 
             if (Component) {
                 return Component;
@@ -208,14 +208,14 @@ export class DefaultInsightCustomizer implements IDashboardInsightCustomizer {
         const decoratorProvider = providerFactory(rootSnapshot);
         // construct new root provider; this will be using user's provider with a fallback to root provider
         // in case user's code does not return anything
-        const newRootProvider: InsightComponentProvider = (insight, widget) => {
-            const Component = decoratorProvider(insight, widget);
+        const newRootProvider: InsightComponentProvider = (insight, widget, renderMode) => {
+            const Component = decoratorProvider(insight, widget, renderMode);
 
             if (Component) {
                 return Component;
             }
 
-            return rootSnapshot(insight, widget);
+            return rootSnapshot(insight, widget, renderMode);
         };
 
         // finally modify the root provider; next time someone registers decorator, it will be on top of
