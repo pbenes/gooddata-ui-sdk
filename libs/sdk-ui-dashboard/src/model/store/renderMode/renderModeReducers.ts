@@ -6,11 +6,9 @@ import { IRenderMode } from "../../types/commonTypes";
 
 type RenderModeReducer<A extends Action> = CaseReducer<DashboardRenderModeState, A>;
 
-type SetRenderModePayload = {
-    mode: IRenderMode;
-};
+type SetRenderModePayload = IRenderMode;
 const setDashboardRenderMode: RenderModeReducer<PayloadAction<SetRenderModePayload>> = (state, action) => {
-    const { mode } = action.payload;
+    const mode = action.payload;
 
     state.renderMode = mode;
 };

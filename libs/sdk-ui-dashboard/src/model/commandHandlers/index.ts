@@ -6,6 +6,7 @@ import { saveDashboardHandler } from "./dashboard/saveDashboardHandler";
 import { saveAsDashboardHandler } from "./dashboard/saveAsDashboardHandler";
 import { resetDashboardHandler } from "./dashboard/resetDashboardHandler";
 import { renameDashboardHandler } from "./dashboard/renameDashboardHandler";
+import { changeDashboardRenderModeHandler } from "./dashboard/changeRenderModeHandler";
 import { deleteDashboardHandler } from "./dashboard/deleteDashboardHandler";
 import { exportDashboardToPdfHandler } from "./dashboard/exportDashboardToPdfHandler";
 import { changeSharingHandler } from "./dashboard/changeSharingHandler";
@@ -68,6 +69,7 @@ export const DefaultCommandHandlers: {
     "GDC.DASH/CMD.SAVEAS": saveAsDashboardHandler,
     "GDC.DASH/CMD.RESET": resetDashboardHandler,
     "GDC.DASH/CMD.RENAME": renameDashboardHandler,
+    "GDC.DASH/CMD.CHANGE_RENDER_MODE": changeDashboardRenderModeHandler,
     "GDC.DASH/CMD.DELETE": deleteDashboardHandler,
     "GDC.DASH/CMD.SHARING.CHANGE": changeSharingHandler,
     "GDC.DASH/CMD.EXPORT.PDF": exportDashboardToPdfHandler,
