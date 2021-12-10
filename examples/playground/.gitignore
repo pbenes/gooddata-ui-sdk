@@ -1,3 +1,2 @@
 .env
-src/playground/*
 !src/playground/.gitkeep
