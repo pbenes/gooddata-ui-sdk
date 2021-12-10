@@ -1,5 +1,6 @@
 // (C) 2021 GoodData Corporation
-import React from "react";
+import React, { useState } from "react";
+
 import {
     DashboardContext,
     DashboardPluginV1,
@@ -10,6 +11,7 @@ import {
     newDashboardItem,
     newDashboardSection,
     DefaultMenuButton,
+    changeDashboardRenderMode,
 } from "@gooddata/sdk-ui-dashboard";
 import { idRef } from "@gooddata/sdk-model";
 import { useDashboardLoader } from "@gooddata/sdk-ui-loaders";
@@ -56,6 +58,28 @@ const LocalExtraPlugin = {
     factory: () => new LocalPlugin(),
 };
 
+export const CustomTopBar = (props: any) => {
+    const { DefaultTopBar } = props;
+    const [mode, setMode] = useState("view");
+
+    return (
+        <>
+            <DefaultTopBar {...props} />
+            <button
+                onClick={() => {
+                    const nextMode = mode === "view" ? "edit" : "view";
+                    setMode(nextMode);
+
+                    // TODO: dispatch somehow?
+                    /*const action =*/ changeDashboardRenderMode({ mode: nextMode });
+                }}
+            >
+                {mode === "view" ? "switch to edit" : "switch to view"}
+            </button>
+        </>
+    );
+};
+
 const DashboardComponentWithPlugin: React.FC = () => {
     const { status, result, error } = useDashboardLoader({
         dashboard: dashboardRef,
@@ -75,7 +99,11 @@ const DashboardComponentWithPlugin: React.FC = () => {
     const { DashboardComponent, props: dashboardProps } = result!;
     return (
         <div>
-            <DashboardComponent {...dashboardProps} MenuButtonComponent={DefaultMenuButton} />
+            <DashboardComponent
+                {...dashboardProps}
+                MenuButtonComponent={DefaultMenuButton}
+                TopBarComponent={CustomTopBar}
+            />
         </div>
     );
 };
