@@ -5,7 +5,7 @@ import { IInsight, ObjRef } from "@gooddata/sdk-model";
 
 import { DateFilterConfigValidationResult } from "../../_staging/dateFilterConfig/validation";
 import { IShareProps } from "../../types";
-import { DashboardConfig, DashboardContext } from "../types/commonTypes";
+import { DashboardConfig, DashboardContext, IRenderMode } from "../types/commonTypes";
 
 import { IDashboardEvent } from "./base";
 import { eventGuard } from "./util";
@@ -465,6 +465,32 @@ export function dashboardSharingChanged(
         payload: {
             dashboardRef,
             newShareProps,
+        },
+    };
+}
+
+/**
+ *
+ * @alpha
+ */
+export interface DashboardRenderModeChanged extends IDashboardEvent {
+    readonly type: "GDC.DASH/EVT.RENDER_MODE_CHANGED";
+    readonly payload: {
+        mode: IRenderMode;
+    };
+}
+
+export function dashboardRenderModeChanged(
+    ctx: DashboardContext,
+    mode: IRenderMode,
+    correlationId?: string,
+): DashboardRenderModeChanged {
+    return {
+        type: "GDC.DASH/EVT.RENDER_MODE_CHANGED",
+        ctx,
+        correlationId,
+        payload: {
+            mode,
         },
     };
 }

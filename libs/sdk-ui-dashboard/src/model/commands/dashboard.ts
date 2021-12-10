@@ -1,6 +1,6 @@
 // (C) 2021 GoodData Corporation
 
-import { DashboardConfig } from "../types/commonTypes";
+import { DashboardConfig, IRenderMode } from "../types/commonTypes";
 import { IWorkspacePermissions } from "@gooddata/sdk-backend-spi";
 import { IDashboardCommand } from "./base";
 import { ISharingApplyPayload } from "@gooddata/sdk-ui-kit";
@@ -306,6 +306,32 @@ export interface ExportDashboardToPdf extends IDashboardCommand {
 export function exportDashboardToPdf(correlationId?: string): ExportDashboardToPdf {
     return {
         type: "GDC.DASH/CMD.EXPORT.PDF",
+        correlationId,
+    };
+}
+
+/**
+ * @alpha
+ */
+export interface ChangeDashboardRenderMode extends IDashboardCommand {
+    readonly type: "GDC.DASH/CMD.CHANGE_RENDER_MODE";
+    readonly payload: {
+        readonly mode: IRenderMode;
+    };
+}
+
+/**
+ * @alpha
+ */
+export function changeDashboardRenderMode(
+    mode: IRenderMode,
+    correlationId?: string,
+): ChangeDashboardRenderMode {
+    return {
+        type: "GDC.DASH/CMD.CHANGE_RENDER_MODE",
+        payload: {
+            mode,
+        },
         correlationId,
     };
 }

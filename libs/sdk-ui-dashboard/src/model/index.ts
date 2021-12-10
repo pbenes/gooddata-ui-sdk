@@ -25,6 +25,7 @@ export {
     IResolvedAttributeFilterValues,
     IResolvedDateFilterValue,
     IResolvedFilterValues,
+    IRenderMode,
 } from "./types/commonTypes";
 export {
     ICustomWidget,

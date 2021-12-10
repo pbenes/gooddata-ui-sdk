@@ -277,3 +277,10 @@ export type FiltersInfo = {
     filters: IDashboardFilter[];
     resolvedFilterValues?: IResolvedFilterValues;
 };
+
+/**
+ * @alpha
+ */
+export interface IRenderMode {
+    mode: "view" | "edit";
+}
