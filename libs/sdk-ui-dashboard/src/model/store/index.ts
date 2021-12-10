@@ -122,6 +122,7 @@ export {
 export { UserState } from "./user/userState";
 export { selectUser, selectCurrentUserRef } from "./user/userSelectors";
 export { DashboardMetaState, DashboardDescriptor } from "./meta/metaState";
+export { DashboardRenderModeState } from "./renderMode/renderModeState";
 export {
     selectDashboardRef,
     selectDashboardUriRef,

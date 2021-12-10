@@ -42,6 +42,7 @@ import { DashboardEventType } from "../events";
 import { DashboardCommandType } from "../commands";
 import { drillSliceReducer } from "./drill";
 import { uiSliceReducer } from "./ui";
+import { renderModeSliceReducer } from "./renderMode";
 import { getDashboardContext } from "./_infra/contexts";
 
 const nonSerializableEventsAndCommands: (DashboardEventType | DashboardCommandType | string)[] = [
@@ -315,6 +316,7 @@ export function createDashboardStore(config: DashboardStoreConfig): ReduxedDashb
         executionResults: executionResultsSliceReducer,
         ui: uiSliceReducer,
         _queryCache: queryProcessing.queryCacheReducer,
+        renderMode: renderModeSliceReducer,
     });
 
     const store = configureStore({

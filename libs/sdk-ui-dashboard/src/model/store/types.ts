@@ -17,6 +17,7 @@ import { BackendCapabilitiesState } from "./backendCapabilities/backendCapabilit
 import { IDrillTargets } from "./drillTargets/drillTargetsTypes";
 import { IExecutionResultEnvelope } from "./executionResults/types";
 import { UiState } from "./ui/uiState";
+import { DashboardRenderModeState } from "./renderMode/renderModeState";
 
 /*
  * This explicit typing is unfortunate but cannot find better way. Normally the typings get inferred from store,
@@ -55,6 +56,7 @@ export type DashboardState = {
     drillTargets: EntityState<IDrillTargets>;
     listedDashboards: EntityState<IListedDashboard>;
     accessibleDashboards: EntityState<IListedDashboard>;
+    renderMode: DashboardRenderModeState;
 
     /**
      * Ui state controllable from the outside.

@@ -1403,6 +1403,12 @@ export interface DashboardRenderModeChanged extends IDashboardEvent {
     readonly type: "GDC.DASH/EVT.RENDER_MODE_CHANGED";
 }
 
+// @alpha (undocumented)
+export interface DashboardRenderModeState {
+    // (undocumented)
+    renderMode: IRenderMode;
+}
+
 // @alpha
 export interface DashboardRenderRequested extends IDashboardEvent {
     // (undocumented)
@@ -1472,6 +1478,7 @@ export type DashboardState = {
     drillTargets: EntityState<IDrillTargets>;
     listedDashboards: EntityState<IListedDashboard>;
     accessibleDashboards: EntityState<IListedDashboard>;
+    renderMode: DashboardRenderModeState;
     ui: UiState;
     executionResults: EntityState<IExecutionResultEnvelope>;
     _queryCache: {
