@@ -26,9 +26,9 @@ export const App: React.FC = () => {
     if (!hasCredentialsSetup()) {
         return (
             <p>
-                Your playground is not setup with credentials. Check out the README.md for more. TL;DR: point
-                the playground against the public access proxy or set GDC_USERNAME and GDC_PASSWORD in the
-                .env file.
+                Hello, your playground is not setup with credentials. Check out the README.md for more. TL;DR:
+                point the playground against the public access proxy or set GDC_USERNAME and GDC_PASSWORD in
+                the .env file.
             </p>
         );
     }
