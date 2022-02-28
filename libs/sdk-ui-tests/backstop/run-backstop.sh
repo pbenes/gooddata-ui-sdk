@@ -49,7 +49,7 @@ docker network create "${BACKSTOP_NET}" || { echo "Network creation failed" && e
         --net "${BACKSTOP_NET}" --net-alias storybook \
         --volume ${STORYBOOK_ASSETS}:/usr/share/nginx/html:ro,Z \
         --volume ${STORYBOOK_CONF}:/etc/nginx/conf.d/storybook.conf:ro,Z \
-        nginx:1.17.6)
+        nginx:1.21.6-alpine)
 
     echo "waiting for nginx in container: ${NGINX_CONTAINER} to start serving storybook"
 
