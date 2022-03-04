@@ -46,6 +46,7 @@ docker network create "${BACKSTOP_NET}" || { echo "Network creation failed" && e
     # Note: careful with the net-alias; it is used as hostname in scenarios.config.js
     NGINX_CONTAINER=$(docker run --rm \
         --detach \
+        --user $UID:$GID \
         --net "${BACKSTOP_NET}" --net-alias storybook \
         --volume ${STORYBOOK_ASSETS}:/usr/share/nginx/html:ro,Z \
         --volume ${STORYBOOK_CONF}:/etc/nginx/conf.d/storybook.conf:ro,Z \
