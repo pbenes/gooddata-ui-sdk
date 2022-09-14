@@ -167,6 +167,11 @@ export interface IBackendCapabilities {
     supportsOrganizationSettings?: boolean;
 
     /**
+     * Indicates whether backend supports non-production data sets.
+     */
+    supportsNonProductionDataSets?: boolean;
+
+    /**
      * Catchall for additional capabilities
      */
     [key: string]: undefined | boolean | number | string;

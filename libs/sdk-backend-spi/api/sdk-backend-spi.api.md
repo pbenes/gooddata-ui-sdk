@@ -377,6 +377,7 @@ export interface IBackendCapabilities {
     supportsHierarchicalWorkspaces?: boolean;
     supportsHyperlinkAttributeLabels?: boolean;
     supportsKpiWidget?: boolean;
+    supportsNonProductionDataSets?: boolean;
     supportsObjectUris?: boolean;
     supportsOrganizationSettings?: boolean;
     supportsOwners?: boolean;

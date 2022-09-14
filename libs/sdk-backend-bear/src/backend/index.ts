@@ -74,6 +74,7 @@ const CAPABILITIES: IBackendCapabilities = {
     supportsHierarchicalWorkspaces: false,
     supportsCustomColorPalettes: true,
     supportsOrganizationSettings: false,
+    supportsNonProductionDataSets: true,
 };
 
 /**
