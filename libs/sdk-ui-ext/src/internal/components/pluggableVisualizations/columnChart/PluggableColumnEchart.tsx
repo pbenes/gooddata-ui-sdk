@@ -11,6 +11,7 @@ import { ISortConfig, newAvailableSortsGroup } from "../../../interfaces/SortCon
 import { getCustomSortDisabledExplanation } from "../../../utils/sort";
 import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import * as echarts from "echarts";
+import { DataViewFacade } from "@gooddata/sdk-ui";
 
 /**
  * PluggableColumnChart
@@ -63,7 +64,16 @@ export class PluggableColumnEchart extends PluggableBaseChart {
     }
 
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
-        console.log(options, insight, executionFactory);
+        const execution = this.getExecution(options, insight, executionFactory);
+        console.log("fdsfsdf", execution);
+        execution.execute().then((r) => {
+            r.readAll().then((dv) => {
+                const dvf = DataViewFacade.for(dv);
+                const twodim = dvf.rawData().twoDimData();
+
+                console.log("twodim", twodim);
+            });
+        });
 
         var chartDom = this.getElement();
         var myChart = echarts.init(chartDom);
