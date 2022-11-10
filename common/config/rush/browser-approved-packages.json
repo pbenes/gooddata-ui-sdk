@@ -623,6 +623,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "echarts",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "element-closest-polyfill",
       "allowedCategories": [ "production" ]
     },

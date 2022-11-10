@@ -62,6 +62,29 @@ export class PluggableColumnEchart extends PluggableBaseChart {
         return COLUMN_CHART_SUPPORTED_PROPERTIES[this.axis || AXIS.DUAL] || [];
     }
 
+    private renderTooltipHTML(textData: string[][], maxTooltipContentWidth: number = 300): string {
+        const maxItemWidth = maxTooltipContentWidth - 20;
+        const titleStyle = `style="max-width: ${maxItemWidth}px;"`;
+        const valueStyle = `style="max-width: ${maxItemWidth}px;"`;
+        const itemClass = "gd-viz-tooltip-item";
+        const valueClass = "gd-viz-tooltip-value";
+
+        return textData
+            .map((item: string[]) => {
+                // the third span is hidden, that help to have tooltip work with max-width
+                return `<div class="${itemClass}">
+                            <span class="gd-viz-tooltip-title" ${titleStyle}>${item[0]}</span>
+                            <div class="gd-viz-tooltip-value-wraper" ${titleStyle}>
+                                <span class="${valueClass}" ${valueStyle}>${item[1]}</span>
+                            </div>
+                            <div class="gd-viz-tooltip-value-wraper" ${titleStyle}>
+                                <span class="gd-viz-tooltip-value-max-content" ${valueStyle}>${item[1]}</span>
+                            </div>
+                        </div>`;
+            })
+            .join("\n");
+    }
+
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
         const palette = (index: number) => {
             const firstInPalette = options?.config?.colorPalette?.[index]?.fill;
@@ -70,7 +93,7 @@ export class PluggableColumnEchart extends PluggableBaseChart {
 
         const chartDom = this.getElement();
         const myChart = echarts.init(chartDom);
-        let option: echarts.EChartsOption = {
+        const option: echarts.EChartsOption = {
             legend: {
                 orient: "vertical",
                 right: 10,
@@ -94,7 +117,18 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                 },
             },
             series: [],
+            tooltip: {
+                trigger: "item",
+                formatter: (params: any) => {
+                    const { name, value } = params;
+                    return this.renderTooltipHTML([
+                        ["X axis name", name],
+                        ["Y axis name", value.toFixed(0)],
+                    ]);
+                },
+            },
         };
+
         const execution = this.getExecution(options, insight, executionFactory);
         execution.execute().then((r) => {
             r.readAll().then((dv) => {
@@ -132,6 +166,8 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                     .reverse();
 
                 myChart.clear();
+                // @ts-ignore
+                option.series[0].name = dv?.headerItems?.[0]?.[0]?.[0]?.measureHeaderItem?.name;
                 myChart.setOption(option);
             });
         });
