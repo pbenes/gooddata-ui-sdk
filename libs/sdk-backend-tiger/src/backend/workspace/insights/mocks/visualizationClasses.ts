@@ -184,6 +184,19 @@ export const visualizationClasses: IVisualizationClass[] = sortBy(
                 uri: "/gdc/md/gtl83h4doozbp26q0kf5qg8uiyu4glyn/obj/1001",
             },
         },
+        {
+            visualizationClass: {
+                checksum: "local",
+                icon: "local:pie",
+                orderIndex: 21,
+                iconSelected: "local:pie.selected",
+                url: "local:pie_echarts",
+                title: "Pie Echarts",
+                identifier: "gdc.visualization.pie_echarts",
+                uri: "/gdc/md/gtl83h4doozbp26q0kf5qg8uiyu4glyn/obj/1002",
+            },
+        },
+
         // geochart must be disabled for now on tiger backend due to missing mapbox token infrastructure there (RAIL-3058)
         // {
         //     visualizationClass: {

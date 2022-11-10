@@ -17,6 +17,7 @@ import { ColumnEchartDescriptor } from "./pluggableVisualizations/columnChart/Co
 import { HeatmapDescriptor } from "./pluggableVisualizations/heatMap/HeatmapDescriptor";
 import { LineChartDescriptor } from "./pluggableVisualizations/lineChart/LineChartDescriptor";
 import { PieChartDescriptor } from "./pluggableVisualizations/pieChart/PieChartDescriptor";
+import { PieEchartDescriptor } from "./pluggableVisualizations/pieChart/PieEchartDescriptor";
 import { PivotTableDescriptor } from "./pluggableVisualizations/pivotTable/PivotTableDescriptor";
 import { ScatterPlotDescriptor } from "./pluggableVisualizations/scatterPlot/ScatterPlotDescriptor";
 import { TreemapDescriptor } from "./pluggableVisualizations/treeMap/TreemapDescriptor";
@@ -134,6 +135,7 @@ const DefaultVisualizations = {
     funnel: FunnelChartDescriptor,
     pushpin: GeoPushpinChartDescriptor,
     column_echarts: ColumnEchartDescriptor,
+    pie_echarts: PieEchartDescriptor,
 };
 
 /**
