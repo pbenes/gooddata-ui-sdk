@@ -1,4 +1,4 @@
-// (C) 2019-2021 GoodData Corporation
+// (C) 2019-2022 GoodData Corporation
 import { IVisualizationClass } from "@gooddata/sdk-model";
 import sortBy from "lodash/sortBy";
 
@@ -170,6 +170,18 @@ export const visualizationClasses: IVisualizationClass[] = sortBy(
                 title: "Bullet",
                 identifier: "gdc.visualization.bullet",
                 uri: "/gdc/md/gtl83h4doozbp26q0kf5qg8uiyu4glyn/obj/1000",
+            },
+        },
+        {
+            visualizationClass: {
+                checksum: "local",
+                icon: "local:column",
+                orderIndex: 20,
+                iconSelected: "local:column.selected",
+                url: "local:column_echarts",
+                title: "Column Echarts",
+                identifier: "gdc.visualization.column_echarts",
+                uri: "/gdc/md/gtl83h4doozbp26q0kf5qg8uiyu4glyn/obj/1001",
             },
         },
         // geochart must be disabled for now on tiger backend due to missing mapbox token infrastructure there (RAIL-3058)

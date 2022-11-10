@@ -1,4 +1,4 @@
-// (C) 2020-2021 GoodData Corporation
+// (C) 2020-2022 GoodData Corporation
 import last from "lodash/last";
 import { IInsightDefinition, insightVisualizationUrl } from "@gooddata/sdk-model";
 import { UnexpectedSdkError } from "@gooddata/sdk-ui";
@@ -13,6 +13,7 @@ import { ComboChartDescriptorDeprecated } from "./pluggableVisualizations/comboC
 import { DonutChartDescriptor } from "./pluggableVisualizations/donutChart/DonutChartDescriptor";
 import { FunnelChartDescriptor } from "./pluggableVisualizations/funnelChart/FunnelChartDescriptor";
 import { HeadlineDescriptor } from "./pluggableVisualizations/headline/HeadlineDescriptor";
+import { ColumnEchartDescriptor } from "./pluggableVisualizations/columnChart/ColumnEchartDescriptor";
 import { HeatmapDescriptor } from "./pluggableVisualizations/heatMap/HeatmapDescriptor";
 import { LineChartDescriptor } from "./pluggableVisualizations/lineChart/LineChartDescriptor";
 import { PieChartDescriptor } from "./pluggableVisualizations/pieChart/PieChartDescriptor";
@@ -132,6 +133,7 @@ const DefaultVisualizations = {
     treemap: TreemapDescriptor,
     funnel: FunnelChartDescriptor,
     pushpin: GeoPushpinChartDescriptor,
+    column_echarts: ColumnEchartDescriptor,
 };
 
 /**
