@@ -63,12 +63,19 @@ export class PluggableColumnEchart extends PluggableBaseChart {
     }
 
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
+        const firstInPalette = options?.config?.colorPalette?.[0]?.fill;
+        const color = `rgb(${firstInPalette.r},${firstInPalette.g},${firstInPalette.b})`;
+
         const chartDom = this.getElement();
         const myChart = echarts.init(chartDom);
         let option = {
+            animation: false,
             xAxis: {
                 type: "category",
                 data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                axisTick: {
+                    show: false,
+                },
             },
             yAxis: {
                 type: "value",
@@ -77,9 +84,8 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                 {
                     data: [120, 200, 150, 80, 70, 110, 130],
                     type: "bar",
-                    showBackground: false,
-                    backgroundStyle: {
-                        color: "rgba(180, 180, 180, 0.2)",
+                    itemStyle: {
+                        color,
                     },
                 },
             ],
