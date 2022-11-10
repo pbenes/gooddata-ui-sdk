@@ -107,9 +107,10 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                     option.xAxis.show = false;
                 }
 
-                // @ts-ignore
                 option.series = dv?.data
+                    // @ts-ignore
                     .map(
+                        // @ts-ignore
                         (data, index): echarts.BarSeriesOption => ({
                             data: data,
                             type: "bar",
