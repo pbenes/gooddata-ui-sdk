@@ -213,36 +213,20 @@ export class PluggablePieEchart extends PluggableBaseChart {
     }
 
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
-        const palette = (index: number) => {
-            const firstInPalette = options?.config?.colorPalette?.[index]?.fill;
-            return `rgb(${firstInPalette.r},${firstInPalette.g},${firstInPalette.b})`;
-        };
+        //        const palette = (index: number) => {
+        //            const firstInPalette = options?.config?.colorPalette?.[index]?.fill;
+        //            return `rgb(${firstInPalette.r},${firstInPalette.g},${firstInPalette.b})`;
+        //        };
+
+        const paletteMapped = options?.config?.colorPalette?.map((p: any) => {
+            const f = p?.fill;
+            return `rgb(${f.r},${f.g},${f.b})`;
+        });
 
         const chartDom = this.getElement();
         const myChart = echarts.init(chartDom);
         let option: echarts.EChartsOption = {
-            legend: {
-                orient: "vertical",
-                right: 10,
-                top: "center",
-            },
             animation: false,
-            xAxis: {
-                data: [],
-                axisTick: {
-                    show: false,
-                },
-                show: true,
-                axisLabel: {
-                    fontFamily: "avenir",
-                },
-            },
-            yAxis: {
-                type: "value",
-                axisLabel: {
-                    fontFamily: "avenir",
-                },
-            },
             series: [],
         };
         const execution = this.getExecution(options, insight, executionFactory);
@@ -250,36 +234,25 @@ export class PluggablePieEchart extends PluggableBaseChart {
             r.readAll().then((dv) => {
                 console.log("dataview", dv);
                 // @ts-ignore
-                option.xAxis.data = dv?.headerItems?.[1]?.[0]?.map((elem) => elem?.attributeHeaderItem?.name);
-                // @ts-ignore
-                if (!option.xAxis.data?.[0]) {
-                    // @ts-ignore
-                    option.xAxis.show = false;
-                }
+                const xvals = dv?.headerItems?.[1]?.[0]?.map((elem) => elem?.attributeHeaderItem?.name);
 
-                option.series = dv?.data
-                    // @ts-ignore
-                    .map(
-                        // @ts-ignore
-                        (data, index): echarts.BarSeriesOption => ({
-                            data: data,
-                            type: "bar",
-                            stack: "x",
-                            label: {
-                                show: true,
-                                fontFamily: "avenir",
-                                color: "#fff",
-                                textBorderWidth: 1,
-                                textBorderColor: "#000",
-                                fontSize: 11,
-                                fontWeight: "bold",
-                            },
-                            itemStyle: {
-                                color: palette(index),
-                            },
-                        }),
-                    )
-                    .reverse();
+                // @ts-ignore
+                const d = dv?.data?.[0]?.map((val: any, index: any) => {
+                    return {
+                        value: val,
+                        name: xvals[index],
+                    };
+                });
+                option.series = [
+                    {
+                        color: paletteMapped,
+                        data: d,
+                        type: "pie",
+                        label: {
+                            show: false,
+                        },
+                    },
+                ];
 
                 myChart.clear();
                 myChart.setOption(option);
