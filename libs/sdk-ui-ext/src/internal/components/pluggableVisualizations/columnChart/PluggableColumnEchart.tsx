@@ -68,27 +68,24 @@ export class PluggableColumnEchart extends PluggableBaseChart {
 
         const chartDom = this.getElement();
         const myChart = echarts.init(chartDom);
-        let option = {
+        let option: echarts.EChartsOption = {
+            legend: {
+                orient: "vertical",
+                right: 10,
+                top: "center",
+            },
             animation: false,
             xAxis: {
-                type: "category",
-                data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                data: [],
                 axisTick: {
                     show: false,
                 },
+                show: true,
             },
             yAxis: {
                 type: "value",
             },
-            series: [
-                {
-                    data: [120, 200, 150, 80, 70, 110, 130],
-                    type: "bar",
-                    itemStyle: {
-                        color,
-                    },
-                },
-            ],
+            series: [],
         };
         const execution = this.getExecution(options, insight, executionFactory);
         execution.execute().then((r) => {
@@ -97,7 +94,25 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                 // @ts-ignore
                 option.xAxis.data = dv?.headerItems?.[1]?.[0]?.map((elem) => elem?.attributeHeaderItem?.name);
                 // @ts-ignore
-                option.series[0].data = dv?.data[0];
+                if (!option.xAxis.data?.[0]) {
+                    // @ts-ignore
+                    option.xAxis.show = false;
+                }
+
+                // @ts-ignore
+                option.series = dv?.data
+                    .map((data) => ({
+                        data: data,
+                        type: "bar",
+                        stack: "x",
+                        label: {
+                            show: true,
+                            fontFamily: "avenir",
+                        },
+                    }))
+                    .reverse();
+
+                myChart.clear();
                 myChart.setOption(option);
             });
         });
