@@ -11,7 +11,6 @@ import { ISortConfig, newAvailableSortsGroup } from "../../../interfaces/SortCon
 import { getCustomSortDisabledExplanation } from "../../../utils/sort";
 import { PluggableBaseChart } from "../baseChart/PluggableBaseChart";
 import * as echarts from "echarts";
-import { DataViewFacade } from "@gooddata/sdk-ui";
 
 /**
  * PluggableColumnChart
@@ -64,22 +63,9 @@ export class PluggableColumnEchart extends PluggableBaseChart {
     }
 
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
-        const execution = this.getExecution(options, insight, executionFactory);
-        console.log("fdsfsdf", execution);
-        execution.execute().then((r) => {
-            r.readAll().then((dv) => {
-                const dvf = DataViewFacade.for(dv);
-                const twodim = dvf.rawData().twoDimData();
-
-                console.log("twodim", twodim);
-            });
-        });
-
-        var chartDom = this.getElement();
-        var myChart = echarts.init(chartDom);
-        var option;
-
-        option = {
+        const chartDom = this.getElement();
+        const myChart = echarts.init(chartDom);
+        let option = {
             xAxis: {
                 type: "category",
                 data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -98,8 +84,17 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                 },
             ],
         };
-
-        option && myChart.setOption(option);
+        const execution = this.getExecution(options, insight, executionFactory);
+        execution.execute().then((r) => {
+            r.readAll().then((dv) => {
+                console.log("dataview", dv);
+                // @ts-ignore
+                option.xAxis.data = dv?.headerItems?.[1]?.[0]?.map((elem) => elem?.attributeHeaderItem?.name);
+                // @ts-ignore
+                option.series[0].data = dv?.data[0];
+                myChart.setOption(option);
+            });
+        });
     }
 
     protected getDefaultAndAvailableSort(
