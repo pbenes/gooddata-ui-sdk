@@ -63,8 +63,10 @@ export class PluggableColumnEchart extends PluggableBaseChart {
     }
 
     protected renderVisualization(options: any, insight: any, executionFactory: any): void {
-        const firstInPalette = options?.config?.colorPalette?.[0]?.fill;
-        const color = `rgb(${firstInPalette.r},${firstInPalette.g},${firstInPalette.b})`;
+        const palette = (index: number) => {
+            const firstInPalette = options?.config?.colorPalette?.[index]?.fill;
+            return `rgb(${firstInPalette.r},${firstInPalette.g},${firstInPalette.b})`;
+        };
 
         const chartDom = this.getElement();
         const myChart = echarts.init(chartDom);
@@ -81,9 +83,15 @@ export class PluggableColumnEchart extends PluggableBaseChart {
                     show: false,
                 },
                 show: true,
+                axisLabel: {
+                    fontFamily: "avenir",
+                },
             },
             yAxis: {
                 type: "value",
+                axisLabel: {
+                    fontFamily: "avenir",
+                },
             },
             series: [],
         };
@@ -101,15 +109,25 @@ export class PluggableColumnEchart extends PluggableBaseChart {
 
                 // @ts-ignore
                 option.series = dv?.data
-                    .map((data) => ({
-                        data: data,
-                        type: "bar",
-                        stack: "x",
-                        label: {
-                            show: true,
-                            fontFamily: "avenir",
-                        },
-                    }))
+                    .map(
+                        (data, index): echarts.BarSeriesOption => ({
+                            data: data,
+                            type: "bar",
+                            stack: "x",
+                            label: {
+                                show: true,
+                                fontFamily: "avenir",
+                                color: "#fff",
+                                textBorderWidth: 1,
+                                textBorderColor: "#000",
+                                fontSize: 11,
+                                fontWeight: "bold",
+                            },
+                            itemStyle: {
+                                color: palette(index),
+                            },
+                        }),
+                    )
                     .reverse();
 
                 myChart.clear();
