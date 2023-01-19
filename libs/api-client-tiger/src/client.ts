@@ -87,6 +87,7 @@ export {
 
 export interface ITigerClient {
     axios: AxiosInstance;
+    config: { hostname?: string };
     execution: ReturnType<typeof tigerExecutionClientFactory>;
     executionResult: ReturnType<typeof tigerExecutionResultClientFactory>;
     labelElements: ReturnType<typeof tigerLabelElementsClientFactory>;
@@ -114,7 +115,7 @@ export interface ITigerClient {
  * Tiger execution client
  *
  */
-export const tigerClientFactory = (axios: AxiosInstance): ITigerClient => {
+export const tigerClientFactory = (axios: AxiosInstance, config: { hostname?: string }): ITigerClient => {
     const execution = tigerExecutionClientFactory(axios);
     const executionResult = tigerExecutionResultClientFactory(axios);
     const labelElements = tigerLabelElementsClientFactory(axios);
@@ -130,6 +131,7 @@ export const tigerClientFactory = (axios: AxiosInstance): ITigerClient => {
 
     return {
         axios,
+        config,
         execution,
         executionResult,
         labelElements,

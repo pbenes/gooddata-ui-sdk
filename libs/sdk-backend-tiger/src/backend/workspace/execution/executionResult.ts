@@ -1,4 +1,4 @@
-// (C) 2019-2022 GoodData Corporation
+// (C) 2019-2023 GoodData Corporation
 
 import {
     ITigerClient,
@@ -169,8 +169,9 @@ export class TigerExecutionResult implements IExecutionResult {
             });
 
             if (result?.status === 200) {
+                const prefix = client?.config?.hostname ?? "";
                 return {
-                    uri: result?.config?.url || "",
+                    uri: `${prefix}${result?.config?.url}`,
                 };
             }
 
