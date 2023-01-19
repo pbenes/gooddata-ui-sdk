@@ -1,4 +1,4 @@
-// (C) 2007-2022 GoodData Corporation
+// (C) 2007-2023 GoodData Corporation
 import { GdcExecuteAFM, GdcExport } from "@gooddata/api-model-bear";
 import compact from "lodash/compact";
 import isEmpty from "lodash/isEmpty";
@@ -62,6 +62,12 @@ export class ReportModule {
             .then((data: GdcExport.IExportResponse) =>
                 handleHeadPolling(this.xhr.get.bind(this.xhr), data.uri, isExportFinished, pollingOptions),
             )
+            .then(({ uri }) => {
+                const hostname = this.xhr.getHostname() ?? "";
+                return {
+                    uri: `${hostname}${uri}`,
+                };
+            })
             .catch(this.handleExportResultError);
     }
 
