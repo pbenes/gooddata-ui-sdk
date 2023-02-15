@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 CURRENT_DIR=$(echo $(cd $(dirname $0) && pwd -P))
 PROXY_CONFIG_FILE="${CURRENT_DIR}/proxy_config.json"

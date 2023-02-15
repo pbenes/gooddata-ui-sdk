@@ -731,22 +731,6 @@ TigerWorkspaceCatalogWithAvailableItems {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_account.account",
-            "ref": Object {
-              "identifier": "label.f_account.account",
-              "type": "displayForm",
-            },
-            "title": "Name",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_account.account",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_account.account.accountid",
             "ref": Object {
               "identifier": "label.f_account.account.accountid",
@@ -755,6 +739,22 @@ TigerWorkspaceCatalogWithAvailableItems {
             "title": "Account",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account.accountid",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_account.account",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_account.account",
+            "ref": Object {
+              "identifier": "label.f_account.account",
+              "type": "displayForm",
+            },
+            "title": "Name",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
           },
         ],
         "id": "attr.f_account.account",
@@ -790,22 +790,6 @@ TigerWorkspaceCatalogWithAvailableItems {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_account.account",
-          "ref": Object {
-            "identifier": "label.f_account.account",
-            "type": "displayForm",
-          },
-          "title": "Name",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_account.account",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_account.account.accountid",
           "ref": Object {
             "identifier": "label.f_account.account.accountid",
@@ -814,6 +798,22 @@ TigerWorkspaceCatalogWithAvailableItems {
           "title": "Account",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account.accountid",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_account.account",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_account.account",
+          "ref": Object {
+            "identifier": "label.f_account.account",
+            "type": "displayForm",
+          },
+          "title": "Name",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -2065,22 +2065,6 @@ TigerWorkspaceCatalogWithAvailableItems {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_opportunity.opportunity.opportunity",
-            "ref": Object {
-              "identifier": "label.f_opportunity.opportunity.opportunity",
-              "type": "displayForm",
-            },
-            "title": "Opportunity",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_opportunity.opportunity",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_opportunity.opportunity.sfdcurl",
             "ref": Object {
               "identifier": "label.f_opportunity.opportunity.sfdcurl",
@@ -2105,6 +2089,22 @@ TigerWorkspaceCatalogWithAvailableItems {
             "title": "Opportunity Name",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_opportunity.opportunity",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_opportunity.opportunity.opportunity",
+            "ref": Object {
+              "identifier": "label.f_opportunity.opportunity.opportunity",
+              "type": "displayForm",
+            },
+            "title": "Opportunity",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
           },
         ],
         "id": "attr.f_opportunity.opportunity",
@@ -2140,22 +2140,6 @@ TigerWorkspaceCatalogWithAvailableItems {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_opportunity.opportunity.opportunity",
-          "ref": Object {
-            "identifier": "label.f_opportunity.opportunity.opportunity",
-            "type": "displayForm",
-          },
-          "title": "Opportunity",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_opportunity.opportunity",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_opportunity.opportunity.sfdcurl",
           "ref": Object {
             "identifier": "label.f_opportunity.opportunity.sfdcurl",
@@ -2180,6 +2164,22 @@ TigerWorkspaceCatalogWithAvailableItems {
           "title": "Opportunity Name",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_opportunity.opportunity",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_opportunity.opportunity.opportunity",
+          "ref": Object {
+            "identifier": "label.f_opportunity.opportunity.opportunity",
+            "type": "displayForm",
+          },
+          "title": "Opportunity",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -2710,22 +2710,6 @@ TigerWorkspaceCatalogWithAvailableItems {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_owner.salesrep",
-            "ref": Object {
-              "identifier": "label.f_owner.salesrep",
-              "type": "displayForm",
-            },
-            "title": "Owner Name",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_owner.salesrep",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_owner.salesrep.owner",
             "ref": Object {
               "identifier": "label.f_owner.salesrep.owner",
@@ -2734,6 +2718,22 @@ TigerWorkspaceCatalogWithAvailableItems {
             "title": "Owner",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep.owner",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_owner.salesrep",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_owner.salesrep",
+            "ref": Object {
+              "identifier": "label.f_owner.salesrep",
+              "type": "displayForm",
+            },
+            "title": "Owner Name",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
           },
         ],
         "id": "attr.f_owner.salesrep",
@@ -2769,22 +2769,6 @@ TigerWorkspaceCatalogWithAvailableItems {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_owner.salesrep",
-          "ref": Object {
-            "identifier": "label.f_owner.salesrep",
-            "type": "displayForm",
-          },
-          "title": "Owner Name",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_owner.salesrep",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_owner.salesrep.owner",
           "ref": Object {
             "identifier": "label.f_owner.salesrep.owner",
@@ -2793,6 +2777,22 @@ TigerWorkspaceCatalogWithAvailableItems {
           "title": "Owner",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep.owner",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_owner.salesrep",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_owner.salesrep",
+          "ref": Object {
+            "identifier": "label.f_owner.salesrep",
+            "type": "displayForm",
+          },
+          "title": "Owner Name",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -3052,22 +3052,6 @@ TigerWorkspaceCatalogWithAvailableItems {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_stage.stagename.order",
-            "ref": Object {
-              "identifier": "label.f_stage.stagename.order",
-              "type": "displayForm",
-            },
-            "title": "Order",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_stage.stagename",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_stage.stagename.stagename",
             "ref": Object {
               "identifier": "label.f_stage.stagename.stagename",
@@ -3092,6 +3076,22 @@ TigerWorkspaceCatalogWithAvailableItems {
             "title": "Stage Name",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_stage.stagename",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_stage.stagename.order",
+            "ref": Object {
+              "identifier": "label.f_stage.stagename.order",
+              "type": "displayForm",
+            },
+            "title": "Order",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
           },
         ],
         "id": "attr.f_stage.stagename",
@@ -3127,22 +3127,6 @@ TigerWorkspaceCatalogWithAvailableItems {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_stage.stagename.order",
-          "ref": Object {
-            "identifier": "label.f_stage.stagename.order",
-            "type": "displayForm",
-          },
-          "title": "Order",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_stage.stagename",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_stage.stagename.stagename",
           "ref": Object {
             "identifier": "label.f_stage.stagename.stagename",
@@ -3167,6 +3151,22 @@ TigerWorkspaceCatalogWithAvailableItems {
           "title": "Stage Name",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_stage.stagename",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_stage.stagename.order",
+          "ref": Object {
+            "identifier": "label.f_stage.stagename.order",
+            "type": "displayForm",
+          },
+          "title": "Order",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -5815,342 +5815,6 @@ TigerWorkspaceCatalogWithAvailableItems {
       "dateAttributes": Array [
         Object {
           "attribute": Object {
-            "description": "Minute",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.minute",
-                  "type": "attribute",
-                },
-                "description": "Minute",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.minute",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.minute",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Minute",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.minute",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.minute",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.minute",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Minute",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.minute",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.minute",
-              "type": "attribute",
-            },
-            "description": "Minute",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.minute",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.minute",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Minute",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.minute",
-          },
-          "granularity": "GDC.time.minute",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Hour",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.hour",
-                  "type": "attribute",
-                },
-                "description": "Hour",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.hour",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.hour",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Hour",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.hour",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.hour",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.hour",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Hour",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.hour",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.hour",
-              "type": "attribute",
-            },
-            "description": "Hour",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.hour",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.hour",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Hour",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.hour",
-          },
-          "granularity": "GDC.time.hour",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Date",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.day",
-                  "type": "attribute",
-                },
-                "description": "Date",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.day",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.day",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Date",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.day",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.day",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.day",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Date",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.day",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.day",
-              "type": "attribute",
-            },
-            "description": "Date",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.day",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.day",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Date",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.day",
-          },
-          "granularity": "GDC.time.date",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Week and Year (W52/2020)",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.week",
-                  "type": "attribute",
-                },
-                "description": "Week and Year (W52/2020)",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.week",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.week",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Week/Year",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.week",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.week",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.week",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Week/Year",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.week",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.week",
-              "type": "attribute",
-            },
-            "description": "Week and Year (W52/2020)",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.week",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.week",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Week/Year",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.week",
-          },
-          "granularity": "GDC.time.week_us",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Month and Year (12/2020)",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.month",
-                  "type": "attribute",
-                },
-                "description": "Month and Year (12/2020)",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.month",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.month",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Month/Year",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.month",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.month",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.month",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Month/Year",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.month",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.month",
-              "type": "attribute",
-            },
-            "description": "Month and Year (12/2020)",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.month",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.month",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Month/Year",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.month",
-          },
-          "granularity": "GDC.time.month",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Quarter and Year (Q1/2020)",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.quarter",
-                  "type": "attribute",
-                },
-                "description": "Quarter and Year (Q1/2020)",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.quarter",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.quarter",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Quarter/Year",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.quarter",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.quarter",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.quarter",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Quarter/Year",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.quarter",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.quarter",
-              "type": "attribute",
-            },
-            "description": "Quarter and Year (Q1/2020)",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.quarter",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.quarter",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Quarter/Year",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.quarter",
-          },
-          "granularity": "GDC.time.quarter",
-        },
-        Object {
-          "attribute": Object {
-            "description": "Year",
-            "displayForms": Array [
-              Object {
-                "attribute": Object {
-                  "identifier": "dt_snapshotdate_timestamp.year",
-                  "type": "attribute",
-                },
-                "description": "Year",
-                "displayFormType": undefined,
-                "id": "dt_snapshotdate_timestamp.year",
-                "ref": Object {
-                  "identifier": "dt_snapshotdate_timestamp.year",
-                  "type": "displayForm",
-                },
-                "title": "Snapshot - Year",
-                "type": "displayForm",
-                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.year",
-              },
-            ],
-            "id": "dt_snapshotdate_timestamp.year",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.year",
-              "type": "attribute",
-            },
-            "title": "Snapshot - Year",
-            "type": "attribute",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.year",
-          },
-          "defaultDisplayForm": Object {
-            "attribute": Object {
-              "identifier": "dt_snapshotdate_timestamp.year",
-              "type": "attribute",
-            },
-            "description": "Year",
-            "displayFormType": undefined,
-            "id": "dt_snapshotdate_timestamp.year",
-            "ref": Object {
-              "identifier": "dt_snapshotdate_timestamp.year",
-              "type": "displayForm",
-            },
-            "title": "Snapshot - Year",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.year",
-          },
-          "granularity": "GDC.time.year",
-        },
-        Object {
-          "attribute": Object {
             "description": "Generic Minute of the Hour(MI1-MI60)",
             "displayForms": Array [
               Object {
@@ -6532,6 +6196,342 @@ TigerWorkspaceCatalogWithAvailableItems {
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.quarterOfYear",
           },
           "granularity": "GDC.time.quarter_in_year",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Minute",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.minute",
+                  "type": "attribute",
+                },
+                "description": "Minute",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.minute",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.minute",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Minute",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.minute",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.minute",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.minute",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Minute",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.minute",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.minute",
+              "type": "attribute",
+            },
+            "description": "Minute",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.minute",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.minute",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Minute",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.minute",
+          },
+          "granularity": "GDC.time.minute",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Hour",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.hour",
+                  "type": "attribute",
+                },
+                "description": "Hour",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.hour",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.hour",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Hour",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.hour",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.hour",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.hour",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Hour",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.hour",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.hour",
+              "type": "attribute",
+            },
+            "description": "Hour",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.hour",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.hour",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Hour",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.hour",
+          },
+          "granularity": "GDC.time.hour",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Date",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.day",
+                  "type": "attribute",
+                },
+                "description": "Date",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.day",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.day",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Date",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.day",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.day",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.day",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Date",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.day",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.day",
+              "type": "attribute",
+            },
+            "description": "Date",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.day",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.day",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Date",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.day",
+          },
+          "granularity": "GDC.time.date",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Week and Year (W52/2020)",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.week",
+                  "type": "attribute",
+                },
+                "description": "Week and Year (W52/2020)",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.week",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.week",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Week/Year",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.week",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.week",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.week",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Week/Year",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.week",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.week",
+              "type": "attribute",
+            },
+            "description": "Week and Year (W52/2020)",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.week",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.week",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Week/Year",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.week",
+          },
+          "granularity": "GDC.time.week_us",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Month and Year (12/2020)",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.month",
+                  "type": "attribute",
+                },
+                "description": "Month and Year (12/2020)",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.month",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.month",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Month/Year",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.month",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.month",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.month",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Month/Year",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.month",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.month",
+              "type": "attribute",
+            },
+            "description": "Month and Year (12/2020)",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.month",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.month",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Month/Year",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.month",
+          },
+          "granularity": "GDC.time.month",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Quarter and Year (Q1/2020)",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.quarter",
+                  "type": "attribute",
+                },
+                "description": "Quarter and Year (Q1/2020)",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.quarter",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.quarter",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Quarter/Year",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.quarter",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.quarter",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.quarter",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Quarter/Year",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.quarter",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.quarter",
+              "type": "attribute",
+            },
+            "description": "Quarter and Year (Q1/2020)",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.quarter",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.quarter",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Quarter/Year",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.quarter",
+          },
+          "granularity": "GDC.time.quarter",
+        },
+        Object {
+          "attribute": Object {
+            "description": "Year",
+            "displayForms": Array [
+              Object {
+                "attribute": Object {
+                  "identifier": "dt_snapshotdate_timestamp.year",
+                  "type": "attribute",
+                },
+                "description": "Year",
+                "displayFormType": undefined,
+                "id": "dt_snapshotdate_timestamp.year",
+                "ref": Object {
+                  "identifier": "dt_snapshotdate_timestamp.year",
+                  "type": "displayForm",
+                },
+                "title": "Snapshot - Year",
+                "type": "displayForm",
+                "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.year",
+              },
+            ],
+            "id": "dt_snapshotdate_timestamp.year",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.year",
+              "type": "attribute",
+            },
+            "title": "Snapshot - Year",
+            "type": "attribute",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/attributes/dt_snapshotdate_timestamp.year",
+          },
+          "defaultDisplayForm": Object {
+            "attribute": Object {
+              "identifier": "dt_snapshotdate_timestamp.year",
+              "type": "attribute",
+            },
+            "description": "Year",
+            "displayFormType": undefined,
+            "id": "dt_snapshotdate_timestamp.year",
+            "ref": Object {
+              "identifier": "dt_snapshotdate_timestamp.year",
+              "type": "displayForm",
+            },
+            "title": "Snapshot - Year",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/dt_snapshotdate_timestamp.year",
+          },
+          "granularity": "GDC.time.year",
         },
       ],
       "relevance": 0,
@@ -7520,22 +7520,6 @@ TigerWorkspaceCatalog {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_account.account",
-            "ref": Object {
-              "identifier": "label.f_account.account",
-              "type": "displayForm",
-            },
-            "title": "Name",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_account.account",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_account.account.accountid",
             "ref": Object {
               "identifier": "label.f_account.account.accountid",
@@ -7544,6 +7528,22 @@ TigerWorkspaceCatalog {
             "title": "Account",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account.accountid",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_account.account",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_account.account",
+            "ref": Object {
+              "identifier": "label.f_account.account",
+              "type": "displayForm",
+            },
+            "title": "Name",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
           },
         ],
         "id": "attr.f_account.account",
@@ -7579,22 +7579,6 @@ TigerWorkspaceCatalog {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_account.account",
-          "ref": Object {
-            "identifier": "label.f_account.account",
-            "type": "displayForm",
-          },
-          "title": "Name",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_account.account",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_account.account.accountid",
           "ref": Object {
             "identifier": "label.f_account.account.accountid",
@@ -7603,6 +7587,22 @@ TigerWorkspaceCatalog {
           "title": "Account",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account.accountid",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_account.account",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_account.account",
+          "ref": Object {
+            "identifier": "label.f_account.account",
+            "type": "displayForm",
+          },
+          "title": "Name",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_account.account",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -8854,22 +8854,6 @@ TigerWorkspaceCatalog {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_opportunity.opportunity.opportunity",
-            "ref": Object {
-              "identifier": "label.f_opportunity.opportunity.opportunity",
-              "type": "displayForm",
-            },
-            "title": "Opportunity",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_opportunity.opportunity",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_opportunity.opportunity.sfdcurl",
             "ref": Object {
               "identifier": "label.f_opportunity.opportunity.sfdcurl",
@@ -8894,6 +8878,22 @@ TigerWorkspaceCatalog {
             "title": "Opportunity Name",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_opportunity.opportunity",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_opportunity.opportunity.opportunity",
+            "ref": Object {
+              "identifier": "label.f_opportunity.opportunity.opportunity",
+              "type": "displayForm",
+            },
+            "title": "Opportunity",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
           },
         ],
         "id": "attr.f_opportunity.opportunity",
@@ -8929,22 +8929,6 @@ TigerWorkspaceCatalog {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_opportunity.opportunity.opportunity",
-          "ref": Object {
-            "identifier": "label.f_opportunity.opportunity.opportunity",
-            "type": "displayForm",
-          },
-          "title": "Opportunity",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_opportunity.opportunity",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_opportunity.opportunity.sfdcurl",
           "ref": Object {
             "identifier": "label.f_opportunity.opportunity.sfdcurl",
@@ -8969,6 +8953,22 @@ TigerWorkspaceCatalog {
           "title": "Opportunity Name",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_opportunity.opportunity",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_opportunity.opportunity.opportunity",
+          "ref": Object {
+            "identifier": "label.f_opportunity.opportunity.opportunity",
+            "type": "displayForm",
+          },
+          "title": "Opportunity",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_opportunity.opportunity.opportunity",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -9499,22 +9499,6 @@ TigerWorkspaceCatalog {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_owner.salesrep",
-            "ref": Object {
-              "identifier": "label.f_owner.salesrep",
-              "type": "displayForm",
-            },
-            "title": "Owner Name",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_owner.salesrep",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_owner.salesrep.owner",
             "ref": Object {
               "identifier": "label.f_owner.salesrep.owner",
@@ -9523,6 +9507,22 @@ TigerWorkspaceCatalog {
             "title": "Owner",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep.owner",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_owner.salesrep",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_owner.salesrep",
+            "ref": Object {
+              "identifier": "label.f_owner.salesrep",
+              "type": "displayForm",
+            },
+            "title": "Owner Name",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
           },
         ],
         "id": "attr.f_owner.salesrep",
@@ -9558,22 +9558,6 @@ TigerWorkspaceCatalog {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_owner.salesrep",
-          "ref": Object {
-            "identifier": "label.f_owner.salesrep",
-            "type": "displayForm",
-          },
-          "title": "Owner Name",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_owner.salesrep",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_owner.salesrep.owner",
           "ref": Object {
             "identifier": "label.f_owner.salesrep.owner",
@@ -9582,6 +9566,22 @@ TigerWorkspaceCatalog {
           "title": "Owner",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep.owner",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_owner.salesrep",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_owner.salesrep",
+          "ref": Object {
+            "identifier": "label.f_owner.salesrep",
+            "type": "displayForm",
+          },
+          "title": "Owner Name",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_owner.salesrep",
         },
       ],
       "geoPinDisplayForms": Array [],
@@ -9841,22 +9841,6 @@ TigerWorkspaceCatalog {
             },
             "description": "",
             "displayFormType": undefined,
-            "id": "label.f_stage.stagename.order",
-            "ref": Object {
-              "identifier": "label.f_stage.stagename.order",
-              "type": "displayForm",
-            },
-            "title": "Order",
-            "type": "displayForm",
-            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
-          },
-          Object {
-            "attribute": Object {
-              "identifier": "attr.f_stage.stagename",
-              "type": "attribute",
-            },
-            "description": "",
-            "displayFormType": undefined,
             "id": "label.f_stage.stagename.stagename",
             "ref": Object {
               "identifier": "label.f_stage.stagename.stagename",
@@ -9881,6 +9865,22 @@ TigerWorkspaceCatalog {
             "title": "Stage Name",
             "type": "displayForm",
             "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename",
+          },
+          Object {
+            "attribute": Object {
+              "identifier": "attr.f_stage.stagename",
+              "type": "attribute",
+            },
+            "description": "",
+            "displayFormType": undefined,
+            "id": "label.f_stage.stagename.order",
+            "ref": Object {
+              "identifier": "label.f_stage.stagename.order",
+              "type": "displayForm",
+            },
+            "title": "Order",
+            "type": "displayForm",
+            "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
           },
         ],
         "id": "attr.f_stage.stagename",
@@ -9916,22 +9916,6 @@ TigerWorkspaceCatalog {
           },
           "description": "",
           "displayFormType": undefined,
-          "id": "label.f_stage.stagename.order",
-          "ref": Object {
-            "identifier": "label.f_stage.stagename.order",
-            "type": "displayForm",
-          },
-          "title": "Order",
-          "type": "displayForm",
-          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
-        },
-        Object {
-          "attribute": Object {
-            "identifier": "attr.f_stage.stagename",
-            "type": "attribute",
-          },
-          "description": "",
-          "displayFormType": undefined,
           "id": "label.f_stage.stagename.stagename",
           "ref": Object {
             "identifier": "label.f_stage.stagename.stagename",
@@ -9956,6 +9940,22 @@ TigerWorkspaceCatalog {
           "title": "Stage Name",
           "type": "displayForm",
           "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename",
+        },
+        Object {
+          "attribute": Object {
+            "identifier": "attr.f_stage.stagename",
+            "type": "attribute",
+          },
+          "description": "",
+          "displayFormType": undefined,
+          "id": "label.f_stage.stagename.order",
+          "ref": Object {
+            "identifier": "label.f_stage.stagename.order",
+            "type": "displayForm",
+          },
+          "title": "Order",
+          "type": "displayForm",
+          "uri": "https://staging.anywhere.gooddata.com/api/v1/entities/workspaces/4dc4e033e611421791adea58d34d958c/labels/label.f_stage.stagename.order",
         },
       ],
       "geoPinDisplayForms": Array [],
