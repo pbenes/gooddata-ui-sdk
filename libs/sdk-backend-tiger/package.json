@@ -38,7 +38,7 @@
         "api-extractor": "mkdir -p api && [ -z \"${CI}\" ] && (api-extractor run -l) || (api-extractor run)",
         "test": "jest --watch",
         "integrated-test": "./scripts/integrated-test.sh",
-        "integrated-test-rec": "GD_TIGER_REC=true NODE_TLS_REJECT_UNAUTHORIZED=0 jest -u --runInBand --config \"integrated-test.config.js\"",
+        "integrated-test-rec": "GD_TIGER_REC=true NODE_TLS_REJECT_UNAUTHORIZED=0 jest --runInBand --config \"integrated-test.config.js\"",
         "refresh-recordings": "npm run clear-recordings && npm run start-wiremock-recording && npm run integrated-test-rec; npm run stop-wiremock && npm run remove-sensitive-data && npm run prettier-write",
         "test-once": "./scripts/test-once.sh",
         "test-ci": "./scripts/test-ci.sh",
