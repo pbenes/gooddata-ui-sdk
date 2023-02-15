@@ -1,7 +1,7 @@
-// (C) 2022 GoodData Corporation
+// (C) 2023 GoodData Corporation
 
 /* eslint-disable */
-/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2022-01-05T11:17:43.842Z; */
+/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2023-02-15T08:55:17.258Z; */
 // @ts-ignore ignore unused imports here if they happen (e.g. when there is no measure in the workspace)
 import {
     newAttribute,
@@ -83,18 +83,18 @@ export const Status: IAttribute = newAttribute("f_activity.status_id");
  */
 export const Opportunity = {
     /**
+     * Display Form Title: SFDC URL
+     * Display Form ID: label.f_opportunity.opportunity.sfdcurl
+     */
+    SFDCURL: newAttribute("label.f_opportunity.opportunity.sfdcurl"),
+    /**
      * Display Form Title: Opportunity Name
      * Display Form ID: label.f_opportunity.opportunity
-     */
-    Name: newAttribute("label.f_opportunity.opportunity"),
+     */ Name: newAttribute("label.f_opportunity.opportunity"),
     /**
      * Display Form Title: Opportunity
      * Display Form ID: label.f_opportunity.opportunity.opportunity
      */ Default: newAttribute("label.f_opportunity.opportunity.opportunity"),
-    /**
-     * Display Form Title: SFDC URL
-     * Display Form ID: label.f_opportunity.opportunity.sfdcurl
-     */ SFDCURL: newAttribute("label.f_opportunity.opportunity.sfdcurl"),
 };
 /**
  * Attribute Title: Opportunity Id
@@ -122,14 +122,14 @@ export const OppSnapshotId: IAttribute = newAttribute("f_opportunitysnapshot.id"
  */
 export const SalesRep = {
     /**
-     * Display Form Title: Owner Name
-     * Display Form ID: label.f_owner.salesrep
-     */
-    OwnerName: newAttribute("label.f_owner.salesrep"),
-    /**
      * Display Form Title: Owner
      * Display Form ID: label.f_owner.salesrep.owner
-     */ Owner: newAttribute("label.f_owner.salesrep.owner"),
+     */
+    Owner: newAttribute("label.f_owner.salesrep.owner"),
+    /**
+     * Display Form Title: Owner Name
+     * Display Form ID: label.f_owner.salesrep
+     */ OwnerName: newAttribute("label.f_owner.salesrep"),
 };
 /**
  * Attribute Title: Department
@@ -152,14 +152,14 @@ export const Region: IAttribute = newAttribute("f_owner.region_id");
  */
 export const Product = {
     /**
-     * Display Form Title: Product Name
-     * Display Form ID: label.f_product.product
-     */
-    Name: newAttribute("label.f_product.product"),
-    /**
      * Display Form Title: Product
      * Display Form ID: label.f_product.product.productid
-     */ Default: newAttribute("label.f_product.product.productid"),
+     */
+    Default: newAttribute("label.f_product.product.productid"),
+    /**
+     * Display Form Title: Product Name
+     * Display Form ID: label.f_product.product
+     */ Name: newAttribute("label.f_product.product"),
 };
 /**
  * Attribute Title: Product Id
@@ -173,17 +173,17 @@ export const ProductId: IAttribute = newAttribute("f_product.id");
 export const StageName = {
     /**
      * Display Form Title: Stage Name
-     * Display Form ID: label.f_stage.stagename
+     * Display Form ID: label.f_stage.stagename.stagename
      */
-    Default: newAttribute("label.f_stage.stagename"),
+    Default: newAttribute("label.f_stage.stagename.stagename"),
+    /**
+     * Display Form Title: Stage Name
+     * Display Form ID: label.f_stage.stagename
+     */ _1: newAttribute("label.f_stage.stagename"),
     /**
      * Display Form Title: Order
      * Display Form ID: label.f_stage.stagename.order
      */ Order: newAttribute("label.f_stage.stagename.order"),
-    /**
-     * Display Form Title: Stage Name
-     * Display Form ID: label.f_stage.stagename.stagename
-     */ _1: newAttribute("label.f_stage.stagename.stagename"),
 };
 /**
  * Attribute Title: Stage Id
@@ -298,20 +298,20 @@ export const SnapshotEOP: IMeasure<IMeasureDefinition> = newMeasure(
     idRef("c5ee7836-126c-41aa-bd69-1873d379a065", "measure"),
 );
 /**
- * Metric Title: _Close [EOP]
- * Metric ID: 1179c888-3d63-452c-bd1a-0a2a0a5caa06
- * Metric Type: MAQL Metric
- */
-export const CloseEOP: IMeasure<IMeasureDefinition> = newMeasure(
-    idRef("1179c888-3d63-452c-bd1a-0a2a0a5caa06", "measure"),
-);
-/**
  * Metric Title: metricAmountPercent
  * Metric ID: 325d8a8e-d6f2-4151-b49e-d6e6e81563d0
  * Metric Type: MAQL Metric
  */
 export const MetricAmountPercent: IMeasure<IMeasureDefinition> = newMeasure(
     idRef("325d8a8e-d6f2-4151-b49e-d6e6e81563d0", "measure"),
+);
+/**
+ * Metric Title: _Close [EOP]
+ * Metric ID: 1179c888-3d63-452c-bd1a-0a2a0a5caa06
+ * Metric Type: MAQL Metric
+ */
+export const CloseEOP: IMeasure<IMeasureDefinition> = newMeasure(
+    idRef("1179c888-3d63-452c-bd1a-0a2a0a5caa06", "measure"),
 );
 /**
  * Metric Title: metricCloseEOPPercent
@@ -2102,4 +2102,10 @@ export const Insights = {
      */
     InsightActivities: "2ec4862e-4559-42d9-a628-fd4e80c16d59",
 };
-export const Dashboards = {};
+export const Dashboards = {
+    /**
+     * Dashboard Title: MAP - test dashboard
+     * Dashboard ID: 9a3c6863-f0a3-412f-8c17-f3acd79afa13
+     */
+    MAPTestDashboard: "9a3c6863-f0a3-412f-8c17-f3acd79afa13",
+};
