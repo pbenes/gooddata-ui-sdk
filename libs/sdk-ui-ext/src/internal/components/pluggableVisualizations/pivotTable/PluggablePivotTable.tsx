@@ -250,7 +250,7 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
                 rowAttributes,
                 previousRowAttributes,
                 columnAttributes,
-                tableSortingCheckDisabled(this.settings),
+                true || tableSortingCheckDisabled(this.settings),
             ),
             ...controlsObj,
         };
@@ -484,9 +484,13 @@ export class PluggablePivotTable extends AbstractPluggableVisualization {
 
     private handlePushData(data: any) {
         if (data?.properties?.sortItems) {
+            const addTotals = data?.properties?.totals ? {
+                totals: data?.properties?.totals
+            }: {};
             this.pushData({
                 properties: {
                     sortItems: data.properties.sortItems,
+                    ...addTotals
                 },
             });
         } else {
