@@ -1,13 +1,15 @@
 // (C) 2007-2019 GoodData Corporation
 
 import { ReferenceMd } from "@gooddata/reference-workspace";
-import { newAttributeSort, newTotal } from "@gooddata/sdk-model";
+import { newAttributeSort, newNegativeAttributeFilter, newTotal } from "@gooddata/sdk-model";
 import { IPivotTableProps, PivotTable } from "@gooddata/sdk-ui-pivot";
 import { requestPages } from "@gooddata/mock-handling";
 import { scenariosFor } from "../../src";
 import {
+    PivotTableWighSingleMeasureAndSingleRowColAttr,
     PivotTableWithSingleMeasureAndTwoRowsAndCols,
     PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+    PivotTableWighTwoMeasureAndSingleRowColAttr,
 } from "./base";
 
 export const PivotTableWithTwoMeasuresAndTotals = {
@@ -32,13 +34,63 @@ export const PivotTableWithTwoMeasuresGrandTotalsAndSubtotals = {
     ],
 };
 
+export const PivotTableWithTwoMeasuresColumnGrandTotalsAndSubtotals = {
+    ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+    totals: [
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        newTotal("max", ReferenceMd.Won, ReferenceMd.ForecastCategory),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.ForecastCategory),
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+        newTotal("med", ReferenceMd.Amount, ReferenceMd.Region),
+        newTotal("med", ReferenceMd.Won, ReferenceMd.Region),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.Region),
+    ],
+};
+
+export const PivotTableWithTwoMeasuresRowColumnGrandTotalsAndSubtotals = {
+    ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+    totals: [
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.Product.Name),
+        newTotal("min", ReferenceMd.Amount, ReferenceMd.Product.Name),
+        newTotal("max", ReferenceMd.Won, ReferenceMd.Product.Name),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.Product.Name),
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.Department),
+        newTotal("med", ReferenceMd.Amount, ReferenceMd.Department),
+        newTotal("med", ReferenceMd.Won, ReferenceMd.Department),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.Department),
+
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        newTotal("max", ReferenceMd.Won, ReferenceMd.ForecastCategory),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.ForecastCategory),
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+        newTotal("med", ReferenceMd.Amount, ReferenceMd.Region),
+        newTotal("med", ReferenceMd.Won, ReferenceMd.Region),
+        newTotal("nat", ReferenceMd.Won, ReferenceMd.Region),
+    ],
+};
+
 export const PivotTableWithSingleMeasureAndGrandTotal = {
     ...PivotTableWithSingleMeasureAndTwoRowsAndCols,
     totals: [newTotal("sum", ReferenceMd.Amount, ReferenceMd.Product.Name)],
 };
 
-export default scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
-    .withGroupNames("totals")
+export const PivotTableWithSingleMeasureAndColumnGrandTotal = {
+    ...PivotTableWighSingleMeasureAndSingleRowColAttr,
+    totals: [newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory)],
+};
+
+export const PivotTableWithSingleMeasureAndRowColumnGrandTotal = {
+    ...PivotTableWighSingleMeasureAndSingleRowColAttr,
+    totals: [
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+        newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+    ],
+};
+
+const totalsForRows = scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
+    .withGroupNames("totals", "rows")
     .withVisualTestConfig({ screenshotSize: { width: 1000, height: 600 } })
     .addScenario("single measure and single grand total", PivotTableWithSingleMeasureAndGrandTotal)
     .addScenario("single measure and multiple grand totals", {
@@ -116,3 +168,154 @@ export default scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
             sortBy: [newAttributeSort(ReferenceMd.Department, "desc")],
         },
     );
+
+// TODO: add filters to be able to show column totals
+// how to fix the wrong measure title that is not updated on execution from ref-workspace
+// Worth to add tests with hidden new column totals?
+const totalsForColumns = scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
+    .withGroupNames("totals", "columns")
+    .withVisualTestConfig({ screenshotSize: { width: 1000, height: 600 } })
+    .addScenario(
+        "single measure and single column grand total",
+        PivotTableWithSingleMeasureAndColumnGrandTotal,
+    )
+    .addScenario("single measure and multiple column grand totals", {
+        ...PivotTableWighSingleMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("max", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("nat", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and single column grand total for one", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory)],
+        filters: [
+            newNegativeAttributeFilter(ReferenceMd.ForecastCategory, {
+                uris: ["/gdc/md/l32xdyl4bjuzgf9kkqr2avl55gtuyjwf/obj/1062/elements?id=165682"],
+            }),
+        ],
+    })
+    .addScenario("two measures and single column grand total for each", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and multiple column grand totals for each", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+            newTotal("nat", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and one column subtotal", {
+        ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+        totals: [newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region)],
+    })
+    .addScenario("two measures and multiple column subtotals", {
+        ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+            newTotal("med", ReferenceMd.Amount, ReferenceMd.Region),
+            newTotal("med", ReferenceMd.Won, ReferenceMd.Region),
+            newTotal("nat", ReferenceMd.Won, ReferenceMd.Region),
+        ],
+    })
+    .addScenario("two measures and column grand totals and multiple subtotals", {
+        ...PivotTableWithTwoMeasuresColumnGrandTotalsAndSubtotals,
+    })
+    .addScenario("two measures and column single grand total sorted by second attribute", {
+        ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+        totals: [newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory)],
+        sortBy: [newAttributeSort(ReferenceMd.Department, "desc")],
+    })
+    .addScenario(
+        "two measures and single column grand total and single subtotal sorted by second attribute",
+        // The expected behaviour is that the subtotal will be removed and the scenario will be reduced to
+        // the scenario "two measures and single grand total sorted by second attribute"
+        // The requested windows also get affected so the base scenario requires multiple recorded responses
+        {
+            ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+            totals: [
+                newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+                newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+            ],
+            sortBy: [newAttributeSort(ReferenceMd.Department, "desc")],
+        },
+    );
+
+const totalsForRowsAndColumns = scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
+    .withGroupNames("totals", "rows & columns")
+    .withVisualTestConfig({ screenshotSize: { width: 1000, height: 600 } })
+    .addScenario(
+        "single measure and single column/row grand total",
+        PivotTableWithSingleMeasureAndRowColumnGrandTotal,
+    )
+    .addScenario("single measure and multiple column/row grand totals", {
+        ...PivotTableWighSingleMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and single column/row grand total for one", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and single column/row grand total for each", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.SalesRep.Owner),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and multiple column/row grand totals for each", {
+        ...PivotTableWighTwoMeasureAndSingleRowColAttr,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.SalesRep.Owner),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.SalesRep.Owner),
+            newTotal("nat", ReferenceMd.Probability, ReferenceMd.SalesRep.Owner),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("min", ReferenceMd.Amount, ReferenceMd.ForecastCategory),
+            newTotal("max", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+            newTotal("nat", ReferenceMd.Probability, ReferenceMd.ForecastCategory),
+        ],
+    })
+    .addScenario("two measures and one column/row subtotal", {
+        ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.Department),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+        ],
+    })
+    .addScenario("two measures and multiple column/row subtotals", {
+        ...PivotTableWithTwoMeasuresAndTwoRowsAndCols,
+        totals: [
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.Department),
+            newTotal("med", ReferenceMd.Amount, ReferenceMd.Department),
+            newTotal("med", ReferenceMd.Won, ReferenceMd.Department),
+            newTotal("nat", ReferenceMd.Won, ReferenceMd.Department),
+            newTotal("sum", ReferenceMd.Amount, ReferenceMd.Region),
+            newTotal("med", ReferenceMd.Amount, ReferenceMd.Region),
+            newTotal("med", ReferenceMd.Won, ReferenceMd.Region),
+            newTotal("nat", ReferenceMd.Won, ReferenceMd.Region),
+        ],
+    })
+    .addScenario("two measures and column/row grand totals and multiple subtotals", {
+        ...PivotTableWithTwoMeasuresRowColumnGrandTotalsAndSubtotals,
+    });
+
+export default [totalsForRows, totalsForColumns, totalsForRowsAndColumns];
