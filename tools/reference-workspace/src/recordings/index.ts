@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable header/header */
-/* THIS FILE WAS AUTO-GENERATED USING MOCK HANDLING TOOL; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2023-06-16T12:41:14.225Z; */
+/* THIS FILE WAS AUTO-GENERATED USING MOCK HANDLING TOOL; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2023-06-16T13:33:48.943Z; */
 const fp_00ab8c432637030b305313405b3f4efc = {
     definition: require("./uiTestScenarios/executions/00ab8c432637030b305313405b3f4efc/definition.json"),
     executionResult: require("./uiTestScenarios/executions/00ab8c432637030b305313405b3f4efc/executionResult.json"),
@@ -83,6 +83,12 @@ const fp_1233187e1958d47dd5e7231ae0cea98c = {
     executionResult: require("./uiTestScenarios/executions/1233187e1958d47dd5e7231ae0cea98c/executionResult.json"),
     dataView_all: require("./uiTestScenarios/executions/1233187e1958d47dd5e7231ae0cea98c/dataView_all.json"),
     scenarios: require("./uiTestScenarios/executions/1233187e1958d47dd5e7231ae0cea98c/scenarios.json"),
+};
+const fp_13ac71b36db450255f4f495aae2fc421 = {
+    definition: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/dataView_o0_0s100_1000.json"),
+    scenarios: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/scenarios.json"),
 };
 const fp_1494c32c1045f1684b4c59654c46f671 = {
     definition: require("./uiTestScenarios/executions/1494c32c1045f1684b4c59654c46f671/definition.json"),
@@ -307,6 +313,11 @@ const fp_3f7a789373888ab0f6dc90e37bb1aeb9 = {
     executionResult: require("./uiTestScenarios/executions/3f7a789373888ab0f6dc90e37bb1aeb9/executionResult.json"),
     dataView_all: require("./uiTestScenarios/executions/3f7a789373888ab0f6dc90e37bb1aeb9/dataView_all.json"),
 };
+const fp_40f32934787e93a9b63147f2d73adc84 = {
+    definition: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/dataView_o0_0s100_1000.json"),
+};
 const fp_436a3c5788b510ff06fb139c1ed42359 = {
     definition: require("./uiTestScenarios/executions/436a3c5788b510ff06fb139c1ed42359/definition.json"),
     executionResult: require("./uiTestScenarios/executions/436a3c5788b510ff06fb139c1ed42359/executionResult.json"),
@@ -372,6 +383,12 @@ const fp_50dbeb990ce53c68fbe21e37709a8f29 = {
     executionResult: require("./uiTestScenarios/executions/50dbeb990ce53c68fbe21e37709a8f29/executionResult.json"),
     dataView_all: require("./uiTestScenarios/executions/50dbeb990ce53c68fbe21e37709a8f29/dataView_all.json"),
 };
+const fp_51434bf9ad4534a94cbba1570b87fb43 = {
+    definition: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/dataView_o0_0s100_1000.json"),
+    scenarios: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/scenarios.json"),
+};
 const fp_52e947577efd3f98414a985dde315000 = {
     definition: require("./uiTestScenarios/executions/52e947577efd3f98414a985dde315000/definition.json"),
     executionResult: require("./uiTestScenarios/executions/52e947577efd3f98414a985dde315000/executionResult.json"),
@@ -383,6 +400,12 @@ const fp_557d8c675cfa15fec987c31036da51ba = {
     executionResult: require("./uiTestScenarios/executions/557d8c675cfa15fec987c31036da51ba/executionResult.json"),
     dataView_all: require("./uiTestScenarios/executions/557d8c675cfa15fec987c31036da51ba/dataView_all.json"),
     scenarios: require("./uiTestScenarios/executions/557d8c675cfa15fec987c31036da51ba/scenarios.json"),
+};
+const fp_5587f39d634a3b3155e0f3ead584c916 = {
+    definition: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/dataView_o0_0s100_1000.json"),
+    scenarios: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/scenarios.json"),
 };
 const fp_58f80fb77bbd7c32f06ca9a553cfdae3 = {
     definition: require("./uiTestScenarios/executions/58f80fb77bbd7c32f06ca9a553cfdae3/definition.json"),
@@ -478,6 +501,11 @@ const fp_706d06d3d2c9d59928884f852048eb4d = {
     definition: require("./uiTestScenarios/executions/706d06d3d2c9d59928884f852048eb4d/definition.json"),
     executionResult: require("./uiTestScenarios/executions/706d06d3d2c9d59928884f852048eb4d/executionResult.json"),
     dataView_o0_0s100_1000: require("./uiTestScenarios/executions/706d06d3d2c9d59928884f852048eb4d/dataView_o0_0s100_1000.json"),
+};
+const fp_744d8fc6e2d04492a23875afb4c09ec6 = {
+    definition: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/dataView_o0_0s100_1000.json"),
 };
 const fp_74f4b85f6084d22e17f2214577f6ed37 = {
     definition: require("./uiTestScenarios/executions/74f4b85f6084d22e17f2214577f6ed37/definition.json"),
@@ -796,6 +824,11 @@ const fp_bcf69fa3cf04052d9e92e1713d8cdf0e = {
     dataView_o0_0s22_1000: require("./uiTestScenarios/executions/bcf69fa3cf04052d9e92e1713d8cdf0e/dataView_o0_0s22_1000.json"),
     scenarios: require("./uiTestScenarios/executions/bcf69fa3cf04052d9e92e1713d8cdf0e/scenarios.json"),
 };
+const fp_c07c6dc4aa40b536738bd8c6d0923c17 = {
+    definition: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/definition.json"),
+    executionResult: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/executionResult.json"),
+    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/dataView_o0_0s100_1000.json"),
+};
 const fp_c1ea61c78a68d705df9a594cf1d8c196 = {
     definition: require("./uiTestScenarios/executions/c1ea61c78a68d705df9a594cf1d8c196/definition.json"),
     executionResult: require("./uiTestScenarios/executions/c1ea61c78a68d705df9a594cf1d8c196/executionResult.json"),
@@ -1096,39 +1129,6 @@ const fp_ff74085f6f31c71f4797251924d3205d = {
     dataView_o0_0s100_1000: require("./uiTestScenarios/executions/ff74085f6f31c71f4797251924d3205d/dataView_o0_0s100_1000.json"),
     dataView_o0_0s22_1000: require("./uiTestScenarios/executions/ff74085f6f31c71f4797251924d3205d/dataView_o0_0s22_1000.json"),
 };
-const fp_13ac71b36db450255f4f495aae2fc421 = {
-    definition: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/dataView_o0_0s100_1000.json"),
-    scenarios: require("./uiTestScenarios/executions/13ac71b36db450255f4f495aae2fc421/scenarios.json"),
-};
-const fp_40f32934787e93a9b63147f2d73adc84 = {
-    definition: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/40f32934787e93a9b63147f2d73adc84/dataView_o0_0s100_1000.json"),
-};
-const fp_51434bf9ad4534a94cbba1570b87fb43 = {
-    definition: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/dataView_o0_0s100_1000.json"),
-    scenarios: require("./uiTestScenarios/executions/51434bf9ad4534a94cbba1570b87fb43/scenarios.json"),
-};
-const fp_5587f39d634a3b3155e0f3ead584c916 = {
-    definition: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/dataView_o0_0s100_1000.json"),
-    scenarios: require("./uiTestScenarios/executions/5587f39d634a3b3155e0f3ead584c916/scenarios.json"),
-};
-const fp_744d8fc6e2d04492a23875afb4c09ec6 = {
-    definition: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/744d8fc6e2d04492a23875afb4c09ec6/dataView_o0_0s100_1000.json"),
-};
-const fp_c07c6dc4aa40b536738bd8c6d0923c17 = {
-    definition: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/definition.json"),
-    executionResult: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/executionResult.json"),
-    dataView_o0_0s100_1000: require("./uiTestScenarios/executions/c07c6dc4aa40b536738bd8c6d0923c17/dataView_o0_0s100_1000.json"),
-};
 export const Scenarios = {
     ComboChart: {
         MultipleMeasuresAndNoViewBy: { scenarioIndex: 0, execution: fp_00ab8c432637030b305313405b3f4efc },
@@ -1173,6 +1173,10 @@ export const Scenarios = {
         SingleMeasurePivotWithGroupingSortedByMeasure: {
             scenarioIndex: 0,
             execution: fp_041204a159b659d481a14314ee557360,
+        },
+        TwoMeasuresAndOneColumnRowSubtotal: {
+            scenarioIndex: 1,
+            execution: fp_aeeb340bfb16ffd8fb51adab715395de,
         },
         TwoMeasuresAndSingleGrandTotalForEach: {
             scenarioIndex: 0,
@@ -1283,10 +1287,6 @@ export const Scenarios = {
         },
         TwoMeasures: { scenarioIndex: 4, execution: fp_a499424d77be3281926e5090023ea199 },
         TwoMeasuresAndOneColumnSubtotal: { scenarioIndex: 0, execution: fp_aeeb340bfb16ffd8fb51adab715395de },
-        TwoMeasuresAndOneColumnRowSubtotal: {
-            scenarioIndex: 0,
-            execution: fp_13ac71b36db450255f4f495aae2fc421,
-        },
         SingleMeasureAndSingleColumnGrandTotal: {
             scenarioIndex: 0,
             execution: fp_b8e3f7055bbe854aa82542abe83d628e,
@@ -6382,6 +6382,7 @@ export const Recordings = {
         fp_10536444ec5e128350f8b5f25ad6d4bc,
         fp_11569714da29122c337cab005788a5fc,
         fp_1233187e1958d47dd5e7231ae0cea98c,
+        fp_13ac71b36db450255f4f495aae2fc421,
         fp_1494c32c1045f1684b4c59654c46f671,
         fp_15dd8db0e7c949c054ed836c4865a465,
         fp_17662e51ac28bd3756cd43f58679fd89,
@@ -6418,6 +6419,7 @@ export const Recordings = {
         fp_3e88b7f79f4d1f61e5c2bb3581719d87,
         fp_3e8d26530c3dbfbb1c2d1c108932fb1c,
         fp_3f7a789373888ab0f6dc90e37bb1aeb9,
+        fp_40f32934787e93a9b63147f2d73adc84,
         fp_436a3c5788b510ff06fb139c1ed42359,
         fp_450cb2bdeb4e50e9bdeddb1a82837b3d,
         fp_456b75119d31e2d4b37da28e8147127d,
@@ -6429,8 +6431,10 @@ export const Recordings = {
         fp_5055bf7ddf995e9e067ea75963adb55d,
         fp_50b382d97968e85d5afe9cfb78e4c346,
         fp_50dbeb990ce53c68fbe21e37709a8f29,
+        fp_51434bf9ad4534a94cbba1570b87fb43,
         fp_52e947577efd3f98414a985dde315000,
         fp_557d8c675cfa15fec987c31036da51ba,
+        fp_5587f39d634a3b3155e0f3ead584c916,
         fp_58f80fb77bbd7c32f06ca9a553cfdae3,
         fp_5958d4d8584b37ab3cb2e78567aeadfe,
         fp_5c2f3c7eb479697b4991791d2e6ebf57,
@@ -6448,6 +6452,7 @@ export const Recordings = {
         fp_6f99d2e422aefb75c78cfd5491805398,
         fp_7018149bcff18c2592e72bd9d07049ff,
         fp_706d06d3d2c9d59928884f852048eb4d,
+        fp_744d8fc6e2d04492a23875afb4c09ec6,
         fp_74f4b85f6084d22e17f2214577f6ed37,
         fp_78fdd7e65370987bc04e6dd0bf3edc04,
         fp_7963b48c5cbc6181838239f39fb3b800,
@@ -6501,6 +6506,7 @@ export const Recordings = {
         fp_ba942f3e77e766d51677b6438eb470e1,
         fp_bcd68102a8b9ff4d1971e7c7fb6bc5f2,
         fp_bcf69fa3cf04052d9e92e1713d8cdf0e,
+        fp_c07c6dc4aa40b536738bd8c6d0923c17,
         fp_c1ea61c78a68d705df9a594cf1d8c196,
         fp_c1ed8778da15e48fba8dbb2c00576c77,
         fp_c28089a6200886f493c60c0e0da63f6b,
@@ -6553,12 +6559,6 @@ export const Recordings = {
         fp_fde7a6a9ba205f28ce4a5391836f1153,
         fp_feb54597636051ea61a1ad9aa1a5138a,
         fp_ff74085f6f31c71f4797251924d3205d,
-        fp_13ac71b36db450255f4f495aae2fc421,
-        fp_40f32934787e93a9b63147f2d73adc84,
-        fp_51434bf9ad4534a94cbba1570b87fb43,
-        fp_5587f39d634a3b3155e0f3ead584c916,
-        fp_744d8fc6e2d04492a23875afb4c09ec6,
-        fp_c07c6dc4aa40b536738bd8c6d0923c17,
     },
     metadata: {
         catalog,

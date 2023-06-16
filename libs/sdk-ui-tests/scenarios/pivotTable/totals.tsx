@@ -169,9 +169,9 @@ const totalsForRows = scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
         },
     );
 
-// TODO: add filters to be able to show column totals
+// TODO: 
+// add filters to be able to show column totals?
 // how to fix the wrong measure title that is not updated on execution from ref-workspace
-// Worth to add tests with hidden new column totals?
 const totalsForColumns = scenariosFor<IPivotTableProps>("PivotTable", PivotTable)
     .withGroupNames("totals", "columns")
     .withVisualTestConfig({ screenshotSize: { width: 1000, height: 600 } })

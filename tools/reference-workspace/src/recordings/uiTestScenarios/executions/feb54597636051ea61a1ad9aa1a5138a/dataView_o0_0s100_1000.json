@@ -196,6 +196,14 @@
     ],
     "offset": [0, 0],
     "totalCount": [20, 4],
+    "totalTotals": [
+        [
+            ["116625456.54", null, null, null],
+            [null, "0.668932038834951", null, null],
+            [null, null, "721881.5", null],
+            [null, null, null, "0.597501249375312"]
+        ]
+    ],
     "totals": [
         [
             ["48932639.59", null, "67692816.95", null],

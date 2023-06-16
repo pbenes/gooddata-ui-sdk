@@ -1018,6 +1018,14 @@
     ],
     "offset": [0, 0],
     "totalCount": [30, 16],
+    "totalTotals": [
+        [
+            ["116625456.54", null, null, null],
+            [null, "2612041.49", null, null],
+            [null, null, "120416.22", null],
+            [null, null, null, "38310753.45"]
+        ]
+    ],
     "totals": [
         [
             [
