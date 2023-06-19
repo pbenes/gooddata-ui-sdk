@@ -110,7 +110,42 @@
         ],
         "filters": [],
         "identifier": "PivotTable.8a844958f911b8032b3928533ed781cc",
-        "properties": {},
+        "properties": {
+            "controls": {
+                "columnWidths": [
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_aangOxLSeztu" } },
+                            "width": { "value": 100 }
+                        }
+                    },
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_abEgMnq5hyJQ" } },
+                            "width": { "value": 100 }
+                        }
+                    },
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_acugFHNJgsBy" } },
+                            "width": { "value": 100 }
+                        }
+                    },
+                    {
+                        "attributeColumnWidthItem": {
+                            "attributeIdentifier": "a_label.product.id.name",
+                            "width": { "value": 120 }
+                        }
+                    },
+                    {
+                        "attributeColumnWidthItem": {
+                            "attributeIdentifier": "a_label.owner.department",
+                            "width": { "value": 120 }
+                        }
+                    }
+                ]
+            }
+        },
         "sorts": [],
         "title": "PivotTable - two measures and multiple column/row subtotals",
         "uri": "PivotTable.8a844958f911b8032b3928533ed781cc",

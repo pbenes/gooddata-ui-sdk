@@ -66,14 +66,35 @@
                         "identifier": "label.opportunitysnapshot.forecastcategory",
                         "type": "displayForm"
                     },
-                    "notIn": {
-                        "uris": ["/gdc/md/l32xdyl4bjuzgf9kkqr2avl55gtuyjwf/obj/1062/elements?id=165682"]
-                    }
+                    "notIn": { "values": ["Include"] }
                 }
             }
         ],
         "identifier": "PivotTable.4a93503fe378e5a5452f8b4a1a66f7fa",
-        "properties": {},
+        "properties": {
+            "controls": {
+                "columnWidths": [
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_aangOxLSeztu" } },
+                            "width": { "value": 100 }
+                        }
+                    },
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_abEgMnq5hyJQ" } },
+                            "width": { "value": 100 }
+                        }
+                    },
+                    {
+                        "measureColumnWidthItem": {
+                            "locator": { "measureLocatorItem": { "measureIdentifier": "m_acugFHNJgsBy" } },
+                            "width": { "value": 100 }
+                        }
+                    }
+                ]
+            }
+        },
         "sorts": [],
         "title": "PivotTable - two measures and single column grand total for one",
         "uri": "PivotTable.4a93503fe378e5a5452f8b4a1a66f7fa",
