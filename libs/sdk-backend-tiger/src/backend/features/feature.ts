@@ -156,6 +156,8 @@ export function mapFeatures(features: FeaturesMap): Partial<ITigerFeatureFlags> 
             "BOOLEAN",
             FeatureFlagsValues.enablePivotTableTransposition,
         ),
+        // TODO: remove, for testing
+        enablePivotTableTransposition: true
     };
 }
 

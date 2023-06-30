@@ -550,7 +550,8 @@ function tableSortingCheckDisabled(settings: ISettings): boolean {
 }
 
 function tableTranspositionEnabled(settings: ISettings): boolean {
-    return settings.enablePivotTableTransposition === true;
+    // TODO: remove, for testing
+    return true || settings.enablePivotTableTransposition === true;
 }
 
 /**

@@ -92,6 +92,9 @@ export default class AggregationsMenu extends React.Component<IAggregationsMenuP
             return null;
         }
 
+        // Note: for measures in rows, where the column is of type isSliceMeasureCol()
+        // we have all measures associated with the menu. This is overriden in the individual
+        // cell renderers for particular measure with specific onMenuAggregationClick fn.
         const measures = isSeriesCol(col)
             ? [col.seriesDescriptor.measureDescriptor]
             : tableDescriptor.getMeasures();
