@@ -55,12 +55,15 @@ class ColumnHeader extends React.Component<IColumnHeaderProps, IColumnHeaderStat
     };
 
     public render() {
-        const { displayName, enableSorting, menu, column } = this.props;
+        const { getTableDescriptor, displayName, enableSorting, menu, column } = this.props;
         const col = this.getColDescriptor();
         const textAlign =
             isSliceCol(col) || isEmptyScopeCol(col) || isSliceMeasureCol(col) ? ALIGN_LEFT : ALIGN_RIGHT;
         const isColumnAttribute = isEmptyScopeCol(col);
         const isSortingEnabled = !isColumnAttribute && !isSliceMeasureCol(col) && enableSorting;
+
+        const tableDescriptor = getTableDescriptor();
+        const showMenu = tableDescriptor.isTransposed() ? isSliceMeasureCol(col) : true;
 
         return (
             <HeaderCell
@@ -72,9 +75,9 @@ class ColumnHeader extends React.Component<IColumnHeaderProps, IColumnHeaderStat
                 defaultSortDirection={this.getDefaultSortDirection()}
                 onSortClick={this.onSortRequested}
                 onMenuAggregationClick={this.props.onMenuAggregationClick}
-                menu={menu?.()}
+                menu={showMenu ? menu?.() : undefined}
                 colId={column.getColDef().field}
-                getTableDescriptor={this.props.getTableDescriptor}
+                getTableDescriptor={getTableDescriptor}
                 getExecutionDefinition={this.props.getExecutionDefinition}
                 getColumnTotals={this.props.getColumnTotals}
                 getRowTotals={this.props.getRowTotals}

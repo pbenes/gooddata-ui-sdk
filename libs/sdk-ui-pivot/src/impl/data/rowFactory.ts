@@ -70,6 +70,14 @@ function getCell(
         };
     } else if (isResultTotalHeader(rowHeaderDataItem)) {
         const totalName = rowHeaderDataItem.totalHeaderItem.name;
+        const totalLink = rowHeaderDataItem.totalHeaderItem.measureIndex;
+        if (totalLink !== undefined) {
+            return {
+                ...cell,
+                isSubtotal: true,
+                value: "Measure: " + totalLink // TODO: proper lookup to measures
+            };
+        }
         return {
             ...cell,
             isSubtotal: true,
@@ -152,6 +160,24 @@ export function getRow(
     return row;
 }
 
+function measureGroupInDimension(definition: any, index: number) {
+    return definition.dimensions[index]?.itemIdentifiers?.includes("measureGroup");
+}
+
+// repeat each item in `arr` so many times as the number of items in template
+// TODO: we'll add some metainfo and narrow the types so that we can add details
+// to the items we multiplied.
+function multiply<T, U>(arr: T[], template: U[]) {
+    let result: T[] = [];
+    arr.forEach((item: T) => {
+        template.forEach((_templateItem: U) => {
+            result.push(item);
+        });
+    });
+
+    return result;
+}
+
 export function getRowTotals(
     tableDescriptor: TableDescriptor,
     dv: DataViewFacade,
@@ -175,11 +201,17 @@ export function getRowTotals(
     const grandTotalColDescriptor = tableDescriptor.getGrandTotalCol();
     const grandTotalAttrDescriptor = grandTotalColDescriptor.attributeDescriptor;
     const leafColumns = tableDescriptor.zippedLeaves;
+    // when measures are in rows, we need multiple rows for each effective total => multiply
+    const effectiveTotalsMultiplied = measureGroupInDimension(dv.definition, 0) ? multiply(
+        grandTotalColDescriptor.effectiveTotals,
+        dv.definition.measures
+    ) : grandTotalColDescriptor.effectiveTotals;
 
     const totalOfTotals = dv.rawData().totalOfTotals();
 
     return colGrandTotals.map((totalsPerLeafColumn: DataValue[], totalIdx: number) => {
-        const grandTotalName = grandTotalColDescriptor.effectiveTotals[totalIdx].totalHeaderItem.name;
+        const effectiveTotal = effectiveTotalsMultiplied[totalIdx];
+        const grandTotalName = effectiveTotal?.totalHeaderItem.name;
         const measureCells: Record<string, DataValue> = {};
         const calculatedForColumns: string[] = [];
         const calculatedForMeasures = colGrandTotalDefs
@@ -198,16 +230,11 @@ export function getRowTotals(
         mergedTotals.forEach((value, idx) => {
             const [leafDescriptor] = leafColumns[idx];
 
-            // if code bombs here then there must be something wrong in the table / datasource code because
-            // totals cannot (by definition) appear in a table that does not have measures - yet here we are
-            // processing totals
-            invariant(isSeriesCol(leafDescriptor));
-
             measureCells[leafDescriptor.id] = value;
 
-            if (
+            if (!isSeriesCol(leafDescriptor) ||
                 calculatedForMeasures.indexOf(
-                    leafDescriptor.seriesDescriptor.measureDescriptor.measureHeaderItem.localIdentifier,
+                    (leafDescriptor as any).seriesDescriptor.measureDescriptor.measureHeaderItem.localIdentifier,
                 ) > -1
             ) {
                 calculatedForColumns.push(leafDescriptor.id);

@@ -90,6 +90,10 @@ export function convertTotals(def: IExecutionDefinition): Total[] {
     const matchingAttributeBucket = attributeBucket ? bucketAttributes(attributeBucket) : [];
     const matchingColumnBucket = columnBucket ? bucketAttributes(columnBucket) : [];
 
+    const matchingMetricGroupDimension = dimensions.findIndex(dimension => dimension.itemIdentifiers?.includes("measureGroup"));
+    const addMeasureGroupDim0: string[] = matchingMetricGroupDimension === 0 ? [MeasureGroupIdentifier] : [];
+    const addMeasureGroupDim1: string[] = matchingMetricGroupDimension === 1 ? [MeasureGroupIdentifier] : [];
+
     let newTotals = totals;
 
     if (hasRowOrColumnTotals(attributeBucket, columnBucket)) {
@@ -184,13 +188,13 @@ export function convertTotals(def: IExecutionDefinition): Total[] {
                                     totalDimensionItems: attributeIdentifiers.slice(
                                         0,
                                         attributeDimensionIndex,
-                                    ),
+                                    ).concat(addMeasureGroupDim0),
                                 },
                                 {
                                     dimensionIdentifier: "dim_1",
                                     totalDimensionItems: columnIdentifiers
                                         .slice(0, columnDimensionIndex)
-                                        .concat(MeasureGroupIdentifier),
+                                        .concat(addMeasureGroupDim1),
                                 },
                             ],
                         },
@@ -217,11 +221,11 @@ export function convertTotals(def: IExecutionDefinition): Total[] {
                                 totalDimensionItems: attributeIdentifiers.slice(
                                     0,
                                     attributeSubtotalDimensionIndex,
-                                ),
+                                ).concat(addMeasureGroupDim0),
                             },
                             {
                                 dimensionIdentifier: "dim_1",
-                                totalDimensionItems: [MeasureGroupIdentifier],
+                                totalDimensionItems: [...addMeasureGroupDim1],
                             },
                         ],
                     },
@@ -236,17 +240,26 @@ export function convertTotals(def: IExecutionDefinition): Total[] {
              * attribute identifier is found.
              */
             if (hasColumnSubtotalAndRowGrandTotal) {
+                // don't add dimension dim_0 when nothing in there
+                const zeroDimension = addMeasureGroupDim0.length ?
+                [        {
+                            dimensionIdentifier: "dim_0",
+                            totalDimensionItems: [...addMeasureGroupDim0],
+                        },
+                ]: [];
+
                 const grandTotalOfSubTotal: Total[] = [
                     {
                         function: convertTotalType(attributeTotal.type),
                         metric: attributeTotal.measureIdentifier,
                         localIdentifier: subTotalRowLocalIdentifier(attributeTotal, index),
                         totalDimensions: [
+                            ...zeroDimension,
                             {
                                 dimensionIdentifier: "dim_1",
                                 totalDimensionItems: columnIdentifiers
                                     .slice(0, columnSubtotalDimensionIndex)
-                                    .concat(MeasureGroupIdentifier),
+                                    .concat(addMeasureGroupDim1),
                             },
                         ],
                     },
@@ -256,16 +269,27 @@ export function convertTotals(def: IExecutionDefinition): Total[] {
 
             // extend grand totals payload
             if (hasRowAndColumnGrandTotals) {
+                // don't add dimension dim_0 when nothing in there
+                const zeroDimension = addMeasureGroupDim0.length ?
+                [        {
+                            dimensionIdentifier: "dim_0",
+                            totalDimensionItems: [...addMeasureGroupDim0],
+                        },
+                ]: [];
+                const oneDimension = addMeasureGroupDim1.length ?
+                [        {
+                            dimensionIdentifier: "dim_1",
+                            totalDimensionItems: [...addMeasureGroupDim1],
+                        },
+                ]: [];
                 const grandTotal: Total[] = [
                     {
                         function: convertTotalType(attributeTotal.type),
                         metric: attributeTotal.measureIdentifier,
                         localIdentifier: grandTotalLocalIdentifier(attributeTotal, index),
                         totalDimensions: [
-                            {
-                                dimensionIdentifier: "dim_1",
-                                totalDimensionItems: [MeasureGroupIdentifier],
-                            },
+                            ...zeroDimension,
+                            ...oneDimension,
                         ],
                     },
                 ];

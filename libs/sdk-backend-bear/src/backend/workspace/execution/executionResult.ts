@@ -225,24 +225,29 @@ function fixTotalOrderByMeasuresOrder(
     }, {});
 }
 
-function preprocessTotalHeaderItems(
+const DIMENSION_BUCKETS: { [key: string]: number } = { "attribute": 0, "columns": 1 }
+function preprocessTotalHeaderItemsForDim(
     headerItems: IResultHeader[][][],
     definition: IExecutionDefinition,
+    bucket: string
 ): IResultHeader[][][] {
-    const columnTotals = definition?.dimensions[1]?.totals;
-    if (!columnTotals?.length) {
-        // noop when no column totals are present
+    const dimension = DIMENSION_BUCKETS[bucket];
+    const dimensionTotals = definition?.dimensions[dimension]?.totals;
+    const metricGroupPresent = definition?.dimensions[dimension]?.itemIdentifiers?.find(id => id === "measureGroup");
+    if (!dimensionTotals?.length || !metricGroupPresent) {
+        // noop when no totals associated with that dimension are present
+        // or when metric group is not in this particular dimension
         return headerItems;
     }
 
     const buckets = definition.buckets;
     const measures = bucketsMeasures(buckets);
-    const columns = bucketsFind(buckets, "columns")?.items || [];
+    const columns = bucketsFind(buckets, bucket)?.items || [];
     const columnIdentifiers = columns.filter(isAttribute).map((item) => item.attribute?.localIdentifier);
     const measuresIdentifiers = measures.map((m) => m.measure.localIdentifier);
 
     // separate totals for each level and initiate iterators for them
-    const indexedTotalsUnordered = separateTotalsByLevels(columnTotals, columnIdentifiers);
+    const indexedTotalsUnordered = separateTotalsByLevels(dimensionTotals, columnIdentifiers);
     const indexedTotals = fixTotalOrderByMeasuresOrder(indexedTotalsUnordered, measuresIdentifiers);
     const indexedTotalsIterators = initiateTotalsIterators(indexedTotals);
 
@@ -291,6 +296,16 @@ function preprocessTotalHeaderItems(
             return items;
         });
     });
+}
+
+function preprocessTotalHeaderItems(
+    headerItems: IResultHeader[][][],
+    definition: IExecutionDefinition,
+): IResultHeader[][][] {
+    let result = headerItems;
+    result = preprocessTotalHeaderItemsForDim(result, definition, "attribute");
+    result = preprocessTotalHeaderItemsForDim(result, definition, "columns");
+    return result;
 }
 
 class BearDataView implements IDataView {
