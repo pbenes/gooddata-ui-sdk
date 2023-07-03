@@ -44,7 +44,8 @@ export function headerClassFactory(
             const treeIndexes = colDesc.fullIndexPathToHere;
             const indexWithinGroup = treeIndexes ? treeIndexes[treeIndexes.length - 1] : undefined;
             const noLeftBorder = tableDescriptor.isFirstCol(colId) || !tableDescriptor.hasScopingCols();
-            const noBottomBorder = isScopeCol(colDesc) && isResultTotalHeader(colDesc.header);
+            const noBottomBorder =
+                isScopeCol(colDesc) && !tableDescriptor.isTransposed() && isResultTotalHeader(colDesc.header);
             const topBottomSolidTotal =
                 isScopeCol(colDesc) &&
                 isResultTotalHeader(colDesc.header) &&

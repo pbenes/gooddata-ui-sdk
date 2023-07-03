@@ -1,3 +1,4 @@
+import { isMeasureDescriptor } from "@gooddata/sdk-model";
 // (C) 2007-2022 GoodData Corporation
 import { IntlShape } from "react-intl";
 
@@ -15,6 +16,7 @@ import {
     isResultAttributeHeader,
     isResultTotalHeader,
     isResultMeasureHeader,
+    IResultMeasureHeader,
 } from "@gooddata/sdk-model";
 import { invariant } from "ts-invariant";
 import { isSeriesCol, SliceCol, SliceMeasureCol } from "../structure/tableDescriptorTypes.js";
@@ -71,11 +73,21 @@ function getCell(
     } else if (isResultTotalHeader(rowHeaderDataItem)) {
         const totalName = rowHeaderDataItem.totalHeaderItem.name;
         const totalLink = rowHeaderDataItem.totalHeaderItem.measureIndex;
+
         if (totalLink !== undefined) {
+            const measureHeaders = rowHeaderData
+                .find((headers): headers is IResultMeasureHeader[] => isResultMeasureHeader(headers[0]))
+                ?.filter(isMeasureDescriptor);
+
+            const value =
+                measureHeaders!.find((m) => m.measureHeaderItem.order === totalLink)?.measureHeaderItem
+                    .name ?? null;
+
             return {
                 ...cell,
                 isSubtotal: true,
-                value: "Measure: " + totalLink // TODO: proper lookup to measures
+                value,
+                // value: "Measure: " + totalLink, // TODO: proper lookup to measures
             };
         }
         return {
@@ -202,10 +214,9 @@ export function getRowTotals(
     const grandTotalAttrDescriptor = grandTotalColDescriptor.attributeDescriptor;
     const leafColumns = tableDescriptor.zippedLeaves;
     // when measures are in rows, we need multiple rows for each effective total => multiply
-    const effectiveTotalsMultiplied = measureGroupInDimension(dv.definition, 0) ? multiply(
-        grandTotalColDescriptor.effectiveTotals,
-        dv.definition.measures
-    ) : grandTotalColDescriptor.effectiveTotals;
+    const effectiveTotalsMultiplied = measureGroupInDimension(dv.definition, 0)
+        ? multiply(grandTotalColDescriptor.effectiveTotals, dv.definition.measures)
+        : grandTotalColDescriptor.effectiveTotals;
 
     const totalOfTotals = dv.rawData().totalOfTotals();
 
@@ -232,9 +243,11 @@ export function getRowTotals(
 
             measureCells[leafDescriptor.id] = value;
 
-            if (!isSeriesCol(leafDescriptor) ||
+            if (
+                !isSeriesCol(leafDescriptor) ||
                 calculatedForMeasures.indexOf(
-                    (leafDescriptor as any).seriesDescriptor.measureDescriptor.measureHeaderItem.localIdentifier,
+                    (leafDescriptor as any).seriesDescriptor.measureDescriptor.measureHeaderItem
+                        .localIdentifier,
                 ) > -1
             ) {
                 calculatedForColumns.push(leafDescriptor.id);

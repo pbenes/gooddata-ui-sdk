@@ -134,12 +134,16 @@ function createColumnGroupColDef(
         state.emptyHeaderTitle,
     );
     if (children.length === 0) {
+        const mappedHeaderName = isResultTotalHeader(col.header)
+            ? intl!.formatMessage(messages[headerName])
+            : headerName;
+
         const colDef: ColDef = {
             type: COLUMN_ATTRIBUTE_COLUMN,
             colId: col.id,
             field: col.id, // this will allow scopeCol to display measure values in the column if measures are in rows
-            headerName,
-            headerTooltip: headerName,
+            headerName: mappedHeaderName,
+            headerTooltip: mappedHeaderName,
         };
 
         state.allColDefs.push(colDef);

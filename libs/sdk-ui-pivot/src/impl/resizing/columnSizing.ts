@@ -17,7 +17,7 @@ import {
     COLUMN_TOTAL_CLASS,
 } from "../base/constants.js";
 
-import { ColDef, Column, ColumnApi, GridApi } from "@ag-grid-community/all-modules";
+import { ColDef, Column, ColumnApi, GridApi, ValueFormatterFunc } from "@ag-grid-community/all-modules";
 import {
     ColumnWidth,
     ColumnWidthItem,
@@ -702,6 +702,8 @@ interface CalculateColumnWidthsConfig {
     columnAutoresizeOption: DefaultColumnWidth;
     clientWidth?: number;
     groupingProvider?: IGroupingProvider;
+    gridApi: GridApi;
+    columnApi: ColumnApi;
 }
 
 export function getMaxWidth(
@@ -752,6 +754,34 @@ function valueFormatter(text: string, col: SeriesCol, separators: any) {
         : null;
 }
 
+function calculateFormattedText(
+    col: AnyCol,
+    column: Column,
+    row: IGridRow,
+    config: CalculateColumnWidthsConfig,
+    text: string,
+) {
+    if (isSeriesCol(col)) {
+        return valueFormatter(text, col, config.separators);
+    }
+
+    if (isScopeCol(col) && config.tableDescriptor.isTransposed()) {
+        const colDef = column.getColDef();
+        return (colDef.valueFormatter as ValueFormatterFunc)({
+            data: row,
+            value: text,
+            column,
+            colDef,
+            columnApi: config.columnApi,
+            api: config.gridApi,
+            node: null,
+            context: undefined,
+        });
+    }
+
+    return undefined;
+}
+
 function collectWidths(
     config: CalculateColumnWidthsConfig,
     row: IGridRow,
@@ -766,7 +796,7 @@ function collectWidths(
 
     if (col && context) {
         const text = row[col.id];
-        const formattedText = isSeriesCol(col) && valueFormatter(text, col, config.separators);
+        const formattedText = calculateFormattedText(col, column, row, config, text);
         const textForCalculation = formattedText || text;
         const maxWidth = col.id ? maxWidths.get(col.id) : undefined;
         let possibleMaxWidth;
@@ -1041,6 +1071,8 @@ export function getAutoResizedColumns(
                 columnAutoresizeOption,
                 clientWidth,
                 groupingProvider,
+                gridApi,
+                columnApi,
             },
             resizedColumnsStore,
         );
