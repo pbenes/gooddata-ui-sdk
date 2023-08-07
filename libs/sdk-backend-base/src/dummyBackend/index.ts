@@ -391,6 +391,9 @@ function dummyPreparedExecution(
         withDateFormat(dateFormat: string): IPreparedExecution {
             return executionFactory.forDefinition(defWithDateFormat(definition, dateFormat));
         },
+        withBuckets() { // TODO
+            return executionFactory.forDefinition(definition);
+        },
         execute(): Promise<IExecutionResult> {
             return Promise.resolve(dummyExecutionResult(definition, executionFactory, config));
         },
