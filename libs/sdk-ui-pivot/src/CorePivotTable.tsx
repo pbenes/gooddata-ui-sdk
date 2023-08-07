@@ -274,15 +274,21 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
      *
      * This will reset all React state and non-react state and start table initialization process.
      */
-    private reinitialize = (execution: IPreparedExecution): void => {
+    private reinitialize = (execution: IPreparedExecution, keepTotalsFromState: boolean = false): void => {
+        const columnTotals = keepTotalsFromState
+            ? this.state.columnTotals
+            : cloneDeep(sanitizeDefTotals(execution.definition));
+        const rowTotals = keepTotalsFromState
+            ? this.state.rowTotals
+            : cloneDeep(getTotalsForColumnsBucket(execution.definition));
         this.setState(
             {
                 readyToRender: false,
-                columnTotals: cloneDeep(sanitizeDefTotals(execution.definition)),
-                rowTotals: getTotalsForColumnsBucket(execution.definition),
                 error: undefined,
                 desiredHeight: this.props.config!.maxHeight,
                 resized: false,
+                columnTotals,
+                rowTotals,
             },
             () => {
                 this.internal.destroy();
@@ -307,8 +313,9 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
         this.internal.destroy();
     }
 
-    public componentDidUpdate(prevProps: ICorePivotTableProps): void {
-        if (this.isReinitNeeded(prevProps)) {
+    public componentDidUpdate(prevProps: ICorePivotTableProps, prevState: ICorePivotTableState): void {
+        console.log("didupdate", cloneDeep(this.props.execution.definition));
+        if (this.isReinitNeeded(prevProps, prevState)) {
             /*
              * This triggers when execution changes (new measures / attributes). In that case,
              * a complete re-init of the table is in order.
@@ -325,7 +332,7 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
                 this.props.execution.definition,
                 prevProps.execution.definition,
             );
-            this.reinitialize(this.props.execution);
+            this.reinitialize(this.props.execution, true);
         } else {
             /*
              * When in this branch, the ag-grid instance is up and running and is already showing some data and
@@ -370,7 +377,7 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
      * - prepared execution has changed AND the new prep execution definition does not match currently shown
      *   data.
      */
-    private isReinitNeeded(prevProps: ICorePivotTableProps): boolean {
+    private isReinitNeeded(prevProps: ICorePivotTableProps, _prevState: ICorePivotTableState): boolean {
         const drillingIsSame = isEqual(prevProps.drillableItems, this.props.drillableItems);
 
         const columnHeadersPositionIsSame = isEqual(
@@ -388,6 +395,22 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
         if (!columnHeadersPositionIsSame) {
             return true;
         }
+
+        // const colTotalsSame = isEqual(prevState.rowTotals, this.state.rowTotals);
+        // if (!colTotalsSame) {
+        //     // eslint-disable-next-line no-console
+        //     console.debug("row(=col) totals different", prevState.rowTotals, this.state.rowTotals);
+
+        //     return true;
+        // }
+
+        // const rowTotalsSame = isEqual(prevState.columnTotals, this.state.columnTotals);
+        // if (!rowTotalsSame) {
+        //     // eslint-disable-next-line no-console
+        //     console.debug("col(=row) totals different", prevState.columnTotals, this.state.columnTotals);
+
+        //     return true;
+        // }
 
         if (!this.internal.table) {
             // Table is not yet fully initialized. See if the initialization is in progress. If so, see if
@@ -740,14 +763,16 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
      *
      * Once transformation finishes - indicated by call to onPageLoaded, table can re-instance the sticky row.
      *
-     * @param _newExecution - the new execution which is being run and will be used to populate the table
+     * @param newExecution - the new execution which is being run and will be used to populate the table
      */
-    private onExecutionTransformed = (_newExecution: IPreparedExecution): void => {
+    private onExecutionTransformed = (newExecution: IPreparedExecution): void => {
         if (!this.internal.table) {
             return;
         }
 
         this.internal.table.clearStickyRow();
+
+        this.reinitialize(newExecution);
     };
 
     private onMenuAggregationClick = (menuAggregationClickConfig: IMenuAggregationClickConfig) => {
@@ -768,15 +793,9 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
                 },
             });
 
-            this.setState({ columnTotals: newColumnTotals }, () => {
-                this.internal.table?.refreshData();
-            });
+            this.setState({ columnTotals: newColumnTotals });
         } else {
             const newRowTotals = getUpdatedColumnOrRowTotals(this.getRowTotals(), menuAggregationClickConfig);
-
-            this.setState({ rowTotals: newRowTotals }, () => {
-                this.internal.table?.refreshData();
-            });
 
             this.pushDataGuard({
                 properties: {
@@ -784,6 +803,8 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
                     bucketType: BucketNames.COLUMNS,
                 },
             });
+
+            this.setState({ rowTotals: newRowTotals });
         }
     };
 
