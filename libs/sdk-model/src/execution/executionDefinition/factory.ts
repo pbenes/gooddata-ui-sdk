@@ -23,6 +23,7 @@ import {
     IExecutionDefinition,
     IExecutionConfig,
     IPostProcessing,
+    defSetBuckets,
 } from "./index.js";
 import isEmpty from "lodash/isEmpty.js";
 import { invariant } from "ts-invariant";
@@ -234,6 +235,16 @@ export function defWithDateFormat(
         dateFormat,
     };
     return defWithPostProcessing(definition, postProcessing);
+}
+
+/**
+ * @public
+ */
+export function defWithBuckets(
+    definition: IExecutionDefinition,
+    ...buckets: IBucket[]
+): IExecutionDefinition {
+    return defSetBuckets(definition, buckets);
 }
 
 /**

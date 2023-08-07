@@ -193,6 +193,8 @@ export interface IPreparedExecution {
      */
     withDimensions(...dim: Array<IDimension | DimensionGenerator>): IPreparedExecution;
 
+    withBuckets(...buckets: IBucket[]): IPreparedExecution;
+
     /**
      * Adds the desired date format to the postProcessing of an IPreparedExecution.
      *

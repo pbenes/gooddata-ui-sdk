@@ -136,6 +136,18 @@ export function defWithFilters(
 }
 
 /**
+ * @public
+ */
+export function defSetBuckets(def: IExecutionDefinition, buckets: IBucket[] = []): IExecutionDefinition {
+    invariant(def, "execution definition to set buckets to must be defined");
+
+    return {
+        ...def,
+        buckets,
+    };
+}
+
+/**
  * Creates new execution definition by merging new sort items into an existing definition.
  *
  * @param def - existing definition

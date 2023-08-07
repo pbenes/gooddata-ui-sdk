@@ -121,6 +121,9 @@ function recordedPreparedExecution(
         withSorting(...items: ISortItem[]): IPreparedExecution {
             return executionFactory.forDefinition(defWithSorting(definition, items));
         },
+        withBuckets(): IPreparedExecution { // TODO
+            return executionFactory.forDefinition(definition);
+        },
         withDateFormat(dateFormat: string): IPreparedExecution {
             return executionFactory.forDefinition(defWithDateFormat(definition, dateFormat));
         },
