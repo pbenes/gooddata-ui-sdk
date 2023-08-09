@@ -12,6 +12,7 @@ export interface ICorePivotTableState {
     desiredHeight: number | undefined;
     error?: string;
     resized: boolean;
+    tempExecution?: any;
 }
 
 /**

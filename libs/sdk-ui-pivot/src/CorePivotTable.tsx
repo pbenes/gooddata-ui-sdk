@@ -219,6 +219,7 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
             rowTotals: getTotalsForColumnsBucket(execution.definition),
             desiredHeight: config!.maxHeight,
             resized: false,
+            tempExecution: execution,
         };
 
         this.errorMap = newErrorMapping(props.intl);
@@ -275,11 +276,9 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
      * This will reset all React state and non-react state and start table initialization process.
      */
     private reinitialize = (execution: IPreparedExecution, keepTotalsFromState: boolean = false): void => {
-        const columnTotals = keepTotalsFromState
-            ? this.state.columnTotals
-            : cloneDeep(sanitizeDefTotals(execution.definition));
+        const columnTotals = keepTotalsFromState ? null : cloneDeep(sanitizeDefTotals(execution.definition));
         const rowTotals = keepTotalsFromState
-            ? this.state.rowTotals
+            ? null
             : cloneDeep(getTotalsForColumnsBucket(execution.definition));
         this.setState(
             {
@@ -287,8 +286,8 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
                 error: undefined,
                 desiredHeight: this.props.config!.maxHeight,
                 resized: false,
-                columnTotals,
-                rowTotals,
+                ...((columnTotals ? { columnTotals } : {}) as any),
+                ...((rowTotals ? { rowTotals } : {}) as any),
             },
             () => {
                 this.internal.destroy();
@@ -314,6 +313,11 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
     }
 
     public componentDidUpdate(prevProps: ICorePivotTableProps, prevState: ICorePivotTableState): void {
+        // reinit in progress
+        if (!this.state.readyToRender) {
+            return;
+        }
+
         console.log("didupdate", cloneDeep(this.props.execution.definition));
         if (this.isReinitNeeded(prevProps, prevState)) {
             /*
@@ -332,7 +336,7 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
                 this.props.execution.definition,
                 prevProps.execution.definition,
             );
-            this.reinitialize(this.props.execution, true);
+            this.reinitialize(this.state.tempExecution, true);
         } else {
             /*
              * When in this branch, the ag-grid instance is up and running and is already showing some data and
@@ -409,39 +413,38 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
         //     // eslint-disable-next-line no-console
         //     console.debug("col(=row) totals different", prevState.columnTotals, this.state.columnTotals);
 
-        //     return true;
-        // }
+        return false;
 
-        if (!this.internal.table) {
-            // Table is not yet fully initialized. See if the initialization is in progress. If so, see if
-            // the init is for same execution or not. Otherwise fall back to compare props vs props.
-            if (this.internal.initializer) {
-                const initializeForSameExec = this.internal.initializer.isSameExecution(this.props.execution);
-
-                if (!initializeForSameExec) {
-                    // eslint-disable-next-line no-console
-                    console.debug(
-                        "initializer for different execution",
-                        this.props.execution,
-                        prevProps.execution,
-                    );
-                }
-
-                return !initializeForSameExec;
-            } else {
-                const prepExecutionSame =
-                    this.props.execution.fingerprint() === prevProps.execution.fingerprint();
-
-                if (!prepExecutionSame) {
-                    // eslint-disable-next-line no-console
-                    console.debug("have to reinit table", this.props.execution, prevProps.execution);
-                }
-
-                return !prepExecutionSame;
-            }
-        }
-
-        return !this.internal.table.isMatchingExecution(this.props.execution);
+        //        if (!this.internal.table) {
+        //            // Table is not yet fully initialized. See if the initialization is in progress. If so, see if
+        //            // the init is for same execution or not. Otherwise fall back to compare props vs props.
+        //            if (this.internal.initializer) {
+        //                const initializeForSameExec = this.internal.initializer.isSameExecution(this.props.execution);
+        //
+        //                if (!initializeForSameExec) {
+        //                    // eslint-disable-next-line no-console
+        //                    console.debug(
+        //                        "initializer for different execution",
+        //                        this.props.execution,
+        //                        prevProps.execution,
+        //                    );
+        //                }
+        //
+        //                return !initializeForSameExec;
+        //            } else {
+        //                const prepExecutionSame =
+        //                    this.props.execution.fingerprint() === prevProps.execution.fingerprint();
+        //
+        //                if (!prepExecutionSame) {
+        //                    // eslint-disable-next-line no-console
+        //                    console.debug("have to reinit table", this.props.execution, prevProps.execution);
+        //                }
+        //
+        //                return !prepExecutionSame;
+        //            }
+        //        }
+        //
+        //        return !this.internal.table.isMatchingExecution(this.props.execution);
     }
 
     /**
@@ -545,6 +548,7 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
         // in the initialization logic
         invariant(this.internal.table);
 
+        console.log("refilling gridOptions?", this.internal.gridOptions);
         if (!this.internal.gridOptions) {
             this.internal.gridOptions = createGridOptions(
                 this.internal.table,
@@ -772,7 +776,15 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
 
         this.internal.table.clearStickyRow();
 
-        this.reinitialize(newExecution);
+        console.log("clearing gridOptions for", newExecution);
+        //        if (false) {
+        if (!isEqual(this.state.tempExecution.definition, newExecution.definition)) {
+            this.internal.gridOptions = undefined;
+            this.setState({
+                tempExecution: newExecution,
+            });
+        }
+        //        }
     };
 
     private onMenuAggregationClick = (menuAggregationClickConfig: IMenuAggregationClickConfig) => {
@@ -1025,7 +1037,8 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
     };
 
     private getExecutionDefinition = () => {
-        return this.props.execution.definition;
+        //return this.props.execution.definition;
+        return this.state.tempExecution.definition; //this.props.execution.definition;
     };
 
     private getGroupRows = (): boolean => {

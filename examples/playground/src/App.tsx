@@ -1,8 +1,9 @@
 // (C) 2019-2023 GoodData Corporation
 import React, { useMemo } from "react";
+import { InsightView } from "@gooddata/sdk-ui-ext";
 import { BackendProvider, WorkspaceProvider } from "@gooddata/sdk-ui";
 import { createBackend } from "./createBackend.js";
-import { newAttribute, newMeasure, uriRef } from "@gooddata/sdk-model";
+import { newAttribute, newMeasure, uriRef, idRef } from "@gooddata/sdk-model";
 import { PivotTable } from "@gooddata/sdk-ui-pivot";
 
 
@@ -43,9 +44,25 @@ const AppWithBackend: React.FC = () => {
             }
     }
 
+
+    if (true) {
+        const WS = "6c3a7a4718dc44c68845e7677c444d2e";
+        const insight = idRef("0b65f40c-ece0-4131-884d-8d4ee4f1d7fb");
+        return (
+            <BackendProvider backend={backend}>
+                <WorkspaceProvider workspace={WS}>
+                    <div style={{ width: "665px", height: "362px", padding: 40, margin: 10, border: "2px solid black" }}>
+                        <InsightView insight={insight} config={config} />
+                    </div>
+                </WorkspaceProvider>
+            </BackendProvider>
+        );
+    }
+
+    const WS = "g2zpqxe8zk32vmjrux9mb3zywxat1w70";
     return (
         <BackendProvider backend={backend}>
-            <WorkspaceProvider workspace={"g2zpqxe8zk32vmjrux9mb3zywxat1w70"}>
+            <WorkspaceProvider workspace={WS}>
                 <div style={{ height: 500}}>
                 <PivotTable
                     measures={measures}
