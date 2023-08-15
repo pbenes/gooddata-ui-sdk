@@ -349,7 +349,7 @@ export type TigerSpecificFunctions = {
     deleteWorkspace?: (id: string) => Promise<void>;
     canDeleteWorkspace?: (id: string) => Promise<boolean>;
     getWorkspaceLogicalModel?: (id: string, includeParents?: boolean) => Promise<DeclarativeLogicalModel>;
-    getWorkspaceEntitiesDatasets?: (id: string) => Promise<WorkspaceEntitiesDatasets>;
+    getWorkspaceEntitiesDatasets?: (id: string, options: any) => Promise<WorkspaceEntitiesDatasets>;
     getEntitlements?: () => Promise<Array<Entitlement>>;
     putWorkspaceLayout?: (requestParameters: PutWorkspaceLayoutRequest) => Promise<void>;
     getAllDataSources?: () => Promise<IDataSourceConnectionInfo[]>;
@@ -880,10 +880,10 @@ export const buildTigerSpecificFunctions = (
             throw convertApiError(error);
         }
     },
-    getWorkspaceEntitiesDatasets: async (workspaceId: string) => {
+    getWorkspaceEntitiesDatasets: async (workspaceId: string, options: any = {}) => {
         try {
             return await authApiCall(async (sdk) => {
-                const result = await sdk.entities.getAllEntitiesDatasets({ workspaceId });
+                const result = await sdk.entities.getAllEntitiesDatasets({ workspaceId, ...options });
                 return result.data;
             });
         } catch (error: any) {
