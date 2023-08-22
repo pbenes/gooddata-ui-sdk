@@ -13,6 +13,8 @@ import {
     defWithExecConfig,
     IExecutionConfig,
     IDimensionDescriptor,
+    IBucket,
+    defWithBuckets,
 } from "@gooddata/sdk-model";
 import {
     IExecutionFactory,
@@ -96,9 +98,8 @@ class CustomPreparedExecution implements IPreparedExecution {
         return this.executionFactory.forDefinition(defWithSorting(this.definition, items));
     };
 
-    // TODO
-    public withBuckets = (): IPreparedExecution => {
-        return this.executionFactory.forDefinition(this.definition);
+    public withBuckets = (...buckets: IBucket[]): IPreparedExecution => {
+        return this.executionFactory.forDefinition(defWithBuckets(this.definition, ...buckets));
     };
 
     public withDateFormat = (dateFormat: string): IPreparedExecution => {

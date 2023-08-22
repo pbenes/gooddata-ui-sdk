@@ -94,7 +94,8 @@ import {
     IMeasureDefinitionType,
     IRelativeDateFilter,
     IAttributeElement,
-    ICatalogAttributeHierarchy,
+    IBucket,
+    defWithBuckets,
 } from "@gooddata/sdk-model";
 import isEqual from "lodash/isEqual.js";
 import isEmpty from "lodash/isEmpty.js";
@@ -392,8 +393,8 @@ function dummyPreparedExecution(
         withDateFormat(dateFormat: string): IPreparedExecution {
             return executionFactory.forDefinition(defWithDateFormat(definition, dateFormat));
         },
-        withBuckets() { // TODO
-            return executionFactory.forDefinition(definition);
+        withBuckets(...buckets: IBucket[]) {
+            return executionFactory.forDefinition(defWithBuckets(definition, ...buckets));
         },
         execute(): Promise<IExecutionResult> {
             return Promise.resolve(dummyExecutionResult(definition, executionFactory, config));
