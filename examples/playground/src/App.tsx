@@ -2,9 +2,6 @@
 import React, { useMemo } from "react";
 import { BackendProvider, WorkspaceProvider } from "@gooddata/sdk-ui";
 import { createBackend } from "./createBackend.js";
-//@ts-ignore
-import { MyComponent } from "./playground/PivotTableManualResizing.js";
-import { InsightView } from "@gooddata/sdk-ui-ext";
 
 function hasCredentialsSetup(): boolean {
     if (BACKEND_TYPE === "tiger") {
@@ -19,30 +16,10 @@ const AppWithBackend: React.FC = () => {
         return createBackend();
     }, []);
 
-    const config = {
-        menu: {
-            aggregationsSubMenuForRows: true,
-            aggregationsSubMenu: true,
-            aggregations: true,
-        },
-    };
-    const insight = "aabJYXneDnKP";
-
     return (
         <BackendProvider backend={backend}>
             <WorkspaceProvider workspace={WORKSPACE}>
-                <div
-                    style={{
-                        width: "665px",
-                        height: "362px",
-                        padding: 40,
-                        margin: 10,
-                        border: "2px solid black",
-                    }}
-                >
-                    <InsightView insight={insight} config={config} />
-                </div>
-                <MyComponent />
+                {/* Build your playground components under the playground directory.*/}
             </WorkspaceProvider>
         </BackendProvider>
     );
