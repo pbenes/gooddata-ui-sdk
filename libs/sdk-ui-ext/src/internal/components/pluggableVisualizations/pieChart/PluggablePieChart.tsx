@@ -15,7 +15,7 @@ import { DASHBOARDS_ENVIRONMENT } from "../../../constants/properties.js";
 import { PIECHART_SUPPORTED_PROPERTIES } from "../../../constants/supportedProperties.js";
 import {
     DEFAULT_PIE_UICONFIG,
-    DEFAULT_PIE_ONLY_METRICS_COUNT,
+    DEFAULT_PIE_ONLY_MAX_METRICS_COUNT,
     PIE_UICONFIG_WITH_MULTIPLE_METRICS,
     PIE_UICONFIG_WITH_ONE_METRIC,
     UICONFIG,
@@ -116,7 +116,7 @@ export class PluggablePieChart extends PluggableBaseChart {
         } else {
             const limitedBuckets = limitNumberOfMeasuresInBuckets(
                 buckets,
-                DEFAULT_PIE_ONLY_METRICS_COUNT,
+                DEFAULT_PIE_ONLY_MAX_METRICS_COUNT,
                 true,
             );
             const limitedMeasures = getMeasureItems(limitedBuckets);
