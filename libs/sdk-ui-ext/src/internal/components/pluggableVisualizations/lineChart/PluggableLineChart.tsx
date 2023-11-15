@@ -22,6 +22,7 @@ import {
     IVisConstruct,
     IUiConfig,
     IDrillDownDefinition,
+    IBucketOfFun,
 } from "../../../interfaces/Visualization.js";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig.js";
 import {
@@ -171,8 +172,7 @@ export class PluggableLineChart extends PluggableBaseChart {
         });
     }
 
-    private getBucketMeasures(extendedReferencePoint: IExtendedReferencePoint) {
-        const buckets = extendedReferencePoint?.buckets ?? [];
+    private getBucketMeasures(buckets: IBucketOfFun[] = []) {
         const limitedBuckets = limitNumberOfMeasuresInBuckets(buckets, MAX_METRICS_COUNT, true);
         return getFilteredMeasuresForStackedCharts(limitedBuckets);
     }
@@ -220,7 +220,7 @@ export class PluggableLineChart extends PluggableBaseChart {
         set(newReferencePoint, BUCKETS, [
             {
                 localIdentifier: BucketNames.MEASURES,
-                items: this.getBucketMeasures(newReferencePoint),
+                items: this.getBucketMeasures(newReferencePoint.buckets),
             },
             {
                 localIdentifier: BucketNames.TREND,
@@ -293,7 +293,7 @@ export class PluggableLineChart extends PluggableBaseChart {
         set(newReferencePoint, BUCKETS, [
             {
                 localIdentifier: BucketNames.MEASURES,
-                items: this.getBucketMeasures(newReferencePoint),
+                items: this.getBucketMeasures(newReferencePoint.buckets),
             },
             {
                 localIdentifier: BucketNames.TREND,

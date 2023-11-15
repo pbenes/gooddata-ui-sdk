@@ -15,6 +15,7 @@ import {
     IReferencePoint,
     IVisConstruct,
     IDrillDownDefinition,
+    IBucketOfFun,
 } from "../../../interfaces/Visualization.js";
 import { configureOverTimeComparison, configurePercent } from "../../../utils/bucketConfig.js";
 
@@ -82,15 +83,14 @@ export class PluggableTreemap extends PluggableBaseChart {
         this.initializeProperties(props.visualizationProperties);
     }
 
-    private getBucketMeasures(extendedReferencePoint: IExtendedReferencePoint) {
-        const buckets = extendedReferencePoint?.buckets ?? [];
+    private getBucketMeasures(buckets: IBucketOfFun[] = []) {
         const limitedBuckets = limitNumberOfMeasuresInBuckets(buckets, MAX_METRICS_COUNT, true);
         return getMeasureItems(limitedBuckets);
     }
 
     private getBucketItemsWithMultipleDates(newReferencePoint: IExtendedReferencePoint): any {
         const buckets = newReferencePoint?.buckets ?? [];
-        let measures = this.getBucketMeasures(newReferencePoint);
+        let measures = this.getBucketMeasures(buckets);
         let stacks = getStackItems(buckets, [ATTRIBUTE, DATE]);
         const nonStackAttributes = getAttributeItemsWithoutStacks(buckets, [ATTRIBUTE, DATE]);
         const view = nonStackAttributes.slice(0, 1);
@@ -110,7 +110,7 @@ export class PluggableTreemap extends PluggableBaseChart {
 
     private getBucketItems(newReferencePoint: IExtendedReferencePoint) {
         const buckets = newReferencePoint?.buckets ?? [];
-        let measures = this.getBucketMeasures(newReferencePoint);
+        let measures = this.getBucketMeasures(buckets);
         let stacks = getStackItems(buckets);
         const nonStackAttributes = getAttributeItemsWithoutStacks(buckets);
         const view = nonStackAttributes.slice(0, 1);

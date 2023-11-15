@@ -34,6 +34,7 @@ import {
     IUiConfig,
     IVisConstruct,
     IDrillDownDefinition,
+    IBucketOfFun,
 } from "../../interfaces/Visualization.js";
 import {
     getAllCategoriesAttributeItems,
@@ -144,8 +145,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         return modifyBucketsAttributesForDrillDown(withFilters, drillDownContext.drillDefinition);
     }
 
-    private getBucketMeasures(extendedReferencePoint: IExtendedReferencePoint) {
-        const buckets = extendedReferencePoint?.buckets ?? [];
+    private getBucketMeasures(buckets: IBucketOfFun[] = []) {
         const limitedBuckets = limitNumberOfMeasuresInBuckets(buckets, MAX_METRICS_COUNT, true);
         return getFilteredMeasuresForStackedCharts(limitedBuckets);
     }
@@ -157,7 +157,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         }
 
         const buckets = extendedReferencePoint?.buckets ?? [];
-        const measures = this.getBucketMeasures(extendedReferencePoint);
+        const measures = this.getBucketMeasures(buckets);
         const dateItems = getDateItems(buckets);
         const mainDateItem = getMainDateItem(dateItems);
         const categoriesCount =
@@ -244,7 +244,7 @@ export class PluggableColumnBarCharts extends PluggableBaseChart {
         stacks: IBucketItem[];
     } {
         const buckets = extendedReferencePoint?.buckets ?? [];
-        const measures = this.getBucketMeasures(extendedReferencePoint);
+        const measures = this.getBucketMeasures(buckets);
         const viewByMaxItemCount = this.getViewByMaxItemCount(extendedReferencePoint);
         const stackByMaxItemCount = this.getStackByMaxItemCount(extendedReferencePoint);
         const allAttributesWithoutStacks = getAllCategoriesAttributeItems(buckets);

@@ -302,7 +302,7 @@ export class PluggableAreaChart extends PluggableBaseChart {
 
     private getBucketItems(referencePoint: IExtendedReferencePoint) {
         const buckets = referencePoint?.buckets ?? [];
-        const measures = this.getBucketMeasures(referencePoint);
+        const measures = this.getBucketMeasures(buckets);
         const dateItems = getDateItems(buckets);
         const mainDateItem = getMainDateItem(dateItems);
 
@@ -335,15 +335,14 @@ export class PluggableAreaChart extends PluggableBaseChart {
         return referencePoint.uiConfig?.buckets?.[BucketNames.VIEW]?.itemsLimit ?? MAX_CATEGORIES_COUNT;
     }
 
-    private getBucketMeasures(extendedReferencePoint: IExtendedReferencePoint) {
-        const buckets = extendedReferencePoint?.buckets ?? [];
+    private getBucketMeasures(buckets: IBucketOfFun[] = []) {
         const limitedBuckets = limitNumberOfMeasuresInBuckets(buckets, MAX_METRICS_COUNT, true);
         return getFilteredMeasuresForStackedCharts(limitedBuckets);
     }
 
     private getBucketItemsWithMultipleDates(referencePoint: IExtendedReferencePoint) {
         const buckets = referencePoint?.buckets ?? [];
-        const measures = this.getBucketMeasures(referencePoint);
+        const measures = this.getBucketMeasures(buckets);
         const viewByMaxItemCount = this.getViewByMaxItemCount(referencePoint);
         const stacks: IBucketItem[] = getStackItems(buckets, [ATTRIBUTE, DATE]);
 
