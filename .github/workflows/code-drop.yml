@@ -4,13 +4,13 @@ name: Prepare commits after code drop
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        type: choice
-        description: Type of the current release being branched
-        options:
-        - major
-        - minor
+      #    inputs:
+      #      version:
+      #        type: choice
+      #        description: Type of the current release being branched
+      #        options:
+      #        - major
+      #        - minor
 
 jobs:
   prepare-version:
@@ -27,10 +27,18 @@ jobs:
         with:
           source-branch: 'master'
           target-branch: 'release-1'
-
+      - name: Bump version in release branch
+        uses: ./.github/actions/bump-version
+        with:
+          source-branch: 'master'
+          bump: 'preminor'
+          prerelease-id: 'alpha'
+        uses: ./.github/actions/bump-version
+        with:
+          source-branch: 'release-1'
+          bump: 'prerelease'
+          prerelease-id: 'beta'
       - name: Simple message
         shell: bash
-        env:
-            NEXT_REL: ${{ inputs.version }}
         run: |
-            echo "Finished with $NEXT_REL"
+            echo "Finished with"
