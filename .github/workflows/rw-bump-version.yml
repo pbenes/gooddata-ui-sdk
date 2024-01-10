@@ -35,9 +35,10 @@ jobs:
           PRERELEASE_ID: ${{ inputs.prerelease-id }}
         run: |
           npm install -g @microsoft/rush
-          rush version --bump --override-bump $BUMP --override-prerelease-id $PRERELEASE_ID
           git config --global user.email "git-action@gooddata.com"
           git config --global user.name "git-action"
+          # it needs git configured already user.email/name
+          rush version --bump --override-bump $BUMP --override-prerelease-id $PRERELEASE_ID
           git add -A
           git commit -m "Bump versions"
           git push origin ${{ inputs.source-branch }}
