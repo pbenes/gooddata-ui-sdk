@@ -10,12 +10,14 @@ on:
           required: true
 
 jobs:
-  prepare-version:
+  prepare-branch:
+    # have dummy password to prevent accidental run
+    if: github.event.inputs.password == 'dummy'
+
     # runs-on: [infra1-small]
     # container:
     #   image: 020413372491.dkr.ecr.us-east-1.amazonaws.com/3rdparty/library/node:18
     runs-on: ubuntu-latest
-    #image: node:18
 
     # have dummy password to prevent accidental run
     if: github.event.inputs.password == 'dummy'
@@ -27,25 +29,32 @@ jobs:
         with:
           source-branch: 'master'
           target-branch: 'release-2'
-      - name: Bump version in master branch
-        uses: ./.github/workflows/rw-bump-version.yml
-        with:
-          source-branch: 'master'
-          bump: 'preminor'
-          prerelease-id: 'alpha'
-      - name: Bump version in release branch
-        uses: ./.github/workflows/rw-bump-version.yml
-        with:
-          source-branch: 'release-2'
-          bump: 'prerelease'
-          prerelease-id: 'beta'
-          #- name: Release version in release branch
-        #TODO
 
-      - name: Inform to slack
-        uses: slackapi/slack-github-action@v1.23.0
-        with:
-          channel-id: '#pb-test-gh-action'
-          slack-message: "Code drop finished"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  prepare-versions-release:
+    runs-on: ubuntu-latest
+    needs: prepare-branch
+    uses: ./.github/workflows/rw-bump-version.yml
+    with:
+        source-branch: 'release-2'
+        bump: 'prerelease'
+        prerelease-id: 'beta'
+
+  prepare-versions-master:
+    runs-on: ubuntu-latest
+    needs: prepare-branch
+    uses: ./.github/workflows/rw-bump-version.yml
+    with:
+        source-branch: 'master'
+        bump: 'preminor'
+        prerelease-id: 'alpha'
+
+  slack-notification:
+      needs: [prepare-versions-release, prepare-versions-master]
+      steps:
+        - name: Inform to slack
+            uses: slackapi/slack-github-action@v1.23.0
+            with:
+            channel-id: '#pb-test-gh-action'
+            slack-message: "Code drop finished"
+            env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
