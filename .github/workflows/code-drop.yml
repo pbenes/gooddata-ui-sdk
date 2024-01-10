@@ -27,12 +27,13 @@ jobs:
         with:
           source-branch: 'master'
           target-branch: 'release-1'
-      - name: Bump version in release branch
+      - name: Bump version in master branch
         uses: ./.github/actions/bump-version
         with:
           source-branch: 'master'
           bump: 'preminor'
           prerelease-id: 'alpha'
+      - name: Bump version in release branch
         uses: ./.github/actions/bump-version
         with:
           source-branch: 'release-1'
