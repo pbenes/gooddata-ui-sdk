@@ -19,8 +19,6 @@ jobs:
     #   image: 020413372491.dkr.ecr.us-east-1.amazonaws.com/3rdparty/library/node:18
     runs-on: ubuntu-latest
 
-    # have dummy password to prevent accidental run
-    if: github.event.inputs.password == 'dummy'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -49,12 +47,13 @@ jobs:
         prerelease-id: 'alpha'
 
   slack-notification:
-      needs: [prepare-versions-release, prepare-versions-master]
-      steps:
-        - name: Inform to slack
-            uses: slackapi/slack-github-action@v1.23.0
-            with:
-            channel-id: '#pb-test-gh-action'
-            slack-message: "Code drop finished"
-            env:
-            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+    runs-on: ubuntu-latest
+    needs: [prepare-versions-release, prepare-versions-master]
+    steps:
+      - name: Inform to slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+        channel-id: '#pb-test-gh-action'
+        slack-message: "Code drop finished"
+        env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
