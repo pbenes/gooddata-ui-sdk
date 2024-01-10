@@ -14,9 +14,6 @@ on:
         required: true
         description: 'The prerelease ID (alpha, beta, etc.)'
         type: string
-    secrets:
-      token:
-        required: true
 
 jobs:
   bump-version:
