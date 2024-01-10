@@ -28,13 +28,13 @@ jobs:
           source-branch: 'master'
           target-branch: 'release-2'
       - name: Bump version in master branch
-        uses: ./.github/workflows/rw-bump-version.yml@main
+        uses: ./.github/workflows/rw-bump-version.yml
         with:
           source-branch: 'master'
           bump: 'preminor'
           prerelease-id: 'alpha'
       - name: Bump version in release branch
-        uses: ./.github/workflows/rw-bump-version.yml@main
+        uses: ./.github/workflows/rw-bump-version.yml
         with:
           source-branch: 'release-2'
           bump: 'prerelease'
