@@ -46,14 +46,14 @@ jobs:
         bump: 'preminor'
         prerelease-id: 'alpha'
 
-        #  slack-notification:
-        #    runs-on: ubuntu-latest
-        #    needs: [prepare-versions-release, prepare-versions-master]
-        #    steps:
-        #      - name: Inform to slack
-        #        uses: slackapi/slack-github-action@v1.23.0
-        #        with:
-        #            channel-id: '#pb-test-gh-action'
-        #            slack-message: "Code drop finished"
-        #            env:
-        #            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  slack-notification:
+    runs-on: ubuntu-latest
+    needs: [prepare-versions-release, prepare-versions-master]
+    steps:
+      - name: Inform to slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+            channel-id: '#pb-test-gh-action'
+            slack-message: "Code drop finished"
+            env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
