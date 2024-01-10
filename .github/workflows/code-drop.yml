@@ -29,7 +29,6 @@ jobs:
           target-branch: 'release-2'
 
   prepare-versions-release:
-    runs-on: ubuntu-latest
     needs: prepare-branch
     uses: ./.github/workflows/rw-bump-version.yml
     with:
@@ -38,7 +37,6 @@ jobs:
         prerelease-id: 'beta'
 
   prepare-versions-master:
-    runs-on: ubuntu-latest
     needs: prepare-branch
     uses: ./.github/workflows/rw-bump-version.yml
     with:
