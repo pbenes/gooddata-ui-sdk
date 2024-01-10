@@ -4,13 +4,10 @@ name: Prepare commits after code drop
 
 on:
   workflow_dispatch:
-      #    inputs:
-      #      version:
-      #        type: choice
-      #        description: Type of the current release being branched
-      #        options:
-      #        - major
-      #        - minor
+      inputs:
+        password:
+          description: Password for releasing
+          required: true
 
 jobs:
   prepare-version:
@@ -19,6 +16,9 @@ jobs:
     #   image: 020413372491.dkr.ecr.us-east-1.amazonaws.com/3rdparty/library/node:18
     runs-on: ubuntu-latest
     #image: node:18
+
+    # have dummy password to prevent accidental run
+    if: github.event.inputs.password == 'dummy'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,20 +26,26 @@ jobs:
         uses: ./.github/actions/branch-cutoff-action
         with:
           source-branch: 'master'
-          target-branch: 'release-1'
+          target-branch: 'release-2'
       - name: Bump version in master branch
-        uses: ./.github/actions/bump-version
+        uses: ./.github/workflows/rw-bump-version.yml@main
         with:
           source-branch: 'master'
           bump: 'preminor'
           prerelease-id: 'alpha'
       - name: Bump version in release branch
-        uses: ./.github/actions/bump-version
+        uses: ./.github/workflows/rw-bump-version.yml@main
         with:
-          source-branch: 'release-1'
+          source-branch: 'release-2'
           bump: 'prerelease'
           prerelease-id: 'beta'
-      - name: Simple message
-        shell: bash
-        run: |
-            echo "Finished with"
+          #- name: Release version in release branch
+        #TODO
+
+      - name: Inform to slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: '#pb-test-gh-action'
+          slack-message: "Code drop finished"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

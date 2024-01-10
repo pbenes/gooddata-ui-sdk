@@ -1,0 +1,47 @@
+name: Bump version
+on:
+  workflow_call:
+    inputs:
+      source-branch:
+        required: true
+        description: 'The name of the source branch'
+        type: string
+      bump:
+        required: true
+        description: 'The type of version bump (major, minor, patch)'
+        type: string
+      prerelease-id:
+        required: true
+        description: 'The prerelease ID (alpha, beta, etc.)'
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ inputs.source-branch }}
+          token: ${{ secrets.token }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.17.0'  # Specify your Node.js version
+
+      - name: Create and push branch
+        env:
+          BUMP: ${{ inputs.bump }}
+          PRERELEASE_ID: ${{ inputs.prerelease-id }}
+        run: |
+          npm install -g @microsoft/rush
+          rush version --bump --override-bump $BUMP --override-prerelease-id $PRERELEASE_ID
+          git config --global user.email "git-action@gooddata.com"
+          git config --global user.name "git-action"
+          git add -A
+          git commit -m "Bump versions"
+          git push origin ${{ inputs.source-branch }}
