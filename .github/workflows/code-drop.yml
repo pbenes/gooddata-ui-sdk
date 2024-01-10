@@ -31,6 +31,7 @@ jobs:
   prepare-versions-release:
     needs: prepare-branch
     uses: ./.github/workflows/rw-bump-version.yml
+    secrets: inherit
     with:
         source-branch: 'release-2'
         bump: 'prerelease'
@@ -39,6 +40,7 @@ jobs:
   prepare-versions-master:
     needs: prepare-branch
     uses: ./.github/workflows/rw-bump-version.yml
+    secrets: inherit
     with:
         source-branch: 'master'
         bump: 'preminor'
