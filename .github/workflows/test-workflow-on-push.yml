@@ -1,0 +1,26 @@
+name: TEST - check
+on:
+  workflow_dispatch:
+      inputs:
+        package:
+          description: package
+          required: true
+        version:
+          description: version
+          required: true
+
+jobs:
+  test:
+    runs-on: [ubuntu-latest]
+    permissions:
+      contents: write
+
+    steps:
+      - name: Run test
+        id: test
+        uses: ./.github/actions/check-npm-version
+        with:
+          package: ${{ inputs.package }}
+          version: ${{ inputs.version }}
+      - name: Run output
+        run: echo "The package version exists ${{ steps.test.outputs.exists }}"
