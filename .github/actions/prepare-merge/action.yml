@@ -16,16 +16,16 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Clean pr temporary branch if already exists
-      uses: ./.github/actions/delete-branch
-      with:
-        branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
+      #- name: Clean pr temporary branch if already exists
+      #  uses: ./.github/actions/delete-branch
+      #  with:
+      #    branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
 
-    - name: Run copy branch action
-      uses: ./.github/actions/branch-cutoff-action
-      with:
-        source-branch: ${{ inputs.source-branch }}
-        target-branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
+        #- name: Run copy branch action
+        #  uses: ./.github/actions/branch-cutoff-action
+        #  with:
+        #    source-branch: ${{ inputs.source-branch }}
+        #    target-branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
 
         #    - name: Checkout code
         #      uses: actions/checkout@v4
@@ -46,8 +46,13 @@ runs:
       run: |
           # attempt to merge, check conflicts, if only in certain files, use $TARGET_BRANCH to resolve
           git fetch origin
+          git checkout $SOURCE_BRANCH_RAW
+          git checkout -b $SOURCE_BRANCH
           git merge --allow-unrelated-histories --verbose origin/$TARGET_BRANCH || true
           conflicting_files=$(git diff --name-only --diff-filter=U)
+          echo "conflicts:"
+          echo $conflicting_files
+          exit 1
           expected_files=("package.json" "version-policies.json")
           unexpected_conflict="false"
 
@@ -71,9 +76,10 @@ runs:
               git checkout --theirs $file
               git add $file
           done
-          git commit -m "Resolved merge conflicts to match $TARGET_BRANCH"
+          git commit --no-verify -m "Resolved merge conflicts to match $TARGET_BRANCH"
           git push origin $SOURCE_BRANCH
       env:
+          SOURCE_BRANCH_RAW: ${{ inputs.source-branch }}
           SOURCE_BRANCH: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
           TARGET_BRANCH: ${{ inputs.target-branch }}
       shell: bash
