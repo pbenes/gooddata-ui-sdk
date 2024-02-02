@@ -25,4 +25,4 @@ jobs:
           package: ${{ inputs.package }}
           version: ${{ inputs.version }}
       - name: Run output
-        run: echo "The package version exists ${{ steps.test.outputs.exists }}"
+        run: echo The package version exists ${{ steps.test.outputs.exists }}
