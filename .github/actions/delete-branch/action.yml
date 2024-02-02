@@ -1,0 +1,21 @@
+name: Delete branch
+description: Delete given branch
+inputs:
+  branch:
+    required: true
+    description: branch to be deleted
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/github-script@v7
+      env:
+          BRANCH: ${{ inputs.branch }}
+      with:
+        script: |
+          const { BRANCH } = process.env
+          await github.rest.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'heads/' + BRANCH,
+          });
