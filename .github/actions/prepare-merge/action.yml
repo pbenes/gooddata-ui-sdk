@@ -27,11 +27,11 @@ runs:
         source-branch: ${{ inputs.source-branch }}
         target-branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
 
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-          ref: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
-
+        #    - name: Checkout code
+        #      uses: actions/checkout@v4
+        #      with:
+        #          ref: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
+        #
     - name: Add repository to git safe directories to avoid dubious ownership issue
       run: git config --global --add safe.directory $GITHUB_WORKSPACE
       shell: bash
