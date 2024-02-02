@@ -46,7 +46,7 @@ runs:
       run: |
           # attempt to merge, check conflicts, if only in certain files, use $TARGET_BRANCH to resolve
           git fetch origin
-          git merge --no-ff origin/$TARGET_BRANCH
+          git merge --verbose origin/$TARGET_BRANCH
           conflicting_files=$(git diff --name-only --diff-filter=U)
           expected_files=("package.json" "version-policies.json")
           unexpected_conflict="false"
