@@ -39,25 +39,8 @@ runs:
           # do not use cutoff action, it breaks the history
           git checkout -b $SOURCE_BRANCH-to-$TARGET_BRANCH
           git merge --allow-unrelated-histories --verbose origin/$TARGET_BRANCH || true
-          conflicting_files=$(git diff --name-only --diff-filter=U)
-          echo "conflicts:"
-          echo $conflicting_files
-          expected_files=("package.json" "version-policies.json")
-          unexpected_conflict="false"
-
-          for file in $conflicting_files
-          do
-            if [[ ! " ${expected_files[@]} " =~ " ${file} " ]]; then
-              unexpected_conflict="true"
-              break
-            fi
-          done
-
-
-          if [ "$unexpected_conflict" = "true" ]; then
-            echo "Skipping automated merge, there are unexpected conflicts"
-            exit
-          fi
+          # we are resolving only conflicts which we can do, we silently ignore other potential conflits
+          conflicting_files=$(git diff --name-only --diff-filter=U | grep -E 'package.json|version-policies.json')
 
           # perform back-merge resolution
           for file in $conflicting_files
