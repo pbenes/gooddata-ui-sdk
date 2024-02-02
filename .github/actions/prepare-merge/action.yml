@@ -44,10 +44,36 @@ runs:
 
     - name: Prepare pr with attempt to resolve conflicts
       run: |
-          echo git merge --no-ff $TARGET_BRANCH
-          # FUTURE improvements:
-          # check conflicts, if only in some files, use $TARGET_BRANCH to resolve
+          # attempt to merge, check conflicts, if only in certain files, use $TARGET_BRANCH to resolve
+          git merge --no-ff $TARGET_BRANCH
+          conflicting_files=$(git diff --name-only --diff-filter=U)
+          expected_files=("package.json" "version-policies.json")
+          unexpected_conflict="false"
+
+          for file in $conflicting_files
+          do
+            if [[ ! " ${expected_files[@]} " =~ " ${file} " ]]; then
+              unexpected_conflict="true"
+              break
+            fi
+          done
+
+
+          if [ "$unexpected_conflict" = "true" ]; then
+            echo "Skipping automated merge, there are unexpected conflicts"
+            exit
+          fi
+
+          # perform back-merge resolution
+          for file in $conflicting_files
+          do
+              git checkout --theirs $file
+              git add $file
+          done
+          git commit -m "Resolved merge conflicts to match $TARGET_BRANCH"
+          git push origin $SOURCE_BRANCH
       env:
+          SOURCE_BRANCH: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
           TARGET_BRANCH: ${{ inputs.target-branch }}
       shell: bash
 
