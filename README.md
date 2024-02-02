@@ -17,6 +17,8 @@
 
 [GoodData.UI](https://gooddata.com/docs/gooddata-ui) is a TypeScript framework for building analytical applications on top of the [GoodData platform](https://help.gooddata.com/doc/enterprise/en), [GoodData Cloud or GoodData.CN](https://www.gooddata.com/docs/cloud/).
 
+changed readme
+
 GoodData.UI consists of multiple libraries with clear-cut responsibilities ranging from low-level REST API clients up to visualization libraries that deliver React-based components to render different types of charts and tables.
 
 ## Documentation and examples
