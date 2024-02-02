@@ -16,10 +16,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Clean pr temporary branch if already exists
-      uses: ./.github/actions/delete-branch
-      with:
-        branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
+      #    - name: Clean pr temporary branch if already exists
+      #      uses: ./.github/actions/delete-branch
+      #      with:
+      #        branch: ${{ inputs.source-branch }}-to-${{ inputs.target-branch }}
 
     - name: Add repository to git safe directories to avoid dubious ownership issue
       run: git config --global --add safe.directory $GITHUB_WORKSPACE
