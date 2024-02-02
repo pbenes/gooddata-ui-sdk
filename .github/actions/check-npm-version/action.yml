@@ -13,6 +13,8 @@ inputs:
 outputs:
   exists:
     description: true if package@version exists, false otherwise
+    value: ${{ steps.check.outputs.exists }}
+
 runs:
   using: 'composite'
   steps:
