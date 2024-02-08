@@ -48,8 +48,8 @@ jobs:
               token: ${{ secrets.TOKEN_GITHUB_YENKINS_ADMIN }}
 
         - name: Get version
+          uses: ./.github/actions/get-version-action
           id: version
-          run: echo "version=$(node -p "require('./libs/sdk-ui/package.json').version")" >> $GITHUB_OUTPUT
 
     bump-version-and-commit:
         if: ${{ !inputs.skip-bump && inputs.bump }}
@@ -89,17 +89,18 @@ jobs:
                   BUMP: ${{ inputs.bump }}
               run: rush version --bump --override-bump $BUMP
 
+
+            - name: Get version
+              uses: ./.github/actions/get-version-action
+              id: version
+
             - name: Git commit and push
               run: |
                 # add changelogs
                 git add libs/sdk-ui-all/CHANGELOG.* || true
                 git ls-files | grep '\.json' | xargs git add
 
-                VERSION=$(node -p "require('./libs/sdk-ui/package.json').version")
                 git commit -a -m "Bump versions to $VERSION"
                 git push origin ${{ inputs.source-branch }}
-
-            - name: Get version
-              id: version
-              run: echo "version=$(node -p "require('./libs/sdk-ui/package.json').version")" >> $GITHUB_OUTPUT
-
+              env:
+                VERSION: ${{ steps.version.outputs.version }}
