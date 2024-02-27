@@ -34,7 +34,7 @@ jobs:
             REVISION=$(git rev-parse HEAD)
             LINK="https://app.fossa.com/api/revisions/custom%2B13637%2Fgooddata-ui-sdk%24$REVISION/attribution/download?includeProjectLicense=&includeLicenseScan=&includeDependencySummary=true&includeDirectDependencies=true&includeDeepDependencies=true&includeLicenseList=true&includeVulnerabilities=&format=TXT&includeLicenseHeaders=&download=true"
             echo $LINK
-            curl --header "Authorization: Bearer $FOSSA_API_KEY" $LINK
+            curl -o NOTICE --header "Authorization: Bearer $FOSSA_API_KEY" $LINK
         env:
           FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
       - name: Git commit and push
