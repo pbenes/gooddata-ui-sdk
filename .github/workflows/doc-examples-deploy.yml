@@ -31,7 +31,8 @@ jobs:
           FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
       - name: Generate FOSSA Attribution Report
         run: |
-            fossa report attribution --format text > NOTICE
+            REVISION=$(git rev-parse HEAD)
+            curl --header "Authorization: Bearer $FOSSA_API_KEY" https://app.fossa.com/api/revisions/custom%2B13637%2Fgooddata-ui-sdk%24$REVISION/attribution/download?includeProjectLicense=&includeLicenseScan=&includeDependencySummary=true&includeDirectDependencies=true&includeDeepDependencies=true&includeLicenseList=true&includeVulnerabilities=&format=TXT&includeLicenseHeaders=&download=false | tee NOTICE
         env:
           FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
       - name: Git commit and push
@@ -40,5 +41,3 @@ jobs:
           git add  NOTICE
           git commit -a -m "chore: update attribution file" -m "" -m "TRIVIAL"
           git push origin HEAD
-
-
