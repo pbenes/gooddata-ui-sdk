@@ -33,7 +33,8 @@ jobs:
             id-token: write
         secrets: inherit
         with:
-            source-branch: "release"
+            #source-branch: "release"
+            source-branch: "master"
             #version: ${{ needs.get-version.outputs.version }}
             version: "9.9.9"
             is-new-latest: true
