@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-            repository: 'gooddata/gooddata-ui-apidocs'
+            repository: 'pbenes/gooddata-ui-apidocs'
             ref: 'master'
             token: ${{ secrets.TOKEN_GITHUB_YENKINS_ADMIN }}
             path: "gooddata-ui-apidocs"
@@ -107,7 +107,8 @@ jobs:
         run: |
           cd gooddata-ui-apidocs
           git add --all
-          git commit -m "chore: create a new api docs version $VERSION" -m "" -m "TRIVIAL"
+          #git commit -m "chore: create a new api docs version $VERSION" -m "" -m "TRIVIAL"
+          git commit --allow-empty -m "chore: create a new api docs version $VERSION" -m "" -m "TRIVIAL"
           git show --stat
 
           echo "Going to push to gooddata-ui-apidocs"
