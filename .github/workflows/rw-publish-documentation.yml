@@ -5,14 +5,14 @@ on:
     workflow_call:
 
 jobs:
-    get-version:
-        uses: ./.github/workflows/rw-bump-version.yml
-        secrets: inherit
-        permissions:
-            contents: write
-        with:
-            skip-bump: true
-            source-branch: 'release'
+    #    get-version:
+    #        uses: ./.github/workflows/rw-bump-version.yml
+    #        secrets: inherit
+    #        permissions:
+    #            contents: write
+    #        with:
+    #            skip-bump: true
+    #            source-branch: 'release'
 
     update-apidocs-next:
         uses: ./.github/workflows/rw-doc-release-apidocs.yml
@@ -26,7 +26,8 @@ jobs:
             is-new-latest: false
 
     update-apidocs-version:
-        needs: [get-version, update-apidocs-next]
+        #needs: [get-version, update-apidocs-next]
+        needs: [update-apidocs-next]
         uses: ./.github/workflows/rw-doc-release-apidocs.yml
         permissions:
             contents: write
