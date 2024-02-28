@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-            repository: 'gooddata-ui-apidocs'
+            repository: 'pbenes/gooddata-ui-apidocs'
             ref: 'master'
             token: ${{ secrets.GITHUB_TOKEN }}
             path: "gooddata-ui-apidocs"
@@ -112,7 +112,7 @@ jobs:
           git show --stat
 
           echo "Going to push to gooddata-ui-apidocs"
-          git push origin master
+          # git push origin master
           cd ..
         env:
           VERSION: ${{ inputs.version }}
