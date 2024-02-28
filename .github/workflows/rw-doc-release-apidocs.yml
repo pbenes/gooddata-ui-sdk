@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-            repository: 'pbenes/gooddata-ui-apidocs'
+            repository: 'gooddata-ui-apidocs'
             ref: 'master'
             token: ${{ secrets.GITHUB_TOKEN }}
             path: "gooddata-ui-apidocs"
