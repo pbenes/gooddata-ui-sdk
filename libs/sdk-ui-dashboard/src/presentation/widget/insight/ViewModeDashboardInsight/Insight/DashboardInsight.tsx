@@ -79,6 +79,7 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
         onError,
         onDrill: onDrillFn,
         onLoadingChanged,
+        afterRender,
         onExportReady,
         ErrorComponent: CustomErrorComponent,
         LoadingComponent: CustomLoadingComponent,
@@ -120,7 +121,8 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
                 // if we started loading, any previous vis error is obsolete at this point, get rid of it
                 setVisualizationError(undefined);
             } else {
-                onResolveAsyncRender();
+                // resolved in handleAfterRender or in handleError
+                //onResolveAsyncRender();
             }
             executionsHandler.onLoadingChanged({ isLoading });
             setIsVisualizationLoading(isLoading);
@@ -128,6 +130,10 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
         },
         [onLoadingChanged, executionsHandler.onLoadingChanged],
     );
+
+    const handleAfterRender = useCallback<any>(() => {
+        onResolveAsyncRender();
+    }, [afterRender]);
 
     // Filtering
     const {
@@ -184,6 +190,8 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
             setVisualizationError(error);
             onError?.(error);
             executionsHandler.onError(error);
+            // rendered with error
+            onResolveAsyncRender();
         },
         [onError, executionsHandler.onError],
     );
@@ -248,6 +256,7 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
                                 ErrorComponent={ErrorComponent}
                                 LoadingComponent={LoadingComponent}
                                 onExportReady={onExportReady}
+                                afterRender={handleAfterRender}
                             />
                         </div>
                     ) : null}

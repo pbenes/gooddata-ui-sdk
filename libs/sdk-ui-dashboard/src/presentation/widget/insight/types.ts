@@ -154,6 +154,11 @@ export interface IDashboardInsightProps {
      * @internal
      */
     pushData?: (data: IPushData) => void;
+
+    /**
+     * @internal
+     */
+    afterRender?: () => void;
 }
 
 /**

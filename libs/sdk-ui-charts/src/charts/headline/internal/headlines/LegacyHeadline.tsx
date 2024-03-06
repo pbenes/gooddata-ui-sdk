@@ -1,4 +1,4 @@
-// (C) 2007-2022 GoodData Corporation
+// (C) 2007-2024 GoodData Corporation
 import React, { createRef } from "react";
 import ReactMeasure, { MeasuredComponentProps } from "react-measure";
 import { ResponsiveText } from "@gooddata/sdk-ui-kit";
@@ -48,19 +48,25 @@ export default class LegacyHeadline extends React.Component<IHeadlineVisualizati
         disableDrillUnderline: false,
     };
 
-    public componentDidMount(): void {
-        this.props.onAfterRender();
-    }
-
-    public componentDidUpdate(): void {
-        this.props.onAfterRender();
-    }
-
     private secondaryItemTitleWrapperRef = createRef<HTMLDivElement>();
+
+    public componentDidMount(): void {
+        // guard if onResize would fail to resize the widget
+        setTimeout(() => {
+            this.props.onAfterRender();
+        }, 3000);
+    }
 
     public render() {
         return (
-            <Measure client>
+            <Measure
+                client={true}
+                onResize={(dimensions) => {
+                    if (dimensions?.client?.width > 0 && dimensions?.client?.height > 0) {
+                        this.props.onAfterRender();
+                    }
+                }}
+            >
                 {({ measureRef, contentRect }: MeasuredComponentProps) => {
                     return (
                         <div className="headline" ref={measureRef}>

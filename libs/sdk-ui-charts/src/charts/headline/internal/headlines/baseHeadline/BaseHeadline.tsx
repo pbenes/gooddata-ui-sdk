@@ -1,4 +1,4 @@
-// (C) 2023 GoodData Corporation
+// (C) 2023-2024 GoodData Corporation
 import React, { useCallback, useEffect } from "react";
 import { defaultImport } from "default-import";
 import ReactMeasure, { MeasuredComponentProps } from "react-measure";
@@ -41,11 +41,23 @@ const BaseHeadline: React.FC<IHeadlineProps> = ({ data, config, onDrill, onAfter
     );
 
     useEffect(() => {
-        onAfterRender();
+        // guard if onResize would fail to resize the widget
+        setTimeout(() => {
+            onAfterRender();
+        }, 3000);
     });
 
     return (
-        <Measure client={true}>
+        <Measure
+            client={true}
+            onResize={(dimensions) => {
+                // onResize is called also initially when dimensions
+                // are not yet fully materialized, defer afterRender
+                if (dimensions?.client?.width > 0 && dimensions?.client?.height > 0) {
+                    onAfterRender();
+                }
+            }}
+        >
             {({ measureRef, contentRect }: MeasuredComponentProps) => {
                 return (
                     <BaseHeadlineContext.Provider
