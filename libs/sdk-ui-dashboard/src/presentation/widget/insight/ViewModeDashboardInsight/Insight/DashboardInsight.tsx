@@ -1,5 +1,5 @@
 // (C) 2020-2024 GoodData Corporation
-import React, { CSSProperties, useCallback, useMemo, useState } from "react";
+import React, { useRef, CSSProperties, useCallback, useMemo, useState } from "react";
 import { IUserWorkspaceSettings } from "@gooddata/sdk-backend-spi";
 import { createSelector } from "@reduxjs/toolkit";
 import {
@@ -110,7 +110,8 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
 
     // Loading and rendering
     const [isVisualizationLoading, setIsVisualizationLoading] = useState(false);
-    const [visualizationError, setVisualizationError] = useState<GoodDataSdkError | undefined>();
+    const [visualizationError, setVisualizationError] = useState(false);
+    const errorRef = useRef<GoodDataSdkError | null>(null);
 
     const { onRequestAsyncRender, onResolveAsyncRender } = useDashboardAsyncRender(objRefToString(ref));
     const handleLoadingChanged = useCallback<OnLoadingChanged>(
@@ -118,7 +119,8 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
             if (isLoading) {
                 onRequestAsyncRender();
                 // if we started loading, any previous vis error is obsolete at this point, get rid of it
-                setVisualizationError(undefined);
+                errorRef.current = null;
+                setVisualizationError(false);
             } else {
                 onResolveAsyncRender();
             }
@@ -181,14 +183,21 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
     // Error handling
     const handleError = useCallback<OnError>(
         (error) => {
-            setVisualizationError(error);
+            // do nothing if error is the same to prevent loop
+            if (errorRef?.current?.toString() === error?.toString()) {
+                return;
+            }
+
+            errorRef.current = error;
+            setVisualizationError(true);
+
             onError?.(error);
             executionsHandler.onError(error);
         },
         [onError, executionsHandler.onError],
     );
 
-    const effectiveError = filtersError ?? visualizationError;
+    const effectiveError = filtersError ?? errorRef.current;
 
     // CSS
     const insightPositionStyle: CSSProperties = useMemo(() => {
@@ -204,8 +213,8 @@ export const DashboardInsight = (props: IDashboardInsightProps): JSX.Element => 
     }, [isPositionRelative]);
 
     const insightWrapperStyle: CSSProperties | undefined = useMemo(() => {
-        return isVisualizationLoading || effectiveError ? { height: 0 } : undefined;
-    }, [isVisualizationLoading, effectiveError]);
+        return isVisualizationLoading || visualizationError ? { height: 0 } : undefined;
+    }, [isVisualizationLoading, visualizationError]);
 
     const visualizationProperties = insightProperties(insightWithAddedWidgetProperties);
     const isZoomable = visualizationProperties?.controls?.zoomInsight;
