@@ -1,8 +1,10 @@
-// (C) 2022-2024 GoodData Corporation
+// (C) 2022-2025 GoodData Corporation
 import {
     IAutomationMetadataObject,
     IAutomationMetadataObjectDefinition,
     IInsightWidget,
+    isMeasureGroupDescriptor,
+    ICatalogMeasure,
 } from "@gooddata/sdk-model";
 import { useToastMessage } from "@gooddata/sdk-ui-kit";
 import { fillMissingTitles, useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
@@ -37,7 +39,6 @@ import {
     useWorkspaceUsers,
 } from "../../../../../../model/index.js";
 import { convertCurrentUserToAutomationRecipient } from "../../../../../../_staging/automation/index.js";
-import { useMetricsAndFacts } from "../../../../../../_staging/sharedHooks/useMetricsAndFacts.js";
 import { DEFAULT_MAX_RECIPIENTS } from "../../../../../scheduledEmail/DefaultScheduledEmailDialog/constants.js";
 import { messages } from "../messages.js";
 import {
@@ -143,8 +144,7 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
         widget,
         insight,
     });
-    const { metricsAndFacts, metricsAndFactsLoading, metricsAndFactsLoadingError } = useMetricsAndFacts();
-    const { metrics: catalogMetrics } = metricsAndFacts ?? { metrics: [] };
+
     const locale = useDashboardSelector(selectLocale);
 
     const supportedAttributes = useMemo(
@@ -178,6 +178,44 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
     >(null);
     const [editingAlert, setEditingAlert] = useState<IAutomationMetadataObject | null>(null);
 
+    let insightCatalogMeasures: ICatalogMeasure[] = [];
+    if (execResult && !execResult.isLoading) {
+        // TODO: useMemo
+        const dimensions = execResult.executionResult?.dimensions ?? [];
+        for (const dim of dimensions) {
+            const measureGroup = dim.headers.find(isMeasureGroupDescriptor);
+
+            if (measureGroup) {
+                insightCatalogMeasures = measureGroup.measureGroupHeader.items.map((item) => {
+                    const identifier = item.measureHeaderItem?.identifier;
+                    // TODO: do not reconstruct catalog measures; instead, prepare
+                    // key-value formats map and remove catalogMeasures from the hook
+                    // and return just the formats instead; then alter all the usage
+                    return {
+                        type: "measure",
+                        groups: [],
+                        measure: {
+                            type: "measure",
+                            title: "",
+                            description: "",
+                            expression: "",
+                            id: identifier ?? "",
+                            format: item.measureHeaderItem?.format,
+                            production: true,
+                            deprecated: false,
+                            unlisted: false,
+                            ref: {
+                                identifier: identifier ?? "",
+                                type: "measure",
+                            },
+                            uri: identifier ?? "",
+                        },
+                    };
+                });
+            }
+        }
+    }
+
     // Handle async widget filters and catalog state
     useEffect(() => {
         if (
@@ -185,7 +223,6 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
             usersStatus === "success" &&
             defaultMeasure &&
             defaultNotificationChannelId &&
-            !metricsAndFactsLoading &&
             !defaultAlert
         ) {
             setDefaultAlert(
@@ -195,13 +232,10 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
                     defaultMeasure,
                     defaultNotificationChannelId,
                     convertCurrentUserToAutomationRecipient(users ?? [], currentUser),
-                    metricsAndFacts?.metrics ?? [],
+                    insightCatalogMeasures,
                 ),
             );
-        } else if (
-            (widgetFiltersStatus === "error" || usersStatus === "error" || metricsAndFactsLoadingError) &&
-            !defaultAlert
-        ) {
+        } else if ((widgetFiltersStatus === "error" || usersStatus === "error") && !defaultAlert) {
             closeInsightWidgetMenu();
             addError(messages.alertLoadingError);
         }
@@ -213,9 +247,6 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
         supportedMeasures,
         widgetFilters,
         widgetFiltersStatus,
-        metricsAndFacts,
-        metricsAndFactsLoading,
-        metricsAndFactsLoadingError,
         addError,
         currentUser,
         users,
@@ -334,12 +365,7 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
 
     return {
         isLoading:
-            isSavingAlert ||
-            isLoadingFilters ||
-            isRefreshingAutomations ||
-            isDeletingAlert ||
-            metricsAndFactsLoading ||
-            isLoadingUsers,
+            isSavingAlert || isLoadingFilters || isRefreshingAutomations || isDeletingAlert || isLoadingUsers,
         destinations,
         users,
         alerts,
@@ -365,7 +391,7 @@ export const useInsightWidgetAlerting = ({ widget, closeInsightWidgetMenu }: IIn
         canManageAttributes,
         canManageComparison,
         canCreateAutomation,
-        catalogMeasures: catalogMetrics ?? [],
+        catalogMeasures: insightCatalogMeasures,
         catalogAttributes: catalogAttributes ?? [],
         catalogDateDatasets: catalogDateDatasets ?? [],
     };
