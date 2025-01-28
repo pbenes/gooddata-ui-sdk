@@ -212,9 +212,9 @@ function* loadExistingDashboard(
         PromiseFnReturnType<typeof loadDashboardFromBackend>,
         SagaReturnType<typeof resolveDashboardConfig>,
         SagaReturnType<typeof resolvePermissions>,
-        PromiseFnReturnType<typeof resolveEntitlements>,
+        PromiseFnReturnType<typeof resolveEntitlements>, // advanced
         PromiseFnReturnType<typeof decideAndLoadFullCatalog>,
-        PromiseFnReturnType<typeof loadDashboardAlerts>,
+        PromiseFnReturnType<typeof loadDashboardAlerts>, //? advanced?
         PromiseFnReturnType<typeof loadUser>,
         PromiseFnReturnType<typeof loadDashboardList>,
         PromiseFnReturnType<typeof loadLegacyDashboards>,
@@ -279,12 +279,12 @@ function* loadExistingDashboard(
         [
             backendCapabilitiesActions.setBackendCapabilities(backend.capabilities),
             configActions.setConfig(config),
-            entitlementsActions.setEntitlements(entitlements),
+            //            entitlementsActions.setEntitlements(entitlements),
             userActions.setUser(user),
             permissionsActions.setPermissions(permissions),
             catalogActions.setCatalogItems(catalogPayload),
             ...initActions,
-            alertsActions.setAlerts(alerts),
+            //            alertsActions.setAlerts(alerts),
             dateFilterConfigActions.setDateFilterConfig({
                 dateFilterConfig: dashboard.dateFilterConfig,
                 effectiveDateFilterConfig: effectiveDateFilterConfig.config,

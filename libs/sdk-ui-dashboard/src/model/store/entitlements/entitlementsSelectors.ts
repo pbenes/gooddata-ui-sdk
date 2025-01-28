@@ -1,4 +1,4 @@
-// (C) 2023-2024 GoodData Corporation
+// (C) 2023-2025 GoodData Corporation
 import { createSelector } from "@reduxjs/toolkit";
 import { IEntitlementDescriptor } from "@gooddata/sdk-model";
 import { DashboardSelector, DashboardState } from "../types.js";
@@ -7,7 +7,7 @@ import { ResolvedEntitlements } from "../../types/commonTypes.js";
 
 const selectSelf = createSelector(
     (state: DashboardState) => state,
-    (state) => state.entitlements,
+    (state) => state.entitlements ?? [],
 );
 
 /**
@@ -22,9 +22,9 @@ const selectSelf = createSelector(
 export const selectEntitlements: DashboardSelector<ResolvedEntitlements> = createSelector(
     selectSelf,
     (state) => {
-        invariant(state.entitlements, "attempting to access uninitialized entitlements state");
+        //        invariant(state.entitlements, "attempting to access uninitialized entitlements state");
 
-        return state.entitlements;
+        return state.entitlements ?? [];
     },
 );
 
