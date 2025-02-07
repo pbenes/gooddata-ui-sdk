@@ -189,7 +189,7 @@ function* loadExistingDashboard(
         call(loadDashboardFromBackend, ctx, privateCtx, dashboardRef, !!cmd.payload.persistedDashboard),
         call(resolveDashboardConfigAndFeatureFlagDependentCalls, ctx, cmd),
         call(resolvePermissions, ctx, cmd),
-        call(resolveEntitlements, ctx),
+        call(resolveEntitlements, ctx, cmd),
         call(decideAndLoadFullCatalog, ctx, cmd),
         call(loadDashboardAlerts, ctx),
         call(loadUser, ctx),

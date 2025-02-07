@@ -258,6 +258,13 @@ export interface DashboardConfig {
      * If provided, initialization of the dashboard avoid additional requests to resolve them.
      */
     references?: IDashboardReferences;
+
+    /**
+     * @alpha
+     *
+     * Entitlements for the user who is rendering the dashboard
+     */
+    entitlements?: IEntitlementDescriptor[];
 }
 
 /**
