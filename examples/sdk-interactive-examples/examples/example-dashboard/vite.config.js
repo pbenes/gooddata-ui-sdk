@@ -32,7 +32,7 @@ export default defineConfig({
     },
     server: {
         port: 8080,
-        allowedHosts: ["*.csb.app"],
+        allowedHosts: [".csb.app"],
         fs: {
             strict: false,
         },
