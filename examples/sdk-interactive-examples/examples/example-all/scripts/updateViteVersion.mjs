@@ -1,8 +1,11 @@
 // (C) 2026 GoodData Corporation
 
 import fs from "fs";
+import { createRequire } from "module";
 
-import packageData from "../package.json" assert { type: "json" };
+// Avoid JSON import assertions (`assert { type: "json" }`) for compatibility with older Node runtimes.
+const require = createRequire(import.meta.url);
+const packageData = require("../package.json");
 
 const packageJsonPath = "./package.json";
 
