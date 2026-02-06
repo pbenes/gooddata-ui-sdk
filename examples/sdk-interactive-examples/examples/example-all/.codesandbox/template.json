@@ -1,0 +1,7 @@
+{
+    "title": "All Interactive Examples",
+    "description": "Container that lets you switch between all interactive examples using a simple left-menu router.",
+    "iconUrl": "https://www.gooddata.com/favicon.ico",
+    "tags": ["react", "typescript", "gooddata-ui-sdk"],
+    "published": true
+}
